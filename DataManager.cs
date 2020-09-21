@@ -8,7 +8,7 @@ namespace SmartSaver
 {
     class DataManager
     {
-        string path = @"C:\Users\eglek\source\repos\Pluto\Database.txt";
+        string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"Database.txt");
         string[] lines = { "First line", "Second line", "Third line" };
         Analist an = new Analist();
 
@@ -51,7 +51,7 @@ namespace SmartSaver
             {
                 System.Diagnostics.Debug.WriteLine("No data");
                 System.Diagnostics.Debug.WriteLine(e);
-                data = "no data";
+                data = "No data found in database located at " + path;
             }
             return data;
         }
