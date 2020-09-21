@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
-namespace SmartSaver
+namespace Plutus
 {
     class DataManager
     {
-        string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"Database.txt");
-        string[] lines = { "First line", "Second line", "Third line" };
-        Analist an = new Analist();
-
-        public DataManager()
-        {
-            System.Diagnostics.Debug.WriteLine(path);
-           
-        }
+        string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Database.txt");
+        Analist analist = new Analist();
 
         public void write(string data)
         {
@@ -78,7 +67,7 @@ namespace SmartSaver
             if (!dataGot) return "none";
             else
             {
-                data = an.analise(database);
+                data = analist.analise(database);
                 return data;
             }
         }
