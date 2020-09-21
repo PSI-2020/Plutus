@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -37,10 +38,14 @@ namespace SmartSaver
         private void button1_Click(object sender, EventArgs e)
         {
             String answer = ">" + DateTime.Now + "$" + nameP.Text + "$" + priceP.Text + "$" + categoryP.Text + "$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(priceP.Text, @"\d.")) {
+                statScreen.Text = "Price must be a number!";
+                return;
+            }
+            statScreen.Text = nameP.Text + " was successfully added!";
             nameP.Text = " ";
             priceP.Text = " ";
             categoryP.Text = "Other";
-            statScreen.Text = nameP.Text + "added";
             man.write(answer);
         }
 
