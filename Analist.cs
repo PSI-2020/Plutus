@@ -31,8 +31,11 @@ namespace Plutus
 
             foreach (string category in Enum.GetNames(typeof(Categories)))
             {
-                string percent = String.Format("{0:0.00}", sums[category] / total * 100);
-                data += category + " " + sums[category] + " (" + percent + "%)" + System.Environment.NewLine;
+                string percent;
+                if (total == 0) percent = " (" + String.Format("{0:0.00}", 0) + "%)";
+                else percent = " (" + String.Format("{0:0.00}", sums[category] / total * 100) + "%)";
+
+                data += category + " " + sums[category] + percent + System.Environment.NewLine;
             }
 
             return data != "" ? data : "No data found!";
