@@ -53,7 +53,7 @@ namespace Plutus
             button1.TabIndex = 0;
             button1.Text = "Enter";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += new System.EventHandler(button1_Click);
+            button1.Click += new System.EventHandler(Button1_Click);
             // 
             // nameP
             // 
@@ -126,7 +126,7 @@ namespace Plutus
             showStat.TabIndex = 6;
             showStat.Text = "Show Stats";
             showStat.UseVisualStyleBackColor = true;
-            showStat.Click += new System.EventHandler(showStat_Click);
+            showStat.Click += new System.EventHandler(ShowStat_Click);
             // 
             // statScreen
             // 

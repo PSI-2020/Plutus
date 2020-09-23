@@ -12,21 +12,19 @@ namespace Plutus
     }
     public partial class GUI : Form
     {
-        DataManager manager = new DataManager();
-        public GUI()
-        {
-            InitializeComponent();
-        }
+        readonly DataManager manager = new DataManager();
+        public GUI() => InitializeComponent();
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            String answer = ">" + DateTime.Now + "$" + nameP.Text + "$" + priceP.Text + "$" + categoryP.Text + "$";
+            var answer = ">" + DateTime.Now + "$" + nameP.Text + "$" + priceP.Text + "$" + categoryP.Text + "$";
             if (nameP.Text.Length == 0 || nameP.Text == null)
             {
                 statScreen.Text = "Name cannot be empty!";
                 return;
             }
-            if (!System.Text.RegularExpressions.Regex.IsMatch(priceP.Text, @"\d."))
+
+            if (!Double.TryParse(priceP.Text, out _))
             {
                 statScreen.Text = "Price must be a number!";
                 return;
@@ -45,25 +43,25 @@ namespace Plutus
 
         private void showData_Click(object sender, EventArgs e)
         {
-            String data = manager.GiveData();
-            string[] db = data.Split('$');
+            var data = manager.GiveData();
+            var db = data.Split('$');
 
             data = "";
-            for (int i = 0; i < db.Length - 4; i += 4)
+            for (var i = 0; i < db.Length - 4; i += 4)
             {
-                string date = db[i].Replace(">", "");
-                string name = db[i + 1];
-                double price = Convert.ToDouble(db[i + 2]);
-                string category = db[i + 3];
+                var date = db[i].Replace(">", "");
+                var name = db[i + 1];
+                var price = db[i + 2];
+                var category = db[i + 3];
 
                 data += date + " | " + name + " | " + price + "€ | " + category;
             }
             statScreen.Text = data;
         }
 
-        private void showStat_Click(object sender, EventArgs e)
+        private void ShowStat_Click(object sender, EventArgs e)
         {
-            String data = manager.GiveAnalisis();
+            var data = manager.GiveAnalisis();
             statScreen.Text = data;
         }
 

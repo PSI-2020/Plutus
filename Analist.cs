@@ -11,7 +11,7 @@ namespace Plutus
             var total = 0.0;
             var sums = new Dictionary<string, double>();
 
-            foreach (string category in Enum.GetNames(typeof(Categories)))
+            foreach (var category in Enum.GetNames(typeof(Categories)))
             {
                 sums.Add(category, 0);
             }
