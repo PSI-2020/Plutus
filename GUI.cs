@@ -40,12 +40,12 @@ namespace Plutus
             nameP.Text = null;
             priceP.Text = null;
             categoryP.Text = null;
-            manager.write(answer);
+            manager.Write(answer);
         }
 
         private void showData_Click(object sender, EventArgs e)
         {
-            String data = manager.giveData();
+            String data = manager.GiveData();
             string[] db = data.Split('$');
 
             data = "";
@@ -63,7 +63,7 @@ namespace Plutus
 
         private void showStat_Click(object sender, EventArgs e)
         {
-            String data = manager.giveAnalisis();
+            String data = manager.GiveAnalisis();
             statScreen.Text = data;
         }
 
