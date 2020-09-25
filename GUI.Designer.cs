@@ -45,16 +45,25 @@ namespace Plutus
             this.statScreen = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.incomeSum = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.errorField = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.incomeAdd = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(715, 57);
+            this.button1.Location = new System.Drawing.Point(715, 119);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 27);
             this.button1.TabIndex = 0;
@@ -64,14 +73,14 @@ namespace Plutus
             // 
             // nameP
             // 
-            this.nameP.Location = new System.Drawing.Point(142, 57);
+            this.nameP.Location = new System.Drawing.Point(142, 118);
             this.nameP.Name = "nameP";
             this.nameP.Size = new System.Drawing.Size(245, 27);
             this.nameP.TabIndex = 1;
             // 
             // priceP
             // 
-            this.priceP.Location = new System.Drawing.Point(393, 57);
+            this.priceP.Location = new System.Drawing.Point(393, 118);
             this.priceP.Name = "priceP";
             this.priceP.Size = new System.Drawing.Size(159, 27);
             this.priceP.TabIndex = 2;
@@ -79,7 +88,7 @@ namespace Plutus
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(142, 19);
+            this.label1.Location = new System.Drawing.Point(142, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 20);
             this.label1.TabIndex = 3;
@@ -88,7 +97,7 @@ namespace Plutus
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(393, 19);
+            this.label2.Location = new System.Drawing.Point(393, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 20);
             this.label2.TabIndex = 3;
@@ -104,7 +113,7 @@ namespace Plutus
             "Clothes",
             "Bills",
             "Other"});
-            this.categoryP.Location = new System.Drawing.Point(558, 56);
+            this.categoryP.Location = new System.Drawing.Point(558, 118);
             this.categoryP.Name = "categoryP";
             this.categoryP.Size = new System.Drawing.Size(151, 28);
             this.categoryP.TabIndex = 4;
@@ -112,7 +121,7 @@ namespace Plutus
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(558, 19);
+            this.label3.Location = new System.Drawing.Point(558, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 3;
@@ -161,6 +170,12 @@ namespace Plutus
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.incomeAdd);
+            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.incomeSum);
+            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -169,8 +184,57 @@ namespace Plutus
             this.tabPage1.Text = "Incomes";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Salary",
+            "Other"});
+            this.comboBox1.Location = new System.Drawing.Point(485, 116);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(214, 28);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(485, 93);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(125, 20);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Source of income";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(194, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 20);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Enter sum";
+            // 
+            // incomeSum
+            // 
+            this.incomeSum.Location = new System.Drawing.Point(194, 116);
+            this.incomeSum.Name = "incomeSum";
+            this.incomeSum.Size = new System.Drawing.Size(269, 27);
+            this.incomeSum.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(377, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(207, 25);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Enter your incomes\r\n";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.errorField);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.nameP);
             this.tabPage2.Controls.Add(this.label2);
@@ -186,6 +250,15 @@ namespace Plutus
             this.tabPage2.Text = "Expenses";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // errorField
+            // 
+            this.errorField.AutoSize = true;
+            this.errorField.Location = new System.Drawing.Point(432, 175);
+            this.errorField.Name = "errorField";
+            this.errorField.Size = new System.Drawing.Size(0, 20);
+            this.errorField.TabIndex = 5;
+            this.errorField.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
@@ -199,6 +272,26 @@ namespace Plutus
             this.tabPage3.Text = "Data";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
+            // incomeAdd
+            // 
+            this.incomeAdd.Location = new System.Drawing.Point(726, 115);
+            this.incomeAdd.Name = "incomeAdd";
+            this.incomeAdd.Size = new System.Drawing.Size(94, 29);
+            this.incomeAdd.TabIndex = 5;
+            this.incomeAdd.Text = "Add";
+            this.incomeAdd.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(378, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(215, 25);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Enter your expenses";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -208,6 +301,8 @@ namespace Plutus
             this.Name = "GUI";
             this.Text = "Plutus";
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -232,6 +327,14 @@ namespace Plutus
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label errorField;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox incomeSum;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button incomeAdd;
+        private System.Windows.Forms.Label label7;
     }
 }
 

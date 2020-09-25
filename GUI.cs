@@ -20,21 +20,21 @@ namespace Plutus
             var answer = ">" + DateTime.Now + "$" + nameP.Text + "$" + priceP.Text + "$" + categoryP.Text + "$";
             if (nameP.Text.Length == 0 || nameP.Text == null)
             {
-                statScreen.Text = "Name cannot be empty!";
+                errorField.Text = "Name cannot be empty!";
                 return;
             }
 
             if (!Double.TryParse(priceP.Text, out _))
             {
-                statScreen.Text = "Price must be a number!";
+                errorField.Text = "Price must be a number!";
                 return;
             }
             if (categoryP.Text.Length == 0 || categoryP == null)
             {
-                statScreen.Text = "Please choose a category!";
+                errorField.Text = "Please choose a category!";
                 return;
             }
-            statScreen.Text = nameP.Text + " was successfully added!";
+            errorField.Text = nameP.Text + " was successfully added!";
             nameP.Text = null;
             priceP.Text = null;
             categoryP.Text = null;
