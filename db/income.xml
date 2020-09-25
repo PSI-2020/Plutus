@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfIncome xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Income>
+    <Date>1601056975</Date>
+    <Sum>987484</Sum>
+    <Category>Other</Category>
+  </Income>
+  <Income>
+    <Date>1601059497</Date>
+    <Sum>5747</Sum>
+    <Category>Other</Category>
+  </Income>
+  <Income>
+    <Date>1601059785</Date>
+    <Sum>14145</Sum>
+    <Category>Salary</Category>
+  </Income>
+</ArrayOfIncome>

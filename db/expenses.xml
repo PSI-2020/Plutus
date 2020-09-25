@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfExpense xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Expense>
+    <Date>1601059572</Date>
+    <Name>asdas</Name>
+    <Price>5441</Price>
+    <Category>Clothes</Category>
+  </Expense>
+  <Expense>
+    <Date>1601059577</Date>
+    <Name>EEEEEEEEE</Name>
+    <Price>54145</Price>
+    <Category>Bills</Category>
+  </Expense>
+</ArrayOfExpense>
