@@ -126,7 +126,7 @@ namespace Plutus
             this.showData.TabIndex = 6;
             this.showData.Text = "Show Data";
             this.showData.UseVisualStyleBackColor = true;
-            this.showData.Click += new System.EventHandler(this.showData_Click);
+            this.showData.Click += new System.EventHandler(this.ShowData_Click);
             // 
             // showStat
             // 

@@ -38,15 +38,14 @@ namespace Plutus
             nameP.Text = null;
             priceP.Text = null;
             categoryP.Text = null;
-            manager.Write(answer);
+            manager.WriteFile(manager.expenses, answer);
         }
 
-        private void showData_Click(object sender, EventArgs e)
+        private void ShowData_Click(object sender, EventArgs e)
         {
-            var data = manager.GiveData();
-            var db = data.Split('$');
+            var db = manager.ReadData(manager.expenses);
+            var data = "";
 
-            data = "";
             for (var i = 0; i < db.Length - 4; i += 4)
             {
                 var date = db[i].Replace(">", "");
@@ -61,7 +60,7 @@ namespace Plutus
 
         private void ShowStat_Click(object sender, EventArgs e)
         {
-            var data = manager.GiveAnalisis();
+            var data = manager.GiveAnalisis(manager.expenses);
             statScreen.Text = data;
         }
 
