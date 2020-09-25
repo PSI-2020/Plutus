@@ -65,5 +65,9 @@ namespace Plutus
             statScreen.Text = data;
         }
 
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
