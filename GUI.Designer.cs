@@ -47,6 +47,7 @@ namespace Plutus
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.errorField = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -171,6 +172,7 @@ namespace Plutus
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.errorField);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.nameP);
             this.tabPage2.Controls.Add(this.label2);
@@ -198,6 +200,15 @@ namespace Plutus
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Data";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // errorField
+            // 
+            this.errorField.AutoSize = true;
+            this.errorField.Location = new System.Drawing.Point(436, 145);
+            this.errorField.Name = "errorField";
+            this.errorField.Size = new System.Drawing.Size(0, 20);
+            this.errorField.TabIndex = 5;
+            this.errorField.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // GUI
             // 
@@ -232,6 +243,7 @@ namespace Plutus
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label errorField;
     }
 }
 
