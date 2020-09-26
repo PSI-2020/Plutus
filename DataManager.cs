@@ -1,13 +1,16 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Plutus
 {
     class DataManager
     {
-        readonly string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Database.txt");
         readonly Analist analist = new Analist();
+        public readonly string income = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/income.txt");
+        public readonly string expenses = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/expenses.txt");
 
-        public void Write(string data)
+        public void WriteFile(string path, string data)
         {
             try
             {
@@ -16,43 +19,47 @@ namespace Plutus
                 sw.Close();
 
             }
-            catch (IOException e)
-            {
-                System.Diagnostics.Debug.WriteLine("Something went wrong :s");
-                System.Diagnostics.Debug.WriteLine(e);
-            }
+            catch (IOException) {}
         }
-        public string GiveData()
-        {
-            var data = "";
+        public string[] ReadData(string path){
             try
             {
                 using var sr = new StreamReader(path);
-                data = sr.ReadToEnd();
+                var data = sr.ReadToEnd().Split('$');
+                
+
+                for (var i = 0; i < data.Length - 4; i += 4)
+                {
+                    var date = data[i].Replace(">", "");
+                    var name = data[i + 1];
+                    var price = data[i + 2];
+                    var category = data[i + 3];
+                }
+
                 sr.Close();
+                return data;
             }
             catch (IOException)
             {
-                data = "No data found in database located at " + path;
+                return new string[] {"No data found in database located at " + path};
             }
-            return data;
         }
-        public string GiveAnalisis()
+
+        public string ReadFile(string path)
         {
-            var database = "none";
             try
             {
                 using var sr = new StreamReader(path);
-                // Read the stream as a string, and write the string to the console.
-                database = sr.ReadToEnd();
+                var data = sr.ReadToEnd();
                 sr.Close();
+                return data;
             }
             catch (IOException)
             {
-                return "none";
+                return "No data found in database located at " + path;
             }
-            var data = analist.analise(database);
-            return data;
         }
+
+        public string GiveAnalisis(string path) => analist.Analise(ReadData(path));
     }
 }

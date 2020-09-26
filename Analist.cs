@@ -5,7 +5,7 @@ namespace Plutus
 {
     class Analist
     {
-        public string analise(string database)
+        public string Analise(string[] db)
         {
             var data = "";
             var total = 0.0;
@@ -15,8 +15,6 @@ namespace Plutus
             {
                 sums.Add(category, 0);
             }
-
-            var db = database.Split('$');
 
             for (var i = 0; i < db.Length - 4; i += 4)
             {
