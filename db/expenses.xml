@@ -12,4 +12,28 @@
     <Price>54145</Price>
     <Category>Bills</Category>
   </Expense>
+  <Expense>
+    <Date>1601199806</Date>
+    <Name>Batai</Name>
+    <Price>159.99</Price>
+    <Category>Clothes</Category>
+  </Expense>
+  <Expense>
+    <Date>1601218414</Date>
+    <Name>Drabuziai</Name>
+    <Price>50</Price>
+    <Category>Clothes</Category>
+  </Expense>
+  <Expense>
+    <Date>1601218774</Date>
+    <Name>Internetas</Name>
+    <Price>10.99</Price>
+    <Category>Bills</Category>
+  </Expense>
+  <Expense>
+    <Date>1601218811</Date>
+    <Name>Spotify</Name>
+    <Price>3.99</Price>
+    <Category>Bills</Category>
+  </Expense>
 </ArrayOfExpense>

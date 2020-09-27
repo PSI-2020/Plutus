@@ -15,4 +15,34 @@
     <Sum>14145</Sum>
     <Category>Salary</Category>
   </Income>
+  <Income>
+    <Date>1601217172</Date>
+    <Sum>50</Sum>
+    <Category>Salary</Category>
+  </Income>
+  <Income>
+    <Date>1601217223</Date>
+    <Sum>1000</Sum>
+    <Category>Salary</Category>
+  </Income>
+  <Income>
+    <Date>1601217787</Date>
+    <Sum>20</Sum>
+    <Category>Other</Category>
+  </Income>
+  <Income>
+    <Date>1601217818</Date>
+    <Sum>10000</Sum>
+    <Category>Other</Category>
+  </Income>
+  <Income>
+    <Date>1601217825</Date>
+    <Sum>10</Sum>
+    <Category>Salary</Category>
+  </Income>
+  <Income>
+    <Date>1601218405</Date>
+    <Sum>500</Sum>
+    <Category>Other</Category>
+  </Income>
 </ArrayOfIncome>

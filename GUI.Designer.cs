@@ -69,12 +69,38 @@ namespace Plutus
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.errorLabel = new System.Windows.Forms.Label();
+            this.buttonAddMonthlyIncome = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.monthlyIncomeName = new System.Windows.Forms.TextBox();
+            this.monthlyIncomeCategory = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.monthlyIncomeAmount = new System.Windows.Forms.TextBox();
+            this.monthlyIncomeDate = new System.Windows.Forms.DateTimePicker();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.errorLabel2 = new System.Windows.Forms.Label();
+            this.buttonAddMonthlyExpenses = new System.Windows.Forms.Button();
+            this.monthlyExpensesCategory = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.monthlyExpensesDate = new System.Windows.Forms.DateTimePicker();
+            this.monthlyExpensesAmount = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.monthlyExpensesName = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,6 +115,10 @@ namespace Plutus
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.SuspendLayout();
             // 
             // enterExpensesButton
@@ -200,10 +230,11 @@ namespace Plutus
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(11, 10);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.SelectedIndex = 6;
             this.tabControl1.Size = new System.Drawing.Size(861, 425);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 8;
@@ -497,6 +528,42 @@ namespace Plutus
             this.comboBox5.TabIndex = 0;
             this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.onEditExpenseChange);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(27, 125);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 15);
+            this.label9.TabIndex = 5;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(312, 119);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(95, 27);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Delete";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(27, 41);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(215, 23);
+            this.textBox3.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(429, 119);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(95, 27);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Save";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button4_Click);
+            // 
             // comboBox3
             // 
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -521,42 +588,274 @@ namespace Plutus
             this.textBox2.Size = new System.Drawing.Size(140, 23);
             this.textBox2.TabIndex = 2;
             // 
-            // textBox3
+            // tabPage7
             // 
-            this.textBox3.Location = new System.Drawing.Point(27, 41);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 23);
-            this.textBox3.TabIndex = 1;
+            this.tabPage7.Controls.Add(this.tabControl2);
+            this.tabPage7.Location = new System.Drawing.Point(4, 24);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(853, 397);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Scheduler";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // tabControl2
             // 
-            this.button3.Location = new System.Drawing.Point(429, 119);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 27);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button4_Click);
+            this.tabControl2.Controls.Add(this.tabPage8);
+            this.tabControl2.Controls.Add(this.tabPage9);
+            this.tabControl2.Location = new System.Drawing.Point(49, 33);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(751, 337);
+            this.tabControl2.TabIndex = 0;
             // 
-            // button4
+            // tabPage8
             // 
-            this.button4.Location = new System.Drawing.Point(312, 119);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 27);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button3_Click);
+            this.tabPage8.Controls.Add(this.errorLabel);
+            this.tabPage8.Controls.Add(this.buttonAddMonthlyIncome);
+            this.tabPage8.Controls.Add(this.label19);
+            this.tabPage8.Controls.Add(this.label18);
+            this.tabPage8.Controls.Add(this.monthlyIncomeName);
+            this.tabPage8.Controls.Add(this.monthlyIncomeCategory);
+            this.tabPage8.Controls.Add(this.label17);
+            this.tabPage8.Controls.Add(this.monthlyIncomeAmount);
+            this.tabPage8.Controls.Add(this.monthlyIncomeDate);
+            this.tabPage8.Controls.Add(this.label16);
+            this.tabPage8.Controls.Add(this.label15);
+            this.tabPage8.Location = new System.Drawing.Point(4, 24);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(743, 309);
+            this.tabPage8.TabIndex = 0;
+            this.tabPage8.Text = "Income";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // errorLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 125);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 15);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "";
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Location = new System.Drawing.Point(330, 199);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 15);
+            this.errorLabel.TabIndex = 7;
+            // 
+            // buttonAddMonthlyIncome
+            // 
+            this.buttonAddMonthlyIncome.Location = new System.Drawing.Point(315, 243);
+            this.buttonAddMonthlyIncome.Name = "buttonAddMonthlyIncome";
+            this.buttonAddMonthlyIncome.Size = new System.Drawing.Size(121, 23);
+            this.buttonAddMonthlyIncome.TabIndex = 6;
+            this.buttonAddMonthlyIncome.Text = "Add";
+            this.buttonAddMonthlyIncome.UseVisualStyleBackColor = true;
+            this.buttonAddMonthlyIncome.Click += new System.EventHandler(this.buttonAddMonthlyIncome_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(21, 121);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(39, 15);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Name";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(295, 37);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(141, 22);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Monthly income";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // monthlyIncomeName
+            // 
+            this.monthlyIncomeName.Location = new System.Drawing.Point(21, 138);
+            this.monthlyIncomeName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monthlyIncomeName.Name = "monthlyIncomeName";
+            this.monthlyIncomeName.Size = new System.Drawing.Size(135, 23);
+            this.monthlyIncomeName.TabIndex = 1;
+            // 
+            // monthlyIncomeCategory
+            // 
+            this.monthlyIncomeCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.monthlyIncomeCategory.FormattingEnabled = true;
+            this.monthlyIncomeCategory.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.monthlyIncomeCategory.Items.AddRange(new object[] {
+            "Salary",
+            "Other"});
+            this.monthlyIncomeCategory.Location = new System.Drawing.Point(330, 138);
+            this.monthlyIncomeCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monthlyIncomeCategory.Name = "monthlyIncomeCategory";
+            this.monthlyIncomeCategory.Size = new System.Drawing.Size(164, 23);
+            this.monthlyIncomeCategory.TabIndex = 4;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(330, 121);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(55, 15);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Category";
+            // 
+            // monthlyIncomeAmount
+            // 
+            this.monthlyIncomeAmount.Location = new System.Drawing.Point(186, 138);
+            this.monthlyIncomeAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monthlyIncomeAmount.Name = "monthlyIncomeAmount";
+            this.monthlyIncomeAmount.Size = new System.Drawing.Size(123, 23);
+            this.monthlyIncomeAmount.TabIndex = 2;
+            // 
+            // monthlyIncomeDate
+            // 
+            this.monthlyIncomeDate.Location = new System.Drawing.Point(514, 138);
+            this.monthlyIncomeDate.Name = "monthlyIncomeDate";
+            this.monthlyIncomeDate.Size = new System.Drawing.Size(207, 23);
+            this.monthlyIncomeDate.TabIndex = 0;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(186, 121);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 15);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Amount";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(514, 121);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(79, 15);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "First payment";
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.errorLabel2);
+            this.tabPage9.Controls.Add(this.buttonAddMonthlyExpenses);
+            this.tabPage9.Controls.Add(this.monthlyExpensesCategory);
+            this.tabPage9.Controls.Add(this.label24);
+            this.tabPage9.Controls.Add(this.label23);
+            this.tabPage9.Controls.Add(this.monthlyExpensesDate);
+            this.tabPage9.Controls.Add(this.monthlyExpensesAmount);
+            this.tabPage9.Controls.Add(this.label22);
+            this.tabPage9.Controls.Add(this.monthlyExpensesName);
+            this.tabPage9.Controls.Add(this.label21);
+            this.tabPage9.Controls.Add(this.label20);
+            this.tabPage9.Location = new System.Drawing.Point(4, 24);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(743, 309);
+            this.tabPage9.TabIndex = 1;
+            this.tabPage9.Text = "Expenses";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // errorLabel2
+            // 
+            this.errorLabel2.AutoSize = true;
+            this.errorLabel2.Location = new System.Drawing.Point(315, 210);
+            this.errorLabel2.Name = "errorLabel2";
+            this.errorLabel2.Size = new System.Drawing.Size(0, 15);
+            this.errorLabel2.TabIndex = 8;
+            // 
+            // buttonAddMonthlyExpenses
+            // 
+            this.buttonAddMonthlyExpenses.Location = new System.Drawing.Point(315, 243);
+            this.buttonAddMonthlyExpenses.Name = "buttonAddMonthlyExpenses";
+            this.buttonAddMonthlyExpenses.Size = new System.Drawing.Size(121, 23);
+            this.buttonAddMonthlyExpenses.TabIndex = 7;
+            this.buttonAddMonthlyExpenses.Text = "Add";
+            this.buttonAddMonthlyExpenses.UseVisualStyleBackColor = true;
+            this.buttonAddMonthlyExpenses.Click += new System.EventHandler(this.buttonAddMonthlyExpenses_Click);
+            // 
+            // monthlyExpensesCategory
+            // 
+            this.monthlyExpensesCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.monthlyExpensesCategory.FormattingEnabled = true;
+            this.monthlyExpensesCategory.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.monthlyExpensesCategory.Items.AddRange(new object[] {
+            "Food",
+            "Clothes",
+            "Bills",
+            "Other"});
+            this.monthlyExpensesCategory.Location = new System.Drawing.Point(330, 138);
+            this.monthlyExpensesCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monthlyExpensesCategory.Name = "monthlyExpensesCategory";
+            this.monthlyExpensesCategory.Size = new System.Drawing.Size(164, 23);
+            this.monthlyExpensesCategory.TabIndex = 4;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(514, 121);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(79, 15);
+            this.label24.TabIndex = 0;
+            this.label24.Text = "First payment";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(186, 121);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(51, 15);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Amount";
+            // 
+            // monthlyExpensesDate
+            // 
+            this.monthlyExpensesDate.Location = new System.Drawing.Point(514, 138);
+            this.monthlyExpensesDate.Name = "monthlyExpensesDate";
+            this.monthlyExpensesDate.Size = new System.Drawing.Size(207, 23);
+            this.monthlyExpensesDate.TabIndex = 0;
+            // 
+            // monthlyExpensesAmount
+            // 
+            this.monthlyExpensesAmount.Location = new System.Drawing.Point(186, 138);
+            this.monthlyExpensesAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monthlyExpensesAmount.Name = "monthlyExpensesAmount";
+            this.monthlyExpensesAmount.Size = new System.Drawing.Size(123, 23);
+            this.monthlyExpensesAmount.TabIndex = 2;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(330, 121);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 15);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "Category";
+            // 
+            // monthlyExpensesName
+            // 
+            this.monthlyExpensesName.Location = new System.Drawing.Point(21, 138);
+            this.monthlyExpensesName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monthlyExpensesName.Name = "monthlyExpensesName";
+            this.monthlyExpensesName.Size = new System.Drawing.Size(135, 23);
+            this.monthlyExpensesName.TabIndex = 1;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(295, 37);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(155, 22);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Monthly expenses";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(21, 121);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(39, 15);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Name";
             // 
             // GUI
             // 
@@ -586,6 +885,12 @@ namespace Plutus
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -633,6 +938,33 @@ namespace Plutus
         private ComboBox comboBox3;
         private TextBox textBox2;
         private Label label9;
+        private TabPage tabPage7;
+        private TabControl tabControl2;
+        private TabPage tabPage8;
+        private TabPage tabPage9;
+        private Label label19;
+        private Label label18;
+        private TextBox monthlyIncomeName;
+        private ComboBox monthlyIncomeCategory;
+        private Label label17;
+        private TextBox monthlyIncomeAmount;
+        private DateTimePicker monthlyIncomeDate;
+        private Label label16;
+        private Label label15;
+        private Label label24;
+        private Label label23;
+        private DateTimePicker monthlyExpensesDate;
+        private TextBox monthlyExpensesAmount;
+        private Label label22;
+        private TextBox monthlyExpensesName;
+        private Label label21;
+        private Label label20;
+        private ComboBox monthlyExpensesCategory;
+        private Button buttonAddMonthlyIncome;
+        private Label errorLabel;
+        private Button buttonAddMonthlyExpenses;
+        private Label errorLabel2;
+        private ComboBox t;
     }
 }
 

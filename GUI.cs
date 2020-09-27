@@ -24,6 +24,82 @@ namespace Plutus
         readonly Statistics stats = new Statistics();
         public GUI() => InitializeComponent();
 
+        private void buttonAddMonthlyExpenses_Click(object sender, EventArgs e)
+        {
+            if (monthlyExpensesName.Text.Length == 0 || monthlyExpensesName.Text == null)
+            {
+                errorLabel2.Text = "Name cannot be empty!";
+                return;
+            }
+            if (monthlyExpensesAmount.Text.Length == 0 || monthlyExpensesAmount == null)
+            {
+                errorLabel2.Text = "Please enter amount!";
+                return;
+            }
+            if (!Double.TryParse(monthlyExpensesAmount.Text, out _))
+            {
+                errorLabel2.Text = "Amount must be a number!";
+                return;
+            }
+            if (monthlyExpensesCategory.Text.Length == 0 || monthlyExpensesCategory == null)
+            {
+                errorLabel2.Text = "Please choose a category!";
+                return;
+            }
+
+            var name = monthlyExpensesName.Text;
+            var date = monthlyExpensesDate.Value;
+            var monthlyExpenses = Convert.ToDouble(monthlyExpensesAmount.Text);
+            var category = monthlyExpensesCategory.Text;
+
+            var scheduler = new Scheduler(date, name, monthlyExpenses, category, manager, false);
+            scheduler.Start();
+
+            errorLabel2.Text = "Monthly expenses were successfully added!";
+            monthlyExpensesAmount.Clear();
+            monthlyExpensesCategory.Text = null;
+            monthlyExpensesName.Text = null;
+            monthlyExpensesDate.ResetText();
+        }
+
+        private void buttonAddMonthlyIncome_Click(object sender, EventArgs e)
+        {
+            if (monthlyIncomeName.Text.Length == 0 || monthlyIncomeName.Text == null)
+            {
+                errorLabel.Text = "Name cannot be empty!";
+                return;
+            }
+            if (monthlyIncomeAmount.Text.Length == 0 || monthlyIncomeAmount.Text == null)
+            {
+                errorLabel.Text = "Please enter amount!";
+                return;
+            }
+            if (!Double.TryParse(monthlyIncomeAmount.Text, out _))
+            {
+                errorLabel.Text = "Amount must be a number!";
+                return;
+            }
+            if (monthlyIncomeCategory.Text.Length == 0 || monthlyIncomeCategory == null)
+            {
+                errorLabel.Text = "Please choose a category!";
+                return;
+            }
+
+            var name = monthlyIncomeName.Text;
+            var date = monthlyIncomeDate.Value;
+            var monthlyIncome = Convert.ToDouble(monthlyIncomeAmount.Text);
+            var category = monthlyIncomeCategory.Text;
+
+            var scheduler = new Scheduler(date,name,monthlyIncome,category,manager,true);
+            scheduler.Start();
+            
+            errorLabel.Text = "Monthly income was added successfully!";
+            monthlyIncomeAmount.Clear();
+            monthlyIncomeCategory.Text = null;
+            monthlyIncomeName.Text = null;
+            monthlyIncomeDate.ResetText();
+        }
+
         private void inputExpense(object sender, EventArgs e)
         {
             if (nameP.Text.Length == 0 || nameP.Text == null)
@@ -312,6 +388,6 @@ namespace Plutus
             manager.updateExpenses(list);
             label9.Text = "Item edited successfully!";
             editExpenses();
-        }
+        } 
     }
 }
