@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -388,6 +391,320 @@ namespace Plutus
             manager.updateExpenses(list);
             label9.Text = "Item edited successfully!";
             editExpenses();
-        } 
+        }
+
+        private int cartCounter = 0;
+        private void addCartButton_Click(object sender, EventArgs e)
+        {
+            cartCounter += 1;
+            Button myButton = new Button();
+            myButton.Name = "Cart" + cartCounter;
+            myButton.Text = "Cart " + cartCounter;
+            myButton.Width = 210;
+            myButton.Height = 45;
+            cartPanel.Controls.Add(myButton);
+            myButton.Click += new System.EventHandler(this.Cart_Click);
+            currentCart = new Cart(myButton.Name);
+            cartList.Add(currentCart);
+
+        }
+
+        private List<Cart> cartList = new List<Cart>();
+        private Button currentCartBut = null;
+        private Cart currentCart = null;
+
+        private void ChangeCartname()
+        {
+            currentCart.ChangeName(cartName.Text);
+            currentCartBut.Text = cartName.Text;
+        }
+        private void Cart_Click(object sender, System.EventArgs e)
+        {
+            currentCartBut = (Button)sender;
+            cartName.Text = currentCartBut.Text;
+            currentCart = cartList.ElementAt(int.Parse(currentCartBut.Name.Substring(4)) - 1);
+            RefreshElemCount();
+            cartInfoPanel.Controls.Clear();
+            DisplayCart();
+            CloseElemAdd();
+            CloseElemChange();
+
+        }
+
+        private void CartName_TextChanged(object sender, EventArgs e)
+        {
+            if((currentCart != null) && (currentCartBut != null))
+            {
+                ChangeCartname();
+            }
+
+        }
+
+        private void OpenElemAdd()
+        {
+            if (cartElemEditPanel.Visible) cartInfoPanel.Height = 300;
+            else cartInfoPanel.Height = 350;
+            cartInfoPanel.Top = 150;
+            cartNewElemControlPanel.Visible = true;
+        }
+
+        private void CloseElemAdd()
+        {
+            if(cartElemEditPanel.Visible) cartInfoPanel.Height = 350;
+            else cartInfoPanel.Height = 400;
+            cartInfoPanel.Top = 100;
+            cartNewElemControlPanel.Visible = false;
+        }
+
+        private void OpenElemChange()
+        {
+            if (cartNewElemControlPanel.Visible) cartInfoPanel.Height = 300;
+            else cartInfoPanel.Height = 350;
+            cartElemEditPanel.Visible = true;
+        }
+        
+        private void CloseElemChange()
+        {
+            if (cartNewElemControlPanel.Visible) cartInfoPanel.Height = 350;
+            else cartInfoPanel.Height = 400;
+            cartElemEditPanel.Visible = false;
+        }
+
+
+        private void RefreshElemCount()
+        {
+            cartExpCount.Text = currentCart.GiveElementC().ToString();
+        }
+
+
+        private void AddExpenseBut_Click(object sender, EventArgs e)
+        {
+            OpenElemAdd();
+        }
+
+
+        private void DisplayCart()
+        {
+            if (currentCart == null) return;
+
+            var elemSk = currentCart.GiveElementC();
+            if (elemSk == 0) return;
+            for(int i = (elemSk - 1); i >= 0; i--)
+            {
+                Expense currExpense = currentCart.GiveElement(i);
+
+                FlowLayoutPanel elemPanel = new FlowLayoutPanel();
+                elemPanel = CreateNewElemPanel(elemPanel, i);
+               
+                Label elemName = new Label();
+                elemName = CreateNewElemName(elemName, i, currExpense.Name);
+               
+                Label elemPrice = new Label();
+                elemPrice = CreateNewElemPrice(elemPrice, i, currExpense.Price.ToString());
+
+                Label elemCategory = new Label();
+                elemCategory = CreateNewElemCategory(elemCategory, i, currExpense.Category);
+                
+                Label gapLabel = new Label();
+                gapLabel = CreateGapLabel(gapLabel, i);
+
+                Button elemEdit = new Button();
+                elemEdit = CreateNewElemButton(elemEdit, i, "E");
+              
+                Button elemDelete = new Button();
+                elemDelete = CreateNewElemButton(elemDelete, i, "X");
+
+                elemPanel.Controls.Add(elemName);
+                elemPanel.Controls.Add(elemPrice);
+                elemPanel.Controls.Add(elemCategory);
+                elemPanel.Controls.Add(gapLabel);
+                elemPanel.Controls.Add(elemEdit);
+                elemPanel.Controls.Add(elemDelete);
+                cartInfoPanel.Controls.Add(elemPanel);
+            }
+        }
+
+        private Button CreateNewElemButton(Button button, int count, string type)
+        {
+            button.Name = currentCartBut.Name + "ElemButton" + type + "|" + count;
+            button.Size = new System.Drawing.Size(30, 30);
+            button.Text = type;
+            if(type == "E")
+            {
+                button.Click += new System.EventHandler(this.ElemEdit_Click);
+            }
+            else
+            {
+                button.Click += new System.EventHandler(this.ElemDel_Click);
+            }
+            return button;
+        }
+
+        private Button currentElemBut;
+        private Expense currentElem;
+        private Expense currentElemToDel;
+        private void ElemEdit_Click(object sender, EventArgs e)
+        {
+            currentElemBut = (Button)sender;
+            int index = currentElemBut.Name.IndexOf('|') + 1;
+            int indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            currentElem = currentCart.GiveElement(indexOfExpense);
+            OpenElemChange();
+            cartElemChangeName.Text = currentElem.Name;
+            cartElemChangePri.Text = currentElem.Price.ToString();
+            cartElemChangeCat.Text = currentElem.Category;
+
+        }
+        private void ElemDel_Click(object sender, EventArgs e)
+        {
+            currentElemBut = (Button)sender;
+            int index = currentElemBut.Name.IndexOf('|') + 1;
+            int indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            currentElemToDel = currentCart.GiveElement(indexOfExpense);
+            if (currentElemToDel == currentElem) CloseElemChange();
+            currentCart.RemoveExpense(indexOfExpense);
+            
+            RefreshElemCount();
+            cartInfoPanel.Controls.Clear();
+            DisplayCart();
+        }
+        private Label CreateGapLabel(Label label, int count)
+        {
+            label.Name = currentCartBut.Name + "Gap" + count;
+            label.Size = new System.Drawing.Size(200, 30);
+            return label;
+        }
+
+        private FlowLayoutPanel CreateNewElemPanel(FlowLayoutPanel panel, int count)
+        {
+            panel.Name = currentCartBut.Name + "elem" + count;
+            panel.Size = new System.Drawing.Size(620, 40);
+            panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            return panel;
+        }
+
+        private Label CreateNewElemName(Label label, int count, string value)
+        {
+            label.Name = currentCartBut.Name + "NameOfElem" + count;
+            label.Size = new System.Drawing.Size(100, 40);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Text = value;
+            return label;
+        }
+        private Label CreateNewElemPrice(Label label, int count, string value)
+        {
+            label.Name = currentCartBut.Name + "PriceOfElem" + count;
+            label.Size = new System.Drawing.Size(100, 40);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Text = value;
+            return label;
+        }
+        private Label CreateNewElemCategory(Label label, int count, string value)
+        {
+            label.Name = currentCartBut.Name + "CategoryOfElem" + count;
+            label.Size = new System.Drawing.Size(100, 40);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Text = value;
+            return label;
+        }
+
+        private void CartElemAddBut_Click(object sender, EventArgs e)
+        {
+
+            if (cartElemNameBox.Text.Length == 0 || cartElemNameBox.Text == null)
+            {
+                cartAddErrorField.Text = "No Name";
+                return;
+            }
+            if (cartElemPriceBox.Text.Length == 0 || cartElemPriceBox.Text == null)
+            {
+                cartAddErrorField.Text = "No Price";
+                return;
+            }
+            if (!Double.TryParse(cartElemPriceBox.Text, out _))
+            {
+                cartAddErrorField.Text = "Not a price";
+                return;
+            }
+            if (cartElemCategoryBox.Text.Length == 0 || cartElemCategoryBox == null)
+            {
+                cartAddErrorField.Text = "No Categ";
+                return;
+            }
+
+            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var name = cartElemNameBox.Text;
+            var price = Convert.ToDouble(cartElemPriceBox.Text);
+            var category = cartElemCategoryBox.Text;
+            Expense newCartExpense = new Expense(date, name, price, category);
+            currentCart.AddExpense(newCartExpense);
+            cartAddErrorField.Text = "Added";
+            cartElemNameBox.Text = "";
+            cartElemPriceBox.Text = "";
+            cartElemCategoryBox.Text = "Other";
+            RefreshElemCount();
+            cartInfoPanel.Controls.Clear();
+            DisplayCart();
+        }
+
+        private void CartCloseElemAddition_Click(object sender, EventArgs e)
+        {
+            CloseElemAdd();
+        }
+
+        private void delCartButton_Click(object sender, EventArgs e)
+        {
+            currentCartBut.Dispose();
+            currentCart = null;
+            CloseElemAdd();
+            cartInfoPanel.Controls.Clear();
+            cartName.Text = "";
+        }
+
+        private void elemChangeSave_Click(object sender, EventArgs e)
+        {
+            if (cartElemChangeName.Text.Length == 0 || cartElemChangeName.Text == null)
+            {
+                cartElemChangeErorr.Text = "No Name";
+                return;
+            }
+            if (cartElemChangePri.Text.Length == 0 || cartElemChangePri.Text == null)
+            {
+                cartElemChangeErorr.Text = "No Price";
+                return;
+            }
+            if (!Double.TryParse(cartElemChangePri.Text, out _))
+            {
+                cartElemChangeErorr.Text = "Not a price";
+                return;
+            }
+            if (cartElemChangeCat.Text.Length == 0 || cartElemChangeCat == null)
+            {
+                cartElemChangeErorr.Text = "No Categ";
+                return;
+            }
+            currentElem.Name = cartElemChangeName.Text;
+            currentElem.Price = Convert.ToDouble(cartElemChangePri.Text);
+            currentElem.Category = cartElemChangeCat.Text;
+
+            cartElemChangeErorr.Text = "Changed";
+            cartElemChangeName.Text = "";
+            cartElemChangePri.Text = "";
+            cartElemChangeCat.Text = "Other";
+            cartInfoPanel.Controls.Clear();
+            DisplayCart();
+        }
+
+        private void cartCloseElemChange_Click(object sender, EventArgs e)
+        {
+            CloseElemChange();
+        }
+
+        private void cartChargeBut_Click(object sender, EventArgs e)
+        {
+            OpenElemAdd();
+            cartAddErrorField.Text = "Charged!";
+            currentCart.Account(manager);
+        }
     }
 }
