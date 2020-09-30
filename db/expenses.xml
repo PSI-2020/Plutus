@@ -36,4 +36,40 @@
     <Price>3.99</Price>
     <Category>Bills</Category>
   </Expense>
+  <Expense>
+    <Date>1601333899</Date>
+    <Name>asd</Name>
+    <Price>3</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601334832</Date>
+    <Name>Banana</Name>
+    <Price>2</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601334866</Date>
+    <Name>Banana</Name>
+    <Price>2</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601334866</Date>
+    <Name>Slippers</Name>
+    <Price>4</Price>
+    <Category>Clothes</Category>
+  </Expense>
+  <Expense>
+    <Date>1601334980</Date>
+    <Name>Banana</Name>
+    <Price>1</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601334986</Date>
+    <Name>Banana</Name>
+    <Price>1</Price>
+    <Category>Food</Category>
+  </Expense>
 </ArrayOfExpense>
