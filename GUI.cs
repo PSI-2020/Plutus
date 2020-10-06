@@ -703,8 +703,17 @@ namespace Plutus
         private void cartChargeBut_Click(object sender, EventArgs e)
         {
             OpenElemAdd();
-            cartAddErrorField.Text = "Charged!";
-            currentCart.Account(manager);
+
+            if (currentCart == null)
+            {
+                cartAddErrorField.Text = "Charge what?";
+            }
+            else
+            {
+                cartAddErrorField.Text = "Charged!";
+                currentCart.Account(manager);
+
+            }
         }
     }
 }
