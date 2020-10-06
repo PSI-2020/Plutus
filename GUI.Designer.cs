@@ -102,6 +102,8 @@ namespace Plutus
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.CurrentCartCountNum = new System.Windows.Forms.Label();
+            this.CartCountLabel = new System.Windows.Forms.Label();
             this.addCartButton = new System.Windows.Forms.Button();
             this.cartPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -121,6 +123,7 @@ namespace Plutus
             this.cartElemNameBox = new System.Windows.Forms.TextBox();
             this.cartInfoPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CartNameSetter = new System.Windows.Forms.Button();
             this.cartChargeBut = new System.Windows.Forms.Button();
             this.cartName = new System.Windows.Forms.TextBox();
             this.cartExpCount = new System.Windows.Forms.Label();
@@ -888,6 +891,8 @@ namespace Plutus
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.CurrentCartCountNum);
+            this.tabPage6.Controls.Add(this.CartCountLabel);
             this.tabPage6.Controls.Add(this.addCartButton);
             this.tabPage6.Controls.Add(this.cartPanel);
             this.tabPage6.Controls.Add(this.panel2);
@@ -898,6 +903,25 @@ namespace Plutus
             this.tabPage6.TabIndex = 7;
             this.tabPage6.Text = "Carts";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // CurrentCartCountNum
+            // 
+            this.CurrentCartCountNum.AutoSize = true;
+            this.CurrentCartCountNum.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CurrentCartCountNum.Location = new System.Drawing.Point(197, 485);
+            this.CurrentCartCountNum.Name = "CurrentCartCountNum";
+            this.CurrentCartCountNum.Size = new System.Drawing.Size(0, 23);
+            this.CurrentCartCountNum.TabIndex = 5;
+            // 
+            // CartCountLabel
+            // 
+            this.CartCountLabel.AutoSize = true;
+            this.CartCountLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CartCountLabel.Location = new System.Drawing.Point(17, 482);
+            this.CartCountLabel.Name = "CartCountLabel";
+            this.CartCountLabel.Size = new System.Drawing.Size(174, 23);
+            this.CartCountLabel.TabIndex = 4;
+            this.CartCountLabel.Text = "Current Cart amount:";
             // 
             // addCartButton
             // 
@@ -915,7 +939,7 @@ namespace Plutus
             this.cartPanel.AutoScroll = true;
             this.cartPanel.Location = new System.Drawing.Point(5, 55);
             this.cartPanel.Name = "cartPanel";
-            this.cartPanel.Size = new System.Drawing.Size(240, 467);
+            this.cartPanel.Size = new System.Drawing.Size(240, 410);
             this.cartPanel.TabIndex = 2;
             // 
             // panel2
@@ -1079,6 +1103,7 @@ namespace Plutus
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.CartNameSetter);
             this.panel1.Controls.Add(this.cartChargeBut);
             this.panel1.Controls.Add(this.cartName);
             this.panel1.Controls.Add(this.cartExpCount);
@@ -1090,6 +1115,16 @@ namespace Plutus
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(697, 69);
             this.panel1.TabIndex = 0;
+            // 
+            // CartNameSetter
+            // 
+            this.CartNameSetter.Location = new System.Drawing.Point(112, 32);
+            this.CartNameSetter.Name = "CartNameSetter";
+            this.CartNameSetter.Size = new System.Drawing.Size(47, 27);
+            this.CartNameSetter.TabIndex = 7;
+            this.CartNameSetter.Text = "set";
+            this.CartNameSetter.UseVisualStyleBackColor = true;
+            this.CartNameSetter.Click += new System.EventHandler(this.CartNameSetter_Click);
             // 
             // cartChargeBut
             // 
@@ -1103,11 +1138,10 @@ namespace Plutus
             // 
             // cartName
             // 
-            this.cartName.Location = new System.Drawing.Point(16, 32);
+            this.cartName.Location = new System.Drawing.Point(0, 32);
             this.cartName.Name = "cartName";
-            this.cartName.Size = new System.Drawing.Size(124, 27);
+            this.cartName.Size = new System.Drawing.Size(115, 27);
             this.cartName.TabIndex = 5;
-            this.cartName.TextChanged += new System.EventHandler(this.CartName_TextChanged);
             // 
             // cartExpCount
             // 
@@ -1190,6 +1224,7 @@ namespace Plutus
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
             this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.cartElemEditPanel.ResumeLayout(false);
             this.cartElemEditPanel.PerformLayout();
@@ -1198,6 +1233,8 @@ namespace Plutus
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+
+            LoadCarts();
 
         }
 
@@ -1298,6 +1335,9 @@ namespace Plutus
         private ComboBox cartElemChangeCat;
         private TextBox cartElemChangePri;
         private TextBox cartElemChangeName;
+        private Label CurrentCartCountNum;
+        private Label CartCountLabel;
+        private Button CartNameSetter;
     }
 }
 

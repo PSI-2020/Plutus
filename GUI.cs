@@ -406,6 +406,8 @@ namespace Plutus
             myButton.Click += new System.EventHandler(this.Cart_Click);
             currentCart = new Cart(myButton.Name);
             cartList.Add(currentCart);
+            cartStore.StoreCart(currentCart);
+            CartAmountCount();
 
         }
 
@@ -415,8 +417,23 @@ namespace Plutus
 
         private void ChangeCartname()
         {
-            currentCart.ChangeName(cartName.Text);
-            currentCartBut.Text = cartName.Text;
+            bool nameExists = false;
+            foreach (Cart c in cartList)
+            {
+                if (string.Equals(cartName.Text, c.GiveName())) nameExists = true;
+            }
+            if (nameExists)
+            {
+                OpenElemAdd();
+                cartAddErrorField.Text = "Name exists";
+            }
+            else
+            {
+                cartStore.RenameCart(currentCart, cartName.Text);
+                currentCart.ChangeName(cartName.Text);
+                currentCartBut.Text = cartName.Text;
+            }
+
         }
         private void Cart_Click(object sender, System.EventArgs e)
         {
@@ -428,15 +445,6 @@ namespace Plutus
             DisplayCart();
             CloseElemAdd();
             CloseElemChange();
-
-        }
-
-        private void CartName_TextChanged(object sender, EventArgs e)
-        {
-            if((currentCart != null) && (currentCartBut != null))
-            {
-                ChangeCartname();
-            }
 
         }
 
@@ -489,7 +497,8 @@ namespace Plutus
 
             var elemSk = currentCart.GiveElementC();
             if (elemSk == 0) return;
-            for(int i = (elemSk - 1); i >= 0; i--)
+            SaveCart();
+            for (int i = (elemSk - 1); i >= 0; i--)
             {
                CartExpense currExpense = currentCart.GiveElement(i);
 
@@ -575,6 +584,12 @@ namespace Plutus
             }
         }
 
+        private CartStorer cartStore = new CartStorer();
+        private void CartAmountCount()
+        {
+            CurrentCartCountNum.Text = cartStore.GiveCartCount().ToString();
+        }
+
         private void ElemActivate_Click(object sender, EventArgs e)
         {
             currentElemBut = (Button)sender;
@@ -583,6 +598,7 @@ namespace Plutus
             currentCart.ChangeActivity(indexOfExpense);
             currentElem = currentCart.GiveElement(indexOfExpense);
             ActivityButColorDecide(currentElem, currentElemBut);
+            SaveCart();
            /* OpenElemChange();
             cartElemChangeName.Text = currentElem.Name;
             cartElemChangePri.Text = currentElem.Price.ToString();
@@ -701,10 +717,12 @@ namespace Plutus
         private void delCartButton_Click(object sender, EventArgs e)
         {
             currentCartBut.Dispose();
+            cartStore.DeleteCart(currentCart.GiveName());
             currentCart = null;
             CloseElemAdd();
             cartInfoPanel.Controls.Clear();
             cartName.Text = "";
+            CartAmountCount();
         }
 
         private void elemChangeSave_Click(object sender, EventArgs e)
@@ -760,6 +778,48 @@ namespace Plutus
                 currentCart.Account(manager);
 
             }
+        }
+
+        private void CartNameSetter_Click(object sender, EventArgs e)
+        {
+            if ((currentCart != null) && (currentCartBut != null))
+            {
+                ChangeCartname();
+            }
+        }
+
+        private void LoadCarts()
+        {
+            Cart cart;
+            int cartCount = cartStore.GiveCartCount();
+            if(cartCount > 0)
+            {
+                for (int i = 0; i < cartCount; i++)
+                {
+                    cart = cartStore.LoadCart(i);
+                    cartList.Add(cart);
+                    CreateCartButOnLoad(cart);
+                } 
+            }
+
+        }
+
+        private void CreateCartButOnLoad(Cart cart)
+        {
+            cartCounter += 1;
+            Button myButton = new Button();
+            myButton.Name = "Cart" + cartCounter;
+            myButton.Text = cart.GiveName();
+            myButton.Width = 210;
+            myButton.Height = 45;
+            cartPanel.Controls.Add(myButton);
+            myButton.Click += new System.EventHandler(this.Cart_Click);
+            CartAmountCount();
+        }
+
+        private void SaveCart()
+        {
+            cartStore.StoreCart(currentCart);
         }
     }
 }

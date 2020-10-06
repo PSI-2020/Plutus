@@ -126,4 +126,40 @@
     <Price>123</Price>
     <Category>Food</Category>
   </Expense>
+  <Expense>
+    <Date>1601967570</Date>
+    <Name>Hello</Name>
+    <Price>123</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601967570</Date>
+    <Name>My name is Ted</Name>
+    <Price>123</Price>
+    <Category>Other</Category>
+  </Expense>
+  <Expense>
+    <Date>1601968448</Date>
+    <Name>ded</Name>
+    <Price>123</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601968455</Date>
+    <Name>ded</Name>
+    <Price>123</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601968455</Date>
+    <Name>bry</Name>
+    <Price>5</Price>
+    <Category>Bills</Category>
+  </Expense>
+  <Expense>
+    <Date>1601968455</Date>
+    <Name>M8</Name>
+    <Price>45</Price>
+    <Category>Clothes</Category>
+  </Expense>
 </ArrayOfExpense>

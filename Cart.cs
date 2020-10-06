@@ -26,9 +26,9 @@ namespace Plutus
             return cartName;
         }
 
-        public CartExpense GiveElement(int i)
+        public CartExpense GiveElement(int index)
         {
-            return cartParts.ElementAt(i);
+            return cartParts.ElementAt(index);
         }
 
         public void ChangeActivity(int index)
@@ -57,6 +57,11 @@ namespace Plutus
         public void AddExpense(Expense expense)
         {
             CartExpense cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: true);
+            cartParts.Add(cExpense);
+        }
+        public void AddExpense(CartExpense expense)
+        {
+            CartExpense cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: expense.Active);
             cartParts.Add(cExpense);
         }
 
