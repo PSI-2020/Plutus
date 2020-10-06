@@ -491,7 +491,7 @@ namespace Plutus
             if (elemSk == 0) return;
             for(int i = (elemSk - 1); i >= 0; i--)
             {
-                Expense currExpense = currentCart.GiveElement(i);
+               CartExpense currExpense = currentCart.GiveElement(i);
 
                 FlowLayoutPanel elemPanel = new FlowLayoutPanel();
                 elemPanel = CreateNewElemPanel(elemPanel, i);
@@ -508,6 +508,10 @@ namespace Plutus
                 Label gapLabel = new Label();
                 gapLabel = CreateGapLabel(gapLabel, i);
 
+                Button elemActivate = new Button();
+                elemActivate = CreateNewElemButton(elemActivate, i, "A");
+                ActivityButColorDecide(currExpense, elemActivate);
+
                 Button elemEdit = new Button();
                 elemEdit = CreateNewElemButton(elemEdit, i, "E");
               
@@ -518,6 +522,7 @@ namespace Plutus
                 elemPanel.Controls.Add(elemPrice);
                 elemPanel.Controls.Add(elemCategory);
                 elemPanel.Controls.Add(gapLabel);
+                elemPanel.Controls.Add(elemActivate);
                 elemPanel.Controls.Add(elemEdit);
                 elemPanel.Controls.Add(elemDelete);
                 cartInfoPanel.Controls.Add(elemPanel);
@@ -529,20 +534,61 @@ namespace Plutus
             button.Name = currentCartBut.Name + "ElemButton" + type + "|" + count;
             button.Size = new System.Drawing.Size(30, 30);
             button.Text = type;
-            if(type == "E")
+            switch (type)
             {
-                button.Click += new System.EventHandler(this.ElemEdit_Click);
-            }
-            else
-            {
-                button.Click += new System.EventHandler(this.ElemDel_Click);
+                case "E":
+                    {
+                        button.Click += new System.EventHandler(this.ElemEdit_Click);
+                        break;
+                    }
+                case "X":
+                    {
+                        button.Click += new System.EventHandler(this.ElemDel_Click);
+                        break;
+                    }
+                case "A":
+                    {
+                        button.Click += new System.EventHandler(this.ElemActivate_Click);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
             }
             return button;
         }
 
         private Button currentElemBut;
-        private Expense currentElem;
-        private Expense currentElemToDel;
+        private CartExpense currentElem;
+        private CartExpense currentElemToDel;
+
+        private void ActivityButColorDecide(CartExpense e, Button b)
+        {
+            if (e.Active)
+            {
+                b.BackColor = Color.FromName("green");
+            }
+            else
+            {
+                b.BackColor = Color.FromName("red");
+            }
+        }
+
+        private void ElemActivate_Click(object sender, EventArgs e)
+        {
+            currentElemBut = (Button)sender;
+            int index = currentElemBut.Name.IndexOf('|') + 1;
+            int indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            currentCart.ChangeActivity(indexOfExpense);
+            currentElem = currentCart.GiveElement(indexOfExpense);
+            ActivityButColorDecide(currentElem, currentElemBut);
+           /* OpenElemChange();
+            cartElemChangeName.Text = currentElem.Name;
+            cartElemChangePri.Text = currentElem.Price.ToString();
+            cartElemChangeCat.Text = currentElem.Category;*/
+
+        }
         private void ElemEdit_Click(object sender, EventArgs e)
         {
             currentElemBut = (Button)sender;
@@ -571,7 +617,7 @@ namespace Plutus
         private Label CreateGapLabel(Label label, int count)
         {
             label.Name = currentCartBut.Name + "Gap" + count;
-            label.Size = new System.Drawing.Size(200, 30);
+            label.Size = new System.Drawing.Size(170, 30);
             return label;
         }
 

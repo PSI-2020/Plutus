@@ -26,9 +26,22 @@ namespace Plutus
             return cartName;
         }
 
-        public Expense GiveElement(int i)
+        public CartExpense GiveElement(int i)
         {
             return cartParts.ElementAt(i);
+        }
+
+        public void ChangeActivity(int index)
+        {
+            int i = 0;
+            foreach (CartExpense expense in cartParts)
+            {
+                if(i == index)
+                {
+                    expense.Active = !expense.Active;
+                }
+                i++;
+            }
         }
 
         public int GiveElementC()
