@@ -72,4 +72,10 @@
     <Price>1</Price>
     <Category>Food</Category>
   </Expense>
+  <Expense>
+    <Date>1601970947</Date>
+    <Name>elektra</Name>
+    <Price>25.26</Price>
+    <Category>Bills</Category>
+  </Expense>
 </ArrayOfExpense>

@@ -25,6 +25,7 @@ namespace Plutus
     {
         readonly DataManager manager = new DataManager();
         readonly Statistics stats = new Statistics();
+        readonly Budgets budget = new Budgets();
         public GUI() => InitializeComponent();
 
         private void buttonAddMonthlyExpenses_Click(object sender, EventArgs e)
@@ -705,6 +706,32 @@ namespace Plutus
             OpenElemAdd();
             cartAddErrorField.Text = "Charged!";
             currentCart.Account(manager);
+        }
+
+        private void addBudget_Click(object sender, EventArgs e) => budgetControl.Visible = true;
+
+        private void budgetAdd_Click(object sender, EventArgs e)
+        {
+            if (!Double.TryParse(budgetSum.Text, out _))
+            {
+                errorField2.Text = "Price must be a number!";
+                return;
+            }
+            if (budgetCat.Text.Length == 0 || incomeCat == null)
+            {
+                errorField2.Text = "Please choose a category!";
+                return;
+            }
+            if (budgetSum.Text.Length == 0 || budgetSum == null)
+            {
+                errorField2.Text = "Please enter a sum!";
+                return;
+            }
+            budgetPan1.Visible = true;
+            var category = budgetCat.SelectedItem.ToString();
+            var sum = Convert.ToDouble(budgetSum.Text);
+            budget1.Text = budget.ShowBudget(manager, category, sum);
+
         }
     }
 }
