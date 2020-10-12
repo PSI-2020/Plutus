@@ -396,11 +396,13 @@ namespace Plutus
         private void addCartButton_Click(object sender, EventArgs e)
         {
             cartCounter += 1;
-            var myButton = new Button();
-            myButton.Name = "Cart" + cartCounter;
-            myButton.Text = "Cart " + cartCounter;
-            myButton.Width = 210;
-            myButton.Height = 45;
+            var myButton = new Button
+            {
+                Name = "Cart" + cartCounter,
+                Text = "Cart " + cartCounter,
+                Width = 210,
+                Height = 45
+            };
             cartPanel.Controls.Add(myButton);
             myButton.Click += new System.EventHandler(this.Cart_Click);
             currentCart = new Cart(myButton.Name);
@@ -573,14 +575,7 @@ namespace Plutus
 
         private void ActivityButColorDecide(CartExpense e, Button b)
         {
-            if (e.Active)
-            {
-                b.BackColor = Color.FromName("green");
-            }
-            else
-            {
-                b.BackColor = Color.FromName("red");
-            }
+            b.BackColor = e.Active ? Color.FromName("green") : Color.FromName("red");
         }
 
         private CartStorer cartStore = new CartStorer();
@@ -806,11 +801,13 @@ namespace Plutus
         private void CreateCartButOnLoad(Cart cart)
         {
             cartCounter += 1;
-            var myButton = new Button();
-            myButton.Name = "Cart" + cartCounter;
-            myButton.Text = cart.GiveName();
-            myButton.Width = 210;
-            myButton.Height = 45;
+            var myButton = new Button
+            {
+                Name = "Cart" + cartCounter,
+                Text = cart.GiveName(),
+                Width = 210,
+                Height = 45
+            };
             cartPanel.Controls.Add(myButton);
             myButton.Click += new System.EventHandler(this.Cart_Click);
             CartAmountCount();

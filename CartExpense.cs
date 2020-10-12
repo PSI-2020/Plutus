@@ -14,10 +14,7 @@ namespace Plutus
 
         }
 
-        public CartExpense(int date, string name, double price, string category, bool active) : base(date, name, price, category)
-        {
-            Active = active;
-        }
+        public CartExpense(int date, string name, double price, string category, bool active) : base(date, name, price, category) => Active = active;
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -25,20 +22,17 @@ namespace Plutus
             info.AddValue("Active", Active);
         }
 
-        public CartExpense(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-            Active = (bool)info.GetValue("Active", typeof(bool));
-        }
+        public CartExpense(SerializationInfo info, StreamingContext context) : base(info, context) => Active = (bool)info.GetValue("Active", typeof(bool));
 
-     /*   public CartExpense GetFromExpense(Expense expense)
-        {
-            this.Date = expense.Date;
-            this.Name = expense.Name;
-            this.Price = expense.Price;
-            this.Category = expense.Category;
-            this.Active = true;
-            return this;
-        }*/
+        /*   public CartExpense GetFromExpense(Expense expense)
+           {
+               this.Date = expense.Date;
+               this.Name = expense.Name;
+               this.Price = expense.Price;
+               this.Category = expense.Category;
+               this.Active = true;
+               return this;
+           }*/
 
 
     }
