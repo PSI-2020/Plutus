@@ -23,19 +23,18 @@ namespace Plutus
 
         public int GiveCartCount()
         {
-            int count;
-            count = Directory.GetFiles(cartFolder, "*", SearchOption.TopDirectoryOnly).Length;
+            var count = Directory.GetFiles(cartFolder, "*", SearchOption.TopDirectoryOnly).Length;
             return count;
         }
 
         public Cart LoadCart(int index)
         {
 
-            StreamReader file = new StreamReader(filePaths[index]);
+            var file = new StreamReader(filePaths[index]);
             var temp = filePaths[index].Split('/');
             var temp1 = temp[temp.Length - 1].Split('.');
-            string name = temp1[0];
-            Cart cart = new Cart(name);
+            var name = temp1[0];
+            var cart = new Cart(name);
             string expenseData;
             CartExpense expense;
 
@@ -75,10 +74,10 @@ namespace Plutus
 
         private void ChangeCart(Cart cart, string loc)
         {
-            int count = cart.GiveElementC();
-            using (StreamWriter writer = new StreamWriter(loc))
+            var count = cart.GiveElementC();
+            using (var writer = new StreamWriter(loc))
             {
-                for(int i = 0; i < count; i++)
+                for(var i = 0; i < count; i++)
                 {
                     writer.WriteLine(parser.SaveExpense(cart.GiveElement(i)));
                 }

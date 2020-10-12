@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -93,9 +92,9 @@ namespace Plutus
             var monthlyIncome = Convert.ToDouble(monthlyIncomeAmount.Text);
             var category = monthlyIncomeCategory.Text;
 
-            var scheduler = new Scheduler(date,name,monthlyIncome,category,manager,true);
+            var scheduler = new Scheduler(date, name, monthlyIncome, category, manager, true);
             scheduler.Start();
-            
+
             errorLabel.Text = "Monthly income was added successfully!";
             monthlyIncomeAmount.Clear();
             monthlyIncomeCategory.Text = null;
@@ -397,7 +396,7 @@ namespace Plutus
         private void addCartButton_Click(object sender, EventArgs e)
         {
             cartCounter += 1;
-            Button myButton = new Button();
+            var myButton = new Button();
             myButton.Name = "Cart" + cartCounter;
             myButton.Text = "Cart " + cartCounter;
             myButton.Width = 210;
@@ -417,8 +416,8 @@ namespace Plutus
 
         private void ChangeCartname()
         {
-            bool nameExists = false;
-            foreach (Cart c in cartList)
+            var nameExists = false;
+            foreach (var c in cartList)
             {
                 if (string.Equals(cartName.Text, c.GiveName())) nameExists = true;
             }
@@ -458,7 +457,7 @@ namespace Plutus
 
         private void CloseElemAdd()
         {
-            if(cartElemEditPanel.Visible) cartInfoPanel.Height = 350;
+            if (cartElemEditPanel.Visible) cartInfoPanel.Height = 350;
             else cartInfoPanel.Height = 400;
             cartInfoPanel.Top = 100;
             cartNewElemControlPanel.Visible = false;
@@ -470,7 +469,7 @@ namespace Plutus
             else cartInfoPanel.Height = 350;
             cartElemEditPanel.Visible = true;
         }
-        
+
         private void CloseElemChange()
         {
             if (cartNewElemControlPanel.Visible) cartInfoPanel.Height = 350;
@@ -498,33 +497,33 @@ namespace Plutus
             var elemSk = currentCart.GiveElementC();
             if (elemSk == 0) return;
             SaveCart();
-            for (int i = (elemSk - 1); i >= 0; i--)
+            for (var i = (elemSk - 1); i >= 0; i--)
             {
-               CartExpense currExpense = currentCart.GiveElement(i);
+                var currExpense = currentCart.GiveElement(i);
 
-                FlowLayoutPanel elemPanel = new FlowLayoutPanel();
+                var elemPanel = new FlowLayoutPanel();
                 elemPanel = CreateNewElemPanel(elemPanel, i);
-               
-                Label elemName = new Label();
+
+                var elemName = new Label();
                 elemName = CreateNewElemName(elemName, i, currExpense.Name);
-               
-                Label elemPrice = new Label();
+
+                var elemPrice = new Label();
                 elemPrice = CreateNewElemPrice(elemPrice, i, currExpense.Price.ToString());
 
-                Label elemCategory = new Label();
+                var elemCategory = new Label();
                 elemCategory = CreateNewElemCategory(elemCategory, i, currExpense.Category);
-                
-                Label gapLabel = new Label();
+
+                var gapLabel = new Label();
                 gapLabel = CreateGapLabel(gapLabel, i);
 
-                Button elemActivate = new Button();
+                var elemActivate = new Button();
                 elemActivate = CreateNewElemButton(elemActivate, i, "A");
                 ActivityButColorDecide(currExpense, elemActivate);
 
-                Button elemEdit = new Button();
+                var elemEdit = new Button();
                 elemEdit = CreateNewElemButton(elemEdit, i, "E");
-              
-                Button elemDelete = new Button();
+
+                var elemDelete = new Button();
                 elemDelete = CreateNewElemButton(elemDelete, i, "X");
 
                 elemPanel.Controls.Add(elemName);
@@ -541,23 +540,23 @@ namespace Plutus
         private Button CreateNewElemButton(Button button, int count, string type)
         {
             button.Name = currentCartBut.Name + "ElemButton" + type + "|" + count;
-            button.Size = new System.Drawing.Size(30, 30);
+            button.Size = new Size(30, 30);
             button.Text = type;
             switch (type)
             {
                 case "E":
                     {
-                        button.Click += new System.EventHandler(this.ElemEdit_Click);
+                        button.Click += new EventHandler(this.ElemEdit_Click);
                         break;
                     }
                 case "X":
                     {
-                        button.Click += new System.EventHandler(this.ElemDel_Click);
+                        button.Click += new EventHandler(this.ElemDel_Click);
                         break;
                     }
                 case "A":
                     {
-                        button.Click += new System.EventHandler(this.ElemActivate_Click);
+                        button.Click += new EventHandler(this.ElemActivate_Click);
                         break;
                     }
                 default:
@@ -593,23 +592,23 @@ namespace Plutus
         private void ElemActivate_Click(object sender, EventArgs e)
         {
             currentElemBut = (Button)sender;
-            int index = currentElemBut.Name.IndexOf('|') + 1;
-            int indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            var index = currentElemBut.Name.IndexOf('|') + 1;
+            var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
             currentCart.ChangeActivity(indexOfExpense);
             currentElem = currentCart.GiveElement(indexOfExpense);
             ActivityButColorDecide(currentElem, currentElemBut);
             SaveCart();
-           /* OpenElemChange();
-            cartElemChangeName.Text = currentElem.Name;
-            cartElemChangePri.Text = currentElem.Price.ToString();
-            cartElemChangeCat.Text = currentElem.Category;*/
+            /* OpenElemChange();
+             cartElemChangeName.Text = currentElem.Name;
+             cartElemChangePri.Text = currentElem.Price.ToString();
+             cartElemChangeCat.Text = currentElem.Category;*/
 
         }
         private void ElemEdit_Click(object sender, EventArgs e)
         {
             currentElemBut = (Button)sender;
-            int index = currentElemBut.Name.IndexOf('|') + 1;
-            int indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            var index = currentElemBut.Name.IndexOf('|') + 1;
+            var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
             currentElem = currentCart.GiveElement(indexOfExpense);
             OpenElemChange();
             cartElemChangeName.Text = currentElem.Name;
@@ -620,12 +619,12 @@ namespace Plutus
         private void ElemDel_Click(object sender, EventArgs e)
         {
             currentElemBut = (Button)sender;
-            int index = currentElemBut.Name.IndexOf('|') + 1;
-            int indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            var index = currentElemBut.Name.IndexOf('|') + 1;
+            var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
             currentElemToDel = currentCart.GiveElement(indexOfExpense);
             if (currentElemToDel == currentElem) CloseElemChange();
             currentCart.RemoveExpense(indexOfExpense);
-            
+
             RefreshElemCount();
             cartInfoPanel.Controls.Clear();
             DisplayCart();
@@ -698,7 +697,7 @@ namespace Plutus
             var name = cartElemNameBox.Text;
             var price = Convert.ToDouble(cartElemPriceBox.Text);
             var category = cartElemCategoryBox.Text;
-            Expense newCartExpense = new Expense(date, name, price, category);
+            var newCartExpense = new Expense(date, name, price, category);
             currentCart.AddExpense(newCartExpense);
             cartAddErrorField.Text = "Added";
             cartElemNameBox.Text = "";
@@ -791,15 +790,15 @@ namespace Plutus
         private void LoadCarts()
         {
             Cart cart;
-            int cartCount = cartStore.GiveCartCount();
-            if(cartCount > 0)
+            var cartCount = cartStore.GiveCartCount();
+            if (cartCount > 0)
             {
-                for (int i = 0; i < cartCount; i++)
+                for (var i = 0; i < cartCount; i++)
                 {
                     cart = cartStore.LoadCart(i);
                     cartList.Add(cart);
                     CreateCartButOnLoad(cart);
-                } 
+                }
             }
 
         }
@@ -807,7 +806,7 @@ namespace Plutus
         private void CreateCartButOnLoad(Cart cart)
         {
             cartCounter += 1;
-            Button myButton = new Button();
+            var myButton = new Button();
             myButton.Name = "Cart" + cartCounter;
             myButton.Text = cart.GiveName();
             myButton.Width = 210;

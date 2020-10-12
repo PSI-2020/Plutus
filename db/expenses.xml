@@ -162,4 +162,46 @@
     <Price>45</Price>
     <Category>Clothes</Category>
   </Expense>
+  <Expense>
+    <Date>1601973604</Date>
+    <Name>Bacon</Name>
+    <Price>4.68</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601973604</Date>
+    <Name>Eggs</Name>
+    <Price>2.45</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601973604</Date>
+    <Name>Bread</Name>
+    <Price>1.29</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1601973677</Date>
+    <Name>Magic</Name>
+    <Price>55</Price>
+    <Category>Other</Category>
+  </Expense>
+  <Expense>
+    <Date>1601973677</Date>
+    <Name>Supplements</Name>
+    <Price>98</Price>
+    <Category>Other</Category>
+  </Expense>
+  <Expense>
+    <Date>1601985563</Date>
+    <Name>Magic</Name>
+    <Price>55</Price>
+    <Category>Other</Category>
+  </Expense>
+  <Expense>
+    <Date>1601985563</Date>
+    <Name>Supplements</Name>
+    <Price>98</Price>
+    <Category>Other</Category>
+  </Expense>
 </ArrayOfExpense>

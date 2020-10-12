@@ -33,8 +33,8 @@ namespace Plutus
 
         public void ChangeActivity(int index)
         {
-            int i = 0;
-            foreach (CartExpense expense in cartParts)
+            var i = 0;
+            foreach (var expense in cartParts)
             {
                 if(i == index)
                 {
@@ -56,12 +56,12 @@ namespace Plutus
 
         public void AddExpense(Expense expense)
         {
-            CartExpense cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: true);
+            var cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: true);
             cartParts.Add(cExpense);
         }
         public void AddExpense(CartExpense expense)
         {
-            CartExpense cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: expense.Active);
+            var cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: expense.Active);
             cartParts.Add(cExpense);
         }
 
@@ -72,11 +72,11 @@ namespace Plutus
 
         public void Account(DataManager dm)
         {
-            foreach (CartExpense expense in cartParts)
+            foreach (var expense in cartParts)
             {
                 if (expense.Active)
                 {
-                    Expense charge = new Expense();
+                    var charge = new Expense();
                     charge.Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     charge.Name = expense.Name;
                     charge.Price = expense.Price;
