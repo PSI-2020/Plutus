@@ -1,3 +1,0 @@
-Bacon|4.68|Food|1
-Eggs|2.45|Food|1
-Bread|1.29|Food|1
