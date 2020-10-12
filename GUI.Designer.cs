@@ -135,12 +135,17 @@ namespace Plutus
             this.budget1 = new System.Windows.Forms.TextBox();
             this.addBudget = new System.Windows.Forms.Button();
             this.budgetControl = new System.Windows.Forms.Panel();
+            this.errorLbl = new System.Windows.Forms.Label();
             this.budgetAdd = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.budgetSum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.budgetCat = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dateFrom = new System.Windows.Forms.DateTimePicker();
+            this.dateTo = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1237,6 +1242,11 @@ namespace Plutus
             // 
             // budgetControl
             // 
+            this.budgetControl.Controls.Add(this.dateTo);
+            this.budgetControl.Controls.Add(this.dateFrom);
+            this.budgetControl.Controls.Add(this.label14);
+            this.budgetControl.Controls.Add(this.label7);
+            this.budgetControl.Controls.Add(this.errorLbl);
             this.budgetControl.Controls.Add(this.budgetAdd);
             this.budgetControl.Controls.Add(this.label3);
             this.budgetControl.Controls.Add(this.budgetSum);
@@ -1248,6 +1258,15 @@ namespace Plutus
             this.budgetControl.Size = new System.Drawing.Size(262, 443);
             this.budgetControl.TabIndex = 0;
             this.budgetControl.Visible = false;
+            // 
+            // errorLbl
+            // 
+            this.errorLbl.AutoSize = true;
+            this.errorLbl.Location = new System.Drawing.Point(34, 399);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(0, 20);
+            this.errorLbl.TabIndex = 5;
+            this.errorLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // budgetAdd
             // 
@@ -1264,9 +1283,9 @@ namespace Plutus
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 20);
+            this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Set Period";
+            this.label3.Text = "Set Period:";
             // 
             // budgetSum
             // 
@@ -1305,6 +1324,38 @@ namespace Plutus
             this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Category";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 190);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 20);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "From";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(11, 247);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(25, 20);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "To";
+            // 
+            // dateFrom
+            // 
+            this.dateFrom.Location = new System.Drawing.Point(11, 213);
+            this.dateFrom.Name = "dateFrom";
+            this.dateFrom.Size = new System.Drawing.Size(227, 27);
+            this.dateFrom.TabIndex = 6;
+            // 
+            // dateTo
+            // 
+            this.dateTo.Location = new System.Drawing.Point(11, 270);
+            this.dateTo.Name = "dateTo";
+            this.dateTo.Size = new System.Drawing.Size(227, 27);
+            this.dateTo.TabIndex = 6;
             // 
             // GUI
             // 
@@ -1467,6 +1518,11 @@ namespace Plutus
         private Label label3;
         private Panel budgetPan1;
         private TextBox budget1;
+        private Label errorLbl;
+        private DateTimePicker dateTo;
+        private DateTimePicker dateFrom;
+        private Label label14;
+        private Label label7;
     }
 }
 
