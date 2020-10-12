@@ -396,13 +396,11 @@ namespace Plutus
         private void addCartButton_Click(object sender, EventArgs e)
         {
             cartCounter += 1;
-            var myButton = new Button
-            {
-                Name = "Cart" + cartCounter,
-                Text = "Cart " + cartCounter,
-                Width = 210,
-                Height = 45
-            };
+            var myButton = new Button();
+            myButton.Name = "Cart" + cartCounter;
+            myButton.Text = "Cart " + cartCounter;
+            myButton.Width = 210;
+            myButton.Height = 45;
             cartPanel.Controls.Add(myButton);
             myButton.Click += new System.EventHandler(this.Cart_Click);
             currentCart = new Cart(myButton.Name);
@@ -446,15 +444,6 @@ namespace Plutus
             DisplayCart();
             CloseElemAdd();
             CloseElemChange();
-
-        }
-
-        private void CartName_TextChanged(object sender, EventArgs e)
-        {
-            if((currentCart != null) && (currentCartBut != null))
-            {
-                ChangeCartname();
-            }
 
         }
 
