@@ -1,0 +1,254 @@
+[33mcommit 399ecbfd7e26e88abef9a30c13915c3511afee9a[m[33m ([m[1;36mHEAD -> [m[1;32mCart[m[33m, [m[1;31morigin/Cart[m[33m)[m
+Merge: 40ba22e d2c012a
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 13 00:47:22 2020 +0300
+
+    Merge branch 'master' into Cart
+
+[33mcommit 40ba22ef10bb36564bbe4bf90b72428c13a1733c[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 13 00:43:05 2020 +0300
+
+    Some cleanup for code
+
+[33mcommit d2c012a62a6ddd6a79e840206c361f6134873ab4[m
+Merge: fedba05 9a0eeab
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 13 00:31:20 2020 +0300
+
+    Merge pull request #8 from PSI-2020/revert-7-Cart
+    
+    Revert "Cart"
+
+[33mcommit 9a0eeabb1f04e258bce18a512bb1cdc88f5a7cb1[m[33m ([m[1;31morigin/revert-7-Cart[m[33m)[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 13 00:30:41 2020 +0300
+
+    Revert "Cart"
+
+[33mcommit fedba05da0c82b695b490f2b5eeca874ba9df714[m
+Merge: 6f61e77 b1b2ae0
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 13 00:14:28 2020 +0300
+
+    Merge pull request #7 from PSI-2020/Cart
+    
+    Cart
+
+[33mcommit b1b2ae0de2b18bbf853461da85cbbb885d7d1349[m[33m ([m[1;32mCartfixed[m[33m)[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 13 00:13:43 2020 +0300
+
+    Fixed var stuff
+
+[33mcommit 58808b1f8c8fe81c47568bb18e70883da02a6947[m
+Merge: dd1a6fb 6f61e77
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Thu Oct 8 16:37:31 2020 +0300
+
+    Merge branch 'master' into Cart
+
+[33mcommit 6f61e7710c80e4a0d80aa97d57f666b90e7e0bc8[m
+Author: RokasBagdonas <r.bagdonas2000@gmail.com>
+Date:   Tue Oct 6 10:51:55 2020 +0300
+
+    Changed layout
+
+[33mcommit dd1a6fbdad7d11b52416e92f48e132562a2872aa[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 6 10:15:30 2020 +0300
+
+    Carts are Strored now!
+
+[33mcommit 3d39f68448345cfa6c540ca9b9e3adde2baadd54[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 6 06:42:37 2020 +0300
+
+    Added functionality: cart element active/not active (for charging purpuses).
+
+[33mcommit 95a49e32eb7a3477521599b2f27c6fabb7ed0a60[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Oct 6 06:08:18 2020 +0300
+
+    Fixed error with charge
+
+[33mcommit 048f8d6de3baae19551a22ecffe6bd2057ef41cf[m[33m ([m[1;32mCartTrue[m[33m)[m
+Merge: 4f66c2c 712e49b
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Wed Sep 30 21:08:43 2020 +0300
+
+    Merge pull request #6 from PSI-2020/Cart
+    
+    Added Cart class CartExpense class and Cart Tab
+
+[33mcommit 712e49bf649dc93634d0556b46e9794c84a3169b[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Tue Sep 29 02:20:19 2020 +0300
+
+    Added Cart class CartExpense class and Cart Tab
+
+[33mcommit 4f66c2ca87b8b2e8818fef0769e8b86b78f61cb3[m
+Merge: f2b2a25 d96f689
+Author: simonasalat <71327148+simonasalat@users.noreply.github.com>
+Date:   Sun Sep 27 15:16:23 2020 +0300
+
+    Merge pull request #5 from PSI-2020/edit
+    
+    Edit
+
+[33mcommit d96f6894beb500f9af5aa23803c5c93ea7fd2b03[m[33m ([m[1;31morigin/edit[m[33m)[m
+Author: Simona <simona.salatkaite@gmail.com>
+Date:   Sun Sep 27 15:08:16 2020 +0300
+
+    adding monthly income/expenses scheduler
+
+[33mcommit b4969e52015abad9238dc857e3d70cdafb099226[m
+Author: Simona <Simona@ZILVINO-WINDOWS>
+Date:   Sat Sep 26 17:43:55 2020 +0300
+
+    pabandymui
+
+[33mcommit f2b2a259a534c9db7babdbb82d8b4d0a76d1bd64[m
+Merge: 4802b18 9e322eb
+Author: simonasalat <71327148+simonasalat@users.noreply.github.com>
+Date:   Sat Sep 26 12:45:15 2020 +0300
+
+    Merge pull request #4 from PSI-2020/tabs/input
+    
+    adding tabs
+
+[33mcommit 1d72c4329ec7619e980f240f3e0ace9f19548617[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Fri Sep 25 21:55:11 2020 +0300
+
+    Data is now stored in XML files
+    Added income statistics
+    Added the ability to edit data
+
+[33mcommit 9e322eba29a56c17e38acd9e7fccefcefbe72389[m[33m ([m[1;31morigin/tabs/input[m[33m, [m[1;32mtabs/input[m[33m)[m
+Author: RokasBagdonas <r.bagdonas2000@gmail.com>
+Date:   Fri Sep 25 14:06:08 2020 +0300
+
+    coded income input and showing income in Data
+
+[33mcommit 83eb36fd2d8a190fa055baa89a7fdb84b165b56f[m
+Merge: dd69de0 99e12d4
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Fri Sep 25 13:34:55 2020 +0300
+
+    Merge branch 'tabs/input' of https://github.com/PSI-2020/Plutus into tabs/input
+
+[33mcommit dd69de0d790f7ecbb053499a0726e61cf88a74d1[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Fri Sep 25 13:34:42 2020 +0300
+
+    Changed the way data is handled
+
+[33mcommit 99e12d4504e14e26815829c5a3cc48f0f5e0b58b[m
+Author: RokasBagdonas <r.bagdonas2000@gmail.com>
+Date:   Fri Sep 25 13:32:33 2020 +0300
+
+    added button and txtfield
+
+[33mcommit 13b482e767e24614d09b6236e7254f00c75505f2[m
+Author: RokasBagdonas <r.bagdonas2000@gmail.com>
+Date:   Fri Sep 25 13:12:09 2020 +0300
+
+    error message fix
+
+[33mcommit 56635929c61526d9c207ac10ed619da6d7c1566b[m
+Author: RokasBagdonas <r.bagdonas2000@gmail.com>
+Date:   Fri Sep 25 12:44:44 2020 +0300
+
+    added tabs
+
+[33mcommit a0c3a4b04f32946f9acc1967c8f51780c0af494a[m
+Author: RokasBagdonas <r.bagdonas2000@gmail.com>
+Date:   Fri Sep 25 12:38:34 2020 +0300
+
+    adding tabs
+
+[33mcommit 4802b18694d34cfe0eb598b0be0471bcd4614cbc[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Wed Sep 23 12:09:15 2020 +0300
+
+    Fixed price check
+
+[33mcommit 1b699236032917710e3618bc898ed2d1c4a54541[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Wed Sep 23 11:56:55 2020 +0300
+
+    Changed DataManager to match coding standart
+
+[33mcommit 8fa7748c8be8435c7e194e0156f3e3332c5271d3[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Wed Sep 23 11:52:12 2020 +0300
+
+    Changed analist to match new coding standart
+
+[33mcommit 47653735d37d7b9f16f82fb6fa4541b3c046bb30[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Wed Sep 23 11:46:55 2020 +0300
+
+    Edit configurations
+
+[33mcommit 8a3fb30ba9ea1ffaa0b8754c9f644ac675bbe03f[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Tue Sep 22 14:27:19 2020 +0300
+
+    Added a check for division by 0
+
+[33mcommit 997ec5819daeda7d92168e2217448c718a357094[m
+Merge: 3ed13c6 bafd5db
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Mon Sep 21 23:31:59 2020 +0300
+
+    Merge pull request #2 from PSI-2020/new
+    
+    Renamed the project
+
+[33mcommit bafd5db17879d2041ddee2af785655c1829e5b7c[m[33m ([m[1;31morigin/new[m[33m, [m[1;32mnew[m[33m)[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Mon Sep 21 23:30:11 2020 +0300
+
+    Renamed the project
+
+[33mcommit 3ed13c6e046f2ef572a5f53c365b3b6ccf505cda[m
+Merge: a72856a df8894a
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Mon Sep 21 23:26:16 2020 +0300
+
+    Merge pull request #1 from PSI-2020/new
+    
+    Added checks for data entry
+
+[33mcommit df8894a60ac98b804edaeca0ba99a26845e372b5[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Mon Sep 21 23:23:55 2020 +0300
+
+    Added checks for data entry;
+    Replaced the algorithm for calculating statistics.
+
+[33mcommit a72856acad06b14a996b83cc2b6d26974041c6d2[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Mon Sep 21 20:57:21 2020 +0300
+
+    Added a check if the price is a number
+
+[33mcommit 9a362de305c0c2bfb7e02d83188d248eb7a72a7f[m
+Author: domram558 <71326962+domram558@users.noreply.github.com>
+Date:   Mon Sep 21 20:23:36 2020 +0300
+
+    Fixed directory location
+
+[33mcommit 76b86a4e5a43e8a777fa2e6868071e62db5f61a9[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Mon Sep 21 19:35:13 2020 +0300
+
+    Add project files.
+
+[33mcommit b15fd813e2684c8596c6e1b47c8d64db57765ff2[m
+Author: Mindaugas-Ko <71326991+Mindaugas-Ko@users.noreply.github.com>
+Date:   Mon Sep 21 19:35:10 2020 +0300
+
+    Add .gitignore and .gitattributes.

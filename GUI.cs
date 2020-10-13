@@ -194,7 +194,7 @@ namespace Plutus
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
+            switch (tabs.SelectedIndex)
             {
                 case 3:
                     editIncome();
@@ -820,5 +820,8 @@ namespace Plutus
         {
             cartStore.StoreCart(currentCart);
         }
+
+
+
     }
 }

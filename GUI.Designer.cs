@@ -37,7 +37,7 @@ namespace Plutus
             this.showExpensesButton = new System.Windows.Forms.Button();
             this.showStat = new System.Windows.Forms.Button();
             this.statScreen = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabs = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.incomeShow = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -51,6 +51,13 @@ namespace Plutus
             this.incomeSum = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.errorField = new System.Windows.Forms.Label();
+            this.enterExpensesButton = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.categoryP = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.priceP = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.nameP = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -126,14 +133,13 @@ namespace Plutus
             this.cartInfoName = new System.Windows.Forms.Label();
             this.addExpenseBut = new System.Windows.Forms.Button();
             this.delCartButton = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.priceP = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.categoryP = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.enterExpensesButton = new System.Windows.Forms.Button();
-            this.errorField = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.shoppingCarts = new System.Windows.Forms.FlowLayoutPanel();
+            this.shoppingProductsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.chargeShopping = new System.Windows.Forms.Button();
+            this.shoppingCartListText = new System.Windows.Forms.Label();
+            this.shoppingProducts = new System.Windows.Forms.Label();
+            this.tabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -158,6 +164,7 @@ namespace Plutus
             this.cartElemEditPanel.SuspendLayout();
             this.cartNewElemControlPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // showExpensesButton
@@ -190,21 +197,22 @@ namespace Plutus
             this.statScreen.Size = new System.Drawing.Size(566, 197);
             this.statScreen.TabIndex = 7;
             // 
-            // tabControl1
+            // tabs
             // 
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(13, 13);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 6;
-            this.tabControl1.Size = new System.Drawing.Size(984, 570);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 8;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabs.Controls.Add(this.tabPage3);
+            this.tabs.Controls.Add(this.tabPage1);
+            this.tabs.Controls.Add(this.tabPage4);
+            this.tabs.Controls.Add(this.tabPage5);
+            this.tabs.Controls.Add(this.tabPage7);
+            this.tabs.Controls.Add(this.tabPage6);
+            this.tabs.Controls.Add(this.tabPage2);
+            this.tabs.Location = new System.Drawing.Point(13, 13);
+            this.tabs.Name = "tabs";
+            this.tabs.SelectedIndex = 6;
+            this.tabs.Size = new System.Drawing.Size(984, 570);
+            this.tabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabs.TabIndex = 8;
+            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage3
             // 
@@ -215,7 +223,7 @@ namespace Plutus
             this.tabPage3.Controls.Add(this.showStat);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(976, 346);
+            this.tabPage3.Size = new System.Drawing.Size(976, 537);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Data";
             // 
@@ -352,6 +360,75 @@ namespace Plutus
             this.tabPage11.TabIndex = 1;
             this.tabPage11.Text = "Add Expense";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // errorField
+            // 
+            this.errorField.AutoSize = true;
+            this.errorField.Location = new System.Drawing.Point(451, 124);
+            this.errorField.Name = "errorField";
+            this.errorField.Size = new System.Drawing.Size(0, 20);
+            this.errorField.TabIndex = 5;
+            this.errorField.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // enterExpensesButton
+            // 
+            this.enterExpensesButton.Location = new System.Drawing.Point(720, 65);
+            this.enterExpensesButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.enterExpensesButton.Name = "enterExpensesButton";
+            this.enterExpensesButton.Size = new System.Drawing.Size(113, 35);
+            this.enterExpensesButton.TabIndex = 6;
+            this.enterExpensesButton.Text = "Enter";
+            this.enterExpensesButton.UseVisualStyleBackColor = true;
+            this.enterExpensesButton.Click += new System.EventHandler(this.inputExpense);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(563, 46);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(69, 20);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "Category";
+            // 
+            // categoryP
+            // 
+            this.categoryP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.categoryP.FormattingEnabled = true;
+            this.categoryP.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.categoryP.Items.AddRange(new object[] {
+            "Food",
+            "Clothes",
+            "Bills",
+            "Other"});
+            this.categoryP.Location = new System.Drawing.Point(563, 69);
+            this.categoryP.Name = "categoryP";
+            this.categoryP.Size = new System.Drawing.Size(151, 28);
+            this.categoryP.TabIndex = 4;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(398, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 20);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Price";
+            // 
+            // priceP
+            // 
+            this.priceP.Location = new System.Drawing.Point(398, 69);
+            this.priceP.Name = "priceP";
+            this.priceP.Size = new System.Drawing.Size(159, 27);
+            this.priceP.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(147, 46);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 20);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Name";
             // 
             // nameP
             // 
@@ -580,7 +657,7 @@ namespace Plutus
             this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage7.Size = new System.Drawing.Size(976, 346);
+            this.tabPage7.Size = new System.Drawing.Size(976, 537);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Scheduler";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -854,7 +931,7 @@ namespace Plutus
             this.tabPage6.Location = new System.Drawing.Point(4, 29);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(976, 346);
+            this.tabPage6.Size = new System.Drawing.Size(976, 537);
             this.tabPage6.TabIndex = 7;
             this.tabPage6.Text = "Carts";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1145,84 +1222,74 @@ namespace Plutus
             this.delCartButton.UseVisualStyleBackColor = true;
             this.delCartButton.Click += new System.EventHandler(this.delCartButton_Click);
             // 
-            // label11
+            // tabPage2
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(147, 46);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 20);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Name";
+            this.tabPage2.Controls.Add(this.shoppingProducts);
+            this.tabPage2.Controls.Add(this.shoppingCartListText);
+            this.tabPage2.Controls.Add(this.chargeShopping);
+            this.tabPage2.Controls.Add(this.shoppingProductsPanel);
+            this.tabPage2.Controls.Add(this.shoppingCarts);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "cartShopping";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(976, 537);
+            this.tabPage2.TabIndex = 8;
+            this.tabPage2.Text = "Shopping";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // priceP
+            // shoppingCarts
             // 
-            this.priceP.Location = new System.Drawing.Point(398, 69);
-            this.priceP.Name = "priceP";
-            this.priceP.Size = new System.Drawing.Size(159, 27);
-            this.priceP.TabIndex = 2;
+            this.shoppingCarts.AutoScroll = true;
+            this.shoppingCarts.Location = new System.Drawing.Point(26, 54);
+            this.shoppingCarts.Name = "shoppingCarts";
+            this.shoppingCarts.Size = new System.Drawing.Size(240, 410);
+            this.shoppingCarts.TabIndex = 2;
             // 
-            // label12
+            // shoppingProductsPanel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(398, 46);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 20);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Price";
+            this.shoppingProductsPanel.Location = new System.Drawing.Point(285, 54);
+            this.shoppingProductsPanel.Name = "shoppingProductsPanel";
+            this.shoppingProductsPanel.Size = new System.Drawing.Size(658, 410);
+            this.shoppingProductsPanel.TabIndex = 3;
             // 
-            // categoryP
+            // chargeShopping
             // 
-            this.categoryP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.categoryP.FormattingEnabled = true;
-            this.categoryP.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.categoryP.Items.AddRange(new object[] {
-            "Food",
-            "Clothes",
-            "Bills",
-            "Other"});
-            this.categoryP.Location = new System.Drawing.Point(563, 69);
-            this.categoryP.Name = "categoryP";
-            this.categoryP.Size = new System.Drawing.Size(151, 28);
-            this.categoryP.TabIndex = 4;
+            this.chargeShopping.Location = new System.Drawing.Point(832, 470);
+            this.chargeShopping.Name = "chargeShopping";
+            this.chargeShopping.Size = new System.Drawing.Size(111, 31);
+            this.chargeShopping.TabIndex = 4;
+            this.chargeShopping.Text = "Done";
+            this.chargeShopping.UseVisualStyleBackColor = true;
             // 
-            // label13
+            // shoppingCartListText
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(563, 46);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 20);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Category";
+            this.shoppingCartListText.AutoSize = true;
+            this.shoppingCartListText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.shoppingCartListText.Location = new System.Drawing.Point(26, 20);
+            this.shoppingCartListText.Name = "shoppingCartListText";
+            this.shoppingCartListText.Size = new System.Drawing.Size(56, 28);
+            this.shoppingCartListText.TabIndex = 5;
+            this.shoppingCartListText.Text = "Carts";
             // 
-            // enterExpensesButton
+            // shoppingProducts
             // 
-            this.enterExpensesButton.Location = new System.Drawing.Point(720, 65);
-            this.enterExpensesButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.enterExpensesButton.Name = "enterExpensesButton";
-            this.enterExpensesButton.Size = new System.Drawing.Size(113, 35);
-            this.enterExpensesButton.TabIndex = 6;
-            this.enterExpensesButton.Text = "Enter";
-            this.enterExpensesButton.UseVisualStyleBackColor = true;
-            this.enterExpensesButton.Click += new System.EventHandler(this.inputExpense);
-            // 
-            // errorField
-            // 
-            this.errorField.AutoSize = true;
-            this.errorField.Location = new System.Drawing.Point(451, 124);
-            this.errorField.Name = "errorField";
-            this.errorField.Size = new System.Drawing.Size(0, 20);
-            this.errorField.TabIndex = 5;
-            this.errorField.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.shoppingProducts.AutoSize = true;
+            this.shoppingProducts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.shoppingProducts.Location = new System.Drawing.Point(285, 20);
+            this.shoppingProducts.Name = "shoppingProducts";
+            this.shoppingProducts.Size = new System.Drawing.Size(89, 28);
+            this.shoppingProducts.TabIndex = 5;
+            this.shoppingProducts.Text = "Products";
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 585);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabs);
             this.Name = "GUI";
             this.Text = "Plutus";
-            this.tabControl1.ResumeLayout(false);
+            this.tabs.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -1258,6 +1325,8 @@ namespace Plutus
             this.cartNewElemControlPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
             LoadCarts();
@@ -1268,7 +1337,7 @@ namespace Plutus
         private System.Windows.Forms.Button showExpensesButton;
         private System.Windows.Forms.Button showStat;
         private System.Windows.Forms.TextBox statScreen;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox incomeCat;
@@ -1365,6 +1434,12 @@ namespace Plutus
         private Label label12;
         private TextBox priceP;
         private Label label11;
+        private TabPage tabPage2;
+        private Label shoppingProducts;
+        private Label shoppingCartListText;
+        private Button chargeShopping;
+        private FlowLayoutPanel shoppingProductsPanel;
+        private FlowLayoutPanel shoppingCarts;
     }
 }
 
