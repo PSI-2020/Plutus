@@ -23,6 +23,7 @@ namespace Plutus
     public partial class GUI : Form
     {
         readonly DataManager manager = new DataManager();
+        readonly GoalManager goalManager = new GoalManager();
         readonly Statistics stats = new Statistics();
         public GUI() => InitializeComponent();
 
@@ -819,6 +820,77 @@ namespace Plutus
         private void SaveCart()
         {
             cartStore.StoreCart(currentCart);
+        }
+
+        private void ButtonAddGoal_Click(object sender, EventArgs e)
+        {
+            panelGoal.Visible = false;
+            panelMyGoals.Visible = false;
+            panelAddGoal.Visible = true;
+        }
+
+        private void ButtonMyGoals_Click(object sender, EventArgs e)
+        {
+            panelGoal.Visible = false;
+            panelAddGoal.Visible = false;
+            panelMyGoals.Visible = true;
+
+
+            var goalList = goalManager.ReadGoals();
+
+            if (goalList == null)
+            {
+                textBoxMyGoals.Text = "You don't have any goals";
+                return;
+            }
+
+            textBoxMyGoals.Text = "";
+
+            foreach (var goal in goalList)
+            {
+                textBoxMyGoals.Text +=  goal.Name + " | " + goal.Amount + "€ | " + goal.DueDate.ToString("yyyy/MM/dd") + System.Environment.NewLine;
+            }
+        }
+
+        private void buttonAddGoalEnter_Click(object sender, EventArgs e)
+        {
+            if (textBoxAddGoalName.Text.Length == 0 || textBoxAddGoalName.Text == null)
+            {
+                addGoalErrorLabel.Text = "Please enter name";
+                return;
+            }
+            if (textBoxAddGoalAmount.Text.Length == 0 || textBoxAddGoalAmount.Text == null)
+            {
+                addGoalErrorLabel.Text = "Please enter amount";
+                return;
+            }
+            if (!Double.TryParse(textBoxAddGoalAmount.Text, out _))
+            {
+                addGoalErrorLabel.Text = "Not a number!";
+                return;
+            }
+
+            var name = textBoxAddGoalName.Text;
+            var date = dateTimePickerAddGoal.Value;
+            var amount = Convert.ToDouble(textBoxAddGoalAmount.Text);
+
+           
+            goalManager.AddGoal(new Goal(name, amount, date));
+
+            panelAddGoal.Visible = false;
+            panelGoal.Visible = true;
+            labelGoal.Text = "Goal '" + name + "' was created!";
+            textBoxAddGoalAmount.Text = null;
+            textBoxAddGoalName.Text = null;
+            dateTimePickerAddGoal.ResetText();
+
+        }
+
+        private void buttonAddGoalCancel_Click(object sender, EventArgs e)
+        {
+            textBoxAddGoalAmount.Text = null;
+            textBoxAddGoalName.Text = null;
+            dateTimePickerAddGoal.ResetText();
         }
     }
 }
