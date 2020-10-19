@@ -194,13 +194,13 @@ namespace Plutus
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
+            switch (tabControl1.SelectedTab.Text)
             {
-                case 3:
+                case "Edit Income":
                     editIncome();
                     label8.Text = "";
                     break;
-                case 4:
+                case "Edit Expenses":
                     editExpenses();
                     label9.Text = "";
                     break;
@@ -819,6 +819,147 @@ namespace Plutus
         private void SaveCart()
         {
             cartStore.StoreCart(currentCart);
+        }
+
+        private void searchData(object sender, EventArgs e)
+        {
+            if ((searchNumberFromText.Text != "" && !Double.TryParse(searchNumberFromText.Text, out _)) || (searchNumberToText.Text != "" && !Double.TryParse(searchNumberToText.Text, out _)))
+            {
+                statScreen.Text = "Incorrect amount format!";
+                return;
+            }
+
+            statScreen.Text = "";
+            List<Income> incomeList = null;
+            List<Expense> expenseList = null;
+
+            switch(dataTypeBox.SelectedIndex)
+            {
+                case 0:
+                    incomeList = manager.readIncome();
+                    expenseList = manager.readExpenses();
+                    break;
+                case 1:
+                    expenseList = manager.readExpenses();
+                    break;
+                case 2:
+                    incomeList = manager.readIncome();
+                    break;
+                default:
+                    statScreen.Text = "Error determining data type!";
+                    return;
+            }
+
+            if (expenseList != null)
+            {
+                var filterExpense = new List<Expense>(expenseList);
+                foreach (var expense in filterExpense)
+                {
+                    if (searchNameText.Text != "" && !expense.Name.ToLower().Contains(searchNameText.Text.ToLower()))
+                    {
+                        expenseList.Remove(expense);
+                        continue;
+                    }
+
+                    if (searchCategoryBox.SelectedIndex != 0 && expense.Category != searchCategoryBox.Text)
+                    {
+                        expenseList.Remove(expense);
+                        continue;
+                    }
+
+                    if (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > expense.Price)
+                    {
+                        expenseList.Remove(expense);
+                        continue;
+                    }
+
+                    if (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < expense.Price)
+                    {
+                        expenseList.Remove(expense);
+                        continue;
+                    }
+
+                    if (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date))
+                    {
+                        expenseList.Remove(expense);
+                        continue;
+                    }
+
+                    if (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date))
+                    {
+                        expenseList.Remove(expense);
+                        continue;
+                    }
+
+                }
+
+                if (expenseList.Count > 0)
+                {
+                    statScreen.Text += "Found expenses: " + System.Environment.NewLine;
+                    foreach (var expense in expenseList)
+                    {
+                        var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date).ToLocalTime();
+                        statScreen.Text += date + " | " + expense.Name + " | " + expense.Price + "€ | " + expense.Category + System.Environment.NewLine;
+                    }
+                }
+            }
+
+            if(incomeList != null && searchNameText.Text == "")
+            {
+                var filterIncome = new List<Income>(incomeList);
+                foreach (var income in filterIncome)
+                {
+                    if (searchCategoryBox.SelectedIndex != 0 && income.Category != searchCategoryBox.Text)
+                    {
+                        incomeList.Remove(income);
+                        continue;
+                    }
+
+                    if (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > income.Sum)
+                    {
+                        incomeList.Remove(income);
+                        continue;
+                    }
+
+                    if (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < income.Sum)
+                    {
+                        incomeList.Remove(income);
+                        continue;
+                    }
+
+                    if (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date))
+                    {
+                        incomeList.Remove(income);
+                        continue;
+                    }
+
+                    if (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date))
+                    {
+                        incomeList.Remove(income);
+                        continue;
+                    }
+
+                }
+
+                if (incomeList.Count > 0)
+                {
+                    statScreen.Text += "Found income: " + System.Environment.NewLine;
+
+                    foreach (var income in incomeList)
+                    {
+                        var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date).ToLocalTime();
+                        statScreen.Text += date + " | " + income.Sum + "€ | " + income.Category + System.Environment.NewLine;
+                    }
+                }
+            }
+
+            if (statScreen.Text == "") statScreen.Text = "No data matching search criteria!";
+        }
+
+        private void enableSearchPicker(object sender, EventArgs e)
+        {
+            searchDatePickerFrom.Enabled = enableDatePickerFrom.Checked;
+            searchDatePickerTo.Enabled = enableDatePickerTo.Checked;
         }
     }
 }
