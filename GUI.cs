@@ -823,7 +823,7 @@ namespace Plutus
 
         private void SearchData(object sender, EventArgs e)
         {
-            if ((searchNumberFromText.Text != "" && !Double.TryParse(searchNumberFromText.Text, out _)) || (searchNumberToText.Text != "" && !Double.TryParse(searchNumberToText.Text, out _)))
+            if ((searchNumberFromText.Text != "" && !double.TryParse(searchNumberFromText.Text, out _)) || (searchNumberToText.Text != "" && !double.TryParse(searchNumberToText.Text, out _)))
             {
                 statScreen.Text = "Incorrect amount format!";
                 return;
@@ -850,23 +850,27 @@ namespace Plutus
                     return;
             }
 
+            var parsedNumberFrom = searchNumberFromText.Text == "" ? 0 : double.Parse(searchNumberFromText.Text);
+            var parsedNumberTo = searchNumberToText.Text == "" ? 0 : double.Parse(searchNumberToText.Text);
+            var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var searchDateValue = searchDatePickerFrom.Value - searchDatePickerFrom.Value.TimeOfDay;
+
             if (expenseList != null)
             {
-                var filterExpense = new List<Expense>(expenseList);
-                foreach (var expense in filterExpense)
-                {
-                    if ((searchNameText.Text != "" && !expense.Name.ToLower().Contains(searchNameText.Text.ToLower())) || (searchCategoryBox.SelectedIndex != 0 && expense.Category != searchCategoryBox.Text) || (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > expense.Price) || (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < expense.Price) || (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date)) || (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date)))
-                    {
-                        expenseList.Remove(expense);
-                    }
-                }
+                var filteredExpenses = expenseList
+                    .Where(x => x.Name.ToLower().Contains(searchNameText.Text.ToLower()) || searchNameText.Text == "")
+                    .Where(x => x.Category == searchCategoryBox.Text || searchCategoryBox.SelectedIndex == 0)
+                    .Where(x => x.Price > parsedNumberFrom || searchNumberFromText.Text == "")
+                    .Where(x => x.Price < parsedNumberTo || searchNumberToText.Text == "")
+                    .Where(x => dateTime.AddSeconds(x.Date) > searchDateValue || !searchDatePickerFrom.Enabled)
+                    .Where(x => dateTime.AddSeconds(x.Date) < searchDateValue || !searchDatePickerTo.Enabled);
 
-                if (expenseList.Count > 0)
+                if (filteredExpenses.Any())
                 {
                     statScreen.Text += "Found expenses: " + System.Environment.NewLine;
-                    foreach (var expense in expenseList)
+                    foreach (var expense in filteredExpenses)
                     {
-                        var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date).ToLocalTime();
+                        var date = dateTime.AddSeconds(expense.Date).ToLocalTime();
                         statScreen.Text += date + " | " + expense.Name + " | " + expense.Price + "€ | " + expense.Category + System.Environment.NewLine;
                     }
                 }
@@ -874,23 +878,20 @@ namespace Plutus
 
             if(incomeList != null && searchNameText.Text == "")
             {
-                var filterIncome = new List<Income>(incomeList);
-                foreach (var income in filterIncome)
-                {
-                    if ((searchCategoryBox.SelectedIndex != 0 && income.Category != searchCategoryBox.Text) || (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > income.Sum) || (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < income.Sum) || (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date)) || (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date)))
-                    {
-                        incomeList.Remove(income);
-                        continue;
-                    }
-                }
+                var filteredIncome = incomeList
+                    .Where(x => x.Category == searchCategoryBox.Text || searchCategoryBox.SelectedIndex == 0)
+                    .Where(x => x.Sum > parsedNumberFrom || searchNumberFromText.Text == "")
+                    .Where(x => x.Sum < parsedNumberTo || searchNumberToText.Text == "")
+                    .Where(x => dateTime.AddSeconds(x.Date) > searchDateValue || !searchDatePickerFrom.Enabled)
+                    .Where(x => dateTime.AddSeconds(x.Date) < searchDateValue || !searchDatePickerTo.Enabled);
 
-                if (incomeList.Count > 0)
+                if (filteredIncome.Any())
                 {
                     statScreen.Text += "Found income: " + System.Environment.NewLine;
 
-                    foreach (var income in incomeList)
+                    foreach (var income in filteredIncome)
                     {
-                        var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date).ToLocalTime();
+                        var date = dateTime.AddSeconds(income.Date).ToLocalTime();
                         statScreen.Text += date + " | " + income.Sum + "€ | " + income.Category + System.Environment.NewLine;
                     }
                 }

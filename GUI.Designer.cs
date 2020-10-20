@@ -314,7 +314,7 @@ namespace Plutus
             // 
             // searchDatePickerTo
             // 
-            this.searchDatePickerTo.CustomFormat = "yyyy-MM-dd hh:mm";
+            this.searchDatePickerTo.CustomFormat = "yyyy-MM-dd";
             this.searchDatePickerTo.Enabled = false;
             this.searchDatePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.searchDatePickerTo.Location = new System.Drawing.Point(589, 331);
@@ -324,7 +324,7 @@ namespace Plutus
             // 
             // searchDatePickerFrom
             // 
-            this.searchDatePickerFrom.CustomFormat = "yyyy-MM-dd hh:mm";
+            this.searchDatePickerFrom.CustomFormat = "yyyy-MM-dd";
             this.searchDatePickerFrom.Enabled = false;
             this.searchDatePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.searchDatePickerFrom.Location = new System.Drawing.Point(589, 265);
