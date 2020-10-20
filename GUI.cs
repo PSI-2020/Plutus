@@ -405,8 +405,10 @@ namespace Plutus
             myButton.Click += new System.EventHandler(this.Cart_Click);
             currentCart = new Cart(myButton.Name);
             cartList.Add(currentCart);
+            cShopButL.Add(true);
             cartStore.StoreCart(currentCart);
             CartAmountCount();
+            CShopLoad();
 
         }
 
@@ -431,6 +433,7 @@ namespace Plutus
                 cartStore.RenameCart(currentCart, cartName.Text);
                 currentCart.ChangeName(cartName.Text);
                 currentCartBut.Text = cartName.Text;
+                CShopLoad();
             }
 
         }
@@ -715,6 +718,9 @@ namespace Plutus
 
         private void delCartButton_Click(object sender, EventArgs e)
         {
+            var currBut = (int.Parse(currentCartBut.Name.Substring(4)) - 1);
+            CShopCartDispose(currBut);
+            CShopLoad();
             currentCartBut.Dispose();
             cartStore.DeleteCart(currentCart.GiveName());
             currentCart = null;
@@ -797,9 +803,11 @@ namespace Plutus
                 {
                     cart = cartStore.LoadCart(i);
                     cartList.Add(cart);
+                    cShopButL.Add(true);
                     CreateCartButOnLoad(cart);
                 }
             }
+            CShopLoad();
 
         }
 
@@ -819,6 +827,47 @@ namespace Plutus
         private void SaveCart()
         {
             cartStore.StoreCart(currentCart);
+        }
+
+
+
+        private void CShopLoad()
+        {
+            Cart cart;
+            var cartAmount = cartList.Count();
+            shoppingCarts.Controls.Clear();
+            if (cartAmount > 0)
+            {
+                for(var i = 0; i < cartAmount; i++)
+                {
+                    if (cShopButL[i])
+                    {
+                        cart = cartList.ElementAt(i);
+                        CShopCartLoad(cart);
+                    }
+
+                }
+            }
+
+
+
+        }
+
+        private List<bool> cShopButL = new List<bool>();
+
+        private void CShopCartLoad(Cart cart)
+        {
+            var myButton = new Button();
+            myButton.Name = "CartS" + cartCounter;
+            myButton.Text = cart.GiveName();
+            myButton.Width = 210;
+            myButton.Height = 45;
+            shoppingCarts.Controls.Add(myButton);
+        }
+
+        private void CShopCartDispose(int index)
+        {
+            cShopButL[index] = false;
         }
 
 
