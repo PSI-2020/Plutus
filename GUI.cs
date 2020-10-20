@@ -855,42 +855,10 @@ namespace Plutus
                 var filterExpense = new List<Expense>(expenseList);
                 foreach (var expense in filterExpense)
                 {
-                    if (searchNameText.Text != "" && !expense.Name.ToLower().Contains(searchNameText.Text.ToLower()))
+                    if ((searchNameText.Text != "" && !expense.Name.ToLower().Contains(searchNameText.Text.ToLower())) || (searchCategoryBox.SelectedIndex != 0 && expense.Category != searchCategoryBox.Text) || (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > expense.Price) || (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < expense.Price) || (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date)) || (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date)))
                     {
                         expenseList.Remove(expense);
-                        continue;
                     }
-
-                    if (searchCategoryBox.SelectedIndex != 0 && expense.Category != searchCategoryBox.Text)
-                    {
-                        expenseList.Remove(expense);
-                        continue;
-                    }
-
-                    if (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > expense.Price)
-                    {
-                        expenseList.Remove(expense);
-                        continue;
-                    }
-
-                    if (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < expense.Price)
-                    {
-                        expenseList.Remove(expense);
-                        continue;
-                    }
-
-                    if (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date))
-                    {
-                        expenseList.Remove(expense);
-                        continue;
-                    }
-
-                    if (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date))
-                    {
-                        expenseList.Remove(expense);
-                        continue;
-                    }
-
                 }
 
                 if (expenseList.Count > 0)
@@ -909,36 +877,11 @@ namespace Plutus
                 var filterIncome = new List<Income>(incomeList);
                 foreach (var income in filterIncome)
                 {
-                    if (searchCategoryBox.SelectedIndex != 0 && income.Category != searchCategoryBox.Text)
+                    if ((searchCategoryBox.SelectedIndex != 0 && income.Category != searchCategoryBox.Text) || (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > income.Sum) || (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < income.Sum) || (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date)) || (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date)))
                     {
                         incomeList.Remove(income);
                         continue;
                     }
-
-                    if (searchNumberFromText.Text != "" && Double.Parse(searchNumberFromText.Text) > income.Sum)
-                    {
-                        incomeList.Remove(income);
-                        continue;
-                    }
-
-                    if (searchNumberToText.Text != "" && Double.Parse(searchNumberToText.Text) < income.Sum)
-                    {
-                        incomeList.Remove(income);
-                        continue;
-                    }
-
-                    if (searchDatePickerFrom.Enabled && searchDatePickerFrom.Value > new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date))
-                    {
-                        incomeList.Remove(income);
-                        continue;
-                    }
-
-                    if (searchDatePickerTo.Enabled && searchDatePickerTo.Value < new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date))
-                    {
-                        incomeList.Remove(income);
-                        continue;
-                    }
-
                 }
 
                 if (incomeList.Count > 0)
