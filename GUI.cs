@@ -627,11 +627,13 @@ namespace Plutus
             currentElemToDel = currentCart.GiveElement(indexOfExpense);
             if (currentElemToDel == currentElem) CloseElemChange();
             currentCart.RemoveExpense(indexOfExpense);
-
             RefreshElemCount();
             cartInfoPanel.Controls.Clear();
+            shoppingProductsPanel.Controls.Clear();
+            CShopLoad();
             DisplayCart();
         }
+
         private Label CreateGapLabel(Label label, int count)
         {
             label.Name = currentCartBut.Name + "Gap" + count;
@@ -701,6 +703,7 @@ namespace Plutus
             var price = Convert.ToDouble(cartElemPriceBox.Text);
             var category = cartElemCategoryBox.Text;
             var newCartExpense = new Expense(date, name, price, category);
+            DisplayShoppingCart();
             currentCart.AddExpense(newCartExpense);
             cartAddErrorField.Text = "Added";
             cartElemNameBox.Text = "";
@@ -709,6 +712,8 @@ namespace Plutus
             RefreshElemCount();
             cartInfoPanel.Controls.Clear();
             DisplayCart();
+            shoppingProductsPanel.Controls.Clear();
+            CShopLoad();
         }
 
         private void CartCloseElemAddition_Click(object sender, EventArgs e)
@@ -761,6 +766,8 @@ namespace Plutus
             cartElemChangePri.Text = "";
             cartElemChangeCat.Text = "Other";
             cartInfoPanel.Controls.Clear();
+            shoppingProductsPanel.Controls.Clear();
+            CShopLoad();
             DisplayCart();
         }
 
@@ -830,9 +837,10 @@ namespace Plutus
         }
 
 
-
+        private int shopCartCounter = 0;
         private void CShopLoad()
         {
+            shopCartCounter = 0;
             Cart cart;
             var cartAmount = cartList.Count();
             shoppingCarts.Controls.Clear();
@@ -855,14 +863,19 @@ namespace Plutus
 
         private List<bool> cShopButL = new List<bool>();
 
+        private List<ShopCartManager> shopCartManagers = new List<ShopCartManager>();
         private void CShopCartLoad(Cart cart)
         {
+            shopCartCounter += 1;
             var myButton = new Button();
-            myButton.Name = "CartS" + cartCounter;
+            myButton.Name = "CartS" + shopCartCounter;
             myButton.Text = cart.GiveName();
             myButton.Width = 210;
             myButton.Height = 45;
+            myButton.Click += new System.EventHandler(this.ShopCart_Click);
             shoppingCarts.Controls.Add(myButton);
+            var sCM = new ShopCartManager(cart);
+            shopCartManagers.Add(sCM);
         }
 
         private void CShopCartDispose(int index)
@@ -870,7 +883,99 @@ namespace Plutus
             cShopButL[index] = false;
         }
 
+        Button currShopingCartBut;
+        Cart currShoppingCart;
+        ShopCartManager currSCM;
 
+        private void ShopCart_Click(object sender, System.EventArgs e)
+        {
+            currShopingCartBut = (Button)sender;
+            currShoppingCart = cartList.ElementAt(int.Parse(currShopingCartBut.Name.Substring(5)) - 1);
+            currSCM = shopCartManagers.ElementAt(int.Parse(currShopingCartBut.Name.Substring(5)) - 1);
+            shoppingProductsPanel.Controls.Clear();
+            DisplayShoppingCart();
+        }
+        private void DisplayShoppingCart()
+        {
+            var toPickLabel = new Label();
+            toPickLabel = CreateNewShoppingLabel(toPickLabel, "To Pick");
+            var toPickLine = new Label();
+            toPickLine = CreateNewShoppingLine(toPickLine);
+            var pickedLine = new Label();
+            pickedLine = CreateNewShoppingLine(pickedLine);
+            var pickedLabel = new Label();
+            pickedLabel = CreateNewShoppingLabel(pickedLabel, "Picked");
+
+            shoppingProductsPanel.Controls.Add(toPickLabel);
+            shoppingProductsPanel.Controls.Add(toPickLine);
+
+            var state0List = currSCM.GiveStateIndex(0);
+            var state1List = currSCM.GiveStateIndex(1);
+            var state0Count = currSCM.GiveSCount(0);
+            var state1Count = currSCM.GiveSCount(1);
+
+
+            for (var i = 0; i < state0Count; i++)
+            {
+                var indexList = state0List.Split('|');
+                var index = int.Parse(indexList[i]);
+                var currExpense = currShoppingCart.GiveElement(index);
+                var expenseButton = new Button();
+                expenseButton = CreateNewShoppingExpenseBut(expenseButton, currExpense.Name , null, index);
+                shoppingProductsPanel.Controls.Add(expenseButton);
+            }
+
+
+            shoppingProductsPanel.Controls.Add(pickedLabel);
+            shoppingProductsPanel.Controls.Add(pickedLine);
+
+            for (var i = 0; i < state1Count; i++)
+            {
+                var indexList = state1List.Split('|');
+                var index = int.Parse(indexList[i]);
+                var currExpense = currShoppingCart.GiveElement(index);
+                var expenseButton = new Button();
+                expenseButton = CreateNewShoppingExpenseBut(expenseButton, currExpense.Name, "red", index);
+                shoppingProductsPanel.Controls.Add(expenseButton);
+            }
+        }
+
+        private Button CreateNewShoppingExpenseBut(Button but, string name, string color, int count)
+        {
+            if (color != null)
+            {
+                but.BackColor = Color.FromName(color);
+            }
+            but.Name = "ElemButton" + "|" + count;
+            but.Click += new System.EventHandler(this.ShopElem_Click);
+            but.Size = new System.Drawing.Size(628, 40);
+            but.Text = name;
+            return but;
+        }
+
+        private void ShopElem_Click(object sender, System.EventArgs e)
+        {
+            currentElemBut = (Button)sender;
+            var index = currentElemBut.Name.IndexOf('|') + 1;
+            var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
+            currSCM.ChangeState(indexOfExpense);
+            shoppingProductsPanel.Controls.Clear();
+            DisplayShoppingCart();
+        }
+
+        private Label CreateNewShoppingLabel(Label label, string value)
+        {
+            label.Size = new System.Drawing.Size(628, 20);
+            //label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Text = value;
+            return label;
+        }
+        private Label CreateNewShoppingLine(Label label)
+        {
+            label.Size = new System.Drawing.Size(628, 2);
+            label.BackColor = Color.FromName("black");
+            return label;
+        }
 
     }
 }
