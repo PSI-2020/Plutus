@@ -271,7 +271,7 @@ namespace Plutus
             this.enableDatePickerTo.Size = new System.Drawing.Size(15, 14);
             this.enableDatePickerTo.TabIndex = 13;
             this.enableDatePickerTo.UseVisualStyleBackColor = true;
-            this.enableDatePickerTo.CheckedChanged += new System.EventHandler(this.enableSearchPicker);
+            this.enableDatePickerTo.CheckedChanged += new System.EventHandler(this.EnableSearchDataPicker);
             // 
             // enableDatePickerFrom
             // 
@@ -281,7 +281,7 @@ namespace Plutus
             this.enableDatePickerFrom.Size = new System.Drawing.Size(15, 14);
             this.enableDatePickerFrom.TabIndex = 13;
             this.enableDatePickerFrom.UseVisualStyleBackColor = true;
-            this.enableDatePickerFrom.CheckedChanged += new System.EventHandler(this.enableSearchPicker);
+            this.enableDatePickerFrom.CheckedChanged += new System.EventHandler(this.EnableSearchDataPicker);
             // 
             // button5
             // 
@@ -292,7 +292,7 @@ namespace Plutus
             this.button5.TabIndex = 6;
             this.button5.Text = "Search";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.searchData);
+            this.button5.Click += new System.EventHandler(this.SearchData);
             // 
             // label27
             // 

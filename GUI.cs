@@ -162,7 +162,7 @@ namespace Plutus
 
         private void showExpenses(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = manager.ReadExpenses();
             if (list == null)
             {
                 statScreen.Text = "No data found!";
@@ -178,7 +178,7 @@ namespace Plutus
 
         private void showIncome(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = manager.ReadIncome();
             if (list == null)
             {
                 statScreen.Text = "No data found!";
@@ -217,7 +217,7 @@ namespace Plutus
             comboBox1.Items.Clear();
             textBox1.Text = null;
             comboBox2.Text = null;
-            var list = manager.readIncome();
+            var list = manager.ReadIncome();
             if (list.Count == 0)
             {
                 comboBox1.Text = "No income data found!";
@@ -234,7 +234,7 @@ namespace Plutus
 
         private void onEditIncomeChange(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = manager.ReadIncome();
             var array = list.ToArray();
             var index = comboBox1.SelectedIndex;
             textBox1.Text = array[index].Sum + "";
@@ -243,7 +243,7 @@ namespace Plutus
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = manager.ReadIncome();
             if (list.Count == 0)
             {
                 label8.Text = "Income data is empty!";
@@ -264,7 +264,7 @@ namespace Plutus
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = manager.ReadIncome();
             if (list.Count == 0)
             {
                 label8.Text = "Income data is empty!";
@@ -305,7 +305,7 @@ namespace Plutus
             textBox3.Text = null;
             textBox2.Text = null;
             comboBox3.Text = null;
-            var list = manager.readExpenses();
+            var list = manager.ReadExpenses();
             if (list.Count == 0)
             {
                 comboBox5.Text = "No expense data found!";
@@ -321,7 +321,7 @@ namespace Plutus
 
         private void onEditExpenseChange(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = manager.ReadExpenses();
             var array = list.ToArray();
             var index = comboBox5.SelectedIndex;
             textBox3.Text = array[index].Name;
@@ -331,7 +331,7 @@ namespace Plutus
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = manager.ReadExpenses();
             if (list.Count == 0)
             {
                 label9.Text = "Expense data is empty!";
@@ -352,7 +352,7 @@ namespace Plutus
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = manager.ReadExpenses();
             if (list.Count == 0)
             {
                 label9.Text = "Expense data is empty!";
@@ -821,7 +821,7 @@ namespace Plutus
             cartStore.StoreCart(currentCart);
         }
 
-        private void searchData(object sender, EventArgs e)
+        private void SearchData(object sender, EventArgs e)
         {
             if ((searchNumberFromText.Text != "" && !Double.TryParse(searchNumberFromText.Text, out _)) || (searchNumberToText.Text != "" && !Double.TryParse(searchNumberToText.Text, out _)))
             {
@@ -836,14 +836,14 @@ namespace Plutus
             switch(dataTypeBox.SelectedIndex)
             {
                 case 0:
-                    incomeList = manager.readIncome();
-                    expenseList = manager.readExpenses();
+                    incomeList = manager.ReadIncome();
+                    expenseList = manager.ReadExpenses();
                     break;
                 case 1:
-                    expenseList = manager.readExpenses();
+                    expenseList = manager.ReadExpenses();
                     break;
                 case 2:
-                    incomeList = manager.readIncome();
+                    incomeList = manager.ReadIncome();
                     break;
                 default:
                     statScreen.Text = "Error determining data type!";
@@ -899,7 +899,7 @@ namespace Plutus
             if (statScreen.Text == "") statScreen.Text = "No data matching search criteria!";
         }
 
-        private void enableSearchPicker(object sender, EventArgs e)
+        private void EnableSearchDataPicker(object sender, EventArgs e)
         {
             searchDatePickerFrom.Enabled = enableDatePickerFrom.Checked;
             searchDatePickerTo.Enabled = enableDatePickerTo.Checked;

@@ -142,7 +142,7 @@ namespace Plutus
         public readonly string income = databaseFolder + "income.xml";
         public readonly string expenses = databaseFolder + "expenses.xml";
 
-        public List<Expense> readExpenses()
+        public List<Expense> ReadExpenses()
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             List<Expense> list = null;
@@ -160,7 +160,7 @@ namespace Plutus
             return list;
         }
 
-        public List<Income> readIncome()
+        public List<Income> ReadIncome()
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             List<Income> list = null;

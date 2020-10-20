@@ -7,7 +7,7 @@ namespace Plutus
     {
         public string generateExpenseStatistics(DataManager manager)
         {   
-            var list = manager.readExpenses();
+            var list = manager.ReadExpenses();
             if (list == null) return "No data found!";
 
             var data = "Expense statistics: " + System.Environment.NewLine;
@@ -36,7 +36,7 @@ namespace Plutus
         }
         public string generateIncomeStatistics(DataManager manager)
         {
-            var list = manager.readIncome();
+            var list = manager.ReadIncome();
             if (list == null) return "No data found!";
 
             var data = System.Environment.NewLine + "Income statistics: " + System.Environment.NewLine;
