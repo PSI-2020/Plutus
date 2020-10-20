@@ -205,6 +205,9 @@ namespace Plutus
                     editExpenses();
                     label9.Text = "";
                     break;
+                case 6:
+                    LoadBudgets();
+                    break;
                 default:
                     break;
 
@@ -709,6 +712,7 @@ namespace Plutus
 
         private void addBudget_Click(object sender, EventArgs e) => budgetControl.Visible = true;
 
+        public int budgetsCounter = 0;
         private void budgetAdd_Click(object sender, EventArgs e)
         {
             if (!Double.TryParse(budgetSum.Text, out _))
@@ -726,19 +730,75 @@ namespace Plutus
                 errorLbl.Text = "Please enter a sum!";
                 return;
             }
-            budgetPan1.Visible = true;
+            budgetsCounter++;
+            budgetsFlow.Visible = true;
             errorLbl.Text = null;
             var category = budgetCat.SelectedItem.ToString();
             var sum = Convert.ToDouble(budgetSum.Text);
             var from = dateFrom.Value;
             var to = dateTo.Value;
-            var budget = new Budgets(manager, category, sum, from, to);
-            budget1.Text = budget.ShowBudget();
+            var fromSec = (int)(from.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var toSec = (int)(to.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var name = "budget" + budgetsCounter;
+            var budget = new Budgets(manager, name, category, sum, fromSec, toSec);
+            var saver = new SaveAndLoadBudget();
+            saver.addBudget(budget);
+            var Textbox = new TextBox
+            {
+                Height = 140,
+                Width = 200,
+                Multiline = true,
+                Name = "budgetText" + budgetsCounter
+            };
+            budgetsFlow.Controls.Add(Textbox);
+            Textbox.Text = budget.ShowBudget();
             budgetCat.Text = null;
             dateFrom.ResetText();
             dateTo.ResetText();
             budgetSum.Clear();
             budgetControl.Visible = false;
+        }
+
+        private void LoadBudgets()
+        {
+            var loader = new SaveAndLoadBudget();
+            var list = loader.loadBudget();
+            var manager = new DataManager();
+
+            budgetsFlow.Visible = true;
+
+            if (list == null) return;
+
+            foreach(var item in list)
+            {
+                //var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(list.From).ToLocalTime();
+                var expenses = manager.readExpenses();
+                if (expenses == null) return;
+
+
+                var data = "Budget for " + item.Category;
+                var total = 0.00;
+
+                foreach (var expense in expenses)
+                {
+                    if (expense.Category == item.Category && expense.Date >= item.From && expense.Date <= item.To)
+                    {
+                        total += expense.Price;
+                    }
+                }
+
+                data += "\r\n" + total + "/" + item.Sum + " €" + "\r\n" + Math.Round((total * 100 / item.Sum), 2) + "%";
+
+                var Textbox = new TextBox
+                {
+                    Height = 140,
+                    Width = 200,
+                    Multiline = true,
+                    Name = "budgetText" + budgetsCounter
+                };
+                budgetsFlow.Controls.Add(Textbox);
+                Textbox.Text = data;
+            }
         }
     }
 }

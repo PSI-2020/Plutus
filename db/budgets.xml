@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ArrayOfBudgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Budgets>
+    <From>1601553914</From>
+    <To>1603195514</To>
+    <Name>budget1</Name>
+    <Category>Bills</Category>
+    <Sum>555</Sum>
+  </Budgets>
+</ArrayOfBudgets>
