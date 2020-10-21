@@ -853,7 +853,8 @@ namespace Plutus
             var parsedNumberFrom = searchNumberFromText.Text == "" ? 0 : double.Parse(searchNumberFromText.Text);
             var parsedNumberTo = searchNumberToText.Text == "" ? 0 : double.Parse(searchNumberToText.Text);
             var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            var searchDateValue = searchDatePickerFrom.Value - searchDatePickerFrom.Value.TimeOfDay;
+            var searchDateValueFrom = searchDatePickerFrom.Value - searchDatePickerFrom.Value.TimeOfDay;
+            var searchDateValueTo = searchDatePickerTo.Value.AddDays(1) - searchDatePickerTo.Value.TimeOfDay;
 
             if (expenseList != null)
             {
@@ -862,8 +863,8 @@ namespace Plutus
                     .Where(x => x.Category == searchCategoryBox.Text || searchCategoryBox.SelectedIndex == 0)
                     .Where(x => x.Price > parsedNumberFrom || searchNumberFromText.Text == "")
                     .Where(x => x.Price < parsedNumberTo || searchNumberToText.Text == "")
-                    .Where(x => dateTime.AddSeconds(x.Date) > searchDateValue || !searchDatePickerFrom.Enabled)
-                    .Where(x => dateTime.AddSeconds(x.Date) < searchDateValue || !searchDatePickerTo.Enabled);
+                    .Where(x => dateTime.AddSeconds(x.Date) > searchDateValueFrom || !searchDatePickerFrom.Enabled)
+                    .Where(x => dateTime.AddSeconds(x.Date) < searchDateValueTo || !searchDatePickerTo.Enabled);
 
                 if (filteredExpenses.Any())
                 {
@@ -882,8 +883,8 @@ namespace Plutus
                     .Where(x => x.Category == searchCategoryBox.Text || searchCategoryBox.SelectedIndex == 0)
                     .Where(x => x.Sum > parsedNumberFrom || searchNumberFromText.Text == "")
                     .Where(x => x.Sum < parsedNumberTo || searchNumberToText.Text == "")
-                    .Where(x => dateTime.AddSeconds(x.Date) > searchDateValue || !searchDatePickerFrom.Enabled)
-                    .Where(x => dateTime.AddSeconds(x.Date) < searchDateValue || !searchDatePickerTo.Enabled);
+                    .Where(x => dateTime.AddSeconds(x.Date) > searchDateValueFrom || !searchDatePickerFrom.Enabled)
+                    .Where(x => dateTime.AddSeconds(x.Date) < searchDateValueTo || !searchDatePickerTo.Enabled);
 
                 if (filteredIncome.Any())
                 {
