@@ -184,7 +184,7 @@ namespace Plutus
             }
             foreach (var monthly in monthlyExpenses)
             {
-                expenses += monthly.Price;
+                expenses += monthly.Price * months;
             }
             foreach (var i in allIncome)
             {
