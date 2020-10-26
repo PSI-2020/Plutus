@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <ArrayOfGoal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Goal>
-    <DueDate>2021-01-18T14:41:35</DueDate>
-    <Name>Kelione</Name>
-    <Amount>1000</Amount>
+    <DueDate>2023-11-13T13:14:55</DueDate>
+    <Name>Masina</Name>
+    <Amount>5000</Amount>
   </Goal>
   <Goal>
-    <DueDate>2021-02-24T14:53:09</DueDate>
-    <Name>Masina</Name>
-    <Amount>3000</Amount>
+    <DueDate>2060-12-01T13:23:37</DueDate>
+    <Name>Butas</Name>
+    <Amount>100000</Amount>
   </Goal>
 </ArrayOfGoal>

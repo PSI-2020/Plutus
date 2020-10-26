@@ -27,7 +27,7 @@ namespace Plutus
         readonly Statistics stats = new Statistics();
         public GUI() => InitializeComponent();
 
-        private void buttonAddMonthlyExpenses_Click(object sender, EventArgs e)
+        private void ButtonAddMonthlyExpenses_Click(object sender, EventArgs e)
         {
             if (monthlyExpensesName.Text.Length == 0 || monthlyExpensesName.Text == null)
             {
@@ -51,11 +51,13 @@ namespace Plutus
             }
 
             var name = monthlyExpensesName.Text;
-            var date = monthlyExpensesDate.Value;
+            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var monthlyExpenses = Convert.ToDouble(monthlyExpensesAmount.Text);
             var category = monthlyExpensesCategory.Text;
 
-            var scheduler = new Scheduler(date, name, monthlyExpenses, category, manager, false);
+            goalManager.AddMonthlyExpense(new Expense(date, name, monthlyExpenses, category));
+
+            var scheduler = new Scheduler(monthlyExpensesDate.Value, name, monthlyExpenses, category, manager, false);
             scheduler.Start();
 
             errorLabel2.Text = "Monthly expenses were successfully added!";
@@ -65,7 +67,7 @@ namespace Plutus
             monthlyExpensesDate.ResetText();
         }
 
-        private void buttonAddMonthlyIncome_Click(object sender, EventArgs e)
+        private void ButtonAddMonthlyIncome_Click(object sender, EventArgs e)
         {
             if (monthlyIncomeName.Text.Length == 0 || monthlyIncomeName.Text == null)
             {
@@ -89,11 +91,13 @@ namespace Plutus
             }
 
             var name = monthlyIncomeName.Text;
-            var date = monthlyIncomeDate.Value;
+            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var monthlyIncome = Convert.ToDouble(monthlyIncomeAmount.Text);
             var category = monthlyIncomeCategory.Text;
 
-            var scheduler = new Scheduler(date, name, monthlyIncome, category, manager, true);
+            goalManager.AddMonthlyIncome(new Income(date, monthlyIncome, category));
+
+            var scheduler = new Scheduler(monthlyIncomeDate.Value, name, monthlyIncome, category, manager, true);
             scheduler.Start();
 
             errorLabel.Text = "Monthly income was added successfully!";
@@ -822,75 +826,7 @@ namespace Plutus
             cartStore.StoreCart(currentCart);
         }
 
-        private void ButtonAddGoal_Click(object sender, EventArgs e)
-        {
-            panelGoal.Visible = false;
-            panelMyGoals.Visible = false;
-            panelAddGoal.Visible = true;
-        }
+        
 
-        private void ButtonMyGoals_Click(object sender, EventArgs e)
-        {
-            panelGoal.Visible = false;
-            panelAddGoal.Visible = false;
-            panelMyGoals.Visible = true;
-
-
-            var goalList = goalManager.ReadGoals();
-
-            if (goalList == null)
-            {
-                textBoxMyGoals.Text = "You don't have any goals";
-                return;
-            }
-
-            textBoxMyGoals.Text = "";
-
-            foreach (var goal in goalList)
-            {
-                textBoxMyGoals.Text +=  goal.Name + " | " + goal.Amount + "€ | " + goal.DueDate.ToString("yyyy/MM/dd") + System.Environment.NewLine;
-            }
-        }
-
-        private void buttonAddGoalEnter_Click(object sender, EventArgs e)
-        {
-            if (textBoxAddGoalName.Text.Length == 0 || textBoxAddGoalName.Text == null)
-            {
-                addGoalErrorLabel.Text = "Please enter name";
-                return;
-            }
-            if (textBoxAddGoalAmount.Text.Length == 0 || textBoxAddGoalAmount.Text == null)
-            {
-                addGoalErrorLabel.Text = "Please enter amount";
-                return;
-            }
-            if (!Double.TryParse(textBoxAddGoalAmount.Text, out _))
-            {
-                addGoalErrorLabel.Text = "Not a number!";
-                return;
-            }
-
-            var name = textBoxAddGoalName.Text;
-            var date = dateTimePickerAddGoal.Value;
-            var amount = Convert.ToDouble(textBoxAddGoalAmount.Text);
-
-           
-            goalManager.AddGoal(new Goal(name, amount, date));
-
-            panelAddGoal.Visible = false;
-            panelGoal.Visible = true;
-            labelGoal.Text = "Goal '" + name + "' was created!";
-            textBoxAddGoalAmount.Text = null;
-            textBoxAddGoalName.Text = null;
-            dateTimePickerAddGoal.ResetText();
-
-        }
-
-        private void buttonAddGoalCancel_Click(object sender, EventArgs e)
-        {
-            textBoxAddGoalAmount.Text = null;
-            textBoxAddGoalName.Text = null;
-            dateTimePickerAddGoal.ResetText();
-        }
     }
 }
