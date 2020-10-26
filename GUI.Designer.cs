@@ -131,6 +131,7 @@ namespace Plutus
             this.addExpenseBut = new System.Windows.Forms.Button();
             this.delCartButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.budgetsFlow = new System.Windows.Forms.FlowLayoutPanel();
             this.addBudget = new System.Windows.Forms.Button();
             this.budgetControl = new System.Windows.Forms.Panel();
             this.dateTo = new System.Windows.Forms.DateTimePicker();
@@ -144,7 +145,6 @@ namespace Plutus
             this.label2 = new System.Windows.Forms.Label();
             this.budgetCat = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.budgetsFlow = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1211,6 +1211,13 @@ namespace Plutus
             this.tabPage2.Text = "Budgets";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // budgetsFlow
+            // 
+            this.budgetsFlow.Location = new System.Drawing.Point(298, 26);
+            this.budgetsFlow.Name = "budgetsFlow";
+            this.budgetsFlow.Size = new System.Drawing.Size(666, 505);
+            this.budgetsFlow.TabIndex = 2;
+            // 
             // addBudget
             // 
             this.addBudget.Location = new System.Drawing.Point(85, 26);
@@ -1337,13 +1344,6 @@ namespace Plutus
             this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Category";
-            // 
-            // budgetsFlow
-            // 
-            this.budgetsFlow.Location = new System.Drawing.Point(298, 26);
-            this.budgetsFlow.Name = "budgetsFlow";
-            this.budgetsFlow.Size = new System.Drawing.Size(666, 505);
-            this.budgetsFlow.TabIndex = 2;
             // 
             // GUI
             // 

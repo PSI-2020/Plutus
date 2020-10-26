@@ -206,6 +206,7 @@ namespace Plutus
                     label9.Text = "";
                     break;
                 case 6:
+                    budgetsFlow.Controls.Clear();
                     LoadBudgets();
                     break;
                 default:
@@ -740,18 +741,11 @@ namespace Plutus
             var fromSec = (int)(from.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var toSec = (int)(to.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var name = "budget" + budgetsCounter;
-            var budget = new Budgets(manager, name, category, sum, fromSec, toSec);
+            var budget = new Budgets(name, category, sum, fromSec, toSec);
             var saver = new SaveAndLoadBudget();
             saver.addBudget(budget);
-            var Textbox = new TextBox
-            {
-                Height = 140,
-                Width = 200,
-                Multiline = true,
-                Name = "budgetText" + budgetsCounter
-            };
-            budgetsFlow.Controls.Add(Textbox);
-            Textbox.Text = budget.ShowBudget();
+            budgetsFlow.Controls.Clear();
+            LoadBudgets();
             budgetCat.Text = null;
             dateFrom.ResetText();
             dateTo.ResetText();
@@ -771,7 +765,9 @@ namespace Plutus
 
             foreach(var item in list)
             {
-                //var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(list.From).ToLocalTime();
+                var from = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(item.From).ToLocalTime();
+                var to = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(item.To).ToLocalTime();
+
                 var expenses = manager.readExpenses();
                 if (expenses == null) return;
 
@@ -787,14 +783,15 @@ namespace Plutus
                     }
                 }
 
-                data += "\r\n" + total + "/" + item.Sum + " €" + "\r\n" + Math.Round((total * 100 / item.Sum), 2) + "%";
+                data += "\r\n" + total + "/" + item.Sum + " €" + "\r\n" + Math.Round((total * 100 / item.Sum), 2) + "%" + "\r\n" +
+                    from.ToString("yyyy/MM/dd") + " - " + to.ToString("yyyy/MM/dd");
 
                 var Textbox = new TextBox
                 {
                     Height = 140,
                     Width = 200,
                     Multiline = true,
-                    Name = "budgetText" + budgetsCounter
+                    Name = "budgetText" + list.IndexOf(item)
                 };
                 budgetsFlow.Controls.Add(Textbox);
                 Textbox.Text = data;
