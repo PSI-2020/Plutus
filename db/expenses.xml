@@ -204,4 +204,70 @@
     <Price>98</Price>
     <Category>Other</Category>
   </Expense>
+  <Expense>
+    <Date>1603700008</Date>
+    <Name>Bacon</Name>
+    <Price>4.68</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700008</Date>
+    <Name>Eggs</Name>
+    <Price>2.45</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700008</Date>
+    <Name>Bread</Name>
+    <Price>1.29</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700114</Date>
+    <Name>Alchemy supplies set</Name>
+    <Price>45</Price>
+    <Category>Other</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700114</Date>
+    <Name>Magic gear</Name>
+    <Price>125</Price>
+    <Category>Clothes</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700114</Date>
+    <Name>Pheonix Blaster</Name>
+    <Price>255</Price>
+    <Category>Other</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700253</Date>
+    <Name>Bacon</Name>
+    <Price>4.68</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700253</Date>
+    <Name>Eggs</Name>
+    <Price>2.45</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700253</Date>
+    <Name>Bread</Name>
+    <Price>1.29</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700293</Date>
+    <Name>Bacon</Name>
+    <Price>4.68</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603700293</Date>
+    <Name>Eggs</Name>
+    <Price>2.45</Price>
+    <Category>Food</Category>
+  </Expense>
 </ArrayOfExpense>

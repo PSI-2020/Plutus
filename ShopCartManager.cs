@@ -7,9 +7,8 @@ namespace Plutus
 {
     class ShopCartManager
     {
-        private List<ShopExpense> sCartParts = new List<ShopExpense>();
-        private int iCount = 0;
-        private int[] stateCount= {0, 0, 0};
+        private List<ShopExpense> _sCartParts = new List<ShopExpense>();
+        private int[] _stateCount= {0, 0, 0};
         public ShopCartManager(Cart cart)
         {
             var elemC = cart.GiveElementC();
@@ -21,39 +20,38 @@ namespace Plutus
         private void AddNewElem(Expense exp)
         {
             var newElem = new ShopExpense(exp);
-            iCount += 1;
-            stateCount[0] += 1;
-            sCartParts.Add(newElem);
+            _stateCount[0] += 1;
+            _sCartParts.Add(newElem);
         }
 
         public int GiveSCount(int index)
         {
-            return stateCount[index];
+            return _stateCount[index];
         }
 
         public void ChangeState(int index, int state)
         {
-            var prevS = sCartParts[index].State;
-            stateCount[prevS] -= 1;
-            stateCount[state] += 1;
-            sCartParts[index].State = state;
+            var prevS = _sCartParts[index].State;
+            _stateCount[prevS] -= 1;
+            _stateCount[state] += 1;
+            _sCartParts[index].State = state;
         }
 
         public void ChangeState(int index)
         {
-            var prevS = sCartParts[index].State;
-            stateCount[prevS] -= 1;
+            var prevS = _sCartParts[index].State;
+            _stateCount[prevS] -= 1;
             var newstate = prevS == 1 ? 0 : 1;
-            stateCount[newstate] += 1;
-            sCartParts[index].State = newstate;
+            _stateCount[newstate] += 1;
+            _sCartParts[index].State = newstate;
         }
 
         public string GiveStateIndex(int state)
         {
             var answer = "";
-            for (var i = 0; i < iCount; i++)
+            for (var i = 0; i < _sCartParts.Count; i++)
             {
-                if(sCartParts[i].State == state)
+                if(_sCartParts[i].State == state)
                 {
                     answer += i;
                     answer += "|";
@@ -61,6 +59,24 @@ namespace Plutus
             }
             return answer;
         }
-        
+        public void Account(DataManager dm)
+        {
+            var i = 0;
+            foreach (var expense in _sCartParts)
+            {
+                if (expense.State == 1)
+                {
+                    var charge = new Expense();
+                    charge.Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    charge.Name = expense.Name;
+                    charge.Price = expense.Price;
+                    charge.Category = expense.Category;
+                    dm.addExpense(charge);
+                    ChangeState(i);
+                    i++;
+                }
+            }
+        }
+
     }
 }

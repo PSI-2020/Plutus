@@ -9,32 +9,28 @@ namespace Plutus
 {
     class Cart
     {
-        private List<CartExpense> cartParts;
-        private string cartName;
+        private List<CartExpense> _cartParts;
+        public string CartName { get; set; }
+
 
         public Cart()
         {
-            cartParts = new List<CartExpense>();
+            _cartParts = new List<CartExpense>();
         }
         public Cart(string name) : this()
         {
-            cartName = name;
-        }
-
-        public string GiveName()
-        {
-            return cartName;
+            CartName = name;
         }
 
         public CartExpense GiveElement(int index)
         {
-            return cartParts.ElementAt(index);
+            return _cartParts.ElementAt(index);
         }
 
         public void ChangeActivity(int index)
         {
             var i = 0;
-            foreach (var expense in cartParts)
+            foreach (var expense in _cartParts)
             {
                 if(i == index)
                 {
@@ -46,33 +42,28 @@ namespace Plutus
 
         public int GiveElementC()
         {
-            return cartParts.Count;
-        }
-
-        public void ChangeName(string newName)
-        {
-            cartName = newName;
+            return _cartParts.Count;
         }
 
         public void AddExpense(Expense expense)
         {
             var cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: true);
-            cartParts.Add(cExpense);
+            _cartParts.Add(cExpense);
         }
         public void AddExpense(CartExpense expense)
         {
             var cExpense = new CartExpense(date: expense.Date, category: expense.Category, name: expense.Name, price: expense.Price, active: expense.Active);
-            cartParts.Add(cExpense);
+            _cartParts.Add(cExpense);
         }
 
         public void RemoveExpense(int number)
         {
-            cartParts.RemoveAt(number);
+            _cartParts.RemoveAt(number);
         }
 
         public void Account(DataManager dm)
         {
-            foreach (var expense in cartParts)
+            foreach (var expense in _cartParts)
             {
                 if (expense.Active)
                 {

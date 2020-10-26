@@ -1,3 +1,3 @@
-Alchemy supplies|45|Other|1
+Alchemy supplies|45|Other|0
 Magic gear|125|Clothes|1
 Pheonix Blaster|255|Other|1

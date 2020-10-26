@@ -134,11 +134,11 @@ namespace Plutus
             this.addExpenseBut = new System.Windows.Forms.Button();
             this.delCartButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.shoppingCarts = new System.Windows.Forms.FlowLayoutPanel();
-            this.shoppingProductsPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.chargeShopping = new System.Windows.Forms.Button();
-            this.shoppingCartListText = new System.Windows.Forms.Label();
             this.shoppingProducts = new System.Windows.Forms.Label();
+            this.shoppingCartListText = new System.Windows.Forms.Label();
+            this.chargeShopping = new System.Windows.Forms.Button();
+            this.shoppingProductsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.shoppingCarts = new System.Windows.Forms.FlowLayoutPanel();
             this.tabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1230,36 +1230,22 @@ namespace Plutus
             this.tabPage2.Controls.Add(this.shoppingProductsPanel);
             this.tabPage2.Controls.Add(this.shoppingCarts);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "cartShopping";
+            this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(976, 537);
             this.tabPage2.TabIndex = 8;
             this.tabPage2.Text = "Shopping";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // shoppingCarts
+            // shoppingProducts
             // 
-            this.shoppingCarts.AutoScroll = true;
-            this.shoppingCarts.Location = new System.Drawing.Point(26, 54);
-            this.shoppingCarts.Name = "shoppingCarts";
-            this.shoppingCarts.Size = new System.Drawing.Size(240, 410);
-            this.shoppingCarts.TabIndex = 2;
-            // 
-            // shoppingProductsPanel
-            // 
-            this.shoppingProductsPanel.Location = new System.Drawing.Point(285, 54);
-            this.shoppingProductsPanel.Name = "shoppingProductsPanel";
-            this.shoppingProductsPanel.Size = new System.Drawing.Size(658, 410);
-            this.shoppingProductsPanel.TabIndex = 3;
-            // 
-            // chargeShopping
-            // 
-            this.chargeShopping.Location = new System.Drawing.Point(832, 470);
-            this.chargeShopping.Name = "chargeShopping";
-            this.chargeShopping.Size = new System.Drawing.Size(111, 31);
-            this.chargeShopping.TabIndex = 4;
-            this.chargeShopping.Text = "Done";
-            this.chargeShopping.UseVisualStyleBackColor = true;
+            this.shoppingProducts.AutoSize = true;
+            this.shoppingProducts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.shoppingProducts.Location = new System.Drawing.Point(285, 20);
+            this.shoppingProducts.Name = "shoppingProducts";
+            this.shoppingProducts.Size = new System.Drawing.Size(89, 28);
+            this.shoppingProducts.TabIndex = 5;
+            this.shoppingProducts.Text = "Products";
             // 
             // shoppingCartListText
             // 
@@ -1271,15 +1257,30 @@ namespace Plutus
             this.shoppingCartListText.TabIndex = 5;
             this.shoppingCartListText.Text = "Carts";
             // 
-            // shoppingProducts
+            // chargeShopping
             // 
-            this.shoppingProducts.AutoSize = true;
-            this.shoppingProducts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.shoppingProducts.Location = new System.Drawing.Point(285, 20);
-            this.shoppingProducts.Name = "shoppingProducts";
-            this.shoppingProducts.Size = new System.Drawing.Size(89, 28);
-            this.shoppingProducts.TabIndex = 5;
-            this.shoppingProducts.Text = "Products";
+            this.chargeShopping.Location = new System.Drawing.Point(832, 470);
+            this.chargeShopping.Name = "chargeShopping";
+            this.chargeShopping.Size = new System.Drawing.Size(111, 31);
+            this.chargeShopping.TabIndex = 4;
+            this.chargeShopping.Text = "Done";
+            this.chargeShopping.UseVisualStyleBackColor = true;
+            this.chargeShopping.Click += new System.EventHandler(this.chargeShopping_Click);
+            // 
+            // shoppingProductsPanel
+            // 
+            this.shoppingProductsPanel.Location = new System.Drawing.Point(285, 54);
+            this.shoppingProductsPanel.Name = "shoppingProductsPanel";
+            this.shoppingProductsPanel.Size = new System.Drawing.Size(658, 410);
+            this.shoppingProductsPanel.TabIndex = 3;
+            // 
+            // shoppingCarts
+            // 
+            this.shoppingCarts.AutoScroll = true;
+            this.shoppingCarts.Location = new System.Drawing.Point(26, 54);
+            this.shoppingCarts.Name = "shoppingCarts";
+            this.shoppingCarts.Size = new System.Drawing.Size(240, 410);
+            this.shoppingCarts.TabIndex = 2;
             // 
             // GUI
             // 
@@ -1328,9 +1329,7 @@ namespace Plutus
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-
             LoadCarts();
-
         }
 
         #endregion
