@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ArrayOfCartExpense xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CartExpense>
+    <Date>1603794811</Date>
+    <Name>Alchemy supplies</Name>
+    <Price>125</Price>
+    <Category>Other</Category>
+    <Active>false</Active>
+  </CartExpense>
+  <CartExpense>
+    <Date>1603794833</Date>
+    <Name>Magic gear</Name>
+    <Price>225</Price>
+    <Category>Other</Category>
+    <Active>false</Active>
+  </CartExpense>
+  <CartExpense>
+    <Date>1603794849</Date>
+    <Name>Pheonix Blaster</Name>
+    <Price>450</Price>
+    <Category>Other</Category>
+    <Active>false</Active>
+  </CartExpense>
+</ArrayOfCartExpense>

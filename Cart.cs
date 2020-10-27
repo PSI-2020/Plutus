@@ -22,6 +22,14 @@ namespace Plutus
             CartName = name;
         }
 
+        public Cart(string name, List<CartExpense> list) : this(name)
+        {
+            foreach(var expense in list)
+            {
+                _cartParts.Add(expense);
+            }
+        }
+
         public CartExpense GiveElement(int index)
         {
             return _cartParts.ElementAt(index);

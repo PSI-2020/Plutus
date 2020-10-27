@@ -29,17 +29,5 @@ namespace Plutus
         {
             Active = (bool)info.GetValue("Active", typeof(bool));
         }
-
-     /*   public CartExpense GetFromExpense(Expense expense)
-        {
-            this.Date = expense.Date;
-            this.Name = expense.Name;
-            this.Price = expense.Price;
-            this.Category = expense.Category;
-            this.Active = true;
-            return this;
-        }*/
-
-
     }
 }

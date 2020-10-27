@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ArrayOfCartExpense xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CartExpense>
+    <Date>1603794782</Date>
+    <Name>Bread</Name>
+    <Price>0.79</Price>
+    <Category>Food</Category>
+    <Active>false</Active>
+  </CartExpense>
+  <CartExpense>
+    <Date>1603794792</Date>
+    <Name>Eggs</Name>
+    <Price>2.29</Price>
+    <Category>Food</Category>
+    <Active>false</Active>
+  </CartExpense>
+</ArrayOfCartExpense>
