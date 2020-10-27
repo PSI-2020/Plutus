@@ -36,7 +36,7 @@ namespace Plutus
         {
             this.showExpensesButton = new System.Windows.Forms.Button();
             this.showStat = new System.Windows.Forms.Button();
-            this.statScreen = new System.Windows.Forms.TextBox();
+            this.output = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.dataTab = new System.Windows.Forms.TabPage();
             this.enableDatePickerTo = new System.Windows.Forms.CheckBox();
@@ -61,40 +61,40 @@ namespace Plutus
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.errorField2 = new System.Windows.Forms.Label();
+            this.incomeStatusField = new System.Windows.Forms.Label();
             this.incomeAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.incomeCat = new System.Windows.Forms.ComboBox();
+            this.incomeCategory = new System.Windows.Forms.ComboBox();
             this.incomeSum = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.errorField = new System.Windows.Forms.Label();
+            this.expenseStatusField = new System.Windows.Forms.Label();
             this.enterExpensesButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.categoryP = new System.Windows.Forms.ComboBox();
+            this.expenseCategorySelection = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.priceP = new System.Windows.Forms.TextBox();
+            this.expensePriceText = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.nameP = new System.Windows.Forms.TextBox();
+            this.expenseNameText = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.incomeEditSelection = new System.Windows.Forms.ComboBox();
+            this.incomeStatusMessage = new System.Windows.Forms.Label();
+            this.incomeEditSum = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.incomeEditCategory = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.expenseEditSelection = new System.Windows.Forms.ComboBox();
+            this.expenseStatusMessage = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.expenseEditName = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.expenseEditCategory = new System.Windows.Forms.ComboBox();
+            this.expenseEditPrice = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -190,7 +190,7 @@ namespace Plutus
             this.showExpensesButton.TabIndex = 6;
             this.showExpensesButton.Text = "Show Expenses";
             this.showExpensesButton.UseVisualStyleBackColor = true;
-            this.showExpensesButton.Click += new System.EventHandler(this.showExpenses);
+            this.showExpensesButton.Click += new System.EventHandler(this.ShowExpensesButton);
             // 
             // showStat
             // 
@@ -205,14 +205,14 @@ namespace Plutus
             // 
             // statScreen
             // 
-            this.statScreen.Location = new System.Drawing.Point(236, 26);
-            this.statScreen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.statScreen.Multiline = true;
-            this.statScreen.Name = "statScreen";
-            this.statScreen.ReadOnly = true;
-            this.statScreen.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.statScreen.Size = new System.Drawing.Size(496, 149);
-            this.statScreen.TabIndex = 7;
+            this.output.Location = new System.Drawing.Point(236, 26);
+            this.output.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.output.Multiline = true;
+            this.output.Name = "statScreen";
+            this.output.ReadOnly = true;
+            this.output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.output.Size = new System.Drawing.Size(496, 149);
+            this.output.TabIndex = 7;
             // 
             // tabControl1
             // 
@@ -229,7 +229,7 @@ namespace Plutus
             this.tabControl1.Size = new System.Drawing.Size(861, 428);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 8;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabChange);
             // 
             // dataTab
             // 
@@ -254,7 +254,7 @@ namespace Plutus
             this.dataTab.Controls.Add(this.label1);
             this.dataTab.Controls.Add(this.incomeShow);
             this.dataTab.Controls.Add(this.showExpensesButton);
-            this.dataTab.Controls.Add(this.statScreen);
+            this.dataTab.Controls.Add(this.output);
             this.dataTab.Controls.Add(this.showStat);
             this.dataTab.Location = new System.Drawing.Point(4, 24);
             this.dataTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -292,7 +292,7 @@ namespace Plutus
             this.button5.TabIndex = 6;
             this.button5.Text = "Search";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.SearchData);
+            this.button5.Click += new System.EventHandler(this.Search);
             // 
             // label27
             // 
@@ -454,7 +454,7 @@ namespace Plutus
             this.incomeShow.TabIndex = 8;
             this.incomeShow.Text = "Show Income";
             this.incomeShow.UseVisualStyleBackColor = true;
-            this.incomeShow.Click += new System.EventHandler(this.showIncome);
+            this.incomeShow.Click += new System.EventHandler(this.ShowIncomeButton);
             // 
             // tabPage1
             // 
@@ -481,11 +481,11 @@ namespace Plutus
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.errorField2);
+            this.tabPage10.Controls.Add(this.incomeStatusField);
             this.tabPage10.Controls.Add(this.incomeAdd);
             this.tabPage10.Controls.Add(this.label4);
             this.tabPage10.Controls.Add(this.label5);
-            this.tabPage10.Controls.Add(this.incomeCat);
+            this.tabPage10.Controls.Add(this.incomeCategory);
             this.tabPage10.Controls.Add(this.incomeSum);
             this.tabPage10.Controls.Add(this.label6);
             this.tabPage10.Location = new System.Drawing.Point(4, 24);
@@ -499,11 +499,11 @@ namespace Plutus
             // 
             // errorField2
             // 
-            this.errorField2.AutoSize = true;
-            this.errorField2.Location = new System.Drawing.Point(384, 103);
-            this.errorField2.Name = "errorField2";
-            this.errorField2.Size = new System.Drawing.Size(0, 15);
-            this.errorField2.TabIndex = 6;
+            this.incomeStatusField.AutoSize = true;
+            this.incomeStatusField.Location = new System.Drawing.Point(384, 103);
+            this.incomeStatusField.Name = "errorField2";
+            this.incomeStatusField.Size = new System.Drawing.Size(0, 15);
+            this.incomeStatusField.TabIndex = 6;
             // 
             // incomeAdd
             // 
@@ -514,7 +514,7 @@ namespace Plutus
             this.incomeAdd.TabIndex = 5;
             this.incomeAdd.Text = "Add";
             this.incomeAdd.UseVisualStyleBackColor = true;
-            this.incomeAdd.Click += new System.EventHandler(this.inputIncome);
+            this.incomeAdd.Click += new System.EventHandler(this.InputIncomeButton);
             // 
             // label4
             // 
@@ -538,17 +538,17 @@ namespace Plutus
             // 
             // incomeCat
             // 
-            this.incomeCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.incomeCat.FormattingEnabled = true;
-            this.incomeCat.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.incomeCat.Items.AddRange(new object[] {
+            this.incomeCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.incomeCategory.FormattingEnabled = true;
+            this.incomeCategory.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.incomeCategory.Items.AddRange(new object[] {
             "Salary",
             "Other"});
-            this.incomeCat.Location = new System.Drawing.Point(384, 56);
-            this.incomeCat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.incomeCat.Name = "incomeCat";
-            this.incomeCat.Size = new System.Drawing.Size(188, 23);
-            this.incomeCat.TabIndex = 4;
+            this.incomeCategory.Location = new System.Drawing.Point(384, 56);
+            this.incomeCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.incomeCategory.Name = "incomeCat";
+            this.incomeCategory.Size = new System.Drawing.Size(188, 23);
+            this.incomeCategory.TabIndex = 4;
             // 
             // incomeSum
             // 
@@ -569,14 +569,14 @@ namespace Plutus
             // 
             // tabPage11
             // 
-            this.tabPage11.Controls.Add(this.errorField);
+            this.tabPage11.Controls.Add(this.expenseStatusField);
             this.tabPage11.Controls.Add(this.enterExpensesButton);
             this.tabPage11.Controls.Add(this.label13);
-            this.tabPage11.Controls.Add(this.categoryP);
+            this.tabPage11.Controls.Add(this.expenseCategorySelection);
             this.tabPage11.Controls.Add(this.label12);
-            this.tabPage11.Controls.Add(this.priceP);
+            this.tabPage11.Controls.Add(this.expensePriceText);
             this.tabPage11.Controls.Add(this.label11);
-            this.tabPage11.Controls.Add(this.nameP);
+            this.tabPage11.Controls.Add(this.expenseNameText);
             this.tabPage11.Controls.Add(this.label10);
             this.tabPage11.Location = new System.Drawing.Point(4, 24);
             this.tabPage11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -589,12 +589,12 @@ namespace Plutus
             // 
             // errorField
             // 
-            this.errorField.AutoSize = true;
-            this.errorField.Location = new System.Drawing.Point(395, 93);
-            this.errorField.Name = "errorField";
-            this.errorField.Size = new System.Drawing.Size(0, 15);
-            this.errorField.TabIndex = 5;
-            this.errorField.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.expenseStatusField.AutoSize = true;
+            this.expenseStatusField.Location = new System.Drawing.Point(395, 93);
+            this.expenseStatusField.Name = "errorField";
+            this.expenseStatusField.Size = new System.Drawing.Size(0, 15);
+            this.expenseStatusField.TabIndex = 5;
+            this.expenseStatusField.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // enterExpensesButton
             // 
@@ -604,7 +604,7 @@ namespace Plutus
             this.enterExpensesButton.TabIndex = 6;
             this.enterExpensesButton.Text = "Enter";
             this.enterExpensesButton.UseVisualStyleBackColor = true;
-            this.enterExpensesButton.Click += new System.EventHandler(this.inputExpense);
+            this.enterExpensesButton.Click += new System.EventHandler(this.InputExpenseButton);
             // 
             // label13
             // 
@@ -617,19 +617,19 @@ namespace Plutus
             // 
             // categoryP
             // 
-            this.categoryP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.categoryP.FormattingEnabled = true;
-            this.categoryP.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.categoryP.Items.AddRange(new object[] {
+            this.expenseCategorySelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.expenseCategorySelection.FormattingEnabled = true;
+            this.expenseCategorySelection.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.expenseCategorySelection.Items.AddRange(new object[] {
             "Food",
             "Clothes",
             "Bills",
             "Other"});
-            this.categoryP.Location = new System.Drawing.Point(493, 52);
-            this.categoryP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.categoryP.Name = "categoryP";
-            this.categoryP.Size = new System.Drawing.Size(133, 23);
-            this.categoryP.TabIndex = 4;
+            this.expenseCategorySelection.Location = new System.Drawing.Point(493, 52);
+            this.expenseCategorySelection.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.expenseCategorySelection.Name = "categoryP";
+            this.expenseCategorySelection.Size = new System.Drawing.Size(133, 23);
+            this.expenseCategorySelection.TabIndex = 4;
             // 
             // label12
             // 
@@ -642,11 +642,11 @@ namespace Plutus
             // 
             // priceP
             // 
-            this.priceP.Location = new System.Drawing.Point(348, 52);
-            this.priceP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.priceP.Name = "priceP";
-            this.priceP.Size = new System.Drawing.Size(140, 23);
-            this.priceP.TabIndex = 2;
+            this.expensePriceText.Location = new System.Drawing.Point(348, 52);
+            this.expensePriceText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.expensePriceText.Name = "priceP";
+            this.expensePriceText.Size = new System.Drawing.Size(140, 23);
+            this.expensePriceText.TabIndex = 2;
             // 
             // label11
             // 
@@ -659,11 +659,11 @@ namespace Plutus
             // 
             // nameP
             // 
-            this.nameP.Location = new System.Drawing.Point(129, 52);
-            this.nameP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.nameP.Name = "nameP";
-            this.nameP.Size = new System.Drawing.Size(215, 23);
-            this.nameP.TabIndex = 1;
+            this.expenseNameText.Location = new System.Drawing.Point(129, 52);
+            this.expenseNameText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.expenseNameText.Name = "nameP";
+            this.expenseNameText.Size = new System.Drawing.Size(215, 23);
+            this.expenseNameText.TabIndex = 1;
             // 
             // label10
             // 
@@ -695,14 +695,14 @@ namespace Plutus
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.incomeEditSelection);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.label8);
-            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.incomeStatusMessage);
+            this.splitContainer1.Panel2.Controls.Add(this.incomeEditSum);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.incomeEditCategory);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Size = new System.Drawing.Size(847, 394);
             this.splitContainer1.SplitterDistance = 281;
@@ -711,28 +711,28 @@ namespace Plutus
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(11, 11);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(246, 23);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.onEditIncomeChange);
+            this.incomeEditSelection.FormattingEnabled = true;
+            this.incomeEditSelection.Location = new System.Drawing.Point(11, 11);
+            this.incomeEditSelection.Name = "comboBox1";
+            this.incomeEditSelection.Size = new System.Drawing.Size(246, 23);
+            this.incomeEditSelection.TabIndex = 0;
+            this.incomeEditSelection.SelectedIndexChanged += new System.EventHandler(this.OnIncomeSelect);
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(67, 126);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 15);
-            this.label8.TabIndex = 5;
+            this.incomeStatusMessage.AutoSize = true;
+            this.incomeStatusMessage.Location = new System.Drawing.Point(67, 126);
+            this.incomeStatusMessage.Name = "label8";
+            this.incomeStatusMessage.Size = new System.Drawing.Size(0, 15);
+            this.incomeStatusMessage.TabIndex = 5;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 45);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 23);
-            this.textBox1.TabIndex = 1;
+            this.incomeEditSum.Location = new System.Drawing.Point(67, 45);
+            this.incomeEditSum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.incomeEditSum.Name = "textBox1";
+            this.incomeEditSum.Size = new System.Drawing.Size(236, 23);
+            this.incomeEditSum.TabIndex = 1;
             // 
             // button1
             // 
@@ -742,21 +742,21 @@ namespace Plutus
             this.button1.TabIndex = 1;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.EditIncomeButton);
             // 
             // comboBox2
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.incomeEditCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.incomeEditCategory.FormattingEnabled = true;
+            this.incomeEditCategory.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.incomeEditCategory.Items.AddRange(new object[] {
             "Salary",
             "Other"});
-            this.comboBox2.Location = new System.Drawing.Point(321, 45);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(188, 23);
-            this.comboBox2.TabIndex = 4;
+            this.incomeEditCategory.Location = new System.Drawing.Point(321, 45);
+            this.incomeEditCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.incomeEditCategory.Name = "comboBox2";
+            this.incomeEditCategory.Size = new System.Drawing.Size(188, 23);
+            this.incomeEditCategory.TabIndex = 4;
             // 
             // button2
             // 
@@ -766,7 +766,7 @@ namespace Plutus
             this.button2.TabIndex = 2;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.DeleteIncomeButton);
             // 
             // tabPage5
             // 
@@ -787,16 +787,16 @@ namespace Plutus
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.comboBox5);
+            this.splitContainer2.Panel1.Controls.Add(this.expenseEditSelection);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.label9);
+            this.splitContainer2.Panel2.Controls.Add(this.expenseStatusMessage);
             this.splitContainer2.Panel2.Controls.Add(this.button4);
-            this.splitContainer2.Panel2.Controls.Add(this.textBox3);
+            this.splitContainer2.Panel2.Controls.Add(this.expenseEditName);
             this.splitContainer2.Panel2.Controls.Add(this.button3);
-            this.splitContainer2.Panel2.Controls.Add(this.comboBox3);
-            this.splitContainer2.Panel2.Controls.Add(this.textBox2);
+            this.splitContainer2.Panel2.Controls.Add(this.expenseEditCategory);
+            this.splitContainer2.Panel2.Controls.Add(this.expenseEditPrice);
             this.splitContainer2.Size = new System.Drawing.Size(847, 394);
             this.splitContainer2.SplitterDistance = 281;
             this.splitContainer2.TabIndex = 0;
@@ -804,20 +804,20 @@ namespace Plutus
             // 
             // comboBox5
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(11, 11);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(246, 23);
-            this.comboBox5.TabIndex = 0;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.onEditExpenseChange);
+            this.expenseEditSelection.FormattingEnabled = true;
+            this.expenseEditSelection.Location = new System.Drawing.Point(11, 11);
+            this.expenseEditSelection.Name = "comboBox5";
+            this.expenseEditSelection.Size = new System.Drawing.Size(246, 23);
+            this.expenseEditSelection.TabIndex = 0;
+            this.expenseEditSelection.SelectedIndexChanged += new System.EventHandler(this.OnExpenseSelect);
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 125);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 15);
-            this.label9.TabIndex = 5;
+            this.expenseStatusMessage.AutoSize = true;
+            this.expenseStatusMessage.Location = new System.Drawing.Point(27, 125);
+            this.expenseStatusMessage.Name = "label9";
+            this.expenseStatusMessage.Size = new System.Drawing.Size(0, 15);
+            this.expenseStatusMessage.TabIndex = 5;
             // 
             // button4
             // 
@@ -827,15 +827,15 @@ namespace Plutus
             this.button4.TabIndex = 2;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button3_Click);
+            this.button4.Click += new System.EventHandler(this.DeleteExpenseButton);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(27, 41);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 23);
-            this.textBox3.TabIndex = 1;
+            this.expenseEditName.Location = new System.Drawing.Point(27, 41);
+            this.expenseEditName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.expenseEditName.Name = "textBox3";
+            this.expenseEditName.Size = new System.Drawing.Size(215, 23);
+            this.expenseEditName.TabIndex = 1;
             // 
             // button3
             // 
@@ -845,31 +845,31 @@ namespace Plutus
             this.button3.TabIndex = 1;
             this.button3.Text = "Save";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button4_Click);
+            this.button3.Click += new System.EventHandler(this.EditExpenseButton);
             // 
             // comboBox3
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.expenseEditCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.expenseEditCategory.FormattingEnabled = true;
+            this.expenseEditCategory.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.expenseEditCategory.Items.AddRange(new object[] {
             "Food",
             "Clothes",
             "Bills",
             "Other"});
-            this.comboBox3.Location = new System.Drawing.Point(391, 41);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(133, 23);
-            this.comboBox3.TabIndex = 4;
+            this.expenseEditCategory.Location = new System.Drawing.Point(391, 41);
+            this.expenseEditCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.expenseEditCategory.Name = "comboBox3";
+            this.expenseEditCategory.Size = new System.Drawing.Size(133, 23);
+            this.expenseEditCategory.TabIndex = 4;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(247, 41);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 23);
-            this.textBox2.TabIndex = 2;
+            this.expenseEditPrice.Location = new System.Drawing.Point(247, 41);
+            this.expenseEditPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.expenseEditPrice.Name = "textBox2";
+            this.expenseEditPrice.Size = new System.Drawing.Size(140, 23);
+            this.expenseEditPrice.TabIndex = 2;
             // 
             // tabPage7
             // 
@@ -1536,35 +1536,35 @@ namespace Plutus
         #endregion
         private System.Windows.Forms.Button showExpensesButton;
         private System.Windows.Forms.Button showStat;
-        private System.Windows.Forms.TextBox statScreen;
+        private System.Windows.Forms.TextBox output;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage dataTab;
-        private System.Windows.Forms.ComboBox incomeCat;
+        private System.Windows.Forms.ComboBox incomeCategory;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox incomeSum;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button incomeAdd;
-        private System.Windows.Forms.Label errorField2;
+        private System.Windows.Forms.Label incomeStatusField;
         private System.Windows.Forms.Button incomeShow;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox incomeEditSelection;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private Label label8;
+        private System.Windows.Forms.TextBox incomeEditSum;
+        private System.Windows.Forms.ComboBox incomeEditCategory;
+        private Label incomeStatusMessage;
         private SplitContainer splitContainer2;
-        private ComboBox comboBox5;
+        private ComboBox expenseEditSelection;
         private Button button4;
-        private TextBox textBox3;
+        private TextBox expenseEditName;
         private Button button3;
-        private ComboBox comboBox3;
-        private TextBox textBox2;
-        private Label label9;
+        private ComboBox expenseEditCategory;
+        private TextBox expenseEditPrice;
+        private Label expenseStatusMessage;
         private TabPage tabPage7;
         private TabControl tabControl2;
         private TabPage tabPage8;
@@ -1626,13 +1626,13 @@ namespace Plutus
         private TabPage tabPage10;
         private TabPage tabPage11;
         private Label label10;
-        private TextBox nameP;
-        private Label errorField;
+        private TextBox expenseNameText;
+        private Label expenseStatusField;
         private Button enterExpensesButton;
         private Label label13;
-        private ComboBox categoryP;
+        private ComboBox expenseCategorySelection;
         private Label label12;
-        private TextBox priceP;
+        private TextBox expensePriceText;
         private Label label11;
         private TableLayoutPanel tableLayoutPanel1;
         private DataGridView dataGridView1;

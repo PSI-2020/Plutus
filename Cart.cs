@@ -1,8 +1,6 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Plutus
 
@@ -70,7 +68,7 @@ namespace Plutus
             cartParts.RemoveAt(number);
         }
 
-        public void Account(DataManager dm)
+        public void Account(FileManager dm)
         {
             foreach (var expense in cartParts)
             {
@@ -81,7 +79,7 @@ namespace Plutus
                     charge.Name = expense.Name;
                     charge.Price = expense.Price;
                     charge.Category = expense.Category;
-                    dm.addExpense(charge);
+                    dm.AddExpense(charge);
                 }
             }
         }
