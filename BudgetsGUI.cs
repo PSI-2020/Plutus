@@ -5,8 +5,8 @@ namespace Plutus
 {
     public partial class GUI : Form
     {
-        private void addBudget_Click(object sender, EventArgs e) => budgetControl.Visible = true;
-        private void budgetAdd_Click(object sender, EventArgs e)
+        private void AddBudget_Click(object sender, EventArgs e) => budgetControl.Visible = true;
+        private void BudgetAdd_Click(object sender, EventArgs e)
         {
             if (!Double.TryParse(budgetSum.Text, out _))
             {
