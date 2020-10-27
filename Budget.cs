@@ -8,15 +8,14 @@ using System.Xml.Serialization;
 namespace Plutus
 { 
     [Serializable()]
-    public class Budgets : ISerializable
+    public class Budget : ISerializable
     {
         public string Name { get; set; }
         public string Category { get; set; }
         public double Sum { get; set; }
         public int From { get; set; }
-
         public int To { get; set; }
-        public Budgets(string name, string category, double sum, int from, int to)
+        public Budget(string name, string category, double sum, int from, int to)
         {
             Name = name;
             Category = category;
@@ -25,7 +24,7 @@ namespace Plutus
             To = to;
         }
 
-        public Budgets()
+        public Budget()
         {
 
         }
@@ -40,7 +39,7 @@ namespace Plutus
         }
 
 
-        public Budgets(SerializationInfo info, StreamingContext context)
+        public Budget(SerializationInfo info, StreamingContext context)
         {
             From = (int)info.GetValue("From", typeof(int));
             To = (int)info.GetValue("To", typeof(int));
@@ -50,22 +49,23 @@ namespace Plutus
         }
     }
 
-    public class SaveAndLoadBudget
+
+    public class BudgetsManager
     {
         private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         public readonly string file = databaseFolder + "budgets.xml";
-        public void addBudget(Budgets budget)
+        public void AddBudget(Budget budget)
         {
-            var serializer = new XmlSerializer(typeof(List<Budgets>));
-            List<Budgets> list = null;
+            var serializer = new XmlSerializer(typeof(List<Budget>));
+            List<Budget> list = null;
             try
             {
                 using Stream stream = File.OpenRead(this.file);
-                list = serializer.Deserialize(stream) as List<Budgets>;
+                list = serializer.Deserialize(stream) as List<Budget>;
             }
             catch
             {
-                list = new List<Budgets>();
+                list = new List<Budget>();
             }
             list.Add(budget);
             using (Stream stream = File.OpenWrite(this.file))
@@ -74,21 +74,45 @@ namespace Plutus
             }
         }
 
-        public List<Budgets> loadBudget()
+        public List<Budget> LoadBudget()
         {
-            var serializer = new XmlSerializer(typeof(List<Budgets>));
-            List<Budgets> list = null;
+            var serializer = new XmlSerializer(typeof(List<Budget>));
+            List<Budget> list = null;
             try
             {
                 if (!File.Exists(file)) return null;
                 using Stream stream = File.OpenRead(file);
-                list = serializer.Deserialize(stream) as List<Budgets>;
+                list = serializer.Deserialize(stream) as List<Budget>;
             }
             catch
             {
-                list = new List<Budgets>();
+                list = new List<Budget>();
             }
             return list;
+        }
+
+        public void DeleteBudget(int index)
+        {
+            var list = LoadBudget();
+            var array = list.ToArray();
+            list.Remove(array[index]);
+            UpdateBudgets(RenameBudgets(list));
+        }
+        public List<Budget> RenameBudgets(List<Budget> list)
+        {
+            foreach(var item in list)
+            {
+                item.Name = "budget" + list.IndexOf(item);
+            }
+            return list;
+        }
+
+        public void UpdateBudgets(List<Budget> list)
+        {
+            var serializer = new XmlSerializer(typeof(List<Budget>));
+            File.WriteAllText(file, "");
+            using Stream stream = File.OpenWrite(file);
+            serializer.Serialize(stream, list);
         }
     }
 }

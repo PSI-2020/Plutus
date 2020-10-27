@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
-<ArrayOfBudgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Budgets>
+<ArrayOfBudget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Budget>
+    <Name>budget0</Name>
+    <Category>Clothes</Category>
+    <Sum>8456</Sum>
+    <From>1598962895</From>
+    <To>1604060495</To>
+  </Budget>
+  <Budget>
     <Name>budget1</Name>
-    <Category>Bills</Category>
-    <Sum>555</Sum>
-    <From>1601553914</From>
-    <To>1603195514</To>
-  </Budgets>
-  <Budgets>
-    <Name>budget1</Name>
-    <Category>Food</Category>
-    <Sum>200</Sum>
-    <From>1598976630</From>
-    <To>1603728630</To>
-  </Budgets>
-</ArrayOfBudgets>
+    <Category>Other</Category>
+    <Sum>64153</Sum>
+    <From>1598962917</From>
+    <To>1603887717</To>
+  </Budget>
+</ArrayOfBudget>
