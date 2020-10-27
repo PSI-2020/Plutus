@@ -99,6 +99,8 @@ namespace Plutus
             panelEditGoal.Visible = true;
             panelComment.Visible = false;
             comboBoxEditGoal.Text = null;
+            panelChangeGoal.Visible = false;
+
 
             var goalList = goalManager.ReadGoals();
 
@@ -146,6 +148,8 @@ namespace Plutus
             var index = comboBoxEditGoal.SelectedIndex;
             goalManager.DeleteGoal(index);
             comboBoxEditGoal.Items.RemoveAt(index);
+            if(comboBoxInsights.Items.Count>0)
+            comboBoxInsights.Items.RemoveAt(index);
             panelChangeGoal.Visible = false;
             panelEditGoal.Visible = false;
             panelGoal.Visible = true;
@@ -159,6 +163,10 @@ namespace Plutus
             panelAddGoal.Visible = false;
             panelEditGoal.Visible = false;
             panelInsights.Visible = true;
+            monthlySpend.Text = " ";
+            dailySpend.Text = " ";
+            daysLeft.Text = " ";
+            comboBoxInsights.Text = null;
 
             var goalList = goalManager.ReadGoals();
 
@@ -182,7 +190,7 @@ namespace Plutus
 
             monthlySpend.Text = goalManager.Insights(manager, array[index]).ToString("F2") + "€";
             dailySpend.Text = (goalManager.Insights(manager, array[index]) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)).ToString("F2") + "€";
-
+            daysLeft.Text = goalManager.DaysLeft(array[index]);
 
         }
     }

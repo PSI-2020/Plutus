@@ -165,7 +165,7 @@ namespace Plutus
             }
         }
 
-        public double Insights (DataManager manager, Goal goal)
+        public double Insights(DataManager manager, Goal goal)
         {
             var monthlyIncome = ReadMonthlyIncome();
             var monthlyExpenses = ReadMonthlyExpenses();
@@ -177,7 +177,7 @@ namespace Plutus
             int months;
             
             months = goal.DueDate.Month - DateTime.Now.Month + (12 * (goal.DueDate.Year - DateTime.Now.Year));
-        
+
             foreach(var monthly in monthlyIncome)
             {
                 income += monthly.Sum * months;
@@ -196,6 +196,13 @@ namespace Plutus
             }
 
             return ((income-expenses-goal.Amount)/ months);
+        }
+
+        public string DaysLeft(Goal goal)
+        {
+            var days = (goal.DueDate - DateTime.Now).TotalDays;
+
+            return days.ToString("F0");
         }
 
     }
