@@ -5,7 +5,7 @@ namespace Plutus
 {
     class Statistics
     {
-        public string generateExpenseStatistics(DataManager manager)
+        public string generateExpenseStatistics(FileManager manager)
         {   
             var list = manager.readExpenses();
             if (list == null) return "No data found!";
@@ -34,7 +34,7 @@ namespace Plutus
             }
             return data;
         }
-        public string generateIncomeStatistics(DataManager manager)
+        public string generateIncomeStatistics(FileManager manager)
         {
             var list = manager.readIncome();
             if (list == null) return "No data found!";

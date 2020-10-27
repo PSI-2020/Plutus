@@ -182,7 +182,7 @@ namespace Plutus
             }
         }
 
-        public string Insights(DataManager manager, Goal goal, bool dailyOrMonthly)
+        public string Insights(FileManager manager, Goal goal, bool dailyOrMonthly)
         {
             var monthlyIncome = ReadMonthlyIncome();
             var monthlyExpenses = ReadMonthlyExpenses();

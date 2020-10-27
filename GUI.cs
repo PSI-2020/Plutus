@@ -22,7 +22,7 @@ namespace Plutus
 
     public partial class GUI : Form
     {
-        readonly DataManager manager = new DataManager();
+        readonly FileManager fileManager = new FileManager();
         readonly GoalManager goalManager = new GoalManager();
         readonly Statistics stats = new Statistics();
         public GUI() => InitializeComponent();
@@ -52,7 +52,7 @@ namespace Plutus
 
          
             goalManager.AddMonthlyExpense(monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text);
-            _ = new Scheduler(monthlyExpensesDate.Value, monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text, manager, false);
+            _ = new Scheduler(monthlyExpensesDate.Value, monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text, fileManager, false);
        
 
             monthlyExpensesStatusLabel.Text = "Monthly expenses were successfully added!";
@@ -86,7 +86,7 @@ namespace Plutus
             }
 
             goalManager.AddMonthlyIncome(monthlyIncomeAmount.Text, monthlyIncomeCategory.Text);
-            _ = new Scheduler(monthlyIncomeDate.Value, monthlyIncomeName.Text, monthlyIncomeAmount.Text, monthlyIncomeCategory.Text, manager, true);
+            _ = new Scheduler(monthlyIncomeDate.Value, monthlyIncomeName.Text, monthlyIncomeAmount.Text, monthlyIncomeCategory.Text, fileManager, true);
 
             monthlyIncomeStatusLabel.Text = "Monthly income was added successfully!";
             monthlyIncomeAmount.Clear();
@@ -118,7 +118,7 @@ namespace Plutus
             var price = Convert.ToDouble(priceP.Text);
             var category = categoryP.Text;
 
-            manager.addExpense(new Expense(date, name, price, category));
+            fileManager.addExpense(new Expense(date, name, price, category));
             errorField.Text = nameP.Text + " was successfully added!";
             nameP.Text = null;
             priceP.Text = null;
@@ -146,7 +146,7 @@ namespace Plutus
             var sum = Convert.ToDouble(incomeSum.Text);
             var category = incomeCat.Text;
 
-            manager.addIncome(new Income(date, sum, category));
+            fileManager.addIncome(new Income(date, sum, category));
 
             errorField2.Text = "Sum was added successfully!";
             incomeSum.Clear();
@@ -155,7 +155,7 @@ namespace Plutus
 
         private void showExpenses(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = fileManager.readExpenses();
             if (list == null)
             {
                 statScreen.Text = "No data found!";
@@ -171,7 +171,7 @@ namespace Plutus
 
         private void showIncome(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = fileManager.readIncome();
             if (list == null)
             {
                 statScreen.Text = "No data found!";
@@ -203,14 +203,14 @@ namespace Plutus
             }
         }
 
-        private void showStatistics(object sender, EventArgs e) => statScreen.Text = stats.generateExpenseStatistics(manager) + stats.generateIncomeStatistics(manager);
+        private void showStatistics(object sender, EventArgs e) => statScreen.Text = stats.generateExpenseStatistics(fileManager) + stats.generateIncomeStatistics(fileManager);
 
         private void editIncome()
         {
             comboBox1.Items.Clear();
             textBox1.Text = null;
             comboBox2.Text = null;
-            var list = manager.readIncome();
+            var list = fileManager.readIncome();
             if (list.Count == 0)
             {
                 comboBox1.Text = "No income data found!";
@@ -227,7 +227,7 @@ namespace Plutus
 
         private void onEditIncomeChange(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = fileManager.readIncome();
             var array = list.ToArray();
             var index = comboBox1.SelectedIndex;
             textBox1.Text = array[index].Sum + "";
@@ -236,7 +236,7 @@ namespace Plutus
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = fileManager.readIncome();
             if (list.Count == 0)
             {
                 label8.Text = "Income data is empty!";
@@ -250,14 +250,14 @@ namespace Plutus
                 return;
             }
             list.Remove(array[index]);
-            manager.updateIncome(list);
+            fileManager.updateIncome(list);
             label8.Text = "Item deleted successfully!";
             editIncome();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var list = manager.readIncome();
+            var list = fileManager.readIncome();
             if (list.Count == 0)
             {
                 label8.Text = "Income data is empty!";
@@ -287,7 +287,7 @@ namespace Plutus
             array[index].Sum = Convert.ToDouble(textBox1.Text);
             array[index].Category = comboBox2.SelectedItem.ToString();
             list.Add(array[index]);
-            manager.updateIncome(list);
+            fileManager.updateIncome(list);
             label8.Text = "Item edited successfully!";
             editIncome();
         }
@@ -298,7 +298,7 @@ namespace Plutus
             textBox3.Text = null;
             textBox2.Text = null;
             comboBox3.Text = null;
-            var list = manager.readExpenses();
+            var list = fileManager.readExpenses();
             if (list.Count == 0)
             {
                 comboBox5.Text = "No expense data found!";
@@ -314,7 +314,7 @@ namespace Plutus
 
         private void onEditExpenseChange(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = fileManager.readExpenses();
             var array = list.ToArray();
             var index = comboBox5.SelectedIndex;
             textBox3.Text = array[index].Name;
@@ -324,7 +324,7 @@ namespace Plutus
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = fileManager.readExpenses();
             if (list.Count == 0)
             {
                 label9.Text = "Expense data is empty!";
@@ -338,14 +338,14 @@ namespace Plutus
                 return;
             }
             list.Remove(array[index]);
-            manager.updateExpenses(list);
+            fileManager.updateExpenses(list);
             label9.Text = "Item deleted successfully!";
             editExpenses();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var list = manager.readExpenses();
+            var list = fileManager.readExpenses();
             if (list.Count == 0)
             {
                 label9.Text = "Expense data is empty!";
@@ -380,7 +380,7 @@ namespace Plutus
             array[index].Price = Convert.ToDouble(textBox2.Text);
             array[index].Category = comboBox3.SelectedItem.ToString();
             list.Add(array[index]);
-            manager.updateExpenses(list);
+            fileManager.updateExpenses(list);
             label9.Text = "Item edited successfully!";
             editExpenses();
         }
@@ -767,7 +767,7 @@ namespace Plutus
             else
             {
                 cartAddErrorField.Text = "Charged!";
-                currentCart.Account(manager);
+                currentCart.Account(fileManager);
 
             }
         }

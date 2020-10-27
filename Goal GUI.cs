@@ -166,8 +166,8 @@ namespace Plutus
             var goals = list.ToArray();
             var index = comboBoxInsights.SelectedIndex;
 
-            monthlySpend.Text = goalManager.Insights(manager, goals[index], true);
-            dailySpend.Text = goalManager.Insights(manager, goals[index], false);
+            monthlySpend.Text = goalManager.Insights(fileManager, goals[index], true);
+            dailySpend.Text = goalManager.Insights(fileManager, goals[index], false);
             daysLeft.Text = goalManager.DaysLeft(goals[index]);
 
         }

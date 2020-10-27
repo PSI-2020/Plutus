@@ -11,10 +11,10 @@ namespace Plutus
         public double Amount { get; set; }
         public string Category { get; set; }
 
-        private readonly DataManager _manager;
+        private readonly FileManager _manager;
         private readonly bool _incomeOrExpense;
 
-        public Scheduler(DateTime date, string name, string amount, string category, DataManager manager, bool incomeOrExpense)
+        public Scheduler(DateTime date, string name, string amount, string category, FileManager manager, bool incomeOrExpense)
         {
             Date = date;
             Name = name;

@@ -70,7 +70,7 @@ namespace Plutus
             cartParts.RemoveAt(number);
         }
 
-        public void Account(DataManager dm)
+        public void Account(FileManager dm)
         {
             foreach (var expense in cartParts)
             {
