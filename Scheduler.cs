@@ -5,36 +5,37 @@ namespace Plutus
 {
     public class Scheduler : IDisposable
     {
-        public readonly Timer checkForTime;
+        private readonly Timer _checkForTime;
         public string Name { get; set; }
         public DateTime Date;
         public double Amount { get; set; }
         public string Category { get; set; }
 
-        private readonly DataManager Manager;
-        private readonly bool IncomeOrExpense;
+        private readonly DataManager _manager;
+        private readonly bool _incomeOrExpense;
 
-        public Scheduler(DateTime date, string name, double amount, string category, DataManager manager, bool incomeOrExpense)
+        public Scheduler(DateTime date, string name, string amount, string category, DataManager manager, bool incomeOrExpense)
         {
             Date = date;
             Name = name;
-            Amount = amount;
+            Amount = double.Parse(amount);
             Category = category;
-            Manager = manager;
-            IncomeOrExpense = incomeOrExpense;
-            checkForTime = new Timer(5000);
+            _manager = manager;
+            _incomeOrExpense = incomeOrExpense;
+            _checkForTime = new Timer(5000);
+            Start();
         }
 
         public void Start()
         {
-            checkForTime.Elapsed += new ElapsedEventHandler(TimeElapsed);
-            checkForTime.Start();
+            _checkForTime.Elapsed += new ElapsedEventHandler(TimeElapsed);
+            _checkForTime.Start();
         }
 
         public void Stop()
         {
-            checkForTime.Elapsed -= TimeElapsed;
-            checkForTime.Stop();
+            _checkForTime.Elapsed -= TimeElapsed;
+            _checkForTime.Stop();
         }
 
         private void TimeElapsed(object sender, ElapsedEventArgs e)
@@ -43,11 +44,11 @@ namespace Plutus
             if (DateTime.Now.ToString("dd/MM/yyyy") == Date.ToString("dd/MM/yyyy"))
             {
                 var time = (int)(Date.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                if (IncomeOrExpense)
-                    Manager.addIncome(new Income(time, Amount, Category));
-                else if (!IncomeOrExpense) Manager.addExpense(new Expense(time, Name, Amount, Category));
+                if (_incomeOrExpense)
+                    _manager.addIncome(new Income(time, Amount, Category));
+                else if (!_incomeOrExpense) _manager.addExpense(new Expense(time, Name, Amount, Category));
                 Date = Date.AddMonths(1);
-                checkForTime.Interval = 86400000;
+                _checkForTime.Interval = 86400000;
             }
 
 
@@ -55,9 +56,9 @@ namespace Plutus
 
         public void Dispose()
         {
-            if (checkForTime != null)
+            if (_checkForTime != null)
             {
-                checkForTime.Dispose();
+                _checkForTime.Dispose();
             }
         }
     }

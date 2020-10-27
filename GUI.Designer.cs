@@ -80,7 +80,7 @@ namespace Plutus
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.errorLabel = new System.Windows.Forms.Label();
+            this.monthlyIncomeStatusLabel = new System.Windows.Forms.Label();
             this.buttonAddMonthlyIncome = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -92,7 +92,7 @@ namespace Plutus
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.errorLabel2 = new System.Windows.Forms.Label();
+            this.monthlyExpensesStatusLabel = new System.Windows.Forms.Label();
             this.buttonAddMonthlyExpenses = new System.Windows.Forms.Button();
             this.monthlyExpensesCategory = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -137,8 +137,22 @@ namespace Plutus
             this.buttonInsights = new System.Windows.Forms.Button();
             this.buttonMyGoals = new System.Windows.Forms.Button();
             this.buttonAddGoal = new System.Windows.Forms.Button();
-            this.panelGoal = new System.Windows.Forms.Panel();
-            this.labelGoal = new System.Windows.Forms.Label();
+            this.panelInsights = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.comboBoxInsights = new System.Windows.Forms.ComboBox();
+            this.panelInsightsSpend = new System.Windows.Forms.Panel();
+            this.daysLeft = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.monthlySpend = new System.Windows.Forms.Label();
+            this.dailySpend = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.labelInsights = new System.Windows.Forms.Label();
+            this.panelMyGoals = new System.Windows.Forms.Panel();
+            this.editGoalButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelYourGoals = new System.Windows.Forms.Label();
+            this.textBoxMyGoals = new System.Windows.Forms.TextBox();
             this.panelEditGoal = new System.Windows.Forms.Panel();
             this.panelChangeGoal = new System.Windows.Forms.Panel();
             this.buttonDeleteGoal = new System.Windows.Forms.Button();
@@ -164,22 +178,8 @@ namespace Plutus
             this.textBoxAddGoalAmount = new System.Windows.Forms.TextBox();
             this.labelAddGoalName = new System.Windows.Forms.Label();
             this.textBoxAddGoalName = new System.Windows.Forms.TextBox();
-            this.panelInsights = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.comboBoxInsights = new System.Windows.Forms.ComboBox();
-            this.panelInsightsSpend = new System.Windows.Forms.Panel();
-            this.monthlySpend = new System.Windows.Forms.Label();
-            this.dailySpend = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.labelInsights = new System.Windows.Forms.Label();
-            this.panelMyGoals = new System.Windows.Forms.Panel();
-            this.editGoalButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelYourGoals = new System.Windows.Forms.Label();
-            this.textBoxMyGoals = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.daysLeft = new System.Windows.Forms.Label();
+            this.panelGoal = new System.Windows.Forms.Panel();
+            this.labelGoal = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -206,14 +206,14 @@ namespace Plutus
             this.cartNewElemControlPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabGoal.SuspendLayout();
-            this.panelGoal.SuspendLayout();
+            this.panelInsights.SuspendLayout();
+            this.panelInsightsSpend.SuspendLayout();
+            this.panelMyGoals.SuspendLayout();
             this.panelEditGoal.SuspendLayout();
             this.panelChangeGoal.SuspendLayout();
             this.panelComment.SuspendLayout();
             this.panelAddGoal.SuspendLayout();
-            this.panelInsights.SuspendLayout();
-            this.panelInsightsSpend.SuspendLayout();
-            this.panelMyGoals.SuspendLayout();
+            this.panelGoal.SuspendLayout();
             this.SuspendLayout();
             // 
             // showExpensesButton
@@ -731,7 +731,7 @@ namespace Plutus
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.errorLabel);
+            this.tabPage8.Controls.Add(this.monthlyIncomeStatusLabel);
             this.tabPage8.Controls.Add(this.buttonAddMonthlyIncome);
             this.tabPage8.Controls.Add(this.label19);
             this.tabPage8.Controls.Add(this.label18);
@@ -752,11 +752,11 @@ namespace Plutus
             // 
             // errorLabel
             // 
-            this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(330, 199);
-            this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(0, 15);
-            this.errorLabel.TabIndex = 7;
+            this.monthlyIncomeStatusLabel.AutoSize = true;
+            this.monthlyIncomeStatusLabel.Location = new System.Drawing.Point(330, 199);
+            this.monthlyIncomeStatusLabel.Name = "errorLabel";
+            this.monthlyIncomeStatusLabel.Size = new System.Drawing.Size(0, 15);
+            this.monthlyIncomeStatusLabel.TabIndex = 7;
             // 
             // buttonAddMonthlyIncome
             // 
@@ -854,7 +854,7 @@ namespace Plutus
             // 
             // tabPage9
             // 
-            this.tabPage9.Controls.Add(this.errorLabel2);
+            this.tabPage9.Controls.Add(this.monthlyExpensesStatusLabel);
             this.tabPage9.Controls.Add(this.buttonAddMonthlyExpenses);
             this.tabPage9.Controls.Add(this.monthlyExpensesCategory);
             this.tabPage9.Controls.Add(this.label24);
@@ -875,11 +875,11 @@ namespace Plutus
             // 
             // errorLabel2
             // 
-            this.errorLabel2.AutoSize = true;
-            this.errorLabel2.Location = new System.Drawing.Point(315, 210);
-            this.errorLabel2.Name = "errorLabel2";
-            this.errorLabel2.Size = new System.Drawing.Size(0, 15);
-            this.errorLabel2.TabIndex = 8;
+            this.monthlyExpensesStatusLabel.AutoSize = true;
+            this.monthlyExpensesStatusLabel.Location = new System.Drawing.Point(315, 210);
+            this.monthlyExpensesStatusLabel.Name = "errorLabel2";
+            this.monthlyExpensesStatusLabel.Size = new System.Drawing.Size(0, 15);
+            this.monthlyExpensesStatusLabel.TabIndex = 8;
             // 
             // buttonAddMonthlyExpenses
             // 
@@ -1348,23 +1348,177 @@ namespace Plutus
             this.buttonAddGoal.UseVisualStyleBackColor = true;
             this.buttonAddGoal.Click += new System.EventHandler(this.ButtonAddGoal_Click);
             // 
-            // panelGoal
+            // panelInsights
             // 
-            this.panelGoal.Controls.Add(this.labelGoal);
-            this.panelGoal.Location = new System.Drawing.Point(303, 150);
-            this.panelGoal.Name = "panelGoal";
-            this.panelGoal.Size = new System.Drawing.Size(547, 95);
-            this.panelGoal.TabIndex = 3;
-            this.panelGoal.Visible = false;
+            this.panelInsights.Controls.Add(this.label28);
+            this.panelInsights.Controls.Add(this.comboBoxInsights);
+            this.panelInsights.Controls.Add(this.panelInsightsSpend);
+            this.panelInsights.Controls.Add(this.labelInsights);
+            this.panelInsights.Location = new System.Drawing.Point(292, 34);
+            this.panelInsights.Name = "panelInsights";
+            this.panelInsights.Size = new System.Drawing.Size(558, 331);
+            this.panelInsights.TabIndex = 6;
+            this.panelInsights.Visible = false;
             // 
-            // labelGoal
+            // label28
             // 
-            this.labelGoal.AutoSize = true;
-            this.labelGoal.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelGoal.Location = new System.Drawing.Point(168, 29);
-            this.labelGoal.Name = "labelGoal";
-            this.labelGoal.Size = new System.Drawing.Size(0, 25);
-            this.labelGoal.TabIndex = 0;
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(168, 46);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(34, 15);
+            this.label28.TabIndex = 7;
+            this.label28.Text = "Goal:";
+            // 
+            // comboBoxInsights
+            // 
+            this.comboBoxInsights.FormattingEnabled = true;
+            this.comboBoxInsights.Location = new System.Drawing.Point(208, 41);
+            this.comboBoxInsights.Name = "comboBoxInsights";
+            this.comboBoxInsights.Size = new System.Drawing.Size(140, 23);
+            this.comboBoxInsights.TabIndex = 6;
+            this.comboBoxInsights.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInsights_SelectedIndexChanged);
+            // 
+            // panelInsightsSpend
+            // 
+            this.panelInsightsSpend.BackColor = System.Drawing.Color.PapayaWhip;
+            this.panelInsightsSpend.Controls.Add(this.daysLeft);
+            this.panelInsightsSpend.Controls.Add(this.label29);
+            this.panelInsightsSpend.Controls.Add(this.monthlySpend);
+            this.panelInsightsSpend.Controls.Add(this.dailySpend);
+            this.panelInsightsSpend.Controls.Add(this.label27);
+            this.panelInsightsSpend.Controls.Add(this.label26);
+            this.panelInsightsSpend.Location = new System.Drawing.Point(71, 83);
+            this.panelInsightsSpend.Name = "panelInsightsSpend";
+            this.panelInsightsSpend.Size = new System.Drawing.Size(401, 214);
+            this.panelInsightsSpend.TabIndex = 5;
+            // 
+            // daysLeft
+            // 
+            this.daysLeft.AutoSize = true;
+            this.daysLeft.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.daysLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.daysLeft.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.daysLeft.Location = new System.Drawing.Point(213, 146);
+            this.daysLeft.Name = "daysLeft";
+            this.daysLeft.Size = new System.Drawing.Size(19, 27);
+            this.daysLeft.TabIndex = 4;
+            this.daysLeft.Text = " ";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label29.Location = new System.Drawing.Point(134, 153);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(70, 20);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "Days left:";
+            // 
+            // monthlySpend
+            // 
+            this.monthlySpend.AutoSize = true;
+            this.monthlySpend.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.monthlySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.monthlySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.monthlySpend.Location = new System.Drawing.Point(213, 92);
+            this.monthlySpend.Name = "monthlySpend";
+            this.monthlySpend.Size = new System.Drawing.Size(19, 27);
+            this.monthlySpend.TabIndex = 4;
+            this.monthlySpend.Text = " ";
+            // 
+            // dailySpend
+            // 
+            this.dailySpend.AutoSize = true;
+            this.dailySpend.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dailySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dailySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dailySpend.Location = new System.Drawing.Point(213, 30);
+            this.dailySpend.Name = "dailySpend";
+            this.dailySpend.Size = new System.Drawing.Size(19, 27);
+            this.dailySpend.TabIndex = 3;
+            this.dailySpend.Text = " ";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label27.Location = new System.Drawing.Point(23, 95);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(184, 20);
+            this.label27.TabIndex = 2;
+            this.label27.Text = "This month you can spend:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label26.Location = new System.Drawing.Point(53, 33);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(151, 20);
+            this.label26.TabIndex = 1;
+            this.label26.Text = "Today you can spend:";
+            // 
+            // labelInsights
+            // 
+            this.labelInsights.AutoSize = true;
+            this.labelInsights.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelInsights.Location = new System.Drawing.Point(233, 11);
+            this.labelInsights.Name = "labelInsights";
+            this.labelInsights.Size = new System.Drawing.Size(92, 25);
+            this.labelInsights.TabIndex = 0;
+            this.labelInsights.Text = "INSIGHTS";
+            // 
+            // panelMyGoals
+            // 
+            this.panelMyGoals.Controls.Add(this.editGoalButton);
+            this.panelMyGoals.Controls.Add(this.label1);
+            this.panelMyGoals.Controls.Add(this.labelYourGoals);
+            this.panelMyGoals.Controls.Add(this.textBoxMyGoals);
+            this.panelMyGoals.Location = new System.Drawing.Point(341, 21);
+            this.panelMyGoals.Name = "panelMyGoals";
+            this.panelMyGoals.Size = new System.Drawing.Size(483, 360);
+            this.panelMyGoals.TabIndex = 2;
+            this.panelMyGoals.Visible = false;
+            // 
+            // editGoalButton
+            // 
+            this.editGoalButton.Location = new System.Drawing.Point(399, 270);
+            this.editGoalButton.Name = "editGoalButton";
+            this.editGoalButton.Size = new System.Drawing.Size(53, 21);
+            this.editGoalButton.TabIndex = 9;
+            this.editGoalButton.Text = "edit";
+            this.editGoalButton.UseVisualStyleBackColor = true;
+            this.editGoalButton.Click += new System.EventHandler(this.EditGoalButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(162, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "NAME | AMOUNT | DUE DATE";
+            // 
+            // labelYourGoals
+            // 
+            this.labelYourGoals.AutoSize = true;
+            this.labelYourGoals.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelYourGoals.Location = new System.Drawing.Point(182, 9);
+            this.labelYourGoals.Name = "labelYourGoals";
+            this.labelYourGoals.Size = new System.Drawing.Size(109, 28);
+            this.labelYourGoals.TabIndex = 8;
+            this.labelYourGoals.Text = "Your Goals:";
+            // 
+            // textBoxMyGoals
+            // 
+            this.textBoxMyGoals.Location = new System.Drawing.Point(20, 78);
+            this.textBoxMyGoals.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxMyGoals.Multiline = true;
+            this.textBoxMyGoals.Name = "textBoxMyGoals";
+            this.textBoxMyGoals.ReadOnly = true;
+            this.textBoxMyGoals.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxMyGoals.Size = new System.Drawing.Size(432, 187);
+            this.textBoxMyGoals.TabIndex = 7;
             // 
             // panelEditGoal
             // 
@@ -1603,177 +1757,23 @@ namespace Plutus
             this.textBoxAddGoalName.Size = new System.Drawing.Size(258, 23);
             this.textBoxAddGoalName.TabIndex = 0;
             // 
-            // panelInsights
+            // panelGoal
             // 
-            this.panelInsights.Controls.Add(this.label28);
-            this.panelInsights.Controls.Add(this.comboBoxInsights);
-            this.panelInsights.Controls.Add(this.panelInsightsSpend);
-            this.panelInsights.Controls.Add(this.labelInsights);
-            this.panelInsights.Location = new System.Drawing.Point(292, 34);
-            this.panelInsights.Name = "panelInsights";
-            this.panelInsights.Size = new System.Drawing.Size(558, 331);
-            this.panelInsights.TabIndex = 6;
-            this.panelInsights.Visible = false;
+            this.panelGoal.Controls.Add(this.labelGoal);
+            this.panelGoal.Location = new System.Drawing.Point(303, 150);
+            this.panelGoal.Name = "panelGoal";
+            this.panelGoal.Size = new System.Drawing.Size(547, 95);
+            this.panelGoal.TabIndex = 3;
+            this.panelGoal.Visible = false;
             // 
-            // label28
+            // labelGoal
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(168, 46);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(34, 15);
-            this.label28.TabIndex = 7;
-            this.label28.Text = "Goal:";
-            // 
-            // comboBoxInsights
-            // 
-            this.comboBoxInsights.FormattingEnabled = true;
-            this.comboBoxInsights.Location = new System.Drawing.Point(208, 41);
-            this.comboBoxInsights.Name = "comboBoxInsights";
-            this.comboBoxInsights.Size = new System.Drawing.Size(140, 23);
-            this.comboBoxInsights.TabIndex = 6;
-            this.comboBoxInsights.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInsights_SelectedIndexChanged);
-            // 
-            // panelInsightsSpend
-            // 
-            this.panelInsightsSpend.BackColor = System.Drawing.Color.PapayaWhip;
-            this.panelInsightsSpend.Controls.Add(this.daysLeft);
-            this.panelInsightsSpend.Controls.Add(this.label29);
-            this.panelInsightsSpend.Controls.Add(this.monthlySpend);
-            this.panelInsightsSpend.Controls.Add(this.dailySpend);
-            this.panelInsightsSpend.Controls.Add(this.label27);
-            this.panelInsightsSpend.Controls.Add(this.label26);
-            this.panelInsightsSpend.Location = new System.Drawing.Point(116, 79);
-            this.panelInsightsSpend.Name = "panelInsightsSpend";
-            this.panelInsightsSpend.Size = new System.Drawing.Size(319, 214);
-            this.panelInsightsSpend.TabIndex = 5;
-            // 
-            // monthlySpend
-            // 
-            this.monthlySpend.AutoSize = true;
-            this.monthlySpend.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.monthlySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monthlySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.monthlySpend.Location = new System.Drawing.Point(213, 92);
-            this.monthlySpend.Name = "monthlySpend";
-            this.monthlySpend.Size = new System.Drawing.Size(19, 27);
-            this.monthlySpend.TabIndex = 4;
-            this.monthlySpend.Text = " ";
-            // 
-            // dailySpend
-            // 
-            this.dailySpend.AutoSize = true;
-            this.dailySpend.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dailySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dailySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dailySpend.Location = new System.Drawing.Point(213, 30);
-            this.dailySpend.Name = "dailySpend";
-            this.dailySpend.Size = new System.Drawing.Size(19, 27);
-            this.dailySpend.TabIndex = 3;
-            this.dailySpend.Text = " ";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label27.Location = new System.Drawing.Point(23, 95);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(184, 20);
-            this.label27.TabIndex = 2;
-            this.label27.Text = "This month you can spend:";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label26.Location = new System.Drawing.Point(53, 33);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(151, 20);
-            this.label26.TabIndex = 1;
-            this.label26.Text = "Today you can spend:";
-            // 
-            // labelInsights
-            // 
-            this.labelInsights.AutoSize = true;
-            this.labelInsights.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelInsights.Location = new System.Drawing.Point(233, 11);
-            this.labelInsights.Name = "labelInsights";
-            this.labelInsights.Size = new System.Drawing.Size(92, 25);
-            this.labelInsights.TabIndex = 0;
-            this.labelInsights.Text = "INSIGHTS";
-            // 
-            // panelMyGoals
-            // 
-            this.panelMyGoals.Controls.Add(this.editGoalButton);
-            this.panelMyGoals.Controls.Add(this.label1);
-            this.panelMyGoals.Controls.Add(this.labelYourGoals);
-            this.panelMyGoals.Controls.Add(this.textBoxMyGoals);
-            this.panelMyGoals.Location = new System.Drawing.Point(341, 21);
-            this.panelMyGoals.Name = "panelMyGoals";
-            this.panelMyGoals.Size = new System.Drawing.Size(483, 360);
-            this.panelMyGoals.TabIndex = 2;
-            this.panelMyGoals.Visible = false;
-            // 
-            // editGoalButton
-            // 
-            this.editGoalButton.Location = new System.Drawing.Point(399, 270);
-            this.editGoalButton.Name = "editGoalButton";
-            this.editGoalButton.Size = new System.Drawing.Size(53, 21);
-            this.editGoalButton.TabIndex = 9;
-            this.editGoalButton.Text = "edit";
-            this.editGoalButton.UseVisualStyleBackColor = true;
-            this.editGoalButton.Click += new System.EventHandler(this.EditGoalButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "NAME | AMOUNT | DUE DATE";
-            // 
-            // labelYourGoals
-            // 
-            this.labelYourGoals.AutoSize = true;
-            this.labelYourGoals.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelYourGoals.Location = new System.Drawing.Point(182, 9);
-            this.labelYourGoals.Name = "labelYourGoals";
-            this.labelYourGoals.Size = new System.Drawing.Size(109, 28);
-            this.labelYourGoals.TabIndex = 8;
-            this.labelYourGoals.Text = "Your Goals:";
-            // 
-            // textBoxMyGoals
-            // 
-            this.textBoxMyGoals.Location = new System.Drawing.Point(20, 78);
-            this.textBoxMyGoals.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxMyGoals.Multiline = true;
-            this.textBoxMyGoals.Name = "textBoxMyGoals";
-            this.textBoxMyGoals.ReadOnly = true;
-            this.textBoxMyGoals.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMyGoals.Size = new System.Drawing.Size(432, 187);
-            this.textBoxMyGoals.TabIndex = 7;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label29.Location = new System.Drawing.Point(134, 153);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(70, 20);
-            this.label29.TabIndex = 2;
-            this.label29.Text = "Days left:";
-            // 
-            // daysLeft
-            // 
-            this.daysLeft.AutoSize = true;
-            this.daysLeft.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.daysLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.daysLeft.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.daysLeft.Location = new System.Drawing.Point(213, 146);
-            this.daysLeft.Name = "daysLeft";
-            this.daysLeft.Size = new System.Drawing.Size(19, 27);
-            this.daysLeft.TabIndex = 4;
-            this.daysLeft.Text = " ";
+            this.labelGoal.AutoSize = true;
+            this.labelGoal.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelGoal.Location = new System.Drawing.Point(168, 29);
+            this.labelGoal.Name = "labelGoal";
+            this.labelGoal.Size = new System.Drawing.Size(0, 25);
+            this.labelGoal.TabIndex = 0;
             // 
             // GUI
             // 
@@ -1821,8 +1821,12 @@ namespace Plutus
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabGoal.ResumeLayout(false);
-            this.panelGoal.ResumeLayout(false);
-            this.panelGoal.PerformLayout();
+            this.panelInsights.ResumeLayout(false);
+            this.panelInsights.PerformLayout();
+            this.panelInsightsSpend.ResumeLayout(false);
+            this.panelInsightsSpend.PerformLayout();
+            this.panelMyGoals.ResumeLayout(false);
+            this.panelMyGoals.PerformLayout();
             this.panelEditGoal.ResumeLayout(false);
             this.panelEditGoal.PerformLayout();
             this.panelChangeGoal.ResumeLayout(false);
@@ -1831,12 +1835,8 @@ namespace Plutus
             this.panelComment.PerformLayout();
             this.panelAddGoal.ResumeLayout(false);
             this.panelAddGoal.PerformLayout();
-            this.panelInsights.ResumeLayout(false);
-            this.panelInsights.PerformLayout();
-            this.panelInsightsSpend.ResumeLayout(false);
-            this.panelInsightsSpend.PerformLayout();
-            this.panelMyGoals.ResumeLayout(false);
-            this.panelMyGoals.PerformLayout();
+            this.panelGoal.ResumeLayout(false);
+            this.panelGoal.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1896,9 +1896,9 @@ namespace Plutus
         private Label label20;
         private ComboBox monthlyExpensesCategory;
         private Button buttonAddMonthlyIncome;
-        private Label errorLabel;
+        private Label monthlyIncomeStatusLabel;
         private Button buttonAddMonthlyExpenses;
-        private Label errorLabel2;
+        private Label monthlyExpensesStatusLabel;
         private ComboBox t;
         private TabPage tabPage6;
         private Button addCartButton;

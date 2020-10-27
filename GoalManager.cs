@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Timers;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace Plutus
 {
-    public class GoalManager 
+    public class GoalManager
     {
-        private static readonly string goalsFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Goals/"); 
-        private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
-        public readonly string monthlyIncome = databaseFolder + "monthlyIncome.xml";
-        public readonly string monthlyExpenses = databaseFolder + "monthylExpenses.xml";
-        public readonly string goals = goalsFolder + "goals.xml";
+        private static readonly string _goalsFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Goals/");
+        private static readonly string _databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
+        private readonly string _monthlyIncome = _databaseFolder + "monthlyIncome.xml";
+        private readonly string _monthlyExpenses = _databaseFolder + "monthylExpenses.xml";
+        private readonly string _goals = _goalsFolder + "goals.xml";
 
         public List<Goal> ReadGoals()
         {
@@ -26,8 +21,8 @@ namespace Plutus
 
             try
             {
-                if (!File.Exists(goals)) return null;
-                using Stream stream = File.OpenRead(goals);
+                if (!File.Exists(_goals)) return null;
+                using Stream stream = File.OpenRead(_goals);
                 list = serializer.Deserialize(stream) as List<Goal>;
             }
             catch
@@ -37,6 +32,18 @@ namespace Plutus
             return list;
 
         }
+        public string ShowGoals()
+        {
+            var goalList = ReadGoals();
+            var text = "";
+
+            foreach (var goal in goalList)
+            {
+                text += goal.Name + " | " + goal.Amount + "€ | " + goal.DueDate.ToString("yyyy/MM/dd") + System.Environment.NewLine;
+            }
+
+            return text;
+        }
 
         public void AddGoal(Goal newGoal)
         {
@@ -45,7 +52,7 @@ namespace Plutus
 
             try
             {
-                using Stream stream = File.OpenRead(goals);
+                using Stream stream = File.OpenRead(_goals);
                 list = serializer.Deserialize(stream) as List<Goal>;
             }
             catch
@@ -55,20 +62,21 @@ namespace Plutus
 
             list.Add(newGoal);
 
-            using (Stream stream = File.OpenWrite(goals))
+            using (Stream stream = File.OpenWrite(_goals))
             {
                 serializer.Serialize(stream, list);
             }
         }
 
-        public void EditGoal(int index, string newName, double newAmount, DateTime newDueDate)
+        public void EditGoal(int index, string newName, string newAmount, DateTime newDueDate)
         {
+            var amount = double.Parse(newAmount);
             var list = ReadGoals();
             var array = list.ToArray();
 
             list.Remove(array[index]);
-            array[index] = new Goal(newName, newAmount, newDueDate);
-            list.Insert(index,array[index]);
+            array[index] = new Goal(newName, amount, newDueDate);
+            list.Insert(index, array[index]);
             UpdateGoals(list);
 
         }
@@ -84,8 +92,8 @@ namespace Plutus
         public void UpdateGoals(List<Goal> list)
         {
             var serializer = new XmlSerializer(typeof(List<Goal>));
-            File.WriteAllText(goals, "");
-            using Stream stream = File.OpenWrite(goals);
+            File.WriteAllText(_goals, "");
+            using Stream stream = File.OpenWrite(_goals);
             serializer.Serialize(stream, list);
         }
 
@@ -97,8 +105,8 @@ namespace Plutus
 
             try
             {
-                if (!File.Exists(monthlyExpenses)) return null;
-                using Stream stream = File.OpenRead(monthlyExpenses);
+                if (!File.Exists(_monthlyExpenses)) return null;
+                using Stream stream = File.OpenRead(_monthlyExpenses);
                 list = serializer.Deserialize(stream) as List<Expense>;
             }
             catch
@@ -114,8 +122,8 @@ namespace Plutus
             List<Income> list = null;
             try
             {
-                if (!File.Exists(monthlyIncome)) return null;
-                using Stream stream = File.OpenRead(monthlyIncome);
+                if (!File.Exists(_monthlyIncome)) return null;
+                using Stream stream = File.OpenRead(_monthlyIncome);
                 list = serializer.Deserialize(stream) as List<Income>;
             }
             catch
@@ -125,13 +133,17 @@ namespace Plutus
             return list;
         }
 
-        public void AddMonthlyExpense(Expense expense)
+        public void AddMonthlyExpense(string name, string price, string category)
         {
+            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var monthlyExpense = double.Parse(price);
+            var expense = new Expense(date, name, monthlyExpense, category);
+
             var serializer = new XmlSerializer(typeof(List<Expense>));
             List<Expense> list = null;
             try
             {
-                using Stream stream = File.OpenRead(monthlyExpenses);
+                using Stream stream = File.OpenRead(_monthlyExpenses);
                 list = serializer.Deserialize(stream) as List<Expense>;
             }
             catch
@@ -139,19 +151,24 @@ namespace Plutus
                 list = new List<Expense>();
             }
             list.Add(expense);
-            using (Stream stream = File.OpenWrite(monthlyExpenses))
+            using (Stream stream = File.OpenWrite(_monthlyExpenses))
             {
                 serializer.Serialize(stream, list);
             }
         }
 
-        public void AddMonthlyIncome(Income income)
+        public void AddMonthlyIncome(string monthlyIncomeAmount, string category)
         {
+
+            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var monthlyIncome = Convert.ToDouble(monthlyIncomeAmount);
+            var income = new Income(date, monthlyIncome, category);
+
             var serializer = new XmlSerializer(typeof(List<Income>));
             List<Income> list = null;
             try
             {
-                using Stream stream = File.OpenRead(this.monthlyIncome);
+                using Stream stream = File.OpenRead(this._monthlyIncome);
                 list = serializer.Deserialize(stream) as List<Income>;
             }
             catch
@@ -159,43 +176,34 @@ namespace Plutus
                 list = new List<Income>();
             }
             list.Add(income);
-            using (Stream stream = File.OpenWrite(this.monthlyIncome))
+            using (Stream stream = File.OpenWrite(this._monthlyIncome))
             {
                 serializer.Serialize(stream, list);
             }
         }
 
-        public double Insights(DataManager manager, Goal goal)
+        public string Insights(DataManager manager, Goal goal, bool dailyOrMonthly)
         {
             var monthlyIncome = ReadMonthlyIncome();
             var monthlyExpenses = ReadMonthlyExpenses();
             var allIncome = manager.readIncome();
             var allExpenses = manager.readExpenses();
 
-            double income = 0;
-            double expenses = 0;
-            int months;
-            
-            months = goal.DueDate.Month - DateTime.Now.Month + (12 * (goal.DueDate.Year - DateTime.Now.Year));
+            var months = goal.DueDate.Month - DateTime.Now.Month + (12 * (goal.DueDate.Year - DateTime.Now.Year));
+            var income = monthlyIncome.Sum(x => x.Sum * months) + allIncome.Sum(x => x.Sum);
+            var expenses = monthlyExpenses.Sum(x => x.Price * months) + allExpenses.Sum(x => x.Price);
 
-            foreach(var monthly in monthlyIncome)
+            if (dailyOrMonthly)
             {
-                income += monthly.Sum * months;
-            }
-            foreach (var monthly in monthlyExpenses)
-            {
-                expenses += monthly.Price * months;
-            }
-            foreach (var i in allIncome)
-            {
-                income += i.Sum;
-            }
-            foreach (var i in allExpenses)
-            {
-                expenses += i.Price;
+                return ((income - expenses - goal.Amount) / months).ToString("C2");
             }
 
-            return ((income-expenses-goal.Amount)/ months);
+            else if (!dailyOrMonthly)
+            {
+                return ((income - expenses - goal.Amount) / months / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)).ToString("C2");
+            }
+
+            return "";
         }
 
         public string DaysLeft(Goal goal)

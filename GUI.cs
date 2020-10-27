@@ -31,36 +31,31 @@ namespace Plutus
         {
             if (monthlyExpensesName.Text.Length == 0 || monthlyExpensesName.Text == null)
             {
-                errorLabel2.Text = "Name cannot be empty!";
+                monthlyExpensesStatusLabel.Text = "Name cannot be empty!";
                 return;
             }
             if (monthlyExpensesAmount.Text.Length == 0 || monthlyExpensesAmount == null)
             {
-                errorLabel2.Text = "Please enter amount!";
+                monthlyExpensesStatusLabel.Text = "Please enter amount!";
                 return;
             }
             if (!Double.TryParse(monthlyExpensesAmount.Text, out _))
             {
-                errorLabel2.Text = "Amount must be a number!";
+                monthlyExpensesStatusLabel.Text = "Amount must be a number!";
                 return;
             }
             if (monthlyExpensesCategory.Text.Length == 0 || monthlyExpensesCategory == null)
             {
-                errorLabel2.Text = "Please choose a category!";
+                monthlyExpensesStatusLabel.Text = "Please choose a category!";
                 return;
             }
 
-            var name = monthlyExpensesName.Text;
-            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var monthlyExpenses = Convert.ToDouble(monthlyExpensesAmount.Text);
-            var category = monthlyExpensesCategory.Text;
+         
+            goalManager.AddMonthlyExpense(monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text);
+            _ = new Scheduler(monthlyExpensesDate.Value, monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text, manager, false);
+       
 
-            goalManager.AddMonthlyExpense(new Expense(date, name, monthlyExpenses, category));
-
-            var scheduler = new Scheduler(monthlyExpensesDate.Value, name, monthlyExpenses, category, manager, false);
-            scheduler.Start();
-
-            errorLabel2.Text = "Monthly expenses were successfully added!";
+            monthlyExpensesStatusLabel.Text = "Monthly expenses were successfully added!";
             monthlyExpensesAmount.Clear();
             monthlyExpensesCategory.Text = null;
             monthlyExpensesName.Text = null;
@@ -71,36 +66,29 @@ namespace Plutus
         {
             if (monthlyIncomeName.Text.Length == 0 || monthlyIncomeName.Text == null)
             {
-                errorLabel.Text = "Name cannot be empty!";
+                monthlyIncomeStatusLabel.Text = "Name cannot be empty!";
                 return;
             }
             if (monthlyIncomeAmount.Text.Length == 0 || monthlyIncomeAmount.Text == null)
             {
-                errorLabel.Text = "Please enter amount!";
+                monthlyIncomeStatusLabel.Text = "Please enter amount!";
                 return;
             }
             if (!Double.TryParse(monthlyIncomeAmount.Text, out _))
             {
-                errorLabel.Text = "Amount must be a number!";
+                monthlyIncomeStatusLabel.Text = "Amount must be a number!";
                 return;
             }
             if (monthlyIncomeCategory.Text.Length == 0 || monthlyIncomeCategory == null)
             {
-                errorLabel.Text = "Please choose a category!";
+                monthlyIncomeStatusLabel.Text = "Please choose a category!";
                 return;
             }
 
-            var name = monthlyIncomeName.Text;
-            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var monthlyIncome = Convert.ToDouble(monthlyIncomeAmount.Text);
-            var category = monthlyIncomeCategory.Text;
+            goalManager.AddMonthlyIncome(monthlyIncomeAmount.Text, monthlyIncomeCategory.Text);
+            _ = new Scheduler(monthlyIncomeDate.Value, monthlyIncomeName.Text, monthlyIncomeAmount.Text, monthlyIncomeCategory.Text, manager, true);
 
-            goalManager.AddMonthlyIncome(new Income(date, monthlyIncome, category));
-
-            var scheduler = new Scheduler(monthlyIncomeDate.Value, name, monthlyIncome, category, manager, true);
-            scheduler.Start();
-
-            errorLabel.Text = "Monthly income was added successfully!";
+            monthlyIncomeStatusLabel.Text = "Monthly income was added successfully!";
             monthlyIncomeAmount.Clear();
             monthlyIncomeCategory.Text = null;
             monthlyIncomeName.Text = null;

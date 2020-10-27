@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -25,21 +22,7 @@ namespace Plutus
             panelAddGoal.Visible = false;
             panelMyGoals.Visible = true;
 
-
-            var goalList = goalManager.ReadGoals();
-
-            if (goalList.Count == 0)
-            {
-                textBoxMyGoals.Text = "You don't have any goals";
-                return;
-            }
-
-            textBoxMyGoals.Text = "";
-
-            foreach (var goal in goalList)
-            {
-                textBoxMyGoals.Text += goal.Name + " | " + goal.Amount + "€ | " + goal.DueDate.ToString("yyyy/MM/dd") + System.Environment.NewLine;
-            }
+            textBoxMyGoals.Text = goalManager.ShowGoals();
         }
 
         private void ButtonAddGoalEnter_Click(object sender, EventArgs e)
@@ -62,7 +45,7 @@ namespace Plutus
 
             var name = textBoxAddGoalName.Text;
             var date = dateTimePickerAddGoal.Value;
-            var amount = Convert.ToDouble(textBoxAddGoalAmount.Text);
+            var amount = double.Parse(textBoxAddGoalAmount.Text);
 
 
             goalManager.AddGoal(new Goal(name, amount, date));
@@ -104,7 +87,7 @@ namespace Plutus
 
             var goalList = goalManager.ReadGoals();
 
-            if (comboBoxEditGoal.Items.Count <= 0)
+            if (comboBoxEditGoal.Items.Count == 0)
             {
                 foreach (var goal in goalList)
                 {
@@ -119,28 +102,21 @@ namespace Plutus
             if (comboBoxEditGoal.SelectedIndex < 0) return;
 
             var list = goalManager.ReadGoals();
-            var array = list.ToArray();
+            var goals = list.ToArray();
             var index = comboBoxEditGoal.SelectedIndex;
             panelComment.Visible = false;
             panelChangeGoal.Visible = true;
-            textBoxChangeGoalName.Text = array[index].Name;
-            textBoxChangeGoalAmount.Text = array[index].Amount.ToString();
-            dateTimePickerChangeGoal.Value = array[index].DueDate;
+            textBoxChangeGoalName.Text = goals[index].Name;
+            textBoxChangeGoalAmount.Text = goals[index].Amount.ToString();
+            dateTimePickerChangeGoal.Value = goals[index].DueDate;
 
         }
 
         private void ButtonChangeGoal_Click(object sender, EventArgs e)
         {
-            var newName = textBoxChangeGoalName.Text;
-            var newAmount = Convert.ToDouble(textBoxChangeGoalAmount.Text);
-            var newDueDate = dateTimePickerChangeGoal.Value;
-            var index = comboBoxEditGoal.SelectedIndex;
-
-            goalManager.EditGoal(index, newName, newAmount, newDueDate);
-
+            goalManager.EditGoal(comboBoxEditGoal.SelectedIndex, textBoxChangeGoalName.Text, textBoxChangeGoalAmount.Text, dateTimePickerChangeGoal.Value);
             panelChangeGoal.Visible = false;
             panelComment.Visible = true;
-
 
         }
         private void ButtonDeleteGoal_Click(object sender, EventArgs e)
@@ -148,8 +124,10 @@ namespace Plutus
             var index = comboBoxEditGoal.SelectedIndex;
             goalManager.DeleteGoal(index);
             comboBoxEditGoal.Items.RemoveAt(index);
-            if(comboBoxInsights.Items.Count>0)
-            comboBoxInsights.Items.RemoveAt(index);
+            if (comboBoxInsights.Items.Count > 0)
+            {
+                comboBoxInsights.Items.RemoveAt(index);
+            }
             panelChangeGoal.Visible = false;
             panelEditGoal.Visible = false;
             panelGoal.Visible = true;
@@ -185,12 +163,12 @@ namespace Plutus
             if (comboBoxInsights.SelectedIndex < 0) return;
 
             var list = goalManager.ReadGoals();
-            var array = list.ToArray();
+            var goals = list.ToArray();
             var index = comboBoxInsights.SelectedIndex;
 
-            monthlySpend.Text = goalManager.Insights(manager, array[index]).ToString("F2") + "€";
-            dailySpend.Text = (goalManager.Insights(manager, array[index]) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)).ToString("F2") + "€";
-            daysLeft.Text = goalManager.DaysLeft(array[index]);
+            monthlySpend.Text = goalManager.Insights(manager, goals[index], true);
+            dailySpend.Text = goalManager.Insights(manager, goals[index], false);
+            daysLeft.Text = goalManager.DaysLeft(goals[index]);
 
         }
     }
