@@ -10,6 +10,7 @@ namespace Plutus
         public string Name { get; set; }
         public double Amount { get; set; }
 
+        public Goal() { }
         public Goal(string name, double amount, DateTime date)
         {
             Name = name;
