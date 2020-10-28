@@ -4,11 +4,11 @@
     {
         public string VerifyData(string name = "undefined", string amount = "0", string category = "undefined")
         {
-            if (string.IsNullOrEmpty(name)) return "Name cannot be empty!";
-            if (!double.TryParse(amount, out _)) return "Amount is not a number!";
-            if (string.IsNullOrEmpty(category)) return "Please choose a category!";
-
-            return "";
+            return string.IsNullOrEmpty(name)
+                ? "Name cannot be empty!"
+                : !double.TryParse(amount, out _)
+                ? "Amount is not a number!"
+                : string.IsNullOrEmpty(category) ? "Please choose a category!" : "";
         }
     }
 }
