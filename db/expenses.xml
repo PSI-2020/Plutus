@@ -78,4 +78,10 @@
     <Price>25.26</Price>
     <Category>Bills</Category>
   </Expense>
+  <Expense>
+    <Date>1603880171</Date>
+    <Name>Milk</Name>
+    <Price>3</Price>
+    <Category>Food</Category>
+  </Expense>
 </ArrayOfExpense>

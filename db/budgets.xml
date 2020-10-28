@@ -2,9 +2,16 @@
 <ArrayOfBudget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Budget>
     <Name>budget0</Name>
+    <Category>Food</Category>
+    <Sum>200</Sum>
+    <From>1598962412</From>
+    <To>1603887212</To>
+  </Budget>
+  <Budget>
+    <Name>budget1</Name>
     <Category>Clothes</Category>
-    <Sum>2000</Sum>
-    <From>1598979578</From>
-    <To>1603817978</To>
+    <Sum>200</Sum>
+    <From>1598962420</From>
+    <To>1603887220</To>
   </Budget>
 </ArrayOfBudget>
