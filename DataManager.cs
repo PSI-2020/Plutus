@@ -1,11 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Timers;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Plutus
 {
+    [Serializable()]
+    public class Expense : ISerializable
+    {
+        public int Date { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public string Category { get; set; }
+
+        public Expense() { }
+
+        public Expense(int date, string name, double price, string category)
+        {
+            Date = date;
+            Name = name;
+            Price = price;
+            Category = category;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Date", Date);
+            info.AddValue("Name", Name);
+            info.AddValue("Price", Price);
+            info.AddValue("Category", Category);
+        }
+
+        public Expense(SerializationInfo info, StreamingContext context)
+        {
+            Date = (int)info.GetValue("Date", typeof(int));
+            Name = (string)info.GetValue("Name", typeof(string));
+            Price = (double)info.GetValue("Price", typeof(double));
+            Category = (string)info.GetValue("Category", typeof(string));
+        }
+    }
+
+    [Serializable()]
+    public class Income : ISerializable
+    {
+        public int Date { get; set; }
+        public double Sum { get; set; }
+        public string Category { get; set; }
+
+        public Income() { }
+
+        public Income(int date, double sum, string category)
+        {
+            Date = date;
+            Sum = sum;
+            Category = category;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Date", Date);
+            info.AddValue("Sum", Sum);
+            info.AddValue("Category", Category);
+        }
+
+        public Income(SerializationInfo info, StreamingContext context)
+        {
+            Date = (int)info.GetValue("Date", typeof(int));
+            Sum = (double)info.GetValue("Sum", typeof(double));
+            Category = (string)info.GetValue("Category", typeof(string));
+        }
+    }
+
     public class Scheduler : IDisposable
     {
         public readonly Timer checkForTime;
@@ -14,10 +84,10 @@ namespace Plutus
         public double Amount { get; set; }
         public string Category { get; set; }
 
-        private readonly FileManager Manager;
+        private readonly DataManager Manager;
         private bool IncomeOrExpense;
 
-        public Scheduler(DateTime date, string name, double amount, string category, FileManager manager, bool incomeOrExpense)
+        public Scheduler(DateTime date, string name, double amount, string category, DataManager manager, bool incomeOrExpense)
         {
             Date = date;
             Name = name;
@@ -47,8 +117,8 @@ namespace Plutus
             {
                 var time = (int)(Date.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                 if(IncomeOrExpense)
-                Manager.AddIncome(new Income(time, Amount, Category));
-                else if(!IncomeOrExpense) Manager.AddExpense(new Expense(time, Name, Amount, Category));
+                Manager.addIncome(new Income(time, Amount, Category));
+                else if(!IncomeOrExpense) Manager.addExpense(new Expense(time, Name, Amount, Category));
                 Date = Date.AddMonths(1);
                 checkForTime.Interval = 86400000;
             }
@@ -66,13 +136,13 @@ namespace Plutus
     }
 
    
-    public class FileManager
+    public class DataManager
     {
         private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         public readonly string income = databaseFolder + "income.xml";
         public readonly string expenses = databaseFolder + "expenses.xml";
 
-        public List<Expense> ReadExpenses()
+        public List<Expense> readExpenses()
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             List<Expense> list = null;
@@ -90,7 +160,7 @@ namespace Plutus
             return list;
         }
 
-        public List<Income> ReadIncome()
+        public List<Income> readIncome()
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             List<Income> list = null;
@@ -107,7 +177,7 @@ namespace Plutus
             return list;
         }
 
-        public void AddExpense(Expense expense)
+        public void addExpense(Expense expense)
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             List<Expense> list = null;
@@ -127,7 +197,7 @@ namespace Plutus
             }
         }
 
-        public void AddIncome(Income income)
+        public void addIncome(Income income)
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             List<Income> list = null;
@@ -147,7 +217,7 @@ namespace Plutus
             }
         }
 
-        public void UpdateIncome(List<Income> income)
+        public void updateIncome(List<Income> income)
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             File.WriteAllText(this.income, "");
@@ -155,7 +225,7 @@ namespace Plutus
             serializer.Serialize(stream, income);
         }
 
-        public void UpdateExpenses(List<Expense> expense)
+        public void updateExpenses(List<Expense> expense)
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             File.WriteAllText(expenses, "");
