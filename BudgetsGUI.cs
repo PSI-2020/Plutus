@@ -49,7 +49,7 @@ namespace Plutus
             var budManager = new BudgetsManager();
             var list = budManager.LoadBudget();
             if (list == null) return;
-            var manager = new DataManager();
+            var manager = new FileManager();
 
             budgetsFlow.Visible = true;
 
@@ -63,7 +63,7 @@ namespace Plutus
                     budManager.DeleteBudget(list.IndexOf(item));
                 }
 
-                var expenses = manager.readExpenses();
+                var expenses = manager.ReadExpenses();
                 if (expenses == null) return;
 
 

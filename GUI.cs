@@ -199,7 +199,7 @@ namespace Plutus
                     LoadExpensesGUI();
                     expenseStatusMessage.Text = "";
                     break;
-                case 6:
+                case "Budgets":
                     budgetsFlow.Controls.Clear();
                     DisplayBudgets();
                     break;
