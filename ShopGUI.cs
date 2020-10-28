@@ -59,6 +59,7 @@ namespace Plutus
         {
             var currSCM = _shopCartManagers[index];
             var currShoppingCart = _cL.GiveCart(index);
+            if (currShoppingCart == null) return;
 
             var toPickLabel = CreateNewShoppingLabel("To Pick");
             var toPickLine = CreateNewShoppingLine();

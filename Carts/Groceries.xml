@@ -5,14 +5,14 @@
     <Name>Bread</Name>
     <Price>0.79</Price>
     <Category>Food</Category>
-    <Active>false</Active>
+    <Active>true</Active>
   </CartExpense>
   <CartExpense>
     <Date>1603794792</Date>
     <Name>Eggs</Name>
     <Price>2.29</Price>
     <Category>Food</Category>
-    <Active>false</Active>
+    <Active>true</Active>
   </CartExpense>
   <CartExpense>
     <Date>1603802194</Date>
