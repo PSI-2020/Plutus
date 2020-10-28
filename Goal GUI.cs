@@ -80,7 +80,7 @@ namespace Plutus
             panelMyGoals.Visible = false;
             panelAddGoal.Visible = false;
             panelEditGoal.Visible = true;
-            panelComment.Visible = false;
+            panelGoalComment.Visible = false;
             comboBoxEditGoal.Text = null;
             panelChangeGoal.Visible = false;
 
@@ -104,7 +104,7 @@ namespace Plutus
             var list = goalManager.ReadGoals();
             var goals = list.ToArray();
             var index = comboBoxEditGoal.SelectedIndex;
-            panelComment.Visible = false;
+            panelGoalComment.Visible = false;
             panelChangeGoal.Visible = true;
             textBoxChangeGoalName.Text = goals[index].Name;
             textBoxChangeGoalAmount.Text = goals[index].Amount.ToString();
@@ -116,7 +116,7 @@ namespace Plutus
         {
             goalManager.EditGoal(comboBoxEditGoal.SelectedIndex, textBoxChangeGoalName.Text, textBoxChangeGoalAmount.Text, dateTimePickerChangeGoal.Value);
             panelChangeGoal.Visible = false;
-            panelComment.Visible = true;
+            panelGoalComment.Visible = true;
 
         }
         private void ButtonDeleteGoal_Click(object sender, EventArgs e)
