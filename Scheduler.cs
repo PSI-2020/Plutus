@@ -7,7 +7,7 @@ namespace Plutus
     {
         private readonly Timer _checkForTime;
         public string Name { get; set; }
-        public DateTime Date;
+        public DateTime Date { get; set; }
         public double Amount { get; set; }
         public string Category { get; set; }
 
@@ -45,8 +45,13 @@ namespace Plutus
             {
                 var time = (int)(Date.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                 if (_incomeOrExpense)
+                {
                     _manager.addIncome(new Income(time, Amount, Category));
-                else if (!_incomeOrExpense) _manager.addExpense(new Expense(time, Name, Amount, Category));
+                }
+                else if (!_incomeOrExpense)
+                {
+                    _manager.addExpense(new Expense(time, Name, Amount, Category));
+                }
                 Date = Date.AddMonths(1);
                 _checkForTime.Interval = 86400000;
             }
