@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -23,20 +24,17 @@ namespace Plutus
                 errorLbl.Text = "Please enter a sum!";
                 return;
             }
+
             var budManager = new BudgetsManager();
             var list = budManager.LoadBudget();
-            var count = list.Count;
             budgetsFlow.Visible = true;
             errorLbl.Text = null;
-            var category = budgetCat.SelectedItem.ToString();
-            var sum = Convert.ToDouble(budgetSum.Text);
-            var from = dateFrom.Value;
-            var to = dateTo.Value;
-            var fromSec = (int)(from.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var toSec = (int)(to.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var name = "budget" + count;
-            var budget = new Budget(name, category, sum, fromSec, toSec);
+
+            var fromSec = (int)(dateFrom.Value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var toSec = (int)(dateTo.Value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            var budget = new Budget("budget" + list.Count, budgetCat.SelectedItem.ToString(), double.Parse(budgetSum.Text), fromSec, toSec);
             budManager.AddBudget(budget);
+            
             budgetsFlow.Controls.Clear();
             DisplayBudgets();
             budgetCat.Text = null;
@@ -50,16 +48,15 @@ namespace Plutus
         {
             var budManager = new BudgetsManager();
             var list = budManager.LoadBudget();
+            if (list == null) return;
             var manager = new DataManager();
 
             budgetsFlow.Visible = true;
 
-            if (list == null) return;
-
             foreach (var item in list)
             {
-                var from = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(item.From).ToLocalTime();
-                var to = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(item.To).ToLocalTime();
+                var from = new DateTime(1970, 1, 1).AddSeconds(item.From).ToLocalTime();
+                var to = new DateTime(1970, 1, 1).AddSeconds(item.To).ToLocalTime();
 
                 if (to < DateTime.Now)
                 {
@@ -73,13 +70,11 @@ namespace Plutus
                 var data = "Budget for " + item.Category;
                 var total = 0.00;
 
-                foreach (var expense in expenses)
-                {
-                    if (expense.Category == item.Category && expense.Date >= item.From && expense.Date <= item.To)
-                    {
-                        total += expense.Price;
-                    }
-                }
+                total = expenses
+                    .Where(x => x.Category == item.Category)
+                    .Where(x => x.Date >= item.From)
+                    .Where(x => x.Date <= item.To)
+                    .Sum(x => x.Price);
 
                 data += "\r\n" + total + "/" + item.Sum + " €" + "\r\n" + Math.Round((total * 100 / item.Sum), 2) + "%" + "\r\n" +
                     from.ToString("yyyy/MM/dd") + " - " + to.ToString("yyyy/MM/dd");
@@ -104,7 +99,7 @@ namespace Plutus
                     Width = 80,
                     Name = "button" + list.IndexOf(item)
                 };
-                but.Click += new System.EventHandler(this.DeleteClick);
+                but.Click += new EventHandler(DeleteClick);
                 budgetsFlow.Controls.Add(flow);
                 flow.Controls.Add(Textbox);
                 flow.Controls.Add(but);
@@ -117,7 +112,7 @@ namespace Plutus
             var budManager = new BudgetsManager();
             var delButton = (Button)sender;
 
-            var index = Convert.ToInt32(delButton.Name.Substring(6));
+            var index = int.Parse(delButton.Name.Substring(6));
             budManager.DeleteBudget(index);
             budgetsFlow.Controls.Clear();
             DisplayBudgets();

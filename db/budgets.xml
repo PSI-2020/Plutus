@@ -3,15 +3,8 @@
   <Budget>
     <Name>budget0</Name>
     <Category>Clothes</Category>
-    <Sum>8456</Sum>
-    <From>1598962895</From>
-    <To>1604060495</To>
-  </Budget>
-  <Budget>
-    <Name>budget1</Name>
-    <Category>Other</Category>
-    <Sum>64153</Sum>
-    <From>1598962917</From>
-    <To>1603887717</To>
+    <Sum>2000</Sum>
+    <From>1598979578</From>
+    <To>1603817978</To>
   </Budget>
 </ArrayOfBudget>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Plutus
@@ -52,15 +52,15 @@ namespace Plutus
 
     public class BudgetsManager
     {
-        private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
-        public readonly string file = databaseFolder + "budgets.xml";
+        private static readonly string _databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
+        private readonly string _file = _databaseFolder + "budgets.xml";
         public void AddBudget(Budget budget)
         {
             var serializer = new XmlSerializer(typeof(List<Budget>));
             List<Budget> list = null;
             try
             {
-                using Stream stream = File.OpenRead(this.file);
+                using Stream stream = File.OpenRead(_file);
                 list = serializer.Deserialize(stream) as List<Budget>;
             }
             catch
@@ -68,7 +68,7 @@ namespace Plutus
                 list = new List<Budget>();
             }
             list.Add(budget);
-            using (Stream stream = File.OpenWrite(this.file))
+            using (Stream stream = File.OpenWrite(_file)) //inconsistent kodas, be this
             {
                 serializer.Serialize(stream, list);
             }
@@ -80,8 +80,8 @@ namespace Plutus
             List<Budget> list = null;
             try
             {
-                if (!File.Exists(file)) return null;
-                using Stream stream = File.OpenRead(file);
+                if (!File.Exists(_file)) return null;
+                using Stream stream = File.OpenRead(_file);
                 list = serializer.Deserialize(stream) as List<Budget>;
             }
             catch
@@ -110,8 +110,8 @@ namespace Plutus
         public void UpdateBudgets(List<Budget> list)
         {
             var serializer = new XmlSerializer(typeof(List<Budget>));
-            File.WriteAllText(file, "");
-            using Stream stream = File.OpenWrite(file);
+            File.WriteAllText(_file, "");
+            using Stream stream = File.OpenWrite(_file);
             serializer.Serialize(stream, list);
         }
     }
