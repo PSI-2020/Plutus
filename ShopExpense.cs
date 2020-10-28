@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Plutus
+﻿namespace Plutus
 {
-    class ShopExpense : Expense
+    public class ShopExpense : Expense
     {
         public int State { get; set; }
 
-        public ShopExpense(int date, string name, double price, string category, int state) : base(date, name, price, category)
-        {
-            State = state;
-        }
+        public ShopExpense(int date, string name, double price, string category, int state) : base(date, name, price, category) => State = state;
         public ShopExpense(Expense expense)
         {
             Date = expense.Date;

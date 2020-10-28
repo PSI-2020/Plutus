@@ -270,4 +270,52 @@
     <Price>2.45</Price>
     <Category>Food</Category>
   </Expense>
+  <Expense>
+    <Date>1603802791</Date>
+    <Name>Bread</Name>
+    <Price>0.79</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603802791</Date>
+    <Name>Eggs</Name>
+    <Price>2.29</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603802791</Date>
+    <Name>Banana</Name>
+    <Price>1.27</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603874692</Date>
+    <Name>Butter</Name>
+    <Price>1.69</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603875468</Date>
+    <Name>Bread</Name>
+    <Price>0.79</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603875469</Date>
+    <Name>Eggs</Name>
+    <Price>2.29</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603875469</Date>
+    <Name>Butter</Name>
+    <Price>1.69</Price>
+    <Category>Food</Category>
+  </Expense>
+  <Expense>
+    <Date>1603875469</Date>
+    <Name>Banana</Name>
+    <Price>1.79</Price>
+    <Category>Food</Category>
+  </Expense>
 </ArrayOfExpense>

@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 namespace Plutus
 {
-    class ShopCartManager
+    public class ShopCartManager
     {
-        private List<ShopExpense> _sCartParts = new List<ShopExpense>();
-        private int[] _stateCount= {0, 0, 0};
+        private readonly List<ShopExpense> _sCartParts = new List<ShopExpense>();
+        private readonly int[] _stateCount = { 0, 0, 0 };
         public ShopCartManager(Cart cart)
         {
             var elemC = cart.GiveElementC();
-            for(var i = 0; i < elemC; i++)
+            for (var i = 0; i < elemC; i++)
             {
                 AddNewElem(cart.GiveElement(i));
             }
@@ -24,10 +22,7 @@ namespace Plutus
             _sCartParts.Add(newElem);
         }
 
-        public int GiveSCount(int index)
-        {
-            return _stateCount[index];
-        }
+        public int GiveSCount(int index) => _stateCount[index];
 
         public void ChangeState(int index, int state)
         {
@@ -51,7 +46,7 @@ namespace Plutus
             var answer = "";
             for (var i = 0; i < _sCartParts.Count; i++)
             {
-                if(_sCartParts[i].State == state)
+                if (_sCartParts[i].State == state)
                 {
                     answer += i;
                     answer += "|";
@@ -66,11 +61,13 @@ namespace Plutus
             {
                 if (expense.State == 1)
                 {
-                    var charge = new Expense();
-                    charge.Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                    charge.Name = expense.Name;
-                    charge.Price = expense.Price;
-                    charge.Category = expense.Category;
+                    var charge = new Expense
+                    {
+                        Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds,
+                        Name = expense.Name,
+                        Price = expense.Price,
+                        Category = expense.Category
+                    };
                     dm.addExpense(charge);
                     ChangeState(i);
                     i++;

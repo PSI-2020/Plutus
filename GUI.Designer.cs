@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Plutus
 {
@@ -964,7 +963,7 @@ namespace Plutus
             this.addCartButton.TabIndex = 3;
             this.addCartButton.Text = "Add A Cart";
             this.addCartButton.UseVisualStyleBackColor = true;
-            this.addCartButton.Click += new System.EventHandler(this.addCartButton_Click);
+            this.addCartButton.Click += new System.EventHandler(this.AddCartButton_Click);
             // 
             // cartPanel
             // 
@@ -1024,7 +1023,7 @@ namespace Plutus
             this.elemChangeSave.TabIndex = 3;
             this.elemChangeSave.Text = "Save";
             this.elemChangeSave.UseVisualStyleBackColor = true;
-            this.elemChangeSave.Click += new System.EventHandler(this.elemChangeSave_Click);
+            this.elemChangeSave.Click += new System.EventHandler(this.ElemChangeSave_Click);
             // 
             // cartElemChangeCat
             // 
@@ -1166,7 +1165,7 @@ namespace Plutus
             this.cartChargeBut.TabIndex = 6;
             this.cartChargeBut.Text = "Charge cart";
             this.cartChargeBut.UseVisualStyleBackColor = true;
-            this.cartChargeBut.Click += new System.EventHandler(this.cartChargeBut_Click);
+            this.cartChargeBut.Click += new System.EventHandler(this.CartChargeBut_Click);
             // 
             // cartName
             // 
@@ -1220,7 +1219,7 @@ namespace Plutus
             this.delCartButton.TabIndex = 0;
             this.delCartButton.Text = "Delete Cart";
             this.delCartButton.UseVisualStyleBackColor = true;
-            this.delCartButton.Click += new System.EventHandler(this.delCartButton_Click);
+            this.delCartButton.Click += new System.EventHandler(this.DelCartButton_Click);
             // 
             // tabPage2
             // 
@@ -1265,7 +1264,7 @@ namespace Plutus
             this.chargeShopping.TabIndex = 4;
             this.chargeShopping.Text = "Done";
             this.chargeShopping.UseVisualStyleBackColor = true;
-            this.chargeShopping.Click += new System.EventHandler(this.chargeShopping_Click);
+            this.chargeShopping.Click += new System.EventHandler(this.ChargeShopping_Click);
             // 
             // shoppingProductsPanel
             // 

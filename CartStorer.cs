@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Plutus
 {
-    class CartStorer
+    public class CartStorer
     {
         private static readonly string _cartFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Carts/");
+        private readonly string[] _filePaths;
 
-        string[] _filePaths = Directory.GetFiles(_cartFolder, "*.xml",
-                                SearchOption.TopDirectoryOnly);
+        public CartStorer() => _filePaths = Directory.GetFiles(_cartFolder, "*.xml", SearchOption.TopDirectoryOnly);
 
-        public CartStorer()
-        {
-
-        }
         public void StoreCart(Cart cart)
         {
             var name = cart.CartName;
             var cartLoc = _cartFolder + name + ".xml";
-            if (File.Exists(cartLoc)) ChangeCart(cart, cartLoc);
-            else CreateCart(cartLoc);
+            if (File.Exists(cartLoc))
+            {
+                ChangeCart(cart, cartLoc);
+            }
+            else
+            {
+                CreateCart(cartLoc);
+            }
         }
 
         public int GiveCartCount()
@@ -34,7 +34,7 @@ namespace Plutus
         public Cart LoadCart(int index)
         {
             var temp = _filePaths[index].Split('/');
-            var temp1 = temp[temp.Length - 1].Split('.');
+            var temp1 = temp[^1].Split('.');
             var name = temp1[0];
 
             var serializer = new XmlSerializer(typeof(List<CartExpense>));
@@ -62,7 +62,7 @@ namespace Plutus
             var name = cart.CartName;
             var cartLoc = _cartFolder + name + ".xml";
 
-            Microsoft.VisualBasic.FileIO.FileSystem.RenameFile(cartLoc, (newname + ".xml"));
+            Microsoft.VisualBasic.FileIO.FileSystem.RenameFile(cartLoc, newname + ".xml");
         }
 
         public void DeleteCart(string name)
@@ -75,7 +75,9 @@ namespace Plutus
 
         private void CreateCart(string loc)
         {
+#pragma warning disable CS0642 // Possible mistaken empty statement
             using (File.Create(loc)) ;
+#pragma warning restore CS0642 // Possible mistaken empty statement
         }
 
         private void ChangeCart(Cart cart, string loc)

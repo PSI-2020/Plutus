@@ -1,46 +1,35 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Plutus
 
 {
-    class Cart
+    public class Cart
     {
-        private List<CartExpense> _cartParts;
+        private readonly List<CartExpense> _cartParts;
         public string CartName { get; set; }
 
 
-        public Cart()
-        {
-            _cartParts = new List<CartExpense>();
-        }
-        public Cart(string name) : this()
-        {
-            CartName = name;
-        }
+        public Cart() => _cartParts = new List<CartExpense>();
+        public Cart(string name) : this() => CartName = name;
 
         public Cart(string name, List<CartExpense> list) : this(name)
         {
-            foreach(var expense in list)
+            foreach (var expense in list)
             {
                 _cartParts.Add(expense);
             }
         }
 
-        public CartExpense GiveElement(int index)
-        {
-            return _cartParts.ElementAt(index);
-        }
+        public CartExpense GiveElement(int index) => _cartParts.ElementAt(index);
 
         public void ChangeActivity(int index)
         {
             var i = 0;
             foreach (var expense in _cartParts)
             {
-                if(i == index)
+                if (i == index)
                 {
                     expense.Active = !expense.Active;
                 }
@@ -48,10 +37,7 @@ namespace Plutus
             }
         }
 
-        public int GiveElementC()
-        {
-            return _cartParts.Count;
-        }
+        public int GiveElementC() => _cartParts.Count;
 
         public void AddExpense(Expense expense)
         {
@@ -64,10 +50,7 @@ namespace Plutus
             _cartParts.Add(cExpense);
         }
 
-        public void RemoveExpense(int number)
-        {
-            _cartParts.RemoveAt(number);
-        }
+        public void RemoveExpense(int number) => _cartParts.RemoveAt(number);
 
         public void Account(DataManager dm)
         {
@@ -75,11 +58,13 @@ namespace Plutus
             {
                 if (expense.Active)
                 {
-                    var charge = new Expense();
-                    charge.Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                    charge.Name = expense.Name;
-                    charge.Price = expense.Price;
-                    charge.Category = expense.Category;
+                    var charge = new Expense
+                    {
+                        Date = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds,
+                        Name = expense.Name,
+                        Price = expense.Price,
+                        Category = expense.Category
+                    };
                     dm.addExpense(charge);
                 }
             }

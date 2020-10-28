@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -10,7 +9,7 @@ namespace Plutus
     {
 
         private List<ShopCartManager> _shopCartManagers;
-        Button _currShopingCartBut;
+        private Button _currShopingCartBut;
         private void CShopLoad()
         {
             Cart cart;
@@ -23,7 +22,7 @@ namespace Plutus
             {
                 for (var i = 0; i < cartCount; i++)
                 {
-                        cart = _cL.GiveCart(i);
+                    cart = _cL.GiveCart(i);
                     if (cart != null) CShopCartLoad(cart);
                 }
             }
@@ -33,12 +32,14 @@ namespace Plutus
         {
             var index = _shopCartManagers.Count + 1;
             var name = "CartS" + index;
-            var myButton = new Button();
-            myButton.Name = name;
-            myButton.Text = cart.CartName;
-            myButton.Width = 210;
-            myButton.Height = 45;
-            myButton.Click += new System.EventHandler(this.ShopCart_Click);
+            var myButton = new Button
+            {
+                Name = name,
+                Text = cart.CartName,
+                Width = 210,
+                Height = 45
+            };
+            myButton.Click += new EventHandler(ShopCart_Click);
             shoppingCarts.Controls.Add(myButton);
             var sCM = new ShopCartManager(cart);
             _shopCartManagers.Add(sCM);
@@ -46,7 +47,7 @@ namespace Plutus
 
 
 
-        private void ShopCart_Click(object sender, System.EventArgs e)
+        private void ShopCart_Click(object sender, EventArgs e)
         {
             _currShopingCartBut = (Button)sender;
             chargeShopping.Visible = true;
@@ -59,14 +60,10 @@ namespace Plutus
             var currSCM = _shopCartManagers[index];
             var currShoppingCart = _cL.GiveCart(index);
 
-            var toPickLabel = new Label();
-            toPickLabel = CreateNewShoppingLabel(toPickLabel, "To Pick");
-            var toPickLine = new Label();
-            toPickLine = CreateNewShoppingLine(toPickLine);
-            var pickedLine = new Label();
-            pickedLine = CreateNewShoppingLine(pickedLine);
-            var pickedLabel = new Label();
-            pickedLabel = CreateNewShoppingLabel(pickedLabel, "Picked");
+            var toPickLabel = CreateNewShoppingLabel("To Pick");
+            var toPickLine = CreateNewShoppingLine();
+            var pickedLine = CreateNewShoppingLine();
+            var pickedLabel = CreateNewShoppingLabel("Picked");
 
             shoppingProductsPanel.Controls.Add(toPickLabel);
             shoppingProductsPanel.Controls.Add(toPickLine);
@@ -102,19 +99,20 @@ namespace Plutus
 
         private Button CreateNewShoppingExpenseBut(string name, string color, int count)
         {
-            Button but = new Button();
-            if (color != null)
+            var newColor = new Color();
+            newColor = color != null ? Color.FromName(color) : Color.FromName("white");
+            var but = new Button
             {
-                but.BackColor = Color.FromName(color);
-            }
-            but.Name = "ElemButton" + "|" + count;
-            but.Click += new System.EventHandler(this.ShopElem_Click);
-            but.Size = new System.Drawing.Size(628, 40);
-            but.Text = name;
+                Size = new Size(628, 40),
+                Text = name,
+                Name = "ElemButton" + "|" + count,
+                BackColor = newColor
+            };
+            but.Click += new EventHandler(ShopElem_Click);
             return but;
         }
 
-        private void ShopElem_Click(object sender, System.EventArgs e)
+        private void ShopElem_Click(object sender, EventArgs e)
         {
             currentElemBut = (Button)sender;
             var index = currentElemBut.Name.IndexOf('|') + 1;
@@ -125,28 +123,32 @@ namespace Plutus
             DisplayShoppingCart(i);
         }
 
-        private Label CreateNewShoppingLabel(Label label, string value)
+        private Label CreateNewShoppingLabel(string value)
         {
-            label.Size = new System.Drawing.Size(628, 20);
-            //label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Text = value;
+            var label = new Label
+            {
+                Size = new Size(628, 20),
+                Text = value
+            };
             return label;
         }
-        private Label CreateNewShoppingLine(Label label)
+        private Label CreateNewShoppingLine()
         {
-            label.Size = new System.Drawing.Size(628, 2);
-            label.BackColor = Color.FromName("black");
+            var label = new Label
+            {
+                Size = new Size(628, 2),
+                BackColor = Color.FromName("black")
+            };
             return label;
         }
 
-        private void chargeShopping_Click(object sender, EventArgs e)
+        private void ChargeShopping_Click(object sender, EventArgs e)
         {
             var index = int.Parse(_currShopingCartBut.Name.Substring(5)) - 1;
             var cart = _shopCartManagers[index];
             cart.Account(manager);
             shoppingProductsPanel.Controls.Clear();
             DisplayShoppingCart(index);
-
         }
     }
 }

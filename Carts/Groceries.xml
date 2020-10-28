@@ -14,4 +14,18 @@
     <Category>Food</Category>
     <Active>false</Active>
   </CartExpense>
+  <CartExpense>
+    <Date>1603802194</Date>
+    <Name>Butter</Name>
+    <Price>1.69</Price>
+    <Category>Food</Category>
+    <Active>true</Active>
+  </CartExpense>
+  <CartExpense>
+    <Date>1603875463</Date>
+    <Name>Banana</Name>
+    <Price>1.79</Price>
+    <Category>Food</Category>
+    <Active>true</Active>
+  </CartExpense>
 </ArrayOfCartExpense>
