@@ -644,5 +644,7 @@ namespace Plutus
         }
 
         public void Search(object sender, EventArgs e) => output.Text = filter.SearchData(fileManager, searchNameText.Text, searchCategoryBox.Text, searchNumberFromText.Text, searchNumberToText.Text, dataTypeBox.SelectedIndex, searchCategoryBox.SelectedIndex, searchDatePickerFrom, searchDatePickerTo);
+
+
     }
 }

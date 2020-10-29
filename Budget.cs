@@ -54,6 +54,7 @@ namespace Plutus
     {
         private static readonly string _databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         private readonly string _file = _databaseFolder + "budgets.xml";
+        private readonly FileManager manager = new FileManager();
         public void AddBudget(Budget budget)
         {
             var serializer = new XmlSerializer(typeof(List<Budget>));
@@ -114,5 +115,35 @@ namespace Plutus
             using Stream stream = File.OpenWrite(_file);
             serializer.Serialize(stream, list);
         }
+        public string GenerateBudget(int index)
+        {
+            var data = "";
+            var list = LoadBudget();
+            var array = list.ToArray();
+
+            var from = new DateTime(1970, 1, 1).AddSeconds(array[index].From).ToLocalTime();
+            var to = new DateTime(1970, 1, 1).AddSeconds(array[index].To).ToLocalTime();
+
+
+            var expenses = manager.ReadExpenses();
+            if (expenses == null) return "";
+
+
+            data = "Budget for " + array[index].Category;
+            var total = 0.00;
+
+            total = expenses
+                .Where(x => x.Category == array[index].Category)
+                .Where(x => x.Date >= array[index].From)
+                .Where(x => x.Date <= array[index].To)
+                .Sum(x => x.Price);
+
+            data += "\r\n" + total + "/" + array[index].Sum + " €" + "\r\n" + Math.Round((total * 100 / array[index].Sum), 2) + "%" + "\r\n" +
+                from.ToString("yyyy/MM/dd") + " - " + to.ToString("yyyy/MM/dd");
+
+
+            return data;
+        }
+        
     }
 }
