@@ -27,73 +27,7 @@ namespace Plutus
         readonly Statistics stats = new Statistics();
         public GUI() => InitializeComponent();
 
-        private void ButtonAddMonthlyExpenses_Click(object sender, EventArgs e)
-        {
-            if (monthlyExpensesName.Text.Length == 0 || monthlyExpensesName.Text == null)
-            {
-                monthlyExpensesStatusLabel.Text = "Name cannot be empty!";
-                return;
-            }
-            if (monthlyExpensesAmount.Text.Length == 0 || monthlyExpensesAmount == null)
-            {
-                monthlyExpensesStatusLabel.Text = "Please enter amount!";
-                return;
-            }
-            if (!Double.TryParse(monthlyExpensesAmount.Text, out _))
-            {
-                monthlyExpensesStatusLabel.Text = "Amount must be a number!";
-                return;
-            }
-            if (monthlyExpensesCategory.Text.Length == 0 || monthlyExpensesCategory == null)
-            {
-                monthlyExpensesStatusLabel.Text = "Please choose a category!";
-                return;
-            }
-
-         
-            goalManager.AddMonthlyExpense(monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text);
-            _ = new Scheduler(monthlyExpensesDate.Value, monthlyExpensesName.Text, monthlyExpensesAmount.Text, monthlyExpensesCategory.Text, fileManager, false);
        
-
-            monthlyExpensesStatusLabel.Text = "Monthly expenses were successfully added!";
-            monthlyExpensesAmount.Clear();
-            monthlyExpensesCategory.Text = null;
-            monthlyExpensesName.Text = null;
-            monthlyExpensesDate.ResetText();
-        }
-
-        private void ButtonAddMonthlyIncome_Click(object sender, EventArgs e)
-        {
-            if (monthlyIncomeName.Text.Length == 0 || monthlyIncomeName.Text == null)
-            {
-                monthlyIncomeStatusLabel.Text = "Name cannot be empty!";
-                return;
-            }
-            if (monthlyIncomeAmount.Text.Length == 0 || monthlyIncomeAmount.Text == null)
-            {
-                monthlyIncomeStatusLabel.Text = "Please enter amount!";
-                return;
-            }
-            if (!Double.TryParse(monthlyIncomeAmount.Text, out _))
-            {
-                monthlyIncomeStatusLabel.Text = "Amount must be a number!";
-                return;
-            }
-            if (monthlyIncomeCategory.Text.Length == 0 || monthlyIncomeCategory == null)
-            {
-                monthlyIncomeStatusLabel.Text = "Please choose a category!";
-                return;
-            }
-
-            goalManager.AddMonthlyIncome(monthlyIncomeAmount.Text, monthlyIncomeCategory.Text);
-            _ = new Scheduler(monthlyIncomeDate.Value, monthlyIncomeName.Text, monthlyIncomeAmount.Text, monthlyIncomeCategory.Text, fileManager, true);
-
-            monthlyIncomeStatusLabel.Text = "Monthly income was added successfully!";
-            monthlyIncomeAmount.Clear();
-            monthlyIncomeCategory.Text = null;
-            monthlyIncomeName.Text = null;
-            monthlyIncomeDate.ResetText();
-        }
 
         private void inputExpense(object sender, EventArgs e)
         {
@@ -187,6 +121,16 @@ namespace Plutus
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            panelInsights.Visible = false;
+            panelEditGoal.Visible = false;
+            panelGoal.Visible = false;
+            panelMyGoals.Visible = false;
+            panelAddGoal.Visible = false;
+            monthlySpend.Text = " ";
+            dailySpend.Text = " ";
+            daysLeft.Text = " ";
+            comboBoxInsights.Text = null;
+
             switch (tabControl1.SelectedIndex)
             {
                 case 3:
@@ -813,8 +757,6 @@ namespace Plutus
         {
             cartStore.StoreCart(currentCart);
         }
-
-        
 
     }
 }

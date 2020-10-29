@@ -79,10 +79,33 @@ namespace Plutus
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.buttonMyScheduledIncome = new System.Windows.Forms.Button();
+            this.buttonAddNewScheduledIncome = new System.Windows.Forms.Button();
+            this.panelMyScheduledIncome = new System.Windows.Forms.Panel();
+            this.labelScheduledIncome = new System.Windows.Forms.Label();
+            this.panelEditScheduledIncome = new System.Windows.Forms.Panel();
+            this.panelChangeScheduledIncome = new System.Windows.Forms.Panel();
+            this.buttonDeleteScheduledIncome = new System.Windows.Forms.Button();
+            this.buttonChangeScheduledIncome = new System.Windows.Forms.Button();
+            this.scheduledIncomeNewFirstPay = new System.Windows.Forms.DateTimePicker();
+            this.labelScheduledIncomeNewFirstPay = new System.Windows.Forms.Label();
+            this.scheduledIncomeNewCategory = new System.Windows.Forms.ComboBox();
+            this.labelScheduledIncomeNewCat = new System.Windows.Forms.Label();
+            this.scheduledIncomeNewAmount = new System.Windows.Forms.TextBox();
+            this.labelScheduledIncomeNewAmount = new System.Windows.Forms.Label();
+            this.labelScheduledIncomeNewName = new System.Windows.Forms.Label();
+            this.scheduledIncomeNewName = new System.Windows.Forms.TextBox();
+            this.panelScheduledIncomeComment = new System.Windows.Forms.Panel();
+            this.scheduledIncomeComment = new System.Windows.Forms.Label();
+            this.comboBoxScheduledIncome = new System.Windows.Forms.ComboBox();
+            this.labelSelectScheduledIncome = new System.Windows.Forms.Label();
+            this.panelShowScheduledIncome = new System.Windows.Forms.Panel();
+            this.buttonEditScheduledIncome = new System.Windows.Forms.Button();
+            this.textBoxScheduledIncome = new System.Windows.Forms.TextBox();
+            this.panelAddMonthlyIncome = new System.Windows.Forms.Panel();
             this.monthlyIncomeStatusLabel = new System.Windows.Forms.Label();
             this.buttonAddMonthlyIncome = new System.Windows.Forms.Button();
             this.labelMonthlyIncomeName = new System.Windows.Forms.Label();
-            this.labelMonthlyIncome = new System.Windows.Forms.Label();
             this.monthlyIncomeName = new System.Windows.Forms.TextBox();
             this.monthlyIncomeCategory = new System.Windows.Forms.ComboBox();
             this.labelMonthlyIncomeCategory = new System.Windows.Forms.Label();
@@ -91,6 +114,30 @@ namespace Plutus
             this.labelMonthlyIncomeAmount = new System.Windows.Forms.Label();
             this.labelMonthlyIncomeFirstPay = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.panelMyScheduledExpenses = new System.Windows.Forms.Panel();
+            this.panelEditScheduledExpenses = new System.Windows.Forms.Panel();
+            this.panelScheduledExpensesComment = new System.Windows.Forms.Panel();
+            this.scheduledExpensesComment = new System.Windows.Forms.Label();
+            this.panelChangeScheduledExpense = new System.Windows.Forms.Panel();
+            this.buttonDeleteScheduledExpense = new System.Windows.Forms.Button();
+            this.buttonChangeScheduledExpense = new System.Windows.Forms.Button();
+            this.scheduledExpenseNewFirstPay = new System.Windows.Forms.DateTimePicker();
+            this.labelScheduledExpenseNewFirstPay = new System.Windows.Forms.Label();
+            this.scheduledExpenseNewCategory = new System.Windows.Forms.ComboBox();
+            this.labelScheduledExpenseNewCategory = new System.Windows.Forms.Label();
+            this.scheduledExpenseNewAmount = new System.Windows.Forms.TextBox();
+            this.labelScheduledExpenseNewAmount = new System.Windows.Forms.Label();
+            this.labelScheduledExpenseNewName = new System.Windows.Forms.Label();
+            this.scheduledExpenseNewName = new System.Windows.Forms.TextBox();
+            this.comboBoxScheduledExpenses = new System.Windows.Forms.ComboBox();
+            this.labelSelectMonthlyExpense = new System.Windows.Forms.Label();
+            this.labelMyScheduledExpenses = new System.Windows.Forms.Label();
+            this.panelShowScheduledExpenses = new System.Windows.Forms.Panel();
+            this.buttonEditScheduledExpenses = new System.Windows.Forms.Button();
+            this.textBoxScheduledExpenses = new System.Windows.Forms.TextBox();
+            this.buttonMyScheduledExpenses = new System.Windows.Forms.Button();
+            this.buttonAddNewScheduledExpense = new System.Windows.Forms.Button();
+            this.panelAddMonthlyExpenses = new System.Windows.Forms.Panel();
             this.monthlyExpensesStatusLabel = new System.Windows.Forms.Label();
             this.buttonAddMonthlyExpenses = new System.Windows.Forms.Button();
             this.monthlyExpensesCategory = new System.Windows.Forms.ComboBox();
@@ -100,7 +147,6 @@ namespace Plutus
             this.monthlyExpensesAmount = new System.Windows.Forms.TextBox();
             this.labelMonthlyExpensesCategory = new System.Windows.Forms.Label();
             this.monthlyExpensesName = new System.Windows.Forms.TextBox();
-            this.labelMonthlyExpenses = new System.Windows.Forms.Label();
             this.labelMonthlyExpensesName = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.CurrentCartCountNum = new System.Windows.Forms.Label();
@@ -136,17 +182,6 @@ namespace Plutus
             this.buttonInsights = new System.Windows.Forms.Button();
             this.buttonMyGoals = new System.Windows.Forms.Button();
             this.buttonAddGoal = new System.Windows.Forms.Button();
-            this.panelInsights = new System.Windows.Forms.Panel();
-            this.labelInsightsGoal = new System.Windows.Forms.Label();
-            this.comboBoxInsights = new System.Windows.Forms.ComboBox();
-            this.panelInsightsSpend = new System.Windows.Forms.Panel();
-            this.daysLeft = new System.Windows.Forms.Label();
-            this.labelDaysLeft = new System.Windows.Forms.Label();
-            this.monthlySpend = new System.Windows.Forms.Label();
-            this.dailySpend = new System.Windows.Forms.Label();
-            this.labelThisMonthYouCanSpend = new System.Windows.Forms.Label();
-            this.labelTodayYouCanSpend = new System.Windows.Forms.Label();
-            this.labelInsights = new System.Windows.Forms.Label();
             this.panelMyGoals = new System.Windows.Forms.Panel();
             this.editGoalButton = new System.Windows.Forms.Button();
             this.labelNameAmountDueDate = new System.Windows.Forms.Label();
@@ -177,8 +212,38 @@ namespace Plutus
             this.textBoxAddGoalAmount = new System.Windows.Forms.TextBox();
             this.labelAddGoalName = new System.Windows.Forms.Label();
             this.textBoxAddGoalName = new System.Windows.Forms.TextBox();
+            this.panelInsights = new System.Windows.Forms.Panel();
+            this.labelInsightsGoal = new System.Windows.Forms.Label();
+            this.comboBoxInsights = new System.Windows.Forms.ComboBox();
+            this.panelInsightsSpend = new System.Windows.Forms.Panel();
+            this.daysLeft = new System.Windows.Forms.Label();
+            this.labelDaysLeft = new System.Windows.Forms.Label();
+            this.monthlySpend = new System.Windows.Forms.Label();
+            this.dailySpend = new System.Windows.Forms.Label();
+            this.labelThisMonthYouCanSpend = new System.Windows.Forms.Label();
+            this.labelTodayYouCanSpend = new System.Windows.Forms.Label();
+            this.labelInsights = new System.Windows.Forms.Label();
             this.panelGoal = new System.Windows.Forms.Panel();
             this.labelGoal = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -198,20 +263,32 @@ namespace Plutus
             this.tabPage7.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.panelMyScheduledIncome.SuspendLayout();
+            this.panelEditScheduledIncome.SuspendLayout();
+            this.panelChangeScheduledIncome.SuspendLayout();
+            this.panelScheduledIncomeComment.SuspendLayout();
+            this.panelShowScheduledIncome.SuspendLayout();
+            this.panelAddMonthlyIncome.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.panelMyScheduledExpenses.SuspendLayout();
+            this.panelEditScheduledExpenses.SuspendLayout();
+            this.panelScheduledExpensesComment.SuspendLayout();
+            this.panelChangeScheduledExpense.SuspendLayout();
+            this.panelShowScheduledExpenses.SuspendLayout();
+            this.panelAddMonthlyExpenses.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.cartElemEditPanel.SuspendLayout();
             this.cartNewElemControlPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabGoal.SuspendLayout();
-            this.panelInsights.SuspendLayout();
-            this.panelInsightsSpend.SuspendLayout();
             this.panelMyGoals.SuspendLayout();
             this.panelEditGoal.SuspendLayout();
             this.panelChangeGoal.SuspendLayout();
             this.panelGoalComment.SuspendLayout();
             this.panelAddGoal.SuspendLayout();
+            this.panelInsights.SuspendLayout();
+            this.panelInsightsSpend.SuspendLayout();
             this.panelGoal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -722,44 +799,283 @@ namespace Plutus
             // 
             this.tabControl2.Controls.Add(this.tabPage8);
             this.tabControl2.Controls.Add(this.tabPage9);
-            this.tabControl2.Location = new System.Drawing.Point(49, 33);
+            this.tabControl2.Location = new System.Drawing.Point(49, 16);
             this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(751, 337);
+            this.tabControl2.SelectedIndex = 2;
+            this.tabControl2.Size = new System.Drawing.Size(761, 354);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.monthlyIncomeStatusLabel);
-            this.tabPage8.Controls.Add(this.buttonAddMonthlyIncome);
-            this.tabPage8.Controls.Add(this.labelMonthlyIncomeName);
-            this.tabPage8.Controls.Add(this.labelMonthlyIncome);
-            this.tabPage8.Controls.Add(this.monthlyIncomeName);
-            this.tabPage8.Controls.Add(this.monthlyIncomeCategory);
-            this.tabPage8.Controls.Add(this.labelMonthlyIncomeCategory);
-            this.tabPage8.Controls.Add(this.monthlyIncomeAmount);
-            this.tabPage8.Controls.Add(this.monthlyIncomeDate);
-            this.tabPage8.Controls.Add(this.labelMonthlyIncomeAmount);
-            this.tabPage8.Controls.Add(this.labelMonthlyIncomeFirstPay);
+            this.tabPage8.BackColor = System.Drawing.Color.Honeydew;
+            this.tabPage8.Controls.Add(this.buttonMyScheduledIncome);
+            this.tabPage8.Controls.Add(this.buttonAddNewScheduledIncome);
+            this.tabPage8.Controls.Add(this.panelMyScheduledIncome);
+            this.tabPage8.Controls.Add(this.panelAddMonthlyIncome);
             this.tabPage8.Location = new System.Drawing.Point(4, 24);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(743, 309);
+            this.tabPage8.Size = new System.Drawing.Size(753, 326);
             this.tabPage8.TabIndex = 0;
-            this.tabPage8.Text = "Income";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.tabPage8.Text = "Monthly Income";
+            // 
+            // buttonMyScheduledIncome
+            // 
+            this.buttonMyScheduledIncome.Location = new System.Drawing.Point(56, 177);
+            this.buttonMyScheduledIncome.Name = "buttonMyScheduledIncome";
+            this.buttonMyScheduledIncome.Size = new System.Drawing.Size(161, 58);
+            this.buttonMyScheduledIncome.TabIndex = 10;
+            this.buttonMyScheduledIncome.Text = "MY SCHEDULED INCOME";
+            this.buttonMyScheduledIncome.UseVisualStyleBackColor = true;
+            this.buttonMyScheduledIncome.Click += new System.EventHandler(this.ButtonMyScheduledIncome_Click);
+            // 
+            // buttonAddNewScheduledIncome
+            // 
+            this.buttonAddNewScheduledIncome.Location = new System.Drawing.Point(56, 71);
+            this.buttonAddNewScheduledIncome.Name = "buttonAddNewScheduledIncome";
+            this.buttonAddNewScheduledIncome.Size = new System.Drawing.Size(161, 58);
+            this.buttonAddNewScheduledIncome.TabIndex = 10;
+            this.buttonAddNewScheduledIncome.Text = "ADD NEW";
+            this.buttonAddNewScheduledIncome.UseVisualStyleBackColor = true;
+            this.buttonAddNewScheduledIncome.Click += new System.EventHandler(this.ButtonAddNewScheduledIncome_Click);
+            // 
+            // panelMyScheduledIncome
+            // 
+            this.panelMyScheduledIncome.Controls.Add(this.labelScheduledIncome);
+            this.panelMyScheduledIncome.Controls.Add(this.panelEditScheduledIncome);
+            this.panelMyScheduledIncome.Controls.Add(this.panelShowScheduledIncome);
+            this.panelMyScheduledIncome.Location = new System.Drawing.Point(286, 3);
+            this.panelMyScheduledIncome.Name = "panelMyScheduledIncome";
+            this.panelMyScheduledIncome.Size = new System.Drawing.Size(464, 318);
+            this.panelMyScheduledIncome.TabIndex = 9;
+            this.panelMyScheduledIncome.Visible = false;
+            // 
+            // labelScheduledIncome
+            // 
+            this.labelScheduledIncome.AutoSize = true;
+            this.labelScheduledIncome.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelScheduledIncome.Location = new System.Drawing.Point(140, 14);
+            this.labelScheduledIncome.Name = "labelScheduledIncome";
+            this.labelScheduledIncome.Size = new System.Drawing.Size(198, 25);
+            this.labelScheduledIncome.TabIndex = 0;
+            this.labelScheduledIncome.Text = "My Scheduled Income";
+            // 
+            // panelEditScheduledIncome
+            // 
+            this.panelEditScheduledIncome.Controls.Add(this.panelChangeScheduledIncome);
+            this.panelEditScheduledIncome.Controls.Add(this.panelScheduledIncomeComment);
+            this.panelEditScheduledIncome.Controls.Add(this.comboBoxScheduledIncome);
+            this.panelEditScheduledIncome.Controls.Add(this.labelSelectScheduledIncome);
+            this.panelEditScheduledIncome.Location = new System.Drawing.Point(23, 48);
+            this.panelEditScheduledIncome.Name = "panelEditScheduledIncome";
+            this.panelEditScheduledIncome.Size = new System.Drawing.Size(412, 258);
+            this.panelEditScheduledIncome.TabIndex = 16;
+            this.panelEditScheduledIncome.Visible = false;
+            // 
+            // panelChangeScheduledIncome
+            // 
+            this.panelChangeScheduledIncome.Controls.Add(this.buttonDeleteScheduledIncome);
+            this.panelChangeScheduledIncome.Controls.Add(this.buttonChangeScheduledIncome);
+            this.panelChangeScheduledIncome.Controls.Add(this.scheduledIncomeNewFirstPay);
+            this.panelChangeScheduledIncome.Controls.Add(this.labelScheduledIncomeNewFirstPay);
+            this.panelChangeScheduledIncome.Controls.Add(this.scheduledIncomeNewCategory);
+            this.panelChangeScheduledIncome.Controls.Add(this.labelScheduledIncomeNewCat);
+            this.panelChangeScheduledIncome.Controls.Add(this.scheduledIncomeNewAmount);
+            this.panelChangeScheduledIncome.Controls.Add(this.labelScheduledIncomeNewAmount);
+            this.panelChangeScheduledIncome.Controls.Add(this.labelScheduledIncomeNewName);
+            this.panelChangeScheduledIncome.Controls.Add(this.scheduledIncomeNewName);
+            this.panelChangeScheduledIncome.Location = new System.Drawing.Point(83, 29);
+            this.panelChangeScheduledIncome.Name = "panelChangeScheduledIncome";
+            this.panelChangeScheduledIncome.Size = new System.Drawing.Size(291, 229);
+            this.panelChangeScheduledIncome.TabIndex = 20;
+            this.panelChangeScheduledIncome.Visible = false;
+            // 
+            // buttonDeleteScheduledIncome
+            // 
+            this.buttonDeleteScheduledIncome.Location = new System.Drawing.Point(159, 189);
+            this.buttonDeleteScheduledIncome.Name = "buttonDeleteScheduledIncome";
+            this.buttonDeleteScheduledIncome.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteScheduledIncome.TabIndex = 21;
+            this.buttonDeleteScheduledIncome.Text = "delete";
+            this.buttonDeleteScheduledIncome.UseVisualStyleBackColor = true;
+            this.buttonDeleteScheduledIncome.Click += new System.EventHandler(this.ButtonDeleteScheduledIncome_Click);
+            // 
+            // buttonChangeScheduledIncome
+            // 
+            this.buttonChangeScheduledIncome.Location = new System.Drawing.Point(51, 189);
+            this.buttonChangeScheduledIncome.Name = "buttonChangeScheduledIncome";
+            this.buttonChangeScheduledIncome.Size = new System.Drawing.Size(75, 23);
+            this.buttonChangeScheduledIncome.TabIndex = 20;
+            this.buttonChangeScheduledIncome.Text = "change";
+            this.buttonChangeScheduledIncome.UseVisualStyleBackColor = true;
+            this.buttonChangeScheduledIncome.Click += new System.EventHandler(this.ButtonChangeScheduledIncome_Click);
+            // 
+            // scheduledIncomeNewFirstPay
+            // 
+            this.scheduledIncomeNewFirstPay.Location = new System.Drawing.Point(31, 156);
+            this.scheduledIncomeNewFirstPay.Name = "scheduledIncomeNewFirstPay";
+            this.scheduledIncomeNewFirstPay.Size = new System.Drawing.Size(217, 23);
+            this.scheduledIncomeNewFirstPay.TabIndex = 19;
+            // 
+            // labelScheduledIncomeNewFirstPay
+            // 
+            this.labelScheduledIncomeNewFirstPay.AutoSize = true;
+            this.labelScheduledIncomeNewFirstPay.Location = new System.Drawing.Point(31, 138);
+            this.labelScheduledIncomeNewFirstPay.Name = "labelScheduledIncomeNewFirstPay";
+            this.labelScheduledIncomeNewFirstPay.Size = new System.Drawing.Size(82, 15);
+            this.labelScheduledIncomeNewFirstPay.TabIndex = 18;
+            this.labelScheduledIncomeNewFirstPay.Text = "First payment:";
+            // 
+            // scheduledIncomeNewCategory
+            // 
+            this.scheduledIncomeNewCategory.FormattingEnabled = true;
+            this.scheduledIncomeNewCategory.Items.AddRange(new object[] {
+            "Salary",
+            "Other"});
+            this.scheduledIncomeNewCategory.Location = new System.Drawing.Point(31, 112);
+            this.scheduledIncomeNewCategory.Name = "scheduledIncomeNewCategory";
+            this.scheduledIncomeNewCategory.Size = new System.Drawing.Size(217, 23);
+            this.scheduledIncomeNewCategory.TabIndex = 17;
+            // 
+            // labelScheduledIncomeNewCat
+            // 
+            this.labelScheduledIncomeNewCat.AutoSize = true;
+            this.labelScheduledIncomeNewCat.Location = new System.Drawing.Point(31, 94);
+            this.labelScheduledIncomeNewCat.Name = "labelScheduledIncomeNewCat";
+            this.labelScheduledIncomeNewCat.Size = new System.Drawing.Size(58, 15);
+            this.labelScheduledIncomeNewCat.TabIndex = 16;
+            this.labelScheduledIncomeNewCat.Text = "Category:";
+            // 
+            // scheduledIncomeNewAmount
+            // 
+            this.scheduledIncomeNewAmount.Location = new System.Drawing.Point(31, 68);
+            this.scheduledIncomeNewAmount.Name = "scheduledIncomeNewAmount";
+            this.scheduledIncomeNewAmount.Size = new System.Drawing.Size(217, 23);
+            this.scheduledIncomeNewAmount.TabIndex = 15;
+            // 
+            // labelScheduledIncomeNewAmount
+            // 
+            this.labelScheduledIncomeNewAmount.AutoSize = true;
+            this.labelScheduledIncomeNewAmount.Location = new System.Drawing.Point(31, 50);
+            this.labelScheduledIncomeNewAmount.Name = "labelScheduledIncomeNewAmount";
+            this.labelScheduledIncomeNewAmount.Size = new System.Drawing.Size(54, 15);
+            this.labelScheduledIncomeNewAmount.TabIndex = 14;
+            this.labelScheduledIncomeNewAmount.Text = "Amount:";
+            // 
+            // labelScheduledIncomeNewName
+            // 
+            this.labelScheduledIncomeNewName.AutoSize = true;
+            this.labelScheduledIncomeNewName.Location = new System.Drawing.Point(31, 7);
+            this.labelScheduledIncomeNewName.Name = "labelScheduledIncomeNewName";
+            this.labelScheduledIncomeNewName.Size = new System.Drawing.Size(42, 15);
+            this.labelScheduledIncomeNewName.TabIndex = 12;
+            this.labelScheduledIncomeNewName.Text = "Name:";
+            this.labelScheduledIncomeNewName.Visible = false;
+            // 
+            // scheduledIncomeNewName
+            // 
+            this.scheduledIncomeNewName.Location = new System.Drawing.Point(31, 26);
+            this.scheduledIncomeNewName.Name = "scheduledIncomeNewName";
+            this.scheduledIncomeNewName.Size = new System.Drawing.Size(217, 23);
+            this.scheduledIncomeNewName.TabIndex = 13;
+            this.scheduledIncomeNewName.Visible = false;
+            // 
+            // panelScheduledIncomeComment
+            // 
+            this.panelScheduledIncomeComment.Controls.Add(this.scheduledIncomeComment);
+            this.panelScheduledIncomeComment.Location = new System.Drawing.Point(50, 80);
+            this.panelScheduledIncomeComment.Name = "panelScheduledIncomeComment";
+            this.panelScheduledIncomeComment.Size = new System.Drawing.Size(360, 87);
+            this.panelScheduledIncomeComment.TabIndex = 21;
+            this.panelScheduledIncomeComment.Visible = false;
+            // 
+            // scheduledIncomeComment
+            // 
+            this.scheduledIncomeComment.AutoSize = true;
+            this.scheduledIncomeComment.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.scheduledIncomeComment.Location = new System.Drawing.Point(33, 31);
+            this.scheduledIncomeComment.Name = "scheduledIncomeComment";
+            this.scheduledIncomeComment.Size = new System.Drawing.Size(17, 25);
+            this.scheduledIncomeComment.TabIndex = 0;
+            this.scheduledIncomeComment.Text = " ";
+            // 
+            // comboBoxScheduledIncome
+            // 
+            this.comboBoxScheduledIncome.FormattingEnabled = true;
+            this.comboBoxScheduledIncome.Location = new System.Drawing.Point(165, 3);
+            this.comboBoxScheduledIncome.Name = "comboBoxScheduledIncome";
+            this.comboBoxScheduledIncome.Size = new System.Drawing.Size(141, 23);
+            this.comboBoxScheduledIncome.TabIndex = 11;
+            this.comboBoxScheduledIncome.SelectedIndexChanged += new System.EventHandler(this.ComboBoxScheduledIncome_SelectedIndexChanged);
+            // 
+            // labelSelectScheduledIncome
+            // 
+            this.labelSelectScheduledIncome.AutoSize = true;
+            this.labelSelectScheduledIncome.Location = new System.Drawing.Point(118, 6);
+            this.labelSelectScheduledIncome.Name = "labelSelectScheduledIncome";
+            this.labelSelectScheduledIncome.Size = new System.Drawing.Size(41, 15);
+            this.labelSelectScheduledIncome.TabIndex = 10;
+            this.labelSelectScheduledIncome.Text = "Select:";
+            // 
+            // panelShowScheduledIncome
+            // 
+            this.panelShowScheduledIncome.Controls.Add(this.buttonEditScheduledIncome);
+            this.panelShowScheduledIncome.Controls.Add(this.textBoxScheduledIncome);
+            this.panelShowScheduledIncome.Location = new System.Drawing.Point(64, 11);
+            this.panelShowScheduledIncome.Name = "panelShowScheduledIncome";
+            this.panelShowScheduledIncome.Size = new System.Drawing.Size(371, 275);
+            this.panelShowScheduledIncome.TabIndex = 9;
+            // 
+            // buttonEditScheduledIncome
+            // 
+            this.buttonEditScheduledIncome.Location = new System.Drawing.Point(289, 229);
+            this.buttonEditScheduledIncome.Name = "buttonEditScheduledIncome";
+            this.buttonEditScheduledIncome.Size = new System.Drawing.Size(62, 23);
+            this.buttonEditScheduledIncome.TabIndex = 8;
+            this.buttonEditScheduledIncome.Text = "edit";
+            this.buttonEditScheduledIncome.UseVisualStyleBackColor = true;
+            this.buttonEditScheduledIncome.Click += new System.EventHandler(this.ButtonEditScheduledIncome_Click);
+            // 
+            // textBoxScheduledIncome
+            // 
+            this.textBoxScheduledIncome.Location = new System.Drawing.Point(3, 40);
+            this.textBoxScheduledIncome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxScheduledIncome.Multiline = true;
+            this.textBoxScheduledIncome.Name = "textBoxScheduledIncome";
+            this.textBoxScheduledIncome.ReadOnly = true;
+            this.textBoxScheduledIncome.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxScheduledIncome.Size = new System.Drawing.Size(348, 187);
+            this.textBoxScheduledIncome.TabIndex = 7;
+            // 
+            // panelAddMonthlyIncome
+            // 
+            this.panelAddMonthlyIncome.Controls.Add(this.monthlyIncomeStatusLabel);
+            this.panelAddMonthlyIncome.Controls.Add(this.buttonAddMonthlyIncome);
+            this.panelAddMonthlyIncome.Controls.Add(this.labelMonthlyIncomeName);
+            this.panelAddMonthlyIncome.Controls.Add(this.monthlyIncomeName);
+            this.panelAddMonthlyIncome.Controls.Add(this.monthlyIncomeCategory);
+            this.panelAddMonthlyIncome.Controls.Add(this.labelMonthlyIncomeCategory);
+            this.panelAddMonthlyIncome.Controls.Add(this.monthlyIncomeAmount);
+            this.panelAddMonthlyIncome.Controls.Add(this.monthlyIncomeDate);
+            this.panelAddMonthlyIncome.Controls.Add(this.labelMonthlyIncomeAmount);
+            this.panelAddMonthlyIncome.Controls.Add(this.labelMonthlyIncomeFirstPay);
+            this.panelAddMonthlyIncome.Location = new System.Drawing.Point(350, 14);
+            this.panelAddMonthlyIncome.Name = "panelAddMonthlyIncome";
+            this.panelAddMonthlyIncome.Size = new System.Drawing.Size(376, 303);
+            this.panelAddMonthlyIncome.TabIndex = 8;
+            this.panelAddMonthlyIncome.Visible = false;
             // 
             // monthlyIncomeStatusLabel
             // 
             this.monthlyIncomeStatusLabel.AutoSize = true;
-            this.monthlyIncomeStatusLabel.Location = new System.Drawing.Point(330, 199);
+            this.monthlyIncomeStatusLabel.Location = new System.Drawing.Point(87, 229);
             this.monthlyIncomeStatusLabel.Name = "monthlyIncomeStatusLabel";
             this.monthlyIncomeStatusLabel.Size = new System.Drawing.Size(0, 15);
             this.monthlyIncomeStatusLabel.TabIndex = 7;
             // 
             // buttonAddMonthlyIncome
             // 
-            this.buttonAddMonthlyIncome.Location = new System.Drawing.Point(315, 243);
+            this.buttonAddMonthlyIncome.Location = new System.Drawing.Point(87, 252);
             this.buttonAddMonthlyIncome.Name = "buttonAddMonthlyIncome";
             this.buttonAddMonthlyIncome.Size = new System.Drawing.Size(121, 23);
             this.buttonAddMonthlyIncome.TabIndex = 6;
@@ -770,29 +1086,18 @@ namespace Plutus
             // labelMonthlyIncomeName
             // 
             this.labelMonthlyIncomeName.AutoSize = true;
-            this.labelMonthlyIncomeName.Location = new System.Drawing.Point(21, 121);
+            this.labelMonthlyIncomeName.Location = new System.Drawing.Point(9, 34);
             this.labelMonthlyIncomeName.Name = "labelMonthlyIncomeName";
             this.labelMonthlyIncomeName.Size = new System.Drawing.Size(39, 15);
             this.labelMonthlyIncomeName.TabIndex = 0;
             this.labelMonthlyIncomeName.Text = "Name";
             // 
-            // labelMonthlyIncome
-            // 
-            this.labelMonthlyIncome.AutoSize = true;
-            this.labelMonthlyIncome.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelMonthlyIncome.Location = new System.Drawing.Point(295, 37);
-            this.labelMonthlyIncome.Name = "labelMonthlyIncome";
-            this.labelMonthlyIncome.Size = new System.Drawing.Size(141, 22);
-            this.labelMonthlyIncome.TabIndex = 0;
-            this.labelMonthlyIncome.Text = "Monthly income";
-            this.labelMonthlyIncome.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // monthlyIncomeName
             // 
-            this.monthlyIncomeName.Location = new System.Drawing.Point(21, 138);
+            this.monthlyIncomeName.Location = new System.Drawing.Point(9, 51);
             this.monthlyIncomeName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.monthlyIncomeName.Name = "monthlyIncomeName";
-            this.monthlyIncomeName.Size = new System.Drawing.Size(135, 23);
+            this.monthlyIncomeName.Size = new System.Drawing.Size(130, 23);
             this.monthlyIncomeName.TabIndex = 1;
             // 
             // monthlyIncomeCategory
@@ -803,16 +1108,16 @@ namespace Plutus
             this.monthlyIncomeCategory.Items.AddRange(new object[] {
             "Salary",
             "Other"});
-            this.monthlyIncomeCategory.Location = new System.Drawing.Point(330, 138);
+            this.monthlyIncomeCategory.Location = new System.Drawing.Point(51, 110);
             this.monthlyIncomeCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.monthlyIncomeCategory.Name = "monthlyIncomeCategory";
-            this.monthlyIncomeCategory.Size = new System.Drawing.Size(164, 23);
+            this.monthlyIncomeCategory.Size = new System.Drawing.Size(207, 23);
             this.monthlyIncomeCategory.TabIndex = 4;
             // 
             // labelMonthlyIncomeCategory
             // 
             this.labelMonthlyIncomeCategory.AutoSize = true;
-            this.labelMonthlyIncomeCategory.Location = new System.Drawing.Point(330, 121);
+            this.labelMonthlyIncomeCategory.Location = new System.Drawing.Point(46, 89);
             this.labelMonthlyIncomeCategory.Name = "labelMonthlyIncomeCategory";
             this.labelMonthlyIncomeCategory.Size = new System.Drawing.Size(55, 15);
             this.labelMonthlyIncomeCategory.TabIndex = 0;
@@ -820,15 +1125,15 @@ namespace Plutus
             // 
             // monthlyIncomeAmount
             // 
-            this.monthlyIncomeAmount.Location = new System.Drawing.Point(186, 138);
+            this.monthlyIncomeAmount.Location = new System.Drawing.Point(162, 52);
             this.monthlyIncomeAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.monthlyIncomeAmount.Name = "monthlyIncomeAmount";
-            this.monthlyIncomeAmount.Size = new System.Drawing.Size(123, 23);
+            this.monthlyIncomeAmount.Size = new System.Drawing.Size(130, 23);
             this.monthlyIncomeAmount.TabIndex = 2;
             // 
             // monthlyIncomeDate
             // 
-            this.monthlyIncomeDate.Location = new System.Drawing.Point(514, 138);
+            this.monthlyIncomeDate.Location = new System.Drawing.Point(51, 190);
             this.monthlyIncomeDate.Name = "monthlyIncomeDate";
             this.monthlyIncomeDate.Size = new System.Drawing.Size(207, 23);
             this.monthlyIncomeDate.TabIndex = 0;
@@ -836,7 +1141,7 @@ namespace Plutus
             // labelMonthlyIncomeAmount
             // 
             this.labelMonthlyIncomeAmount.AutoSize = true;
-            this.labelMonthlyIncomeAmount.Location = new System.Drawing.Point(186, 121);
+            this.labelMonthlyIncomeAmount.Location = new System.Drawing.Point(162, 34);
             this.labelMonthlyIncomeAmount.Name = "labelMonthlyIncomeAmount";
             this.labelMonthlyIncomeAmount.Size = new System.Drawing.Size(51, 15);
             this.labelMonthlyIncomeAmount.TabIndex = 0;
@@ -845,7 +1150,7 @@ namespace Plutus
             // labelMonthlyIncomeFirstPay
             // 
             this.labelMonthlyIncomeFirstPay.AutoSize = true;
-            this.labelMonthlyIncomeFirstPay.Location = new System.Drawing.Point(514, 121);
+            this.labelMonthlyIncomeFirstPay.Location = new System.Drawing.Point(46, 157);
             this.labelMonthlyIncomeFirstPay.Name = "labelMonthlyIncomeFirstPay";
             this.labelMonthlyIncomeFirstPay.Size = new System.Drawing.Size(79, 15);
             this.labelMonthlyIncomeFirstPay.TabIndex = 0;
@@ -853,36 +1158,274 @@ namespace Plutus
             // 
             // tabPage9
             // 
-            this.tabPage9.Controls.Add(this.monthlyExpensesStatusLabel);
-            this.tabPage9.Controls.Add(this.buttonAddMonthlyExpenses);
-            this.tabPage9.Controls.Add(this.monthlyExpensesCategory);
-            this.tabPage9.Controls.Add(this.labelMonthlyExpensesFirstPay);
-            this.tabPage9.Controls.Add(this.labelMonthlyExpensesAmount);
-            this.tabPage9.Controls.Add(this.monthlyExpensesDate);
-            this.tabPage9.Controls.Add(this.monthlyExpensesAmount);
-            this.tabPage9.Controls.Add(this.labelMonthlyExpensesCategory);
-            this.tabPage9.Controls.Add(this.monthlyExpensesName);
-            this.tabPage9.Controls.Add(this.labelMonthlyExpenses);
-            this.tabPage9.Controls.Add(this.labelMonthlyExpensesName);
+            this.tabPage9.BackColor = System.Drawing.Color.OldLace;
+            this.tabPage9.Controls.Add(this.panelMyScheduledExpenses);
+            this.tabPage9.Controls.Add(this.buttonMyScheduledExpenses);
+            this.tabPage9.Controls.Add(this.buttonAddNewScheduledExpense);
+            this.tabPage9.Controls.Add(this.panelAddMonthlyExpenses);
             this.tabPage9.Location = new System.Drawing.Point(4, 24);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(743, 309);
+            this.tabPage9.Size = new System.Drawing.Size(753, 326);
             this.tabPage9.TabIndex = 1;
-            this.tabPage9.Text = "Expenses";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this.tabPage9.Text = "Monthly Expenses";
+            // 
+            // panelMyScheduledExpenses
+            // 
+            this.panelMyScheduledExpenses.Controls.Add(this.panelEditScheduledExpenses);
+            this.panelMyScheduledExpenses.Controls.Add(this.labelMyScheduledExpenses);
+            this.panelMyScheduledExpenses.Controls.Add(this.panelShowScheduledExpenses);
+            this.panelMyScheduledExpenses.Location = new System.Drawing.Point(283, 3);
+            this.panelMyScheduledExpenses.Name = "panelMyScheduledExpenses";
+            this.panelMyScheduledExpenses.Size = new System.Drawing.Size(458, 308);
+            this.panelMyScheduledExpenses.TabIndex = 9;
+            this.panelMyScheduledExpenses.Visible = false;
+            // 
+            // panelEditScheduledExpenses
+            // 
+            this.panelEditScheduledExpenses.Controls.Add(this.panelScheduledExpensesComment);
+            this.panelEditScheduledExpenses.Controls.Add(this.panelChangeScheduledExpense);
+            this.panelEditScheduledExpenses.Controls.Add(this.comboBoxScheduledExpenses);
+            this.panelEditScheduledExpenses.Controls.Add(this.labelSelectMonthlyExpense);
+            this.panelEditScheduledExpenses.Location = new System.Drawing.Point(22, 42);
+            this.panelEditScheduledExpenses.Name = "panelEditScheduledExpenses";
+            this.panelEditScheduledExpenses.Size = new System.Drawing.Size(397, 254);
+            this.panelEditScheduledExpenses.TabIndex = 16;
+            // 
+            // panelScheduledExpensesComment
+            // 
+            this.panelScheduledExpensesComment.Controls.Add(this.scheduledExpensesComment);
+            this.panelScheduledExpensesComment.Location = new System.Drawing.Point(37, 84);
+            this.panelScheduledExpensesComment.Name = "panelScheduledExpensesComment";
+            this.panelScheduledExpensesComment.Size = new System.Drawing.Size(360, 87);
+            this.panelScheduledExpensesComment.TabIndex = 21;
+            this.panelScheduledExpensesComment.Visible = false;
+            // 
+            // scheduledExpensesComment
+            // 
+            this.scheduledExpensesComment.AutoSize = true;
+            this.scheduledExpensesComment.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.scheduledExpensesComment.Location = new System.Drawing.Point(33, 31);
+            this.scheduledExpensesComment.Name = "scheduledExpensesComment";
+            this.scheduledExpensesComment.Size = new System.Drawing.Size(17, 25);
+            this.scheduledExpensesComment.TabIndex = 0;
+            this.scheduledExpensesComment.Text = " ";
+            // 
+            // panelChangeScheduledExpense
+            // 
+            this.panelChangeScheduledExpense.Controls.Add(this.buttonDeleteScheduledExpense);
+            this.panelChangeScheduledExpense.Controls.Add(this.buttonChangeScheduledExpense);
+            this.panelChangeScheduledExpense.Controls.Add(this.scheduledExpenseNewFirstPay);
+            this.panelChangeScheduledExpense.Controls.Add(this.labelScheduledExpenseNewFirstPay);
+            this.panelChangeScheduledExpense.Controls.Add(this.scheduledExpenseNewCategory);
+            this.panelChangeScheduledExpense.Controls.Add(this.labelScheduledExpenseNewCategory);
+            this.panelChangeScheduledExpense.Controls.Add(this.scheduledExpenseNewAmount);
+            this.panelChangeScheduledExpense.Controls.Add(this.labelScheduledExpenseNewAmount);
+            this.panelChangeScheduledExpense.Controls.Add(this.labelScheduledExpenseNewName);
+            this.panelChangeScheduledExpense.Controls.Add(this.scheduledExpenseNewName);
+            this.panelChangeScheduledExpense.Location = new System.Drawing.Point(80, 36);
+            this.panelChangeScheduledExpense.Name = "panelChangeScheduledExpense";
+            this.panelChangeScheduledExpense.Size = new System.Drawing.Size(291, 217);
+            this.panelChangeScheduledExpense.TabIndex = 20;
+            this.panelChangeScheduledExpense.Visible = false;
+            // 
+            // buttonDeleteScheduledExpense
+            // 
+            this.buttonDeleteScheduledExpense.Location = new System.Drawing.Point(159, 189);
+            this.buttonDeleteScheduledExpense.Name = "buttonDeleteScheduledExpense";
+            this.buttonDeleteScheduledExpense.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteScheduledExpense.TabIndex = 21;
+            this.buttonDeleteScheduledExpense.Text = "delete";
+            this.buttonDeleteScheduledExpense.UseVisualStyleBackColor = true;
+            this.buttonDeleteScheduledExpense.Click += new System.EventHandler(this.ButtonDeleteScheduledExpense_Click);
+            // 
+            // buttonChangeScheduledExpense
+            // 
+            this.buttonChangeScheduledExpense.Location = new System.Drawing.Point(44, 189);
+            this.buttonChangeScheduledExpense.Name = "buttonChangeScheduledExpense";
+            this.buttonChangeScheduledExpense.Size = new System.Drawing.Size(75, 23);
+            this.buttonChangeScheduledExpense.TabIndex = 20;
+            this.buttonChangeScheduledExpense.Text = "change";
+            this.buttonChangeScheduledExpense.UseVisualStyleBackColor = true;
+            this.buttonChangeScheduledExpense.Click += new System.EventHandler(this.ButtonChangeScheduledExpense_Click);
+            // 
+            // scheduledExpenseNewFirstPay
+            // 
+            this.scheduledExpenseNewFirstPay.Location = new System.Drawing.Point(31, 156);
+            this.scheduledExpenseNewFirstPay.Name = "scheduledExpenseNewFirstPay";
+            this.scheduledExpenseNewFirstPay.Size = new System.Drawing.Size(213, 23);
+            this.scheduledExpenseNewFirstPay.TabIndex = 19;
+            // 
+            // labelScheduledExpenseNewFirstPay
+            // 
+            this.labelScheduledExpenseNewFirstPay.AutoSize = true;
+            this.labelScheduledExpenseNewFirstPay.Location = new System.Drawing.Point(31, 138);
+            this.labelScheduledExpenseNewFirstPay.Name = "labelScheduledExpenseNewFirstPay";
+            this.labelScheduledExpenseNewFirstPay.Size = new System.Drawing.Size(82, 15);
+            this.labelScheduledExpenseNewFirstPay.TabIndex = 18;
+            this.labelScheduledExpenseNewFirstPay.Text = "First payment:";
+            // 
+            // scheduledExpenseNewCategory
+            // 
+            this.scheduledExpenseNewCategory.FormattingEnabled = true;
+            this.scheduledExpenseNewCategory.Items.AddRange(new object[] {
+            "Food",
+            "Clothes",
+            "Bills",
+            "Other"});
+            this.scheduledExpenseNewCategory.Location = new System.Drawing.Point(31, 112);
+            this.scheduledExpenseNewCategory.Name = "scheduledExpenseNewCategory";
+            this.scheduledExpenseNewCategory.Size = new System.Drawing.Size(213, 23);
+            this.scheduledExpenseNewCategory.TabIndex = 17;
+            // 
+            // labelScheduledExpenseNewCategory
+            // 
+            this.labelScheduledExpenseNewCategory.AutoSize = true;
+            this.labelScheduledExpenseNewCategory.Location = new System.Drawing.Point(31, 94);
+            this.labelScheduledExpenseNewCategory.Name = "labelScheduledExpenseNewCategory";
+            this.labelScheduledExpenseNewCategory.Size = new System.Drawing.Size(58, 15);
+            this.labelScheduledExpenseNewCategory.TabIndex = 16;
+            this.labelScheduledExpenseNewCategory.Text = "Category:";
+            // 
+            // scheduledExpenseNewAmount
+            // 
+            this.scheduledExpenseNewAmount.Location = new System.Drawing.Point(31, 68);
+            this.scheduledExpenseNewAmount.Name = "scheduledExpenseNewAmount";
+            this.scheduledExpenseNewAmount.Size = new System.Drawing.Size(213, 23);
+            this.scheduledExpenseNewAmount.TabIndex = 15;
+            // 
+            // labelScheduledExpenseNewAmount
+            // 
+            this.labelScheduledExpenseNewAmount.AutoSize = true;
+            this.labelScheduledExpenseNewAmount.Location = new System.Drawing.Point(31, 50);
+            this.labelScheduledExpenseNewAmount.Name = "labelScheduledExpenseNewAmount";
+            this.labelScheduledExpenseNewAmount.Size = new System.Drawing.Size(54, 15);
+            this.labelScheduledExpenseNewAmount.TabIndex = 14;
+            this.labelScheduledExpenseNewAmount.Text = "Amount:";
+            // 
+            // labelScheduledExpenseNewName
+            // 
+            this.labelScheduledExpenseNewName.AutoSize = true;
+            this.labelScheduledExpenseNewName.Location = new System.Drawing.Point(31, 7);
+            this.labelScheduledExpenseNewName.Name = "labelScheduledExpenseNewName";
+            this.labelScheduledExpenseNewName.Size = new System.Drawing.Size(42, 15);
+            this.labelScheduledExpenseNewName.TabIndex = 12;
+            this.labelScheduledExpenseNewName.Text = "Name:";
+            // 
+            // scheduledExpenseNewName
+            // 
+            this.scheduledExpenseNewName.Location = new System.Drawing.Point(31, 26);
+            this.scheduledExpenseNewName.Name = "scheduledExpenseNewName";
+            this.scheduledExpenseNewName.Size = new System.Drawing.Size(213, 23);
+            this.scheduledExpenseNewName.TabIndex = 13;
+            // 
+            // comboBoxScheduledExpenses
+            // 
+            this.comboBoxScheduledExpenses.FormattingEnabled = true;
+            this.comboBoxScheduledExpenses.Location = new System.Drawing.Point(173, 7);
+            this.comboBoxScheduledExpenses.Name = "comboBoxScheduledExpenses";
+            this.comboBoxScheduledExpenses.Size = new System.Drawing.Size(141, 23);
+            this.comboBoxScheduledExpenses.TabIndex = 11;
+            this.comboBoxScheduledExpenses.SelectedIndexChanged += new System.EventHandler(this.ComboBoxScheduledExpenses_SelectedIndexChanged);
+            // 
+            // labelSelectMonthlyExpense
+            // 
+            this.labelSelectMonthlyExpense.AutoSize = true;
+            this.labelSelectMonthlyExpense.Location = new System.Drawing.Point(124, 10);
+            this.labelSelectMonthlyExpense.Name = "labelSelectMonthlyExpense";
+            this.labelSelectMonthlyExpense.Size = new System.Drawing.Size(41, 15);
+            this.labelSelectMonthlyExpense.TabIndex = 10;
+            this.labelSelectMonthlyExpense.Text = "Select:";
+            // 
+            // labelMyScheduledExpenses
+            // 
+            this.labelMyScheduledExpenses.AutoSize = true;
+            this.labelMyScheduledExpenses.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelMyScheduledExpenses.Location = new System.Drawing.Point(133, 11);
+            this.labelMyScheduledExpenses.Name = "labelMyScheduledExpenses";
+            this.labelMyScheduledExpenses.Size = new System.Drawing.Size(213, 25);
+            this.labelMyScheduledExpenses.TabIndex = 0;
+            this.labelMyScheduledExpenses.Text = "My Scheduled Expenses";
+            // 
+            // panelShowScheduledExpenses
+            // 
+            this.panelShowScheduledExpenses.Controls.Add(this.buttonEditScheduledExpenses);
+            this.panelShowScheduledExpenses.Controls.Add(this.textBoxScheduledExpenses);
+            this.panelShowScheduledExpenses.Location = new System.Drawing.Point(10, 52);
+            this.panelShowScheduledExpenses.Name = "panelShowScheduledExpenses";
+            this.panelShowScheduledExpenses.Size = new System.Drawing.Size(433, 230);
+            this.panelShowScheduledExpenses.TabIndex = 9;
+            // 
+            // buttonEditScheduledExpenses
+            // 
+            this.buttonEditScheduledExpenses.Location = new System.Drawing.Point(347, 202);
+            this.buttonEditScheduledExpenses.Name = "buttonEditScheduledExpenses";
+            this.buttonEditScheduledExpenses.Size = new System.Drawing.Size(62, 23);
+            this.buttonEditScheduledExpenses.TabIndex = 8;
+            this.buttonEditScheduledExpenses.Text = "edit";
+            this.buttonEditScheduledExpenses.UseVisualStyleBackColor = true;
+            this.buttonEditScheduledExpenses.Click += new System.EventHandler(this.ButtonEditScheduledExpenses_Click);
+            // 
+            // textBoxScheduledExpenses
+            // 
+            this.textBoxScheduledExpenses.Location = new System.Drawing.Point(61, 10);
+            this.textBoxScheduledExpenses.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxScheduledExpenses.Multiline = true;
+            this.textBoxScheduledExpenses.Name = "textBoxScheduledExpenses";
+            this.textBoxScheduledExpenses.ReadOnly = true;
+            this.textBoxScheduledExpenses.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxScheduledExpenses.Size = new System.Drawing.Size(348, 187);
+            this.textBoxScheduledExpenses.TabIndex = 7;
+            // 
+            // buttonMyScheduledExpenses
+            // 
+            this.buttonMyScheduledExpenses.Location = new System.Drawing.Point(56, 177);
+            this.buttonMyScheduledExpenses.Name = "buttonMyScheduledExpenses";
+            this.buttonMyScheduledExpenses.Size = new System.Drawing.Size(161, 58);
+            this.buttonMyScheduledExpenses.TabIndex = 10;
+            this.buttonMyScheduledExpenses.Text = "MY SCHEDULED EXPENSES";
+            this.buttonMyScheduledExpenses.UseVisualStyleBackColor = true;
+            this.buttonMyScheduledExpenses.Click += new System.EventHandler(this.ButtonMyScheduledExpenses_Click);
+            // 
+            // buttonAddNewScheduledExpense
+            // 
+            this.buttonAddNewScheduledExpense.Location = new System.Drawing.Point(56, 71);
+            this.buttonAddNewScheduledExpense.Name = "buttonAddNewScheduledExpense";
+            this.buttonAddNewScheduledExpense.Size = new System.Drawing.Size(161, 58);
+            this.buttonAddNewScheduledExpense.TabIndex = 10;
+            this.buttonAddNewScheduledExpense.Text = "ADD NEW";
+            this.buttonAddNewScheduledExpense.UseVisualStyleBackColor = true;
+            this.buttonAddNewScheduledExpense.Click += new System.EventHandler(this.ButtonAddNewScheduledExpense_Click);
+            // 
+            // panelAddMonthlyExpenses
+            // 
+            this.panelAddMonthlyExpenses.Controls.Add(this.monthlyExpensesStatusLabel);
+            this.panelAddMonthlyExpenses.Controls.Add(this.buttonAddMonthlyExpenses);
+            this.panelAddMonthlyExpenses.Controls.Add(this.monthlyExpensesCategory);
+            this.panelAddMonthlyExpenses.Controls.Add(this.labelMonthlyExpensesFirstPay);
+            this.panelAddMonthlyExpenses.Controls.Add(this.labelMonthlyExpensesAmount);
+            this.panelAddMonthlyExpenses.Controls.Add(this.monthlyExpensesDate);
+            this.panelAddMonthlyExpenses.Controls.Add(this.monthlyExpensesAmount);
+            this.panelAddMonthlyExpenses.Controls.Add(this.labelMonthlyExpensesCategory);
+            this.panelAddMonthlyExpenses.Controls.Add(this.monthlyExpensesName);
+            this.panelAddMonthlyExpenses.Controls.Add(this.labelMonthlyExpensesName);
+            this.panelAddMonthlyExpenses.Location = new System.Drawing.Point(350, 14);
+            this.panelAddMonthlyExpenses.Name = "panelAddMonthlyExpenses";
+            this.panelAddMonthlyExpenses.Size = new System.Drawing.Size(330, 303);
+            this.panelAddMonthlyExpenses.TabIndex = 9;
+            this.panelAddMonthlyExpenses.Visible = false;
             // 
             // monthlyExpensesStatusLabel
             // 
             this.monthlyExpensesStatusLabel.AutoSize = true;
-            this.monthlyExpensesStatusLabel.Location = new System.Drawing.Point(315, 210);
+            this.monthlyExpensesStatusLabel.Location = new System.Drawing.Point(0, 0);
             this.monthlyExpensesStatusLabel.Name = "monthlyExpensesStatusLabel";
             this.monthlyExpensesStatusLabel.Size = new System.Drawing.Size(0, 15);
             this.monthlyExpensesStatusLabel.TabIndex = 8;
             // 
             // buttonAddMonthlyExpenses
             // 
-            this.buttonAddMonthlyExpenses.Location = new System.Drawing.Point(315, 243);
+            this.buttonAddMonthlyExpenses.Location = new System.Drawing.Point(87, 252);
             this.buttonAddMonthlyExpenses.Name = "buttonAddMonthlyExpenses";
             this.buttonAddMonthlyExpenses.Size = new System.Drawing.Size(121, 23);
             this.buttonAddMonthlyExpenses.TabIndex = 7;
@@ -900,16 +1443,16 @@ namespace Plutus
             "Clothes",
             "Bills",
             "Other"});
-            this.monthlyExpensesCategory.Location = new System.Drawing.Point(330, 138);
+            this.monthlyExpensesCategory.Location = new System.Drawing.Point(51, 110);
             this.monthlyExpensesCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.monthlyExpensesCategory.Name = "monthlyExpensesCategory";
-            this.monthlyExpensesCategory.Size = new System.Drawing.Size(164, 23);
+            this.monthlyExpensesCategory.Size = new System.Drawing.Size(207, 23);
             this.monthlyExpensesCategory.TabIndex = 4;
             // 
             // labelMonthlyExpensesFirstPay
             // 
             this.labelMonthlyExpensesFirstPay.AutoSize = true;
-            this.labelMonthlyExpensesFirstPay.Location = new System.Drawing.Point(514, 121);
+            this.labelMonthlyExpensesFirstPay.Location = new System.Drawing.Point(46, 157);
             this.labelMonthlyExpensesFirstPay.Name = "labelMonthlyExpensesFirstPay";
             this.labelMonthlyExpensesFirstPay.Size = new System.Drawing.Size(79, 15);
             this.labelMonthlyExpensesFirstPay.TabIndex = 0;
@@ -918,7 +1461,7 @@ namespace Plutus
             // labelMonthlyExpensesAmount
             // 
             this.labelMonthlyExpensesAmount.AutoSize = true;
-            this.labelMonthlyExpensesAmount.Location = new System.Drawing.Point(186, 121);
+            this.labelMonthlyExpensesAmount.Location = new System.Drawing.Point(162, 34);
             this.labelMonthlyExpensesAmount.Name = "labelMonthlyExpensesAmount";
             this.labelMonthlyExpensesAmount.Size = new System.Drawing.Size(51, 15);
             this.labelMonthlyExpensesAmount.TabIndex = 0;
@@ -926,23 +1469,23 @@ namespace Plutus
             // 
             // monthlyExpensesDate
             // 
-            this.monthlyExpensesDate.Location = new System.Drawing.Point(514, 138);
+            this.monthlyExpensesDate.Location = new System.Drawing.Point(51, 190);
             this.monthlyExpensesDate.Name = "monthlyExpensesDate";
             this.monthlyExpensesDate.Size = new System.Drawing.Size(207, 23);
             this.monthlyExpensesDate.TabIndex = 0;
             // 
             // monthlyExpensesAmount
             // 
-            this.monthlyExpensesAmount.Location = new System.Drawing.Point(186, 138);
+            this.monthlyExpensesAmount.Location = new System.Drawing.Point(162, 52);
             this.monthlyExpensesAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.monthlyExpensesAmount.Name = "monthlyExpensesAmount";
-            this.monthlyExpensesAmount.Size = new System.Drawing.Size(123, 23);
+            this.monthlyExpensesAmount.Size = new System.Drawing.Size(130, 23);
             this.monthlyExpensesAmount.TabIndex = 2;
             // 
             // labelMonthlyExpensesCategory
             // 
             this.labelMonthlyExpensesCategory.AutoSize = true;
-            this.labelMonthlyExpensesCategory.Location = new System.Drawing.Point(330, 121);
+            this.labelMonthlyExpensesCategory.Location = new System.Drawing.Point(46, 89);
             this.labelMonthlyExpensesCategory.Name = "labelMonthlyExpensesCategory";
             this.labelMonthlyExpensesCategory.Size = new System.Drawing.Size(55, 15);
             this.labelMonthlyExpensesCategory.TabIndex = 0;
@@ -950,27 +1493,16 @@ namespace Plutus
             // 
             // monthlyExpensesName
             // 
-            this.monthlyExpensesName.Location = new System.Drawing.Point(21, 138);
+            this.monthlyExpensesName.Location = new System.Drawing.Point(9, 51);
             this.monthlyExpensesName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.monthlyExpensesName.Name = "monthlyExpensesName";
-            this.monthlyExpensesName.Size = new System.Drawing.Size(135, 23);
+            this.monthlyExpensesName.Size = new System.Drawing.Size(130, 23);
             this.monthlyExpensesName.TabIndex = 1;
-            // 
-            // labelMonthlyExpenses
-            // 
-            this.labelMonthlyExpenses.AutoSize = true;
-            this.labelMonthlyExpenses.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelMonthlyExpenses.Location = new System.Drawing.Point(295, 37);
-            this.labelMonthlyExpenses.Name = "labelMonthlyExpenses";
-            this.labelMonthlyExpenses.Size = new System.Drawing.Size(155, 22);
-            this.labelMonthlyExpenses.TabIndex = 0;
-            this.labelMonthlyExpenses.Text = "Monthly expenses";
-            this.labelMonthlyExpenses.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelMonthlyExpensesName
             // 
             this.labelMonthlyExpensesName.AutoSize = true;
-            this.labelMonthlyExpensesName.Location = new System.Drawing.Point(21, 121);
+            this.labelMonthlyExpensesName.Location = new System.Drawing.Point(9, 34);
             this.labelMonthlyExpensesName.Name = "labelMonthlyExpensesName";
             this.labelMonthlyExpensesName.Size = new System.Drawing.Size(39, 15);
             this.labelMonthlyExpensesName.TabIndex = 0;
@@ -1304,11 +1836,11 @@ namespace Plutus
             this.tabGoal.Controls.Add(this.buttonInsights);
             this.tabGoal.Controls.Add(this.buttonMyGoals);
             this.tabGoal.Controls.Add(this.buttonAddGoal);
+            this.tabGoal.Controls.Add(this.panelMyGoals);
             this.tabGoal.Controls.Add(this.panelEditGoal);
             this.tabGoal.Controls.Add(this.panelAddGoal);
-            this.tabGoal.Controls.Add(this.panelGoal);
             this.tabGoal.Controls.Add(this.panelInsights);
-            this.tabGoal.Controls.Add(this.panelMyGoals);
+            this.tabGoal.Controls.Add(this.panelGoal);
             this.tabGoal.Location = new System.Drawing.Point(4, 24);
             this.tabGoal.Name = "tabGoal";
             this.tabGoal.Padding = new System.Windows.Forms.Padding(3);
@@ -1346,126 +1878,6 @@ namespace Plutus
             this.buttonAddGoal.Text = "Add Goal";
             this.buttonAddGoal.UseVisualStyleBackColor = true;
             this.buttonAddGoal.Click += new System.EventHandler(this.ButtonAddGoal_Click);
-            // 
-            // panelInsights
-            // 
-            this.panelInsights.Controls.Add(this.labelInsightsGoal);
-            this.panelInsights.Controls.Add(this.comboBoxInsights);
-            this.panelInsights.Controls.Add(this.panelInsightsSpend);
-            this.panelInsights.Controls.Add(this.labelInsights);
-            this.panelInsights.Location = new System.Drawing.Point(292, 34);
-            this.panelInsights.Name = "panelInsights";
-            this.panelInsights.Size = new System.Drawing.Size(558, 331);
-            this.panelInsights.TabIndex = 6;
-            this.panelInsights.Visible = false;
-            // 
-            // labelInsightsGoal
-            // 
-            this.labelInsightsGoal.AutoSize = true;
-            this.labelInsightsGoal.Location = new System.Drawing.Point(168, 46);
-            this.labelInsightsGoal.Name = "labelInsightsGoal";
-            this.labelInsightsGoal.Size = new System.Drawing.Size(34, 15);
-            this.labelInsightsGoal.TabIndex = 7;
-            this.labelInsightsGoal.Text = "Goal:";
-            // 
-            // comboBoxInsights
-            // 
-            this.comboBoxInsights.FormattingEnabled = true;
-            this.comboBoxInsights.Location = new System.Drawing.Point(208, 41);
-            this.comboBoxInsights.Name = "comboBoxInsights";
-            this.comboBoxInsights.Size = new System.Drawing.Size(140, 23);
-            this.comboBoxInsights.TabIndex = 6;
-            this.comboBoxInsights.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInsights_SelectedIndexChanged);
-            // 
-            // panelInsightsSpend
-            // 
-            this.panelInsightsSpend.BackColor = System.Drawing.Color.PapayaWhip;
-            this.panelInsightsSpend.Controls.Add(this.daysLeft);
-            this.panelInsightsSpend.Controls.Add(this.labelDaysLeft);
-            this.panelInsightsSpend.Controls.Add(this.monthlySpend);
-            this.panelInsightsSpend.Controls.Add(this.dailySpend);
-            this.panelInsightsSpend.Controls.Add(this.labelThisMonthYouCanSpend);
-            this.panelInsightsSpend.Controls.Add(this.labelTodayYouCanSpend);
-            this.panelInsightsSpend.Location = new System.Drawing.Point(71, 83);
-            this.panelInsightsSpend.Name = "panelInsightsSpend";
-            this.panelInsightsSpend.Size = new System.Drawing.Size(401, 214);
-            this.panelInsightsSpend.TabIndex = 5;
-            // 
-            // daysLeft
-            // 
-            this.daysLeft.AutoSize = true;
-            this.daysLeft.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.daysLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.daysLeft.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.daysLeft.Location = new System.Drawing.Point(213, 146);
-            this.daysLeft.Name = "daysLeft";
-            this.daysLeft.Size = new System.Drawing.Size(19, 27);
-            this.daysLeft.TabIndex = 4;
-            this.daysLeft.Text = " ";
-            // 
-            // labelDaysLeft
-            // 
-            this.labelDaysLeft.AutoSize = true;
-            this.labelDaysLeft.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelDaysLeft.Location = new System.Drawing.Point(134, 153);
-            this.labelDaysLeft.Name = "labelDaysLeft";
-            this.labelDaysLeft.Size = new System.Drawing.Size(70, 20);
-            this.labelDaysLeft.TabIndex = 2;
-            this.labelDaysLeft.Text = "Days left:";
-            // 
-            // monthlySpend
-            // 
-            this.monthlySpend.AutoSize = true;
-            this.monthlySpend.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.monthlySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monthlySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.monthlySpend.Location = new System.Drawing.Point(213, 92);
-            this.monthlySpend.Name = "monthlySpend";
-            this.monthlySpend.Size = new System.Drawing.Size(19, 27);
-            this.monthlySpend.TabIndex = 4;
-            this.monthlySpend.Text = " ";
-            // 
-            // dailySpend
-            // 
-            this.dailySpend.AutoSize = true;
-            this.dailySpend.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dailySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dailySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dailySpend.Location = new System.Drawing.Point(213, 30);
-            this.dailySpend.Name = "dailySpend";
-            this.dailySpend.Size = new System.Drawing.Size(19, 27);
-            this.dailySpend.TabIndex = 3;
-            this.dailySpend.Text = " ";
-            // 
-            // labelThisMonthYouCanSpend
-            // 
-            this.labelThisMonthYouCanSpend.AutoSize = true;
-            this.labelThisMonthYouCanSpend.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelThisMonthYouCanSpend.Location = new System.Drawing.Point(23, 95);
-            this.labelThisMonthYouCanSpend.Name = "labelThisMonthYouCanSpend";
-            this.labelThisMonthYouCanSpend.Size = new System.Drawing.Size(184, 20);
-            this.labelThisMonthYouCanSpend.TabIndex = 2;
-            this.labelThisMonthYouCanSpend.Text = "This month you can spend:";
-            // 
-            // labelTodayYouCanSpend
-            // 
-            this.labelTodayYouCanSpend.AutoSize = true;
-            this.labelTodayYouCanSpend.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelTodayYouCanSpend.Location = new System.Drawing.Point(53, 33);
-            this.labelTodayYouCanSpend.Name = "labelTodayYouCanSpend";
-            this.labelTodayYouCanSpend.Size = new System.Drawing.Size(151, 20);
-            this.labelTodayYouCanSpend.TabIndex = 1;
-            this.labelTodayYouCanSpend.Text = "Today you can spend:";
-            // 
-            // labelInsights
-            // 
-            this.labelInsights.AutoSize = true;
-            this.labelInsights.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelInsights.Location = new System.Drawing.Point(233, 11);
-            this.labelInsights.Name = "labelInsights";
-            this.labelInsights.Size = new System.Drawing.Size(92, 25);
-            this.labelInsights.TabIndex = 0;
-            this.labelInsights.Text = "INSIGHTS";
             // 
             // panelMyGoals
             // 
@@ -1756,6 +2168,126 @@ namespace Plutus
             this.textBoxAddGoalName.Size = new System.Drawing.Size(258, 23);
             this.textBoxAddGoalName.TabIndex = 0;
             // 
+            // panelInsights
+            // 
+            this.panelInsights.Controls.Add(this.labelInsightsGoal);
+            this.panelInsights.Controls.Add(this.comboBoxInsights);
+            this.panelInsights.Controls.Add(this.panelInsightsSpend);
+            this.panelInsights.Controls.Add(this.labelInsights);
+            this.panelInsights.Location = new System.Drawing.Point(292, 34);
+            this.panelInsights.Name = "panelInsights";
+            this.panelInsights.Size = new System.Drawing.Size(558, 331);
+            this.panelInsights.TabIndex = 6;
+            this.panelInsights.Visible = false;
+            // 
+            // labelInsightsGoal
+            // 
+            this.labelInsightsGoal.AutoSize = true;
+            this.labelInsightsGoal.Location = new System.Drawing.Point(168, 46);
+            this.labelInsightsGoal.Name = "labelInsightsGoal";
+            this.labelInsightsGoal.Size = new System.Drawing.Size(34, 15);
+            this.labelInsightsGoal.TabIndex = 7;
+            this.labelInsightsGoal.Text = "Goal:";
+            // 
+            // comboBoxInsights
+            // 
+            this.comboBoxInsights.FormattingEnabled = true;
+            this.comboBoxInsights.Location = new System.Drawing.Point(208, 41);
+            this.comboBoxInsights.Name = "comboBoxInsights";
+            this.comboBoxInsights.Size = new System.Drawing.Size(140, 23);
+            this.comboBoxInsights.TabIndex = 6;
+            this.comboBoxInsights.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInsights_SelectedIndexChanged);
+            // 
+            // panelInsightsSpend
+            // 
+            this.panelInsightsSpend.BackColor = System.Drawing.Color.PapayaWhip;
+            this.panelInsightsSpend.Controls.Add(this.daysLeft);
+            this.panelInsightsSpend.Controls.Add(this.labelDaysLeft);
+            this.panelInsightsSpend.Controls.Add(this.monthlySpend);
+            this.panelInsightsSpend.Controls.Add(this.dailySpend);
+            this.panelInsightsSpend.Controls.Add(this.labelThisMonthYouCanSpend);
+            this.panelInsightsSpend.Controls.Add(this.labelTodayYouCanSpend);
+            this.panelInsightsSpend.Location = new System.Drawing.Point(71, 83);
+            this.panelInsightsSpend.Name = "panelInsightsSpend";
+            this.panelInsightsSpend.Size = new System.Drawing.Size(401, 214);
+            this.panelInsightsSpend.TabIndex = 5;
+            // 
+            // daysLeft
+            // 
+            this.daysLeft.AutoSize = true;
+            this.daysLeft.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.daysLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.daysLeft.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.daysLeft.Location = new System.Drawing.Point(213, 146);
+            this.daysLeft.Name = "daysLeft";
+            this.daysLeft.Size = new System.Drawing.Size(19, 27);
+            this.daysLeft.TabIndex = 4;
+            this.daysLeft.Text = " ";
+            // 
+            // labelDaysLeft
+            // 
+            this.labelDaysLeft.AutoSize = true;
+            this.labelDaysLeft.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelDaysLeft.Location = new System.Drawing.Point(134, 153);
+            this.labelDaysLeft.Name = "labelDaysLeft";
+            this.labelDaysLeft.Size = new System.Drawing.Size(70, 20);
+            this.labelDaysLeft.TabIndex = 2;
+            this.labelDaysLeft.Text = "Days left:";
+            // 
+            // monthlySpend
+            // 
+            this.monthlySpend.AutoSize = true;
+            this.monthlySpend.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.monthlySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.monthlySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.monthlySpend.Location = new System.Drawing.Point(213, 92);
+            this.monthlySpend.Name = "monthlySpend";
+            this.monthlySpend.Size = new System.Drawing.Size(19, 27);
+            this.monthlySpend.TabIndex = 4;
+            this.monthlySpend.Text = " ";
+            // 
+            // dailySpend
+            // 
+            this.dailySpend.AutoSize = true;
+            this.dailySpend.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dailySpend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dailySpend.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dailySpend.Location = new System.Drawing.Point(213, 30);
+            this.dailySpend.Name = "dailySpend";
+            this.dailySpend.Size = new System.Drawing.Size(19, 27);
+            this.dailySpend.TabIndex = 3;
+            this.dailySpend.Text = " ";
+            // 
+            // labelThisMonthYouCanSpend
+            // 
+            this.labelThisMonthYouCanSpend.AutoSize = true;
+            this.labelThisMonthYouCanSpend.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelThisMonthYouCanSpend.Location = new System.Drawing.Point(23, 95);
+            this.labelThisMonthYouCanSpend.Name = "labelThisMonthYouCanSpend";
+            this.labelThisMonthYouCanSpend.Size = new System.Drawing.Size(184, 20);
+            this.labelThisMonthYouCanSpend.TabIndex = 2;
+            this.labelThisMonthYouCanSpend.Text = "This month you can spend:";
+            // 
+            // labelTodayYouCanSpend
+            // 
+            this.labelTodayYouCanSpend.AutoSize = true;
+            this.labelTodayYouCanSpend.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTodayYouCanSpend.Location = new System.Drawing.Point(53, 33);
+            this.labelTodayYouCanSpend.Name = "labelTodayYouCanSpend";
+            this.labelTodayYouCanSpend.Size = new System.Drawing.Size(151, 20);
+            this.labelTodayYouCanSpend.TabIndex = 1;
+            this.labelTodayYouCanSpend.Text = "Today you can spend:";
+            // 
+            // labelInsights
+            // 
+            this.labelInsights.AutoSize = true;
+            this.labelInsights.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelInsights.Location = new System.Drawing.Point(233, 11);
+            this.labelInsights.Name = "labelInsights";
+            this.labelInsights.Size = new System.Drawing.Size(92, 25);
+            this.labelInsights.TabIndex = 0;
+            this.labelInsights.Text = "INSIGHTS";
+            // 
             // panelGoal
             // 
             this.panelGoal.Controls.Add(this.labelGoal);
@@ -1773,6 +2305,165 @@ namespace Plutus
             this.labelGoal.Name = "labelGoal";
             this.labelGoal.Size = new System.Drawing.Size(0, 25);
             this.labelGoal.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(236, 84);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "delete";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(146, 84);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 6;
+            this.button6.Text = "change";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(253, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Due Date:";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(253, 37);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(180, 23);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(137, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 15);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Amount:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(137, 37);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 23);
+            this.textBox4.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(17, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(42, 15);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Name:";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(17, 37);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(92, 23);
+            this.textBox5.TabIndex = 0;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(17, 31);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(151, 21);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Changed succesfully";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(326, 88);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 21;
+            this.button7.Text = "delete";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(225, 88);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 20;
+            this.button8.Text = "change";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(434, 36);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker2.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(433, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "First payment:";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(296, 37);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 23);
+            this.comboBox4.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(296, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 15);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Category:";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(165, 37);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(113, 23);
+            this.textBox6.TabIndex = 15;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(165, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 15);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Amount:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(9, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(42, 15);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "Name:";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(9, 37);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(141, 23);
+            this.textBox7.TabIndex = 13;
             // 
             // GUI
             // 
@@ -1807,9 +2498,31 @@ namespace Plutus
             this.tabPage7.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
-            this.tabPage8.PerformLayout();
+            this.panelMyScheduledIncome.ResumeLayout(false);
+            this.panelMyScheduledIncome.PerformLayout();
+            this.panelEditScheduledIncome.ResumeLayout(false);
+            this.panelEditScheduledIncome.PerformLayout();
+            this.panelChangeScheduledIncome.ResumeLayout(false);
+            this.panelChangeScheduledIncome.PerformLayout();
+            this.panelScheduledIncomeComment.ResumeLayout(false);
+            this.panelScheduledIncomeComment.PerformLayout();
+            this.panelShowScheduledIncome.ResumeLayout(false);
+            this.panelShowScheduledIncome.PerformLayout();
+            this.panelAddMonthlyIncome.ResumeLayout(false);
+            this.panelAddMonthlyIncome.PerformLayout();
             this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
+            this.panelMyScheduledExpenses.ResumeLayout(false);
+            this.panelMyScheduledExpenses.PerformLayout();
+            this.panelEditScheduledExpenses.ResumeLayout(false);
+            this.panelEditScheduledExpenses.PerformLayout();
+            this.panelScheduledExpensesComment.ResumeLayout(false);
+            this.panelScheduledExpensesComment.PerformLayout();
+            this.panelChangeScheduledExpense.ResumeLayout(false);
+            this.panelChangeScheduledExpense.PerformLayout();
+            this.panelShowScheduledExpenses.ResumeLayout(false);
+            this.panelShowScheduledExpenses.PerformLayout();
+            this.panelAddMonthlyExpenses.ResumeLayout(false);
+            this.panelAddMonthlyExpenses.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1820,10 +2533,6 @@ namespace Plutus
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabGoal.ResumeLayout(false);
-            this.panelInsights.ResumeLayout(false);
-            this.panelInsights.PerformLayout();
-            this.panelInsightsSpend.ResumeLayout(false);
-            this.panelInsightsSpend.PerformLayout();
             this.panelMyGoals.ResumeLayout(false);
             this.panelMyGoals.PerformLayout();
             this.panelEditGoal.ResumeLayout(false);
@@ -1834,6 +2543,10 @@ namespace Plutus
             this.panelGoalComment.PerformLayout();
             this.panelAddGoal.ResumeLayout(false);
             this.panelAddGoal.PerformLayout();
+            this.panelInsights.ResumeLayout(false);
+            this.panelInsights.PerformLayout();
+            this.panelInsightsSpend.ResumeLayout(false);
+            this.panelInsightsSpend.PerformLayout();
             this.panelGoal.ResumeLayout(false);
             this.panelGoal.PerformLayout();
             this.ResumeLayout(false);
@@ -1877,7 +2590,6 @@ namespace Plutus
         private TabPage tabPage8;
         private TabPage tabPage9;
         private Label labelMonthlyIncomeName;
-        private Label labelMonthlyIncome;
         private TextBox monthlyIncomeName;
         private ComboBox monthlyIncomeCategory;
         private Label labelMonthlyIncomeCategory;
@@ -1891,7 +2603,6 @@ namespace Plutus
         private TextBox monthlyExpensesAmount;
         private Label labelMonthlyExpensesCategory;
         private TextBox monthlyExpensesName;
-        private Label labelMonthlyExpen;
         private Label labelMonthlyExpensesName;
         private ComboBox monthlyExpensesCategory;
         private Button buttonAddMonthlyIncome;
@@ -1987,7 +2698,73 @@ namespace Plutus
         private Label labelInsightsGoal;
         private Label daysLeft;
         private Label labelDaysLeft;
-        private Label labelMonthlyExpenses;
+        private Button button5;
+        private Button button6;
+        private Label label3;
+        private DateTimePicker dateTimePicker1;
+        private Label label7;
+        private TextBox textBox4;
+        private Label label14;
+        private TextBox textBox5;
+        private Label label15;
+        private Panel panelMyScheduledIncome;
+        private Label labelScheduledIncome;
+        private Panel panelAddMonthlyIncome;
+        private Button buttonEditScheduledIncome;
+        private TextBox textBoxScheduledIncome;
+        private Panel panelMyScheduledExpenses;
+        private Button buttonEditScheduledExpenses;
+        private TextBox textBoxScheduledExpenses;
+        private Label labelMyScheduledExpenses;
+        private Panel panelAddMonthlyExpenses;
+        private Panel panelShowScheduledIncome;
+        private Panel panelShowScheduledExpenses;
+        private Label labelScheduledExpenseNewAmount;
+        private TextBox scheduledExpenseNewName;
+        private Label labelScheduledExpenseNewName;
+        private ComboBox comboBoxScheduledExpenses;
+        private Label labelSelectMonthlyExpense;
+        private TextBox scheduledExpenseNewAmount;
+        private Panel panelEditScheduledExpenses;
+        private Panel panelEditScheduledIncome;
+        private ComboBox comboBoxScheduledIncome;
+        private Label labelSelectScheduledIncome;
+        private Panel panelChangeScheduledExpense;
+        private Button buttonDeleteScheduledExpense;
+        private Button buttonChangeScheduledExpense;
+        private DateTimePicker scheduledExpenseNewFirstPay;
+        private Label labelScheduledExpenseNewFirstPay;
+        private ComboBox scheduledExpenseNewCategory;
+        private Label labelScheduledExpenseNewCategory;
+        private Button button7;
+        private Button button8;
+        private DateTimePicker dateTimePicker2;
+        private Label label1;
+        private ComboBox comboBox4;
+        private Label label2;
+        private TextBox textBox6;
+        private Label label16;
+        private Label label17;
+        private TextBox textBox7;
+        private Panel panelChangeScheduledIncome;
+        private Button buttonDeleteScheduledIncome;
+        private Button buttonChangeScheduledIncome;
+        private DateTimePicker scheduledIncomeNewFirstPay;
+        private Label labelScheduledIncomeNewFirstPay;
+        private ComboBox scheduledIncomeNewCategory;
+        private Label labelScheduledIncomeNewCat;
+        private TextBox scheduledIncomeNewAmount;
+        private Label labelScheduledIncomeNewAmount;
+        private Label labelScheduledIncomeNewName;
+        private TextBox scheduledIncomeNewName;
+        private Button buttonMyScheduledIncome;
+        private Button buttonAddNewScheduledIncome;
+        private Button buttonMyScheduledExpenses;
+        private Button buttonAddNewScheduledExpense;
+        private Panel panelScheduledIncomeComment;
+        private Label scheduledIncomeComment;
+        private Panel panelScheduledExpensesComment;
+        private Label scheduledExpensesComment;
     }
 }
 

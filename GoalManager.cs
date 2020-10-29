@@ -45,10 +45,13 @@ namespace Plutus
             return text;
         }
 
-        public void AddGoal(Goal newGoal)
+        public void AddGoal(string name, string amount, DateTime dueDate)
         {
             var serializer = new XmlSerializer(typeof(List<Goal>));
             List<Goal> list = null;
+
+            var newAmount = double.Parse(amount);
+            var newGoal = new Goal(name, newAmount, dueDate);
 
             try
             {
@@ -96,7 +99,6 @@ namespace Plutus
             using Stream stream = File.OpenWrite(_goals);
             serializer.Serialize(stream, list);
         }
-
 
         public List<Expense> ReadMonthlyExpenses()
         {
@@ -181,6 +183,87 @@ namespace Plutus
                 serializer.Serialize(stream, list);
             }
         }
+        public string ShowMonthlyIncome()
+        {
+            var list = ReadMonthlyIncome();
+            var text = "";
+
+            foreach (var income in list)
+            {
+                var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date).ToLocalTime();
+                text += income.Category + " | " + income.Sum + "€ | " + date + System.Environment.NewLine;
+            }
+
+            return text;
+        }
+        public string ShowMonthlyExpenses()
+        {
+            var list = ReadMonthlyExpenses();
+            var text = "";
+
+            foreach (var expense in list)
+            {
+                var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date).ToLocalTime();
+                text +=  expense.Name + " | " + expense.Price + "€ | " + expense.Category + " | " + date + System.Environment.NewLine;
+            }
+
+            return text;
+        }
+        public void EditMonthlyIncome(int index, string newCategory, string newAmount, DateTime newDate)
+        {
+            var amount = double.Parse(newAmount);
+            var list = ReadMonthlyIncome();
+            var array = list.ToArray();
+            var date = (int)(newDate.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+            list.Remove(array[index]);
+            array[index] = new Income(date,amount,newCategory);
+            list.Insert(index, array[index]);
+            UpdateMonthlyIncome(list);
+
+        }
+        public void EditMonthlyExpense(int index, string newName, string newCategory, string newAmount, DateTime newDate)
+        {
+            var amount = double.Parse(newAmount);
+            var list = ReadMonthlyExpenses();
+            var array = list.ToArray();
+            var date = (int)(newDate.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+            list.Remove(array[index]);
+            array[index] = new Expense(date, newName, amount, newCategory);
+            list.Insert(index, array[index]);
+            UpdateMonthlyExpenses(list);
+
+        }
+        public void UpdateMonthlyIncome(List<Income> list)
+        {
+            var serializer = new XmlSerializer(typeof(List<Income>));
+            File.WriteAllText(_monthlyIncome, "");
+            using Stream stream = File.OpenWrite(_monthlyIncome);
+            serializer.Serialize(stream, list);
+        }
+        public void UpdateMonthlyExpenses(List<Expense> list)
+        {
+            var serializer = new XmlSerializer(typeof(List<Expense>));
+            File.WriteAllText(_monthlyExpenses, "");
+            using Stream stream = File.OpenWrite(_monthlyExpenses);
+            serializer.Serialize(stream, list);
+        }
+        public void DeleteMonthlyIncome(int index)
+        {
+            var list = ReadMonthlyIncome();
+            var array = list.ToArray();
+            list.Remove(array[index]);
+            UpdateMonthlyIncome(list);
+        }
+        public void DeleteMonthlyExpenses(int index)
+        {
+            var list = ReadMonthlyExpenses();
+            var array = list.ToArray();
+            list.Remove(array[index]);
+            UpdateMonthlyExpenses(list);
+        }
+
 
         public string Insights(FileManager manager, Goal goal, bool dailyOrMonthly)
         {
@@ -193,14 +276,26 @@ namespace Plutus
             var income = monthlyIncome.Sum(x => x.Sum * months) + allIncome.Sum(x => x.Sum);
             var expenses = monthlyExpenses.Sum(x => x.Price * months) + allExpenses.Sum(x => x.Price);
 
+            double todaySpent = 0;
+
+            foreach(var expense in allExpenses)
+            {
+                var date = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(expense.Date).ToLocalTime();
+                if(date.ToString("yyyy/MM/dd") == DateTime.Now.ToString("yyyy/MM/dd"))
+                {
+                    todaySpent += expense.Price;
+                }
+
+            }
+
             if (dailyOrMonthly)
             {
-                return ((income - expenses - goal.Amount) / months).ToString("C2");
+                return ((income - expenses - goal.Amount + todaySpent) / months).ToString("C2");
             }
 
             else if (!dailyOrMonthly)
             {
-                return ((income - expenses - goal.Amount) / months / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)).ToString("C2");
+                return ((((income - expenses - goal.Amount + todaySpent) / months) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - todaySpent)).ToString("C2");
             }
 
             return "";

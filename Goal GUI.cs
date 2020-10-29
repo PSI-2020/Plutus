@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace Plutus
 {
     public partial class GUI : Form
-    {
+    {       
         private void ButtonAddGoal_Click(object sender, EventArgs e)
         {
             panelInsights.Visible = false;
@@ -37,18 +37,14 @@ namespace Plutus
                 addGoalErrorLabel.Text = "Please enter amount";
                 return;
             }
-            if (!Double.TryParse(textBoxAddGoalAmount.Text, out _))
+            if (!double.TryParse(textBoxAddGoalAmount.Text, out _))
             {
                 addGoalErrorLabel.Text = "Not a number!";
                 return;
             }
 
             var name = textBoxAddGoalName.Text;
-            var date = dateTimePickerAddGoal.Value;
-            var amount = double.Parse(textBoxAddGoalAmount.Text);
-
-
-            goalManager.AddGoal(new Goal(name, amount, date));
+            goalManager.AddGoal(name, textBoxAddGoalAmount.Text, dateTimePickerAddGoal.Value);
 
             panelAddGoal.Visible = false;
             panelGoal.Visible = true;
