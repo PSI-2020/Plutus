@@ -77,8 +77,8 @@ namespace Plutus
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabControlScheduler = new System.Windows.Forms.TabControl();
+            this.tabMonthlyIncome = new System.Windows.Forms.TabPage();
             this.buttonMyScheduledIncome = new System.Windows.Forms.Button();
             this.buttonAddNewScheduledIncome = new System.Windows.Forms.Button();
             this.panelMyScheduledIncome = new System.Windows.Forms.Panel();
@@ -113,7 +113,7 @@ namespace Plutus
             this.monthlyIncomeDate = new System.Windows.Forms.DateTimePicker();
             this.labelMonthlyIncomeAmount = new System.Windows.Forms.Label();
             this.labelMonthlyIncomeFirstPay = new System.Windows.Forms.Label();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabMonthlyExpenses = new System.Windows.Forms.TabPage();
             this.panelMyScheduledExpenses = new System.Windows.Forms.Panel();
             this.panelEditScheduledExpenses = new System.Windows.Forms.Panel();
             this.panelScheduledExpensesComment = new System.Windows.Forms.Panel();
@@ -225,25 +225,6 @@ namespace Plutus
             this.labelInsights = new System.Windows.Forms.Label();
             this.panelGoal = new System.Windows.Forms.Panel();
             this.labelGoal = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -261,15 +242,15 @@ namespace Plutus
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage8.SuspendLayout();
+            this.tabControlScheduler.SuspendLayout();
+            this.tabMonthlyIncome.SuspendLayout();
             this.panelMyScheduledIncome.SuspendLayout();
             this.panelEditScheduledIncome.SuspendLayout();
             this.panelChangeScheduledIncome.SuspendLayout();
             this.panelScheduledIncomeComment.SuspendLayout();
             this.panelShowScheduledIncome.SuspendLayout();
             this.panelAddMonthlyIncome.SuspendLayout();
-            this.tabPage9.SuspendLayout();
+            this.tabMonthlyExpenses.SuspendLayout();
             this.panelMyScheduledExpenses.SuspendLayout();
             this.panelEditScheduledExpenses.SuspendLayout();
             this.panelScheduledExpensesComment.SuspendLayout();
@@ -785,7 +766,7 @@ namespace Plutus
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.tabControl2);
+            this.tabPage7.Controls.Add(this.tabControlScheduler);
             this.tabPage7.Location = new System.Drawing.Point(4, 24);
             this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage7.Name = "tabPage7";
@@ -795,29 +776,29 @@ namespace Plutus
             this.tabPage7.Text = "Scheduler";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // tabControl2
+            // tabControlScheduler
             // 
-            this.tabControl2.Controls.Add(this.tabPage8);
-            this.tabControl2.Controls.Add(this.tabPage9);
-            this.tabControl2.Location = new System.Drawing.Point(49, 16);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 2;
-            this.tabControl2.Size = new System.Drawing.Size(761, 354);
-            this.tabControl2.TabIndex = 0;
+            this.tabControlScheduler.Controls.Add(this.tabMonthlyIncome);
+            this.tabControlScheduler.Controls.Add(this.tabMonthlyExpenses);
+            this.tabControlScheduler.Location = new System.Drawing.Point(49, 16);
+            this.tabControlScheduler.Name = "tabControlScheduler";
+            this.tabControlScheduler.SelectedIndex = 2;
+            this.tabControlScheduler.Size = new System.Drawing.Size(761, 354);
+            this.tabControlScheduler.TabIndex = 0;
             // 
-            // tabPage8
+            // tabMonthlyIncome
             // 
-            this.tabPage8.BackColor = System.Drawing.Color.Honeydew;
-            this.tabPage8.Controls.Add(this.buttonMyScheduledIncome);
-            this.tabPage8.Controls.Add(this.buttonAddNewScheduledIncome);
-            this.tabPage8.Controls.Add(this.panelMyScheduledIncome);
-            this.tabPage8.Controls.Add(this.panelAddMonthlyIncome);
-            this.tabPage8.Location = new System.Drawing.Point(4, 24);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(753, 326);
-            this.tabPage8.TabIndex = 0;
-            this.tabPage8.Text = "Monthly Income";
+            this.tabMonthlyIncome.BackColor = System.Drawing.Color.Honeydew;
+            this.tabMonthlyIncome.Controls.Add(this.buttonMyScheduledIncome);
+            this.tabMonthlyIncome.Controls.Add(this.buttonAddNewScheduledIncome);
+            this.tabMonthlyIncome.Controls.Add(this.panelMyScheduledIncome);
+            this.tabMonthlyIncome.Controls.Add(this.panelAddMonthlyIncome);
+            this.tabMonthlyIncome.Location = new System.Drawing.Point(4, 24);
+            this.tabMonthlyIncome.Name = "tabMonthlyIncome";
+            this.tabMonthlyIncome.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMonthlyIncome.Size = new System.Drawing.Size(753, 326);
+            this.tabMonthlyIncome.TabIndex = 0;
+            this.tabMonthlyIncome.Text = "Monthly Income";
             // 
             // buttonMyScheduledIncome
             // 
@@ -1156,19 +1137,19 @@ namespace Plutus
             this.labelMonthlyIncomeFirstPay.TabIndex = 0;
             this.labelMonthlyIncomeFirstPay.Text = "First payment";
             // 
-            // tabPage9
+            // tabMonthlyExpenses
             // 
-            this.tabPage9.BackColor = System.Drawing.Color.OldLace;
-            this.tabPage9.Controls.Add(this.panelMyScheduledExpenses);
-            this.tabPage9.Controls.Add(this.buttonMyScheduledExpenses);
-            this.tabPage9.Controls.Add(this.buttonAddNewScheduledExpense);
-            this.tabPage9.Controls.Add(this.panelAddMonthlyExpenses);
-            this.tabPage9.Location = new System.Drawing.Point(4, 24);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(753, 326);
-            this.tabPage9.TabIndex = 1;
-            this.tabPage9.Text = "Monthly Expenses";
+            this.tabMonthlyExpenses.BackColor = System.Drawing.Color.OldLace;
+            this.tabMonthlyExpenses.Controls.Add(this.panelMyScheduledExpenses);
+            this.tabMonthlyExpenses.Controls.Add(this.buttonMyScheduledExpenses);
+            this.tabMonthlyExpenses.Controls.Add(this.buttonAddNewScheduledExpense);
+            this.tabMonthlyExpenses.Controls.Add(this.panelAddMonthlyExpenses);
+            this.tabMonthlyExpenses.Location = new System.Drawing.Point(4, 24);
+            this.tabMonthlyExpenses.Name = "tabMonthlyExpenses";
+            this.tabMonthlyExpenses.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMonthlyExpenses.Size = new System.Drawing.Size(753, 326);
+            this.tabMonthlyExpenses.TabIndex = 1;
+            this.tabMonthlyExpenses.Text = "Monthly Expenses";
             // 
             // panelMyScheduledExpenses
             // 
@@ -2306,165 +2287,6 @@ namespace Plutus
             this.labelGoal.Size = new System.Drawing.Size(0, 25);
             this.labelGoal.TabIndex = 0;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(236, 84);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "delete";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(146, 84);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "change";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(253, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Due Date:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(253, 37);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(180, 23);
-            this.dateTimePicker1.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(137, 19);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 15);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Amount:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(137, 37);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 23);
-            this.textBox4.TabIndex = 2;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(17, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(42, 15);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Name:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(17, 37);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(92, 23);
-            this.textBox5.TabIndex = 0;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(17, 31);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(151, 21);
-            this.label15.TabIndex = 4;
-            this.label15.Text = "Changed succesfully";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(326, 88);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "delete";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(225, 88);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 20;
-            this.button8.Text = "change";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(434, 36);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker2.TabIndex = 19;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(433, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "First payment:";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(296, 37);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 23);
-            this.comboBox4.TabIndex = 17;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(296, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 15);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Category:";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(165, 37);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(113, 23);
-            this.textBox6.TabIndex = 15;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(165, 16);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 15);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "Amount:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(9, 16);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(42, 15);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "Name:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(9, 37);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(141, 23);
-            this.textBox7.TabIndex = 13;
-            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2496,8 +2318,8 @@ namespace Plutus
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage8.ResumeLayout(false);
+            this.tabControlScheduler.ResumeLayout(false);
+            this.tabMonthlyIncome.ResumeLayout(false);
             this.panelMyScheduledIncome.ResumeLayout(false);
             this.panelMyScheduledIncome.PerformLayout();
             this.panelEditScheduledIncome.ResumeLayout(false);
@@ -2510,7 +2332,7 @@ namespace Plutus
             this.panelShowScheduledIncome.PerformLayout();
             this.panelAddMonthlyIncome.ResumeLayout(false);
             this.panelAddMonthlyIncome.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
+            this.tabMonthlyExpenses.ResumeLayout(false);
             this.panelMyScheduledExpenses.ResumeLayout(false);
             this.panelMyScheduledExpenses.PerformLayout();
             this.panelEditScheduledExpenses.ResumeLayout(false);
@@ -2586,9 +2408,8 @@ namespace Plutus
         private TextBox textBox2;
         private Label label9;
         private TabPage tabPage7;
-        private TabControl tabControl2;
-        private TabPage tabPage8;
-        private TabPage tabPage9;
+        private TabControl tabControlScheduler;
+        private TabPage tabMonthlyExpenses;
         private Label labelMonthlyIncomeName;
         private TextBox monthlyIncomeName;
         private ComboBox monthlyIncomeCategory;
@@ -2698,15 +2519,6 @@ namespace Plutus
         private Label labelInsightsGoal;
         private Label daysLeft;
         private Label labelDaysLeft;
-        private Button button5;
-        private Button button6;
-        private Label label3;
-        private DateTimePicker dateTimePicker1;
-        private Label label7;
-        private TextBox textBox4;
-        private Label label14;
-        private TextBox textBox5;
-        private Label label15;
         private Panel panelMyScheduledIncome;
         private Label labelScheduledIncome;
         private Panel panelAddMonthlyIncome;
@@ -2736,16 +2548,6 @@ namespace Plutus
         private Label labelScheduledExpenseNewFirstPay;
         private ComboBox scheduledExpenseNewCategory;
         private Label labelScheduledExpenseNewCategory;
-        private Button button7;
-        private Button button8;
-        private DateTimePicker dateTimePicker2;
-        private Label label1;
-        private ComboBox comboBox4;
-        private Label label2;
-        private TextBox textBox6;
-        private Label label16;
-        private Label label17;
-        private TextBox textBox7;
         private Panel panelChangeScheduledIncome;
         private Button buttonDeleteScheduledIncome;
         private Button buttonChangeScheduledIncome;
@@ -2765,6 +2567,7 @@ namespace Plutus
         private Label scheduledIncomeComment;
         private Panel panelScheduledExpensesComment;
         private Label scheduledExpensesComment;
+        private TabPage tabMonthlyIncome;
     }
 }
 
