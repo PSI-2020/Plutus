@@ -14,24 +14,11 @@ namespace Plutus
 
         private void ButtonAddMonthlyExpenses_Click(object sender, EventArgs e)
         {
-            if (monthlyExpensesName.Text.Length == 0 || monthlyExpensesName.Text == null)
+            var verify = new InputVerification();
+            var error = verify.VerifyData(name: monthlyExpensesName.Text, amount: monthlyExpensesAmount.Text, category: monthlyExpensesCategory.Text);
+            if (error != "")
             {
-                monthlyExpensesStatusLabel.Text = "Name cannot be empty!";
-                return;
-            }
-            if (monthlyExpensesAmount.Text.Length == 0 || monthlyExpensesAmount == null)
-            {
-                monthlyExpensesStatusLabel.Text = "Please enter amount!";
-                return;
-            }
-            if (!double.TryParse(monthlyExpensesAmount.Text, out _))
-            {
-                monthlyExpensesStatusLabel.Text = "Amount must be a number!";
-                return;
-            }
-            if (monthlyExpensesCategory.Text.Length == 0 || monthlyExpensesCategory == null)
-            {
-                monthlyExpensesStatusLabel.Text = "Please choose a category!";
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -94,6 +81,13 @@ namespace Plutus
 
         private void ButtonChangeScheduledExpense_Click(object sender, EventArgs e)
         {
+            var verify = new InputVerification();
+            var error = verify.VerifyData(name: scheduledExpenseNewName.Text, amount: scheduledExpenseNewAmount.Text, category: scheduledExpenseNewCategory.Text);
+            if (error != "")
+            {
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             goalManager.EditMonthlyExpense(comboBoxScheduledExpenses.SelectedIndex, scheduledExpenseNewName.Text, scheduledExpenseNewCategory.Text, scheduledExpenseNewAmount.Text, scheduledIncomeNewFirstPay.Value);
             panelScheduledExpensesComment.Visible = true;
             panelChangeScheduledExpense.Visible = false;

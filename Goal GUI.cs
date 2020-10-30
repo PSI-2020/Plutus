@@ -27,19 +27,11 @@ namespace Plutus
 
         private void ButtonAddGoalEnter_Click(object sender, EventArgs e)
         {
-            if (textBoxAddGoalName.Text.Length == 0 || textBoxAddGoalName.Text == null)
+            var verify = new InputVerification();
+            var error = verify.VerifyData(name: textBoxAddGoalName.Text, amount: textBoxAddGoalAmount.Text);
+            if (error != "")
             {
-                addGoalErrorLabel.Text = "Please enter name";
-                return;
-            }
-            if (textBoxAddGoalAmount.Text.Length == 0 || textBoxAddGoalAmount.Text == null)
-            {
-                addGoalErrorLabel.Text = "Please enter amount";
-                return;
-            }
-            if (!double.TryParse(textBoxAddGoalAmount.Text, out _))
-            {
-                addGoalErrorLabel.Text = "Not a number!";
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -110,6 +102,13 @@ namespace Plutus
 
         private void ButtonChangeGoal_Click(object sender, EventArgs e)
         {
+            var verify = new InputVerification();
+            var error = verify.VerifyData(name: textBoxChangeGoalName.Text, amount: textBoxChangeGoalAmount.Text);
+            if (error != "")
+            {
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             goalManager.EditGoal(comboBoxEditGoal.SelectedIndex, textBoxChangeGoalName.Text, textBoxChangeGoalAmount.Text, dateTimePickerChangeGoal.Value);
             panelChangeGoal.Visible = false;
             panelGoalComment.Visible = true;

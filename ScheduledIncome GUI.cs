@@ -23,25 +23,12 @@ namespace Plutus
 
 
         private void ButtonAddMonthlyIncome_Click(object sender, EventArgs e)
-        {
-            if (monthlyIncomeName.Text.Length == 0 || monthlyIncomeName.Text == null)
+        { 
+            var verify = new InputVerification();
+            var error = verify.VerifyData(amount: monthlyIncomeAmount.Text, category: monthlyIncomeCategory.Text);
+            if (error != "")
             {
-                monthlyIncomeStatusLabel.Text = "Name cannot be empty!";
-                return;
-            }
-            if (monthlyIncomeAmount.Text.Length == 0 || monthlyIncomeAmount.Text == null)
-            {
-                monthlyIncomeStatusLabel.Text = "Please enter amount!";
-                return;
-            }
-            if (!double.TryParse(monthlyIncomeAmount.Text, out _))
-            {
-                monthlyIncomeStatusLabel.Text = "Amount must be a number!";
-                return;
-            }
-            if (monthlyIncomeCategory.Text.Length == 0 || monthlyIncomeCategory == null)
-            {
-                monthlyIncomeStatusLabel.Text = "Please choose a category!";
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -93,6 +80,13 @@ namespace Plutus
 
         private void ButtonChangeScheduledIncome_Click(object sender, EventArgs e)
         {
+            var verify = new InputVerification();
+            var error = verify.VerifyData(amount: scheduledIncomeNewAmount.Text, category: scheduledIncomeNewCategory.Text);
+            if (error != "")
+            {
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             goalManager.EditMonthlyIncome(comboBoxScheduledIncome.SelectedIndex, scheduledIncomeNewCategory.Text, scheduledIncomeNewAmount.Text, scheduledIncomeNewFirstPay.Value);
             panelScheduledIncomeComment.Visible = true;
             panelChangeScheduledIncome.Visible = false;
