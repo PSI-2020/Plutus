@@ -15,13 +15,13 @@ namespace Plutus
         public double Sum { get; set; }
         public int From { get; set; }
         public int To { get; set; }
-        public Budget(string name, string category, double sum, int from, int to)
+        public Budget(string name, string category, double sum, DateTime from, DateTime to)
         {
             Name = name;
             Category = category;
             Sum = sum;
-            From = from;
-            To = to;
+            From = (int)(from.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            To = (int)(to.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         }
 
         public Budget()
@@ -95,8 +95,7 @@ namespace Plutus
         public void DeleteBudget(int index)
         {
             var list = LoadBudget();
-            var array = list.ToArray();
-            list.Remove(array[index]);
+            list.Remove(list[index]);
             UpdateBudgets(RenameBudgets(list));
         }
         public List<Budget> RenameBudgets(List<Budget> list)
@@ -119,26 +118,25 @@ namespace Plutus
         {
             var data = "";
             var list = LoadBudget();
-            var array = list.ToArray();
 
-            var from = new DateTime(1970, 1, 1).AddSeconds(array[index].From).ToLocalTime();
-            var to = new DateTime(1970, 1, 1).AddSeconds(array[index].To).ToLocalTime();
+            var from = new DateTime(1970, 1, 1).AddSeconds(list[index].From).ToLocalTime();
+            var to = new DateTime(1970, 1, 1).AddSeconds(list[index].To).ToLocalTime();
 
 
             var expenses = manager.ReadExpenses();
             if (expenses == null) return "";
 
 
-            data = "Budget for " + array[index].Category;
+            data = "Budget for " + list[index].Category;
             var total = 0.00;
 
             total = expenses
-                .Where(x => x.Category == array[index].Category)
-                .Where(x => x.Date >= array[index].From)
-                .Where(x => x.Date <= array[index].To)
+                .Where(x => x.Category == list[index].Category)
+                .Where(x => x.Date >= list[index].From)
+                .Where(x => x.Date <= list[index].To)
                 .Sum(x => x.Price);
 
-            data += "\r\n" + total + "/" + array[index].Sum + " €" + "\r\n" + Math.Round((total * 100 / array[index].Sum), 2) + "%" + "\r\n" +
+            data += "\r\n" + total + "/" + list[index].Sum + " €" + "\r\n" + Math.Round((total * 100 / list[index].Sum), 2) + "%" + "\r\n" +
                 from.ToString("yyyy/MM/dd") + " - " + to.ToString("yyyy/MM/dd");
 
 

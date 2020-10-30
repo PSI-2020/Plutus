@@ -158,7 +158,6 @@ namespace Plutus
             this.dateFrom = new System.Windows.Forms.DateTimePicker();
             this.toLbl = new System.Windows.Forms.Label();
             this.fromLbl = new System.Windows.Forms.Label();
-            this.errorLbl = new System.Windows.Forms.Label();
             this.budgetAdd = new System.Windows.Forms.Button();
             this.setPeriodLbl = new System.Windows.Forms.Label();
             this.budgetSum = new System.Windows.Forms.TextBox();
@@ -1480,7 +1479,6 @@ namespace Plutus
             this.budgetControl.Controls.Add(this.dateFrom);
             this.budgetControl.Controls.Add(this.toLbl);
             this.budgetControl.Controls.Add(this.fromLbl);
-            this.budgetControl.Controls.Add(this.errorLbl);
             this.budgetControl.Controls.Add(this.budgetAdd);
             this.budgetControl.Controls.Add(this.setPeriodLbl);
             this.budgetControl.Controls.Add(this.budgetSum);
@@ -1527,15 +1525,6 @@ namespace Plutus
             this.fromLbl.Size = new System.Drawing.Size(43, 20);
             this.fromLbl.TabIndex = 2;
             this.fromLbl.Text = "From";
-            // 
-            // errorLbl
-            // 
-            this.errorLbl.AutoSize = true;
-            this.errorLbl.Location = new System.Drawing.Point(101, 438);
-            this.errorLbl.Name = "errorLbl";
-            this.errorLbl.Size = new System.Drawing.Size(0, 20);
-            this.errorLbl.TabIndex = 5;
-            this.errorLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // budgetAdd
             // 
@@ -1803,7 +1792,6 @@ namespace Plutus
         private Label setBud;
         private Button budgetAdd;
         private Label setPeriodLbl;
-        private Label errorLbl;
         private DateTimePicker dateTo;
         private DateTimePicker dateFrom;
         private Label toLbl;

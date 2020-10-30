@@ -14,15 +14,17 @@ namespace Plutus
         private void BudgetAdd_Click(object sender, EventArgs e)
         {
             var verify = new InputVerification();
-            errorLbl.Text = verify.VerifyData(amount: budgetSum.Text, category: budgetCat.Text);
-            if (errorLbl.Text != "") return;
+            var error = verify.VerifyData(amount: budgetSum.Text, category: budgetCat.Text);
+            if (error != "")
+            {
+                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             var list = budManager.LoadBudget();
             budgetsFlow.Visible = true;
 
-            var fromSec = (int)(dateFrom.Value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var toSec = (int)(dateTo.Value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            budManager.AddBudget(new Budget("budget" + list.Count, budgetCat.SelectedItem.ToString(), double.Parse(budgetSum.Text), fromSec, toSec));
+            budManager.AddBudget(new Budget("budget" + list.Count, budgetCat.SelectedItem.ToString(), double.Parse(budgetSum.Text), dateFrom.Value, dateTo.Value));
             
             budgetsFlow.Controls.Clear();
             DisplayBudgets();
@@ -86,13 +88,12 @@ namespace Plutus
             tabControl1.SelectTab("dataTab");
             var showButton = (Button)sender;
             var list = budManager.LoadBudget();
-            var array = list.ToArray();
 
             var index = int.Parse(showButton.Name.Substring(4));
-            searchCategoryBox.Text = array[index].Category;
+            searchCategoryBox.Text = list[index].Category;
             dataTypeBox.SelectedIndex = 1;
-            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(array[index].From).ToLocalTime();
-            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(array[index].To).ToLocalTime();
+            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(list[index].From).ToLocalTime();
+            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(list[index].To).ToLocalTime();
             Search(sender, e);
         }
 
