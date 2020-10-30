@@ -11,7 +11,7 @@ namespace Plutus
             var exp = new CartExpense();
             var dataArray = data.Split('|');
             exp.Name = dataArray[0];
-            exp.Price = Convert.ToDouble(dataArray[1]);
+            //exp.Price = Convert.ToDouble(dataArray[1]);
             exp.Category = dataArray[2];
             var activity = dataArray[3];
             if (activity[0] == '0') exp.Active = false;

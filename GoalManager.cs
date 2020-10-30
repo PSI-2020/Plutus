@@ -269,8 +269,8 @@ namespace Plutus
         {
             var monthlyIncome = ReadMonthlyIncome();
             var monthlyExpenses = ReadMonthlyExpenses();
-            var allIncome = manager.readIncome();
-            var allExpenses = manager.readExpenses();
+            var allIncome = manager.ReadIncome();
+            var allExpenses = manager.ReadExpenses();
 
             var months = goal.DueDate.Month - DateTime.Now.Month + (12 * (goal.DueDate.Year - DateTime.Now.Year));
             var income = monthlyIncome.Sum(x => x.Sum * months) + allIncome.Sum(x => x.Sum);

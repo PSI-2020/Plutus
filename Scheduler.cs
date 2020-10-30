@@ -46,11 +46,11 @@ namespace Plutus
                 var time = (int)(Date.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                 if (_incomeOrExpense)
                 {
-                    _manager.addIncome(new Income(time, Amount, Category));
+                    _manager.AddIncome(new Income(time, Amount, Category));
                 }
                 else if (!_incomeOrExpense)
                 {
-                    _manager.addExpense(new Expense(time, Name, Amount, Category));
+                    _manager.AddExpense(new Expense(time, Name, Amount, Category));
                 }
                 Date = Date.AddMonths(1);
                 _checkForTime.Interval = 86400000;

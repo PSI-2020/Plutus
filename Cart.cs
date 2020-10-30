@@ -1,8 +1,6 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Plutus
 
@@ -81,7 +79,7 @@ namespace Plutus
                     charge.Name = expense.Name;
                     charge.Price = expense.Price;
                     charge.Category = expense.Category;
-                    dm.addExpense(charge);
+                    dm.AddExpense(charge);
                 }
             }
         }

@@ -3,14 +3,14 @@ using System.IO;
 using System.Xml.Serialization;
 
 namespace Plutus
-{  
+{
     public class FileManager
     {
         private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         public readonly string income = databaseFolder + "income.xml";
         public readonly string expenses = databaseFolder + "expenses.xml";
 
-        public List<Expense> readExpenses()
+        public List<Expense> ReadExpenses()
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             List<Expense> list = null;
@@ -28,7 +28,7 @@ namespace Plutus
             return list;
         }
 
-        public List<Income> readIncome()
+        public List<Income> ReadIncome()
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             List<Income> list = null;
@@ -45,7 +45,7 @@ namespace Plutus
             return list;
         }
 
-        public void addExpense(Expense expense)
+        public void AddExpense(Expense expense)
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             List<Expense> list = null;
@@ -65,7 +65,7 @@ namespace Plutus
             }
         }
 
-        public void addIncome(Income income)
+        public void AddIncome(Income income)
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             List<Income> list = null;
@@ -85,7 +85,7 @@ namespace Plutus
             }
         }
 
-        public void updateIncome(List<Income> income)
+        public void UpdateIncome(List<Income> income)
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
             File.WriteAllText(this.income, "");
@@ -93,7 +93,7 @@ namespace Plutus
             serializer.Serialize(stream, income);
         }
 
-        public void updateExpenses(List<Expense> expense)
+        public void UpdateExpenses(List<Expense> expense)
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
             File.WriteAllText(expenses, "");

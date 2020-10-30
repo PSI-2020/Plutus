@@ -25,308 +25,113 @@ namespace Plutus
         readonly FileManager fileManager = new FileManager();
         readonly GoalManager goalManager = new GoalManager();
         readonly Statistics stats = new Statistics();
+        readonly Filtering filter = new Filtering();
+        readonly ManageExpenses expenseManager = new ManageExpenses();
+        readonly ManageIncome incomeManager = new ManageIncome();
+
         public GUI() => InitializeComponent();
 
-       
+        private void ShowExpensesButton(object sender, EventArgs e) => output.Text = expenseManager.ShowExpenses(fileManager);
 
-        private void inputExpense(object sender, EventArgs e)
+        private void InputExpenseButton(object sender, EventArgs e)
         {
-            if (nameP.Text.Length == 0 || nameP.Text == null)
-            {
-                errorField.Text = "Name cannot be empty!";
-                return;
-            }
-            if (!Double.TryParse(priceP.Text, out _))
-            {
-                errorField.Text = "Price must be a number!";
-                return;
-            }
-            if (categoryP.Text.Length == 0 || categoryP == null)
-            {
-                errorField.Text = "Please choose a category!";
-                return;
-            }
+            expenseStatusField.Text = expenseManager.InputExpense(fileManager, expenseNameText.Text, expensePriceText.Text, expenseCategorySelection.Text);
+            if (!expenseStatusField.Text.Contains("was successfully added!")) return;
 
-            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var name = nameP.Text;
-            var price = Convert.ToDouble(priceP.Text);
-            var category = categoryP.Text;
-
-            fileManager.addExpense(new Expense(date, name, price, category));
-            errorField.Text = nameP.Text + " was successfully added!";
-            nameP.Text = null;
-            priceP.Text = null;
-            categoryP.Text = null;
+            expenseNameText.Text = null;
+            expensePriceText.Text = null;
+            expenseCategorySelection.Text = null;
         }
 
-        private void inputIncome(object sender, EventArgs e)
+        private void LoadExpensesGUI()
         {
-            if (incomeSum.Text.Length == 0 || incomeSum == null)
-            {
-                errorField2.Text = "Please enter a sum!";
-                return;
-            }
-            if (!Double.TryParse(incomeSum.Text, out _))
-            {
-                errorField2.Text = "Price must be a number!";
-                return;
-            }
-            if (incomeCat.Text.Length == 0 || incomeCat == null)
-            {
-                errorField2.Text = "Please choose a category!";
-                return;
-            }
-            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var sum = Convert.ToDouble(incomeSum.Text);
-            var category = incomeCat.Text;
+            expenseEditSelection.Items.Clear();
+            expenseEditName.Text = null;
+            expenseEditPrice.Text = null;
+            expenseEditCategory.Text = null;
+            expenseManager.LoadExpenses(fileManager, expenseEditSelection);
+        }
 
-            fileManager.addIncome(new Income(date, sum, category));
+        private void OnExpenseSelect(object sender, EventArgs e)
+        {
+            var list = fileManager.ReadExpenses();
+            expenseEditName.Text = list[expenseEditSelection.SelectedIndex].Name;
+            expenseEditPrice.Text = list[expenseEditSelection.SelectedIndex].Price + "";
+            expenseEditCategory.SelectedItem = list[expenseEditSelection.SelectedIndex].Category;
+        }
 
-            errorField2.Text = "Sum was added successfully!";
+        private void EditExpenseButton(object sender, EventArgs e)
+        {
+            expenseStatusMessage.Text = expenseManager.EditExpense(fileManager, expenseEditSelection.SelectedIndex, expenseEditName.Text, expenseEditPrice.Text, expenseEditCategory.Text);
+            if (expenseStatusMessage.Text == "Item edited successfully!") LoadExpensesGUI();
+        }
+
+        private void DeleteExpenseButton(object sender, EventArgs e)
+        {
+            expenseStatusMessage.Text = expenseManager.DeleteExpense(fileManager, expenseEditSelection.SelectedIndex);
+            LoadExpensesGUI();
+        }
+
+        private void ShowIncomeButton(object sender, EventArgs e) => output.Text = incomeManager.ShowIncome(fileManager);
+
+        private void InputIncomeButton(object sender, EventArgs e)
+        {
+            incomeStatusField.Text = incomeManager.InputIncome(fileManager, incomeSum.Text, incomeCategory.Text);
+            if (incomeStatusField.Text != "Sum was added successfully!") return;
+
             incomeSum.Clear();
-            incomeCat.Text = null;
+            incomeCategory.Text = null;
         }
 
-        private void showExpenses(object sender, EventArgs e)
+        private void LoadIncomeGUI()
         {
-            var list = fileManager.readExpenses();
-            if (list == null)
-            {
-                statScreen.Text = "No data found!";
-                return;
-            }
-            statScreen.Text = "";
-            foreach (var expense in list)
-            {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(expense.Date).ToLocalTime();
-                statScreen.Text += date + " | " + expense.Name + " | " + expense.Price + "€ | " + expense.Category + System.Environment.NewLine;
-            }
+            incomeEditSelection.Items.Clear();
+            incomeEditSum.Text = null;
+            incomeEditCategory.Text = null;
+            incomeManager.LoadIncome(fileManager, incomeEditSelection);
         }
 
-        private void showIncome(object sender, EventArgs e)
+        private void OnIncomeSelect(object sender, EventArgs e)
         {
-            var list = fileManager.readIncome();
-            if (list == null)
-            {
-                statScreen.Text = "No data found!";
-                return;
-            }
-            statScreen.Text = "";
-            foreach (var income in list)
-            {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date).ToLocalTime();
-                statScreen.Text += date + " | " + income.Sum + "€ | " + income.Category + System.Environment.NewLine;
-            }
+            var list = fileManager.ReadIncome();
+            incomeEditSum.Text = list[incomeEditSelection.SelectedIndex].Sum + "";
+            incomeEditCategory.SelectedItem = list[incomeEditSelection.SelectedIndex].Category;
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void DeleteIncomeButton(object sender, EventArgs e)
         {
-            panelInsights.Visible = false;
-            panelEditGoal.Visible = false;
-            panelGoal.Visible = false;
-            panelMyGoals.Visible = false;
-            panelAddGoal.Visible = false;
-            monthlySpend.Text = " ";
-            dailySpend.Text = " ";
-            daysLeft.Text = " ";
-            comboBoxInsights.Text = null;
+            incomeStatusMessage.Text = incomeManager.DeleteIncome(fileManager, incomeEditSelection.SelectedIndex);
+            LoadIncomeGUI();
+        }
 
-            switch (tabControl1.SelectedIndex)
+        private void EditIncomeButton(object sender, EventArgs e)
+        {
+            incomeStatusMessage.Text = incomeManager.EditIncome(fileManager, incomeEditSelection.SelectedIndex, incomeEditSum.Text, incomeEditCategory.Text);
+            if (incomeStatusMessage.Text == "Item edited successfully!") LoadIncomeGUI();
+        }
+
+        private void showStatistics(object sender, EventArgs e) => output.Text = stats.GenerateExpenseStatistics(fileManager) + stats.GenerateIncomeStatistics(fileManager);
+
+
+        private void TabChange(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedTab.Text)
             {
-                case 3:
-                    editIncome();
-                    label8.Text = "";
+                case "Edit Income":
+                    LoadIncomeGUI();
+                    incomeStatusMessage.Text = "";
                     break;
-                case 4:
-                    editExpenses();
-                    label9.Text = "";
+                case "Edit Expenses":
+                    LoadExpensesGUI();
+                    expenseStatusMessage.Text = "";
+                    break;
+                case "Budgets":
+                    budgetsFlow.Controls.Clear();
+                    DisplayBudgets();
                     break;
                 default:
                     break;
-
             }
-        }
-
-        private void showStatistics(object sender, EventArgs e) => statScreen.Text = stats.generateExpenseStatistics(fileManager) + stats.generateIncomeStatistics(fileManager);
-
-        private void editIncome()
-        {
-            comboBox1.Items.Clear();
-            textBox1.Text = null;
-            comboBox2.Text = null;
-            var list = fileManager.readIncome();
-            if (list.Count == 0)
-            {
-                comboBox1.Text = "No income data found!";
-                return;
-            }
-
-            comboBox1.Text = "Select item to edit";
-            foreach (var income in list)
-            {
-                //var date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(income.Date).ToLocalTime();
-                comboBox1.Items.Add(income.Sum + "€ | " + income.Category);
-            }
-        }
-
-        private void onEditIncomeChange(object sender, EventArgs e)
-        {
-            var list = fileManager.readIncome();
-            var array = list.ToArray();
-            var index = comboBox1.SelectedIndex;
-            textBox1.Text = array[index].Sum + "";
-            comboBox2.SelectedItem = array[index].Category;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var list = fileManager.readIncome();
-            if (list.Count == 0)
-            {
-                label8.Text = "Income data is empty!";
-                return;
-            }
-            var array = list.ToArray();
-            var index = comboBox1.SelectedIndex;
-            if (index < 0 || index > array.Length)
-            {
-                label8.Text = "Select an item to edit!";
-                return;
-            }
-            list.Remove(array[index]);
-            fileManager.updateIncome(list);
-            label8.Text = "Item deleted successfully!";
-            editIncome();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var list = fileManager.readIncome();
-            if (list.Count == 0)
-            {
-                label8.Text = "Income data is empty!";
-                return;
-            }
-            if (!Double.TryParse(textBox1.Text, out _))
-            {
-                label8.Text = "Sum must be a number!";
-                return;
-            }
-
-            if (comboBox2.Text.Length == 0 || comboBox2 == null)
-            {
-                label8.Text = "Please choose a category!";
-                return;
-            }
-
-            var array = list.ToArray();
-            var index = comboBox1.SelectedIndex;
-            if (index < 0 || index > array.Length)
-            {
-                label8.Text = "Select an item to edit!";
-                return;
-            }
-            list.Remove(array[index]);
-            array[index].Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            array[index].Sum = Convert.ToDouble(textBox1.Text);
-            array[index].Category = comboBox2.SelectedItem.ToString();
-            list.Add(array[index]);
-            fileManager.updateIncome(list);
-            label8.Text = "Item edited successfully!";
-            editIncome();
-        }
-
-        private void editExpenses()
-        {
-            comboBox5.Items.Clear();
-            textBox3.Text = null;
-            textBox2.Text = null;
-            comboBox3.Text = null;
-            var list = fileManager.readExpenses();
-            if (list.Count == 0)
-            {
-                comboBox5.Text = "No expense data found!";
-                return;
-            }
-
-            comboBox5.Text = "Select item to edit";
-            foreach (var expense in list)
-            {
-                comboBox5.Items.Add(expense.Name + " | " + expense.Price + "€ | " + expense.Category);
-            }
-        }
-
-        private void onEditExpenseChange(object sender, EventArgs e)
-        {
-            var list = fileManager.readExpenses();
-            var array = list.ToArray();
-            var index = comboBox5.SelectedIndex;
-            textBox3.Text = array[index].Name;
-            textBox2.Text = array[index].Price + "";
-            comboBox3.SelectedItem = array[index].Category;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var list = fileManager.readExpenses();
-            if (list.Count == 0)
-            {
-                label9.Text = "Expense data is empty!";
-                return;
-            }
-            var array = list.ToArray();
-            var index = comboBox5.SelectedIndex;
-            if (index < 0 || index > array.Length)
-            {
-                label9.Text = "Select an item to edit!";
-                return;
-            }
-            list.Remove(array[index]);
-            fileManager.updateExpenses(list);
-            label9.Text = "Item deleted successfully!";
-            editExpenses();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var list = fileManager.readExpenses();
-            if (list.Count == 0)
-            {
-                label9.Text = "Expense data is empty!";
-                return;
-            }
-            if (textBox3.Text.Length == 0 || textBox3.Text == null)
-            {
-                label9.Text = "Name cannot be empty!";
-                return;
-            }
-            if (!Double.TryParse(textBox2.Text, out _))
-            {
-                label9.Text = "Price must be a number!";
-                return;
-            }
-            if (comboBox3.Text.Length == 0 || comboBox3 == null)
-            {
-                label9.Text = "Please choose a category!";
-                return;
-            }
-
-            var array = list.ToArray();
-            var index = comboBox5.SelectedIndex;
-            if (index < 0 || index > array.Length)
-            {
-                label9.Text = "Select an item to edit!";
-                return;
-            }
-            list.Remove(array[index]);
-            array[index].Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            array[index].Name = textBox3.Text;
-            array[index].Price = Convert.ToDouble(textBox2.Text);
-            array[index].Category = comboBox3.SelectedItem.ToString();
-            list.Add(array[index]);
-            fileManager.updateExpenses(list);
-            label9.Text = "Item edited successfully!";
-            editExpenses();
         }
 
         private int cartCounter = 0;
@@ -619,7 +424,7 @@ namespace Plutus
                 cartAddErrorField.Text = "No Price";
                 return;
             }
-            if (!Double.TryParse(cartElemPriceBox.Text, out _))
+            if (!double.TryParse(cartElemPriceBox.Text, out _))
             {
                 cartAddErrorField.Text = "Not a price";
                 return;
@@ -673,7 +478,7 @@ namespace Plutus
                 cartElemChangeErorr.Text = "No Price";
                 return;
             }
-            if (!Double.TryParse(cartElemChangePri.Text, out _))
+            if (!double.TryParse(cartElemChangePri.Text, out _))
             {
                 cartElemChangeErorr.Text = "Not a price";
                 return;
@@ -757,6 +562,15 @@ namespace Plutus
         {
             cartStore.StoreCart(currentCart);
         }
+
+        private void EnableSearchDataPicker(object sender, EventArgs e)
+        {
+            searchDatePickerFrom.Enabled = enableDatePickerFrom.Checked;
+            searchDatePickerTo.Enabled = enableDatePickerTo.Checked;
+        }
+
+        public void Search(object sender, EventArgs e) => output.Text = filter.SearchData(fileManager, searchNameText.Text, searchCategoryBox.Text, searchNumberFromText.Text, searchNumberToText.Text, dataTypeBox.SelectedIndex, searchCategoryBox.SelectedIndex, searchDatePickerFrom, searchDatePickerTo);
+
 
     }
 }
