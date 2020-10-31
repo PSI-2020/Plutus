@@ -199,6 +199,10 @@ namespace Plutus
                     LoadExpensesGUI();
                     expenseStatusMessage.Text = "";
                     break;
+                case "Budgets":
+                    budgetsFlow.Controls.Clear();
+                    DisplayBudgets();
+                    break;
                 default:
                     break;
             }
@@ -640,5 +644,7 @@ namespace Plutus
         }
 
         public void Search(object sender, EventArgs e) => output.Text = filter.SearchData(fileManager, searchNameText.Text, searchCategoryBox.Text, searchNumberFromText.Text, searchNumberToText.Text, dataTypeBox.SelectedIndex, searchCategoryBox.SelectedIndex, searchDatePickerFrom, searchDatePickerTo);
+
+
     }
 }
