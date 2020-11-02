@@ -52,8 +52,8 @@ namespace Plutus
             var catButton = (Button)sender;
             var name = catButton.Name;
             var nameParts = name.Split('|');
-            var category = nameParts[0];
-            //unimplemented call to service
+            var category = nameParts[1];
+            _currentInfo.CurrentCategory = category;
             Controls.Clear();
             LoadPaymentFieldPage();
         }
