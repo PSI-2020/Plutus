@@ -21,8 +21,6 @@ namespace Plutus
             LoadMenuButton();
             balanceTextLabel = CreateClassicLabel("balanceTextLabel", "BALANCE:", firstColor, lilitaOne, 24F, ClientSize.Width, 40, 0, 120, 1);
             balanceLabel = CreateClassicLabel("balanceLabel", "450000", firstColor, lilitaOne, 32F, ClientSize.Width, 55, 0, 160, 2); 
-
-
             addTextLabel = CreateClassicLabel("addTextLabel", "ADD:", firstColor, lilitaOne, 32F, ClientSize.Width, 55, 0, ClientSize.Height - 300, 3);
 
             expenseAddButton = CreateClassicButton("expenseAddButton", Properties.Resources.AddExpenseButton, 50, ClientSize.Height - 240, 4);
@@ -39,6 +37,8 @@ namespace Plutus
             // 
             // TrueGUI
             // 
+           // var balance = BalanceService.GiveBalance();
+          //  blaanceLabel.Text = balance;
 
             Controls.Add(balanceTextLabel);
             Controls.Add(balanceLabel);

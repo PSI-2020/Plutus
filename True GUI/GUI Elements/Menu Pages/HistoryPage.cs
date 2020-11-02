@@ -37,7 +37,7 @@ namespace Plutus
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 FlatStyle = FlatStyle.Flat
             };
-            string[] elemRange = { "All", "Expense", "Income"};
+            string[] elemRange = { "All", "Expense", "Income" };
             historyPaymentTypeBox.Items.AddRange(elemRange);
             historyPaymentTypeBox.SelectedIndex = 0;
             historyPanel = new FlowLayoutPanel
@@ -92,6 +92,7 @@ namespace Plutus
         }
         private void LoadHistoryPage()
         {
+            Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
 

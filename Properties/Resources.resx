@@ -1122,6 +1122,33 @@
         /Z+2/CaaLaezz+VJ0pnot7H42809w2bfQ/Kfs/bfhNNFtPZ5/Kk6Uz0W9j8bea//2Q==
 </value>
   </data>
+  <data name="PlusButton" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAAA8CAYAAADWibxkAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5AsCCQIZxVT7YwAABK9JREFU
+        aEPtmmlPFTEUhvmTmriLiYKyqAiioAImYlwQQeMHEaK4IEbjFqPGxLivLIoiILjgF39GzTPJIaW2neVy
+        7y338uFNZzq3p2eenp7O9E7F3LcPqpxVcgBmJ98vHP+Y+rjomk2JACQxFIp0AEm0MgVslUkkpClDkuln
+        nDIB+Dk9EqzwLw2IVAB+fx+L8sHk+Ev1ZfR5cPo69iLyc352/D/fXUoMgBt/+uimOnvqsGrbX6daGqtV
+        a9P2YIQ/h/bVqt6T7erJg+GFaIiTF4CEEjd/ffCc2l2zSdVVrVO7dmwMVviHn/ibBEJsBBBOj+5di4xj
+        uLF+i9pTVxms8K+hdnPk78O7V6Np68sJTgDSiLLraKuqr14fdYDx0IWf+Huys0V9//pu4Z5szzNeADQg
+        sRzYuyMiGiIAotKsw0/8JSfgP1PBFQVeADQku5JkQgVgkwBg4PD/18zo0gCQ+RW6BAB+478vGWaOgFyj
+        gfambL/LImyZAPQI0I+tAJj7PgBZnNVvEls7t2+IliySFeLcNp/jZPOFOvpgCkyMPMtPBGQVN7mvYZvq
+        PnZQ9Zxoi8TDC+fUZ4FgSgC4IkBXQQHQnpE+0rZHffv0KupHlinOqee69JO1v6ABYKezvVFNfX69MNUo
+        OadeB5BVQQOQCDAB2CIgq4IGQMIr+whYARADwNY2jZYFAOa8CeBoR9PyiwC9jmOXeIxG2OFG9QigPwHA
+        dXnl9tml3vXMwPWCAdDF6NVsXaNqt62NxLGcU/LkV71ltWpvqbdOAeq5zu/EhinsxE2TogDgOu/fVwZ6
+        1aW+bjV44bRVF8+fUjevnVczX95GN05flJzfGuqLrtvaIexin/0J+rP5gQoOgHpG7fZwv/o7P1nB6yc7
+        SS6xS2Prk3rb70XYxf6dGwNRfzZfUNEAMLI4ymjS3idXnz5hF/v0Q38+f0oGgF6P3T9znyqCBaBPARyV
+        0DWVdArIuZTmFAgGACIz25Lg5f6eRYmMJEeyYzTNJMjILtskSMlzvix7jJBeynFV5SrnMtjRutO6DOpL
+        qSyDvsEoOAAR131yPQgJAPNByCdb/yKuFwVAnGjP6OkA6IuSR+M0L0O+naPgAdhehqYn3iwC4OpL6oMF
+        4PsN11wAOE8TAT4VFYBPZQ2AkKU9K4W5JUZ/nKfZEiu5HBBMBOAMZT4AsLxxg4w0WZ8+8rUtToS4AOjH
+        iSNAQljvyBeGLtGmeffWRX+MoNPHD5X+HyMiblL+EtOV9ebNdgKAz2bkr7GiA7C1pU6XeT0XSQQEA6CQ
+        wk8BYPtAQvIcSgSAUMonAJfdLP3RRgdg5gAzErwAIAXBg801SwbANs/F7lIkQCQA+Hs8p09kAMAyxXs+
+        SYplzNZhaAIA/rJv4LpxkROAiN0YPjdjfca4vmdPGZrwj0giAh7fH4p2pnQIJpBYAIgQ4sNDjLJZQRmq
+        8A8A+KsnO5cSAUBA4BPUM10dwX0qy1ynxC8+5eWTXm4e5TwFdLExiVEeW8muoYmPuPFP33SVKHCBSAVA
+        jBANGKYMTbqfSZQKANKJhiJWKkrT1yRKDWC5SQbMpUQA4oyEpLS+lnwExGkFgK2ynFTmAD6of2PJYVkA
+        eNXGAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="PlutusLogoTrue" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMgAAADmCAYAAACQ/srYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
