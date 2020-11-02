@@ -9,6 +9,7 @@ namespace Plutus
             InitializeEscapeButton();
             InitializePaymentFieldPage();
             InitializeHistoryPage();
+            InitializeBudgetsPage();
         }
 
 
