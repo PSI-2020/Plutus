@@ -204,4 +204,10 @@
     <Price>98</Price>
     <Category>Other</Category>
   </Expense>
+  <Expense>
+    <Date>1604116681</Date>
+    <Name>car wash</Name>
+    <Price>40</Price>
+    <Category>Other</Category>
+  </Expense>
 </ArrayOfExpense>
