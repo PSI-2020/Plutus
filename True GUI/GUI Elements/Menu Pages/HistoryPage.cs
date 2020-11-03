@@ -95,6 +95,7 @@ namespace Plutus
             Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
+            var payments = _paymentService.GivePayments();
 
 
             historyTableInfoPanel.Controls.Add(historyTableInfoDate);

@@ -63,6 +63,16 @@ namespace Plutus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap AddCartButton {
+            get {
+                object obj = ResourceManager.GetObject("AddCartButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap AddExpenseButton {
             get {
                 object obj = ResourceManager.GetObject("AddExpenseButton", resourceCulture);
@@ -76,6 +86,16 @@ namespace Plutus.Properties {
         public static System.Drawing.Bitmap AddIncomeButton {
             get {
                 object obj = ResourceManager.GetObject("AddIncomeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BackArrowButton {
+            get {
+                object obj = ResourceManager.GetObject("BackArrowButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
