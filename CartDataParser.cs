@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Plutus
-{
-    class CartDataParser
+{ }
+   /* class CartDataParser
     {
         public CartExpense LoadExpense(string data)
         {
@@ -31,4 +31,4 @@ namespace Plutus
  
 
     }
-}
+}*/

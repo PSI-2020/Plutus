@@ -11,7 +11,7 @@ namespace Plutus
         private void LoadGoalsPage()
         {
             LoadMenuButton();
-            LoadEscapeButtonCat();
+            LoadEscapeButton();
 
             goalsPageName = CreatePageNameLabel("goalsPageNameLabel", "GOALS");
 

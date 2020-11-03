@@ -11,7 +11,7 @@ namespace Plutus
         private void LoadSchedulerPage()
         {
             LoadMenuButton();
-            LoadEscapeButtonCat();
+            LoadEscapeButton();
 
             schedulerPageName = CreatePageNameLabel("schedulerPageNameLabel", "SCHEDULER");
 

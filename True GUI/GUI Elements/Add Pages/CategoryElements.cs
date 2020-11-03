@@ -22,7 +22,8 @@ namespace Plutus
                 Left = left,
                 Top = top,
                 Image = image,
-                TabIndex = tabIndex
+                TabIndex = tabIndex,
+                BackColor = backgroundColor
             };
             categoryButton.FlatAppearance.BorderSize = 0;
             categoryButton.Click += new EventHandler(CategoryButton_Click);
@@ -55,7 +56,20 @@ namespace Plutus
             var category = nameParts[1];
             _currentInfo.CurrentCategory = category;
             Controls.Clear();
-            LoadPaymentFieldPage();
+            LoadCategoryBack();
+        }
+
+        private void LoadCategoryBack()
+        {
+            switch (previousPage)
+            {
+                case "newCart":
+                    CartNewExpenseFields();
+                    break;
+                default:
+                    AddFieldsToCurrentPayment();
+                    break;
+            }
         }
     }
 }

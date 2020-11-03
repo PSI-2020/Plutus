@@ -17,56 +17,152 @@ namespace Plutus
         Label cartPageLineAboveAddControls;
         FlowLayoutPanel newCartExpensesPanel;
         FlowLayoutPanel newCartExpensesInfoPanel;
+        Label cartNewName;
+        Label cartNewAmount;
+        Label cartNewCategory;
+        Label cartNewEditCol;
+        Label cartNewSplitLine1;
+        Label cartNewSplitLine2;
+        Label cartNewSplitLine3;
+        Panel cartNavigationErorrPanel;
+        Button cartNavigationUp;
+        Button cartNavigationDown;
+        Label cartNavigationLabel;
+        Label cartErrorLabel;
+        FlowLayoutPanel oldCartExpensesPanel;
+        FlowLayoutPanel oldCartExpensesInfoPanel;
+        Label cartOldName;
+        Label cartOldAmount;
+        Label cartOldCategory;
+        Label cartOldSplitLine1;
+        Label cartOldSplitLine2;
+        Button cartEditButton;
+        Button cartDeleteButton;
+        Button cartChargeButton;
+        Button cartGoShoppingButton;
+
+        private int _cartNavigationStart;
+        private string _previousCartPage;
+        private int _previousCartIndex;
         private void InitializeCartPage()
         {
             InitializeCartMain();
             InitializeCartNew();
-            newCartExpensesInfoPanel = new FlowLayoutPanel
-            {
-                Name = "newCartExpensesInfoPanel ",
-                AutoScroll = true,
-                FlowDirection = FlowDirection.RightToLeft,
-                Width = 290,
-                Left = 10,
-                Height = 40,
-                Top = cartNameBox.Bottom + 10,
-                BackColor = secondColor
-            };
-
-            newCartExpensesPanel = new FlowLayoutPanel
-            {
-                Name = "newCartExpensesPanel",
-                AutoScroll = true,
-                FlowDirection = FlowDirection.TopDown,
-                Width = 290,
-                Left = 10,
-                Height = (cartPageLineAboveAddControls.Top - 10) - (newCartExpensesInfoPanel.Bottom),
-                Top = newCartExpensesInfoPanel.Bottom,
-                BackColor = firstColor
-            };
-
+            InitializeCartSpecific();
         }
 
         private void LoadCartsPage()
         {
+            Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
             cartsPageWorkPanel.Controls.Clear();
             cartPageInfoLabel.Text = "CARTS:";
-
+            cartErrorLabel.Text = "";
+            cartsPageWorkPanel.Controls.Add(cartErrorLabel);
             Controls.Add(cartsPageName);
             Controls.Add(cartPageInfoLabel);
             Controls.Add(cartsPageWorkPanel);
             Controls.Add(addCartButton);
+
+            var count = _cartService.GiveCartCount();
+            for(int i = 0; i < count; i++)
+            {
+                LoadCart(i);
+            }
+
             ResumeLayout(false);
             PerformLayout();
         }
-        private void AddCartButton_Click(object sender, EventArgs e)
+
+
+        private void LoadCart(int index)
         {
+            var top = 55 + index * 50; 
+            var newCart = CreateClassicButton(index + "|CartButton", _cartService.GiveCartNameAt(index), Color.White, lilitaOne, 14F, firstColor, 270, 40, 20, top, 9);
+            newCart.Click += new EventHandler(CartClick);
+            cartsPageWorkPanel.Controls.Add(newCart);
+
+        }
+
+        private void CartClick(object sender, EventArgs e)
+        {
+            var cartButton = (Button)sender;
+            _cartNavigationStart = 0;
+            cartPageInfoLabel.Text = "CART: " + cartButton.Text;
+            var name = cartButton.Name;
+            var nameSplit = name.Split('|');
+            var index = int.Parse(nameSplit[0]);
+            _cartService.CurrentCartSet(index);
+            LoadSpecificCart(index);
+
+        }
+
+        private void LoadSpecificCart(int index)
+        {
+            _cartNavigationStart = 0;
+            _previousCartPage = "OldCart";
+            _previousCartIndex = index;
             Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
-            cartPageInfoLabel.Text = "NEW CART:";
+            LoadOldCartExpensePanel();
+            cartsPageWorkPanel.Controls.Clear();
+            cartsPageWorkPanel.Controls.Add(cartDeleteButton);
+            cartsPageWorkPanel.Controls.Add(cartEditButton);
+            oldCartExpensesInfoPanel.Controls.Add(cartOldName);
+            oldCartExpensesInfoPanel.Controls.Add(cartOldSplitLine1);
+            oldCartExpensesInfoPanel.Controls.Add(cartOldAmount);
+            oldCartExpensesInfoPanel.Controls.Add(cartOldSplitLine2);
+            oldCartExpensesInfoPanel.Controls.Add(cartOldCategory);
+            cartsPageWorkPanel.Controls.Add(oldCartExpensesInfoPanel);
+            cartsPageWorkPanel.Controls.Add(oldCartExpensesPanel);
+            cartsPageWorkPanel.Controls.Add(cartNavigationErorrPanel);
+            cartsPageWorkPanel.Controls.Add(cartPageLineAboveAddControls);
+            cartsPageWorkPanel.Controls.Add(cartChargeButton);
+            cartsPageWorkPanel.Controls.Add(cartGoShoppingButton);
+            cartsPageWorkPanel.Controls.Add(cartPageBackButton);
+            Controls.Add(cartsPageName);
+            Controls.Add(cartPageInfoLabel);
+            Controls.Add(cartsPageWorkPanel);
+
+        }
+        private void AddCartButton_Click(object sender, EventArgs e)
+        {
+            if(_cartService.GiveCartCount() == 9)
+            {
+                cartErrorLabel.Text = "You can only have 9 Carts!";
+                return;
+            }
+            cartCreateButton.Text = "Create Cart";
+            cartCreateButton.Click += new EventHandler(CartCreateButton_Click);
+            cartCreateButton.Click -= new EventHandler(CartSaveButton_Click);
+            _cartNavigationStart = 0;
+            _cartService.NewCart();
+            _previousCartPage = "NewCart";
+            LoadNewCartPage("", "NEW CART:");
+        }
+        private void LoadNewCartPage(string name, string info)
+        {
+            
+            Controls.Clear();
+            cartsPageWorkPanel.Controls.Clear();
+            LoadMenuButton();
+            LoadEscapeButton();
+            cartPageInfoLabel.Text = info;
+            cartNameBox.Text = name;
+            LoadCartExpensePanel();
+
+            newCartExpensesInfoPanel.Controls.Add(cartNewName);
+            newCartExpensesInfoPanel.Controls.Add(cartNewSplitLine1);
+            newCartExpensesInfoPanel.Controls.Add(cartNewAmount);
+            newCartExpensesInfoPanel.Controls.Add(cartNewSplitLine2);
+            newCartExpensesInfoPanel.Controls.Add(cartNewCategory);
+            newCartExpensesInfoPanel.Controls.Add(cartNewSplitLine3);
+            newCartExpensesInfoPanel.Controls.Add(cartNewEditCol);
+            cartsPageWorkPanel.Controls.Add(newCartExpensesInfoPanel);
+            cartsPageWorkPanel.Controls.Add(cartNavigationErorrPanel);
+
             cartsPageWorkPanel.Controls.Add(cartPageBackButton);
             cartsPageWorkPanel.Controls.Add(cartNameBox);
             cartsPageWorkPanel.Controls.Add(cartNewExpenseButton);
@@ -77,13 +173,123 @@ namespace Plutus
             Controls.Add(cartPageInfoLabel);
             Controls.Add(cartsPageWorkPanel);
             Controls.Add(addCartButton);
+        }
 
+        private void LoadCartExpensePanel()
+        {
+            newCartExpensesPanel.Controls.Clear();
+            var count = _cartService.GiveCurrentCartElemCount();
+            cartNavigationLabel.Text = (count > 11) ? _cartNavigationStart + 1 + "->" + (_cartNavigationStart + 11) + "(" + count + ")" : "";
+            cartNavigationLabel.ForeColor = firstColor;
+            var trueCount = (count > 11) ? _cartNavigationStart + 11 : count;
+            for (int i = _cartNavigationStart; i < trueCount; i++)
+            {
+                LoadNewCartExpense(i);
+            }
+        }
+        private void LoadOldCartExpensePanel()
+        {
+            oldCartExpensesPanel.Controls.Clear();
+            var count = _cartService.GiveCurrentCartElemCount();
+            cartNavigationLabel.Text = (count > 11) ? _cartNavigationStart + 1 + "->" + (_cartNavigationStart + 11) + "(" + count + ")" : "";
+            cartNavigationLabel.ForeColor = firstColor;
+            var trueCount = (count > 11) ? _cartNavigationStart + 11 : count;
+            for (int i = _cartNavigationStart; i < trueCount; i++)
+            {
+                LoadOldCartExpense(i);
+            }
+        }
+
+        private void LoadOldCartExpense(int i)
+        {
+            var color = ((i % 2) == 0) ? backgroundColor : Color.FromArgb(205, 199, 188);
+
+            var expense = _cartService.GiveCurrentElemAt(i);
+            var expenseName = CreateNewCartElement("cartExpenseName" + i, expense.Name, 83, 30, color, firstColor);
+            var expenseAmount = CreateNewCartElement("cartNewAmount" + i, expense.Price.ToString(), 93, 30, color, firstColor);
+            var expenseCategory = CreateNewCartElement("cartNewCategory" + i, expense.Category, 108, 30, color, firstColor);
+            var expenseSplitLine1 = CreateClassicLine("cartNewSplitLine1" + i, 2, 40, 0, 0, Color.Black);
+            var expenseSplitLine2 = CreateClassicLine("cartNewSplitLine2" + i, 2, 40, 0, 0, Color.Black);
+            var expensePanel = new FlowLayoutPanel
+            {
+                Name = "oldCartExpensesInfoPanel",
+                AutoScroll = false,
+                FlowDirection = FlowDirection.LeftToRight,
+                Width = 290,
+                Left = 10,
+                Height = 30,
+                Top =  10,
+                BackColor = secondColor,
+                Margin = new Padding(0)
+            };
+            expensePanel.Controls.Add(expenseName);
+            expensePanel.Controls.Add(expenseSplitLine1);
+            expensePanel.Controls.Add(expenseAmount);
+            expensePanel.Controls.Add(expenseSplitLine2);
+            expensePanel.Controls.Add(expenseCategory);
+            oldCartExpensesPanel.Controls.Add(expensePanel);
+        }
+
+        private void LoadNewCartExpense(int i)
+        {
+            var color = ((i % 2) == 0) ? backgroundColor : Color.FromArgb(205, 199, 188);
+
+            var expense = _cartService.GiveCurrentElemAt(i);
+            var expenseName = CreateNewCartElement("cartExpenseName" + i, expense.Name, 68, 30, color, firstColor);
+            var expenseAmount = CreateNewCartElement("cartNewAmount" + i, expense.Price.ToString(), 78, 30, color, firstColor);
+            var expenseCategory = CreateNewCartElement("cartNewCategory" + i, expense.Category, 108, 30, color, firstColor);
+            var deleteButton = CreateClassicButton("deleteButton|" + i, Properties.Resources.EscapeButton, 0, 0, 0, false, 30, 30);
+            deleteButton.BackColor = backgroundColor;
+            deleteButton.Click += new EventHandler(DeleteExpense_Click);
+            var expenseSplitLine1 = CreateClassicLine("cartNewSplitLine1" + i, 2, 40, 0, 0, Color.Black);
+            var expenseSplitLine2 = CreateClassicLine("cartNewSplitLine2" + i, 2, 40, 0, 0, Color.Black);
+            var expenseSplitLine3 = CreateClassicLine("cartNewSplitLine3" + i, 2, 40, 0, 0, Color.Black);
+            var expensePanel = new FlowLayoutPanel
+            {
+                Name = "newCartExpensesInfoPanel",
+                AutoScroll = false,
+                FlowDirection = FlowDirection.LeftToRight,
+                Width = 290,
+                Left = 10,
+                Height = 30,
+                Top = cartNameBox.Bottom + 10,
+                BackColor = secondColor,
+                Margin = new Padding(0)
+            };
+            expensePanel.Controls.Add(expenseName);
+            expensePanel.Controls.Add(expenseSplitLine1);
+            expensePanel.Controls.Add(expenseAmount);
+            expensePanel.Controls.Add(expenseSplitLine2);
+            expensePanel.Controls.Add(expenseCategory);
+            expensePanel.Controls.Add(expenseSplitLine3);
+            expensePanel.Controls.Add(deleteButton);
+            newCartExpensesPanel.Controls.Add(expensePanel);
+
+
+
+        }
+        private void DeleteExpense_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var name = button.Name;
+            var splitName = name.Split('|');
+            int index = int.Parse(splitName[1]);
+            _cartService.RemoveRemoveCurrentAt(index);
+            LoadCartExpensePanel();
         }
 
         private void GoBackCartButton_Click(object sender, EventArgs e)
         {
-            Controls.Clear();
-            LoadCartsPage();
+            switch (_previousCartPage)
+            {
+                case "OldCart":
+                    LoadSpecificCart(_previousCartIndex);
+                    break;
+                default:
+                    LoadCartsPage();
+                    break;
+            }
+
         }
 
         private void InitializeCartMain()
@@ -98,11 +304,12 @@ namespace Plutus
                 Left = 32,
                 Top = cartPageInfoLabel.Bottom,
                 BorderStyle = BorderStyle.FixedSingle,
-                AutoScroll = true
+                AutoScroll = false
             };
             addCartButton = CreateClassicButton("addCartButton", Properties.Resources.AddCartButton, 162, cartsPageWorkPanel.Bottom + 10, 1, false, 56, 51);
             addCartButton.Click += new EventHandler(AddCartButton_Click);
             cartPageInfoLabel.BackColor = Color.FromArgb(114, 107, 96);
+            cartErrorLabel = CreateClassicLabel("cartErrorLabel", "", Color.Red, lilitaOne, 10F, 310, 50, 0, 500, 0);
         }
 
         private void InitializeCartNew()
@@ -124,12 +331,211 @@ namespace Plutus
                 Font = new Font(lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
                 TextAlign = HorizontalAlignment.Center,
                 AutoSize = false,
-
             };
             cartCreateButton = CreateClassicButton("cartCreateButton", "Create cart", Color.White, lilitaOne, 9F, secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartCreateButton.Click += new EventHandler(CartCreateButton_Click);
             cartNewExpenseButton = CreateClassicButton("cartNewExpenseButton", "Add new expense", Color.White, lilitaOne, 9F, secondColor, 140, 30, cartCreateButton.Right + 15, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartNewExpenseButton.Click += new EventHandler(CartNewExpenseButton_Click);
+
+            cartNewName = CreateNewCartElement("cartNewName", "NAME", 68, 30, firstColor, Color.White);
+            cartNewAmount = CreateNewCartElement("cartNewAmount", "AMOUNT", 78, 30, firstColor, Color.White);
+            cartNewCategory = CreateNewCartElement("cartNewCategory", "CATEGORY", 108, 30, firstColor, Color.White);
+            cartNewEditCol = CreateNewCartElement("cartNewEditCol", "", 30, 30, firstColor, Color.White);
+            cartNewSplitLine1 = CreateClassicLine("cartNewSplitLine1", 2, 40, 0, 0, Color.Black);
+            cartNewSplitLine2 = CreateClassicLine("cartNewSplitLine2", 2, 40, 0, 0, Color.Black);
+            cartNewSplitLine3 = CreateClassicLine("cartNewSplitLine3", 2, 40, 0, 0, Color.Black);
+
+
+            newCartExpensesInfoPanel = new FlowLayoutPanel
+            {
+                Name = "newCartExpensesInfoPanel",
+                AutoScroll = false,
+                FlowDirection = FlowDirection.LeftToRight,
+                Width = 290,
+                Left = 10,
+                Height = 30,
+                Top = cartNameBox.Bottom + 10,
+                BackColor = secondColor
+            };
+
+
+            newCartExpensesPanel = new FlowLayoutPanel
+            {
+                Name = "newCartExpensesPanel",
+                AutoScroll = false,
+                FlowDirection = FlowDirection.TopDown,
+                Width = 290,
+                Left = 10,
+                Height = 330,
+                Top = newCartExpensesInfoPanel.Bottom,
+                BackColor = Color.FromArgb(199, 193, 181)
+            };
+
+            cartNavigationUp = CreateClassicButton("cartNavigationUp", Properties.Resources.UpArrowButton, 25, 0, 0, false, 30, 30);
+            cartNavigationUp.Click += new EventHandler(CartNavigateUp);
+            cartNavigationLabel = CreateClassicLabel("cartNavigationLabel", "", firstColor, lilitaOne, 10F, 200, 30, 55, 0, 0);
+            cartNavigationDown = CreateClassicButton("cartNavigationDown", Properties.Resources.DownArrowButton, cartNavigationLabel.Right, 0, 0, false, 30, 30);
+            cartNavigationDown.Click += new EventHandler(CartNavigateDown);
+            cartNavigationErorrPanel = new Panel
+            {
+                Name = "cartNavigationErorrPanel",
+                Width = 310,
+                Height = 30,
+                Left = 0,
+                Top = newCartExpensesPanel.Bottom + 15,
+                AutoScroll = false
+            };
+            cartNavigationErorrPanel.Controls.Add(cartNavigationUp);
+            cartNavigationErorrPanel.Controls.Add(cartNavigationLabel);
+            cartNavigationErorrPanel.Controls.Add(cartNavigationDown);
 
         }
+
+        private void InitializeCartSpecific()
+        {
+            cartOldName = CreateNewCartElement("cartOldName", "NAME", 83, 30, firstColor, Color.White);
+            cartOldAmount = CreateNewCartElement("cartOldAmount", "AMOUNT", 93, 30, firstColor, Color.White);
+            cartOldCategory = CreateNewCartElement("cartOldCategory", "CATEGORY", 108, 30, firstColor, Color.White);
+            cartOldSplitLine1 = CreateClassicLine("cartOldSplitLine1", 2, 40, 0, 0, Color.Black);
+            cartOldSplitLine2 = CreateClassicLine("cartOldSplitLine2", 2, 40, 0, 0, Color.Black);
+            cartDeleteButton = CreateClassicButton("cartDeleteButton", "Delete Cart", Color.White, lilitaOne, 10F, firstColor, 120, 40, 170, 10, 124);
+            cartDeleteButton.Click += new EventHandler(DeleteCart_Click);
+            cartEditButton = CreateClassicButton("cartEditButton", "Edit Cart", Color.White, lilitaOne, 10F, firstColor, 120, 40, 20, 10, 124);
+            cartEditButton.Click += new EventHandler(EditCart_Click);
+            oldCartExpensesInfoPanel = new FlowLayoutPanel
+            {
+                Name = "oldCartExpensesInfoPanel",
+                AutoScroll = false,
+                FlowDirection = FlowDirection.LeftToRight,
+                Width = 290,
+                Left = 10,
+                Height = 30,
+                Top = cartDeleteButton.Bottom + 10,
+                BackColor = secondColor
+            };
+            cartChargeButton = CreateClassicButton("cartChargeButton", "Charge Cart", Color.White, lilitaOne, 9F, secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartChargeButton.Click += new EventHandler(ChargeCart_Click);
+            cartGoShoppingButton = CreateClassicButton("cartGoShoppingButton", "Go Shopping", Color.White, lilitaOne, 9F, secondColor, 140, 30, cartCreateButton.Right + 15, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartGoShoppingButton.Click += new EventHandler(GoShopping);
+
+            oldCartExpensesPanel = new FlowLayoutPanel
+            {
+                Name = "oldCartExpensesPanel",
+                AutoScroll = false,
+                FlowDirection = FlowDirection.TopDown,
+                Width = 290,
+                Left = 10,
+                Height = 330,
+                Top = oldCartExpensesInfoPanel.Bottom,
+                BackColor = Color.FromArgb(199, 193, 181)
+            };
+        }
+
+        private void EditCart_Click(object sender, EventArgs e)
+        {
+            cartCreateButton.Text = "Save Cart";
+            cartCreateButton.Click -= new EventHandler(CartCreateButton_Click);
+            cartCreateButton.Click += new EventHandler(CartSaveButton_Click);
+            LoadNewCartPage(_cartService.GiveCurrentName(), "Edit Cart");
+        }
+        private void CartSaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GoShopping(object sender, EventArgs e) => throw new NotImplementedException();
+        private void ChargeCart_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        private void DeleteCart_Click(object sender, EventArgs e)
+        {
+            _cartService.DeleteCurrent();
+            LoadCartsPage();
+        }
+        private void CartNavigateUp(object sender, EventArgs e)
+        {
+            if (_cartService.GiveCurrentCartElemCount() <= 11) return;
+            if (_cartNavigationStart == 0) return;
+            _cartNavigationStart--;
+            LoadNewCartNavigationPoint();
+        }
+
+        private void CartNavigateDown(object sender, EventArgs e)
+        {
+            if (_cartService.GiveCurrentCartElemCount() <= 11) return;
+            if (_cartNavigationStart + 12 > _cartService.GiveCurrentCartElemCount()) return;
+            _cartNavigationStart++;
+            LoadNewCartNavigationPoint();
+        }
+
+
+        private void LoadNewCartNavigationPoint()
+        {
+            switch (_previousCartPage)
+            {
+                case "OldCart":
+                    LoadOldCartExpensePanel();
+                    break;
+                default:
+                    LoadCartExpensePanel();
+                    break;
+            }
+
+        }
+
+        private Label CreateNewCartElement(string name, string text, int width, int height, Color backColor, Color fontColor)
+        {
+            var newElement = new Label
+            {
+                Name = name,
+                Text = text,
+                Width = width,
+                Height = height,
+                Font = new Font(lilitaOne, 9F, Font.Style, GraphicsUnit.Point),
+                ForeColor = fontColor,
+                BackColor = backColor,
+                Margin = new Padding(0),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            return newElement;
+        }
+
+        private void CartCreateButton_Click(object sender, EventArgs e)
+        {
+            var ver1 = cartNameBox.Text;
+            var ver2 = cartNameBox.Text;
+            ver1 = _inputVerification.VerifyData(name: ver1);
+            if (ver1 != "")
+            {
+                cartNavigationLabel.Text = ver1;
+                cartNavigationLabel.ForeColor = Color.Red;
+                return;
+            }
+            ver2 = _cartService.VerifyName(ver2);
+            if (ver2 != "")
+            {
+                cartNavigationLabel.Text = ver2;
+                cartNavigationLabel.ForeColor = Color.Red;
+                return;
+            }
+            var cartName = cartNameBox.Text;
+            _cartService.AddCurrentCart(cartName);
+            LoadCartsPage();
+        }
+        private void CartNewExpenseButton_Click(object sender, EventArgs e)
+        {
+            LoadExpenseCategoryPage("newCart");
+        }
+
+        private void CartNewExpenseFields()
+        {
+            LoadPaymentFieldPage("newCart");
+        }
+
+        private void AddNewCartExpense()
+        {
+            _cartService.AddExpenseToCart(_currentInfo);
+            LoadNewCartPage(cartNameBox.Text, "NEW CART:");
+        }
+
 
     }
 }

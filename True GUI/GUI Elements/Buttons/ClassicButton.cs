@@ -38,7 +38,8 @@ namespace Plutus
                 Left = left,
                 Top = top,
                 TabIndex = tabIndex,
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                Margin = new Padding(0)
             };
             classicButton.FlatAppearance.BorderSize = 0;
             return classicButton;

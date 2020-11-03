@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Plutus
 {
-    class CartStorer
+    /*class CartStorer
     {
 
         CartDataParser parser = new CartDataParser();
@@ -83,5 +83,5 @@ namespace Plutus
                 }
             }
         }
-    }
+    }*/
 }

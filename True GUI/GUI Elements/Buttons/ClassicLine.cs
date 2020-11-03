@@ -16,6 +16,7 @@ namespace Plutus
                 Height = height,
                 Left = left,
                 Top = top,
+                Margin = new Padding(0)
             };
             return classicLabel;
         }

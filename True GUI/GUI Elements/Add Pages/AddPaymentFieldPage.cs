@@ -11,6 +11,7 @@ namespace Plutus
         TextBox nameBox;
         TextBox amountBox;
         Button addPaymentButton;
+        private string previousPage;
         
         private void InitializePaymentFieldPage()
         {
@@ -23,9 +24,11 @@ namespace Plutus
 
         }
 
-        private void LoadPaymentFieldPage()
+        private void LoadPaymentFieldPage(string previous)
         {
-            LoadEscapeButtonField();
+            Controls.Clear();
+            previousPage = previous;
+            LoadEscapeButton();
             nameBox.Text = "";
             amountBox.Text = "";
             
@@ -51,16 +54,17 @@ namespace Plutus
                 Font = new Font(lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
                 AutoSize = false,
                 Width = 272,
+                Multiline = true,
                 Height = 80,
                 TabIndex = tabIndex,
                 PlaceholderText = text,
-                TextAlign = HorizontalAlignment.Center
+                TextAlign = HorizontalAlignment.Center,
+                WordWrap = true,
             };
             return inputTextBox;
         }
         private void AddPaymentButton_Click(object sender, EventArgs e)
         {
-            var badInput = false;
             var name = nameBox.Text;
             var amount = amountBox.Text;
             nameBox.Text = _inputVerification.VerifyData(name: name);
@@ -85,14 +89,24 @@ namespace Plutus
             }
             if ((nameBox.Text == name) && (amountBox.Text == amount))
             {
-                _paymentService.AddPayment(_currentInfo, name, amount);
+                _currentInfo.CurrentName = name;
+                _currentInfo.CurrentAmout = amount;
                 Controls.Clear();
-                LoadMainPage();
+                Loadback();
             }
+        }
 
-
-
-
+        private void Loadback()
+        {
+            switch (previousPage)
+            {
+                case "newCart":
+                    AddNewCartExpense();
+                    break;
+                default:
+                    AddCurrentPayment();
+                    break;
+            }
         }
 
         private void NameBoxBad_Click(object sender, EventArgs e)

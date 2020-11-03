@@ -12,10 +12,10 @@ namespace Plutus.Services
             _paymentList = new List<Payment>();
         }
 
-        public void AddPayment(CurrentInfoHolder cih, string name, string amount)
+        public void AddPayment(CurrentInfoHolder cih)
         {
-            var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            var newPayment = new Payment(date, cih.CurrentType, name, double.Parse(amount), cih.CurrentCategory);
+            var date = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            var newPayment = new Payment(date, cih.CurrentType, cih.CurrentName, double.Parse(cih.CurrentAmout), cih.CurrentCategory);
             _paymentList.Add(newPayment);
         }
 

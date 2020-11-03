@@ -29,37 +29,10 @@ namespace Plutus
             ResumeLayout(false);
             PerformLayout();
         }
-
-        private void LoadEscapeButtonCat()
-        {
-            escapeButton.Click += new EventHandler(EscapeButtonCat_Click);
-            Controls.Add(escapeButton);
-            ResumeLayout(false);
-            PerformLayout();
-        }
-
-        private void LoadEscapeButtonField()
-        {
-            escapeButton.Click += new EventHandler(EscapeButtonField_Click);
-            Controls.Add(escapeButton);
-            ResumeLayout(false);
-            PerformLayout();
-        }
-
         private void EscapeButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
             LoadMainPage();
-        }
-        private void EscapeButtonCat_Click(object sender, EventArgs e)
-        {
-            escapeButton.Click -= new EventHandler(EscapeButtonCat_Click);
-            // unimplemented Call to service
-        }
-        private void EscapeButtonField_Click(object sender, EventArgs e)
-        {
-            escapeButton.Click -= new EventHandler(EscapeButtonField_Click);
-            // unimplemented Call to service
         }
     }
 }

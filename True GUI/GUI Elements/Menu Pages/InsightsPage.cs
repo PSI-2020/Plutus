@@ -11,7 +11,7 @@ namespace Plutus
         private void LoadInsightsPage()
         {
             LoadMenuButton();
-            LoadEscapeButtonCat();
+            LoadEscapeButton();
 
             insightsPageName = CreatePageNameLabel("insightsPageNameLabel", "INSIGHTS");
 

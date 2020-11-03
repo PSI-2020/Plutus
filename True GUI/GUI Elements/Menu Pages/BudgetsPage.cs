@@ -11,7 +11,7 @@ namespace Plutus
         private void LoadBudgetsPage()
         {
             LoadMenuButton();
-            LoadEscapeButtonCat();
+            LoadEscapeButton();
 
             budgetsPageName = CreatePageNameLabel("budgetsPageNameLabel", "BUDGETS");
 

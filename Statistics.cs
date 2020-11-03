@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Plutus
 {
-    class Statistics
+   /* class Statistics
     {
         public string GenerateExpenseStatistics(FileManager manager)
         {   
@@ -63,5 +63,5 @@ namespace Plutus
             }
             return data;
         }
-    }
+    }*/
 }
