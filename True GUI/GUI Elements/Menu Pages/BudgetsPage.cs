@@ -57,20 +57,20 @@ namespace Plutus
         {
             var flow = new FlowLayoutPanel
             {
-                Height = 100,
+                Height = 150,
                 Width = ClientSize.Width - 4,
                 Name = "flow" + index,
                 FlowDirection = FlowDirection.LeftToRight
             };
-            var Textbox = new TextBox
+            var label = new Label
             {
                 BackColor = secondColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 90,
-                Width = 180,
-                Multiline = true,
-                ReadOnly = true,
-                Name = "budgetText" + index
+                Width = ClientSize.Width - 40,
+                //Multiline = true,
+                //ReadOnly = true,
+                Name = "budgetLabel" + index
             };
             var deleteButton = new Button
             {
@@ -85,16 +85,16 @@ namespace Plutus
                 Text = "Show Details",
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 30,
-                Width = 80,
+                Width = 140,
                 Name = "show" + index
             };
             deleteButton.Click += new EventHandler(DeleteClick);
             //showBtn.Click += new EventHandler(OpenStats);
             budgetsFlow.Controls.Add(flow);
-            flow.Controls.Add(Textbox);
+            flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            Textbox.Text = budManager.GenerateBudget(index);
+            label.Text = budManager.GenerateBudget(index);
         }
 
         /*private void OpenStats(object sender, EventArgs e)
