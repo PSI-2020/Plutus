@@ -22,7 +22,9 @@ namespace Plutus
                 Left = 2,
                 Top = 220,
                 Height = 500,
-                FlowDirection = FlowDirection.LeftToRight,
+                FlowDirection = FlowDirection.TopDown,
+                AutoScroll = true,
+                WrapContents = false
             };
             budgetAddButton = CreateClassicButton("budgetAddButton", Properties.Resources.PlusButton, (ClientSize.Width / 2) - 30, 720, 3, true);
             budgetAddButton.Click += new EventHandler(BudgetAddButtonClick);
@@ -58,8 +60,7 @@ namespace Plutus
                 Height = 100,
                 Width = ClientSize.Width - 4,
                 Name = "flow" + index,
-                FlowDirection = FlowDirection.TopDown,
-                AutoScroll = true
+                FlowDirection = FlowDirection.LeftToRight
             };
             var Textbox = new TextBox
             {

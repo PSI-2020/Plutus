@@ -27,7 +27,7 @@ namespace Plutus
             {
                 Name = "budgetCategoryBox",
                 BackColor = backgroundColor,
-                ForeColor = Color.White,
+                ForeColor = firstColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 120,
                 Height = 20,
@@ -45,7 +45,7 @@ namespace Plutus
             {
                 Name = "sumTextBox",
                 BackColor = backgroundColor,
-                ForeColor = Color.White,
+                ForeColor = firstColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 150,
                 Height = 20,
@@ -72,7 +72,8 @@ namespace Plutus
                 Top = 400,
                 Left = 150,
                 Height = 30,
-                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point)
+                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                ForeColor = firstColor
             };
             InsertBudgetButton.Click += new EventHandler(InsertBudgetButtonClick);
 
