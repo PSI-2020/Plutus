@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using Plutus.Services;
+using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Windows.Forms;
@@ -16,7 +17,10 @@ namespace Plutus
         private readonly Color backgroundColor = Color.FromArgb(220, 213, 201);
         private readonly Color firstColor = Color.FromArgb(111, 101, 88);
         private readonly Color secondColor = Color.FromArgb(168, 163, 153);
+        private CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly InputVerification _inputVerification = new InputVerification();
+        private PaymentService _paymentService = new PaymentService();
+
 
         public TrueGUI()
         {

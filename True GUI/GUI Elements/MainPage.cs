@@ -55,12 +55,14 @@ namespace Plutus
         private void IncomeAddButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
+            _currentInfo.CurrentType = "Income";
             LoadIncomeCategoryPage();
         }
 
         private void ExpenseAddButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
+            _currentInfo.CurrentType = "Expense";
             LoadExpenseCategoryPage();
         }
 
