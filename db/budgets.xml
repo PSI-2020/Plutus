@@ -14,4 +14,11 @@
     <From>1598955130</From>
     <To>1604052730</To>
   </Budget>
+  <Budget>
+    <Name>budget2</Name>
+    <Category>Other</Category>
+    <Sum>5000</Sum>
+    <From>1598996313</From>
+    <To>1604353113</To>
+  </Budget>
 </ArrayOfBudget>

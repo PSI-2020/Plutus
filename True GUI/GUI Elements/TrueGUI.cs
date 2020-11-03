@@ -13,15 +13,15 @@ namespace Plutus
         private static readonly string fontPathMaconodo = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "True GUI/GUI resources/Macondo.ttf"); // move to File manager
         private static readonly string fontPathLilita = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "True GUI/GUI resources/LilitaOne.ttf"); // move to File manager
         FontFamily[] fontFamilies;
-
-        FontFamily maconda;
-        FontFamily lilitaOne;
+        readonly FontFamily maconda;
+        readonly FontFamily lilitaOne;
         private readonly Color backgroundColor = Color.FromArgb(220, 213, 201);
         private readonly Color firstColor = Color.FromArgb(111, 101, 88);
         private readonly Color secondColor = Color.FromArgb(168, 163, 153);
         private CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
-        private InputVerification _inputVerification = new InputVerification();
+        private readonly InputVerification _inputVerification = new InputVerification();
         private PaymentService _paymentService = new PaymentService();
+
 
         public TrueGUI()
         {
