@@ -11,6 +11,10 @@ namespace Plutus
         private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         public readonly string income = databaseFolder + "income.xml";
         public readonly string expenses = databaseFolder + "expenses.xml";
+        private readonly string monthlyIncome = databaseFolder + "monthlyIncome.xml";
+        private readonly string monthlyExpenses = databaseFolder + "monthylExpenses.xml";
+        public readonly string goals = databaseFolder + "goals.xml";
+
 
         public string getFilePath(string type)
         {
@@ -21,6 +25,12 @@ namespace Plutus
                     break;
                 case "Expense":
                     type = expenses;
+                    break;
+                case "MonthlyIncome":
+                    type = monthlyIncome;
+                    break;
+                case "MonthlyExpenses":
+                    type = monthlyExpenses;
                     break;
                 default:
                     return null;
@@ -34,10 +44,8 @@ namespace Plutus
 
             try
             {
-                using (var stream = File.OpenRead(getFilePath(type)))
-                {
-                    return serializer.Deserialize(stream) as List<Payment>;
-                }
+                using var stream = File.OpenRead(getFilePath(type));
+                return serializer.Deserialize(stream) as List<Payment>;
             }
             catch
             {
@@ -53,10 +61,45 @@ namespace Plutus
             type = getFilePath(type);
 
             list.Add(payment);
-            using (Stream stream = File.OpenWrite(type))
+            using Stream stream = File.OpenWrite(type);
+            serializer.Serialize(stream, list);
+        }
+        public List<Goal> ReadGoals()
+        {
+            var serializer = new XmlSerializer(typeof(List<Goal>));
+
+            try
             {
-                serializer.Serialize(stream, list);
+                using var stream = File.OpenRead(goals);
+                return serializer.Deserialize(stream) as List<Goal>;
             }
+            catch
+            {
+                return new List<Goal>();
+            }
+          
+        }
+
+        public void AddGoal(string name, string amount, DateTime dueDate)
+        {
+            var serializer = new XmlSerializer(typeof(List<Goal>));
+            var list = ReadGoals();
+
+            var newAmount = double.Parse(amount);
+            var goal = new Goal(name, newAmount, dueDate);
+
+            list.Add(goal);
+            using Stream stream = File.OpenWrite(goals);
+            serializer.Serialize(stream, list);
+
+        }
+    
+        public void UpdateGoals(List<Goal> list)
+        {
+            var serializer = new XmlSerializer(typeof(List<Goal>));
+            File.WriteAllText(goals, "");
+            using Stream stream = File.OpenWrite(goals);
+            serializer.Serialize(stream, list);
         }
 
         public List<Expense> ReadExpenses()

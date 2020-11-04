@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plutus.Services;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace Plutus
         private DateTimePicker newGoalDueDateBox;
         private Button deleteGoalButton;
         private Label errorMessage;
+        readonly GoalService goalService = new GoalService();
 
         private void InitializeEditGoalPage()
         {
@@ -63,12 +65,11 @@ namespace Plutus
         private void ChangeGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
-            var goalManager = new GoalManager();
             var verify = new InputVerification();
             var error = verify.VerifyData(name: newGoalNameBox.Text, amount: newGoalAmountBox.Text);
             if (error == "")
             {
-                goalManager.EditGoal(_currentGoal, newGoalNameBox.Text, newGoalAmountBox.Text, newGoalDueDateBox.Value);
+                goalService.EditGoal(_currentGoal, newGoalNameBox.Text, newGoalAmountBox.Text, newGoalDueDateBox.Value);
                 Controls.Clear();
                 LoadGoalsPage();
             }
@@ -79,8 +80,8 @@ namespace Plutus
         }
         private void DeleteGoalButton_Click(object sender, EventArgs e)
         {
-            var goalManager = new GoalManager();
-            goalManager.DeleteGoal(_currentGoal);
+         
+            goalService.DeleteGoal(_currentGoal);
 
             Controls.Clear();
             LoadGoalsPage();

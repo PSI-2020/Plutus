@@ -53,12 +53,12 @@ namespace Plutus
         private void AddGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
-            var goalManager = new GoalManager();
+            var fileManager = new FileManager();
             var verify = new InputVerification();
             var error = verify.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);
             if (error == "")
             {
-                goalManager.AddGoal(goalNameBox.Text, goalAmountBox.Text, goalDueDateBox.Value);
+                fileManager.AddGoal(goalNameBox.Text, goalAmountBox.Text, goalDueDateBox.Value);
                 Controls.Clear();
                 LoadGoalsPage();
             }

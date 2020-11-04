@@ -51,8 +51,8 @@ namespace Plutus
 
         private void LoadMyCurrentGoals()
         {
-            var goalManager = new GoalManager();
-            var list = goalManager.ReadGoals();
+            var fileManager = new FileManager();
+            var list = fileManager.ReadGoals();
 
             foreach(var goal in list)
             {

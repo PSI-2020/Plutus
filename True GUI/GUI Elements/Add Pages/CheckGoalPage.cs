@@ -33,22 +33,19 @@ namespace Plutus
             LoadEscapeButtonField();
             LoadMenuButton();
 
-            var goalManager = new GoalManager();
-            var fileManager = new FileManager();
-
             myGoalNameLabel = CreateClassicLabel("myGoalNameLabel", "Goal: " + _currentGoal.Name, Color.White, lilitaOne, 25F, ClientSize.Width, 50, 0, 80, 1);
             myGoalNameLabel.BackColor = firstColor;
 
             myGoalAmountLabel = CreateClassicLabel("myGoalAmountLabel", "Save: " + _currentGoal.Amount + "€", Color.FromArgb(161,156,146), lilitaOne, 13F, ClientSize.Width, 18, 0, 130, 2);
             myGoalDueDateLabel = CreateClassicLabel("myGoalDueDateLabel", "until " + _currentGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 18, 0, 148, 3);
 
-            dailySpendLabel = CreateClassicLabel("dailySpendLabel", goalManager.Insights(fileManager, _currentGoal, false), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 5);
+            dailySpendLabel = CreateClassicLabel("dailySpendLabel", goalService.Insights(fileManager, _currentGoal, "daily"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 5);
             dailySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
 
-            monthlySpendLabel = CreateClassicLabel("monthlySpendLabel", goalManager.Insights(fileManager, _currentGoal, true), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 7);
+            monthlySpendLabel = CreateClassicLabel("monthlySpendLabel", goalService.Insights(fileManager, _currentGoal, "monthly"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 7);
             monthlySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
 
-            daysLabel = CreateClassicLabel("daysLabel", goalManager.DaysLeft(_currentGoal), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 9);
+            daysLabel = CreateClassicLabel("daysLabel", goalService.DaysLeft(_currentGoal), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 9);
             daysLabel.BackColor = Color.FromArgb(126, 121, 112);
 
             goalInsightsPanel = new FlowLayoutPanel
