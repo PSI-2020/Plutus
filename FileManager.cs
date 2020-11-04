@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -9,6 +11,53 @@ namespace Plutus
         private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         public readonly string income = databaseFolder + "income.xml";
         public readonly string expenses = databaseFolder + "expenses.xml";
+
+        public string getFilePath(string type)
+        {
+            switch (type)
+            {
+                case "Income":
+                    type = income;
+                    break;
+                case "Expense":
+                    type = expenses;
+                    break;
+                default:
+                    return null;
+            }
+            return type;
+        }
+
+        public List<Payment> ReadPayments(string type)
+        {
+            var serializer = new XmlSerializer(typeof(List<Payment>));
+
+            try
+            {
+                using (var stream = File.OpenRead(getFilePath(type)))
+                {
+                    return serializer.Deserialize(stream) as List<Payment>;
+                }
+            }
+            catch
+            {
+                return new List<Payment>();
+            }
+        }
+
+        public void AddPayment(Payment payment, string type)
+        {
+            var serializer = new XmlSerializer(typeof(List<Payment>));
+            var list = ReadPayments(type);
+
+            type = getFilePath(type);
+
+            list.Add(payment);
+            using (Stream stream = File.OpenWrite(type))
+            {
+                serializer.Serialize(stream, list);
+            }
+        }
 
         public List<Expense> ReadExpenses()
         {

@@ -113,6 +113,16 @@ namespace Plutus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap ButtonBackground {
+            get {
+                object obj = ResourceManager.GetObject("ButtonBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap ClothesButton {
             get {
                 object obj = ResourceManager.GetObject("ClothesButton", resourceCulture);

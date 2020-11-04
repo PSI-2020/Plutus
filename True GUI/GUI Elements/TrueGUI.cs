@@ -21,7 +21,7 @@ namespace Plutus
         private readonly Color secondColor = Color.FromArgb(168, 163, 153);
         private CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private InputVerification _inputVerification = new InputVerification();
-        private PaymentService _paymentService = new PaymentService();
+        readonly FileManager fileManager = new FileManager();
 
         public TrueGUI()
         {
@@ -45,6 +45,22 @@ namespace Plutus
             BackColor = backgroundColor;
             ResumeLayout(false);
             InitializeAllGUIComponents();
+        }
+
+        private Label CreatePageNameLabel(string name, string text)
+        {
+            var pageNameLabel = new Label
+            {
+                Name = name,
+                Text = text,
+                Font = new Font(lilitaOne, 34F, FontStyle.Regular, GraphicsUnit.Point),
+                AutoSize = false,
+                Size = new Size(ClientSize.Width, 60),
+                Location = new Point(0, 60),
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = firstColor,
+            };
+            return pageNameLabel;
         }
     }
 }

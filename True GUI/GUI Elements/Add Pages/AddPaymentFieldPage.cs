@@ -60,7 +60,6 @@ namespace Plutus
         }
         private void AddPaymentButton_Click(object sender, EventArgs e)
         {
-            var badInput = false;
             var name = nameBox.Text;
             var amount = amountBox.Text;
             nameBox.Text = _inputVerification.VerifyData(name: name);
@@ -85,7 +84,19 @@ namespace Plutus
             }
             if ((nameBox.Text == name) && (amountBox.Text == amount))
             {
-                _paymentService.AddPayment(_currentInfo, name, amount);
+                var verify = _inputVerification.VerifyData(name, amount, _currentInfo.CurrentCategory);
+                if (verify != "") return;
+
+                var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+                var payment = new Payment
+                {
+                    Date = date,
+                    Name = name,
+                    Amount = double.Parse(amount),
+                    Category = _currentInfo.CurrentCategory
+                };
+                fileManager.AddPayment(payment, _currentInfo.CurrentType);
                 Controls.Clear();
                 LoadMainPage();
             }
