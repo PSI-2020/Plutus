@@ -27,22 +27,22 @@ namespace Plutus
             chooseCategoryInTextLabel = CreateClassicLabel("chooseCategoryInTextLabel", "Choose Category:", firstColor, lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
             var addGap = 80;
 
-            categorySalaryButton = CreateCategoryButton("categorySalaryButton", 1, 1, Properties.Resources.SalaryButton, addGap);
+            categorySalaryButton = CreateCategoryButton("Salary", 1, 1, Properties.Resources.SalaryButton, addGap);
             categorySalaryText = CreateCategoryText("categorySalaryText", 1, 1, "salary", addGap);
 
-            categoryGiftButton = CreateCategoryButton("categoryGiftButton", 1, 2, Properties.Resources.GiftButton, addGap);
+            categoryGiftButton = CreateCategoryButton("Gift", 1, 2, Properties.Resources.GiftButton, addGap);
             categoryGiftText = CreateCategoryText("categoryGiftText", 1, 2, "gift", addGap);
 
-            categoryInvestmentButton = CreateCategoryButton("categoryInvestmentButton", 2, 1, Properties.Resources.InvestmentButton, addGap);
+            categoryInvestmentButton = CreateCategoryButton("Investment", 2, 1, Properties.Resources.InvestmentButton, addGap);
             categoryInvestmentText = CreateCategoryText("categoryInvestmentText", 2, 1, "investment", addGap);
 
-            categorySaleButton = CreateCategoryButton("categorySaleButton", 2, 2, Properties.Resources.SaleButton, addGap);
+            categorySaleButton = CreateCategoryButton("Sale", 2, 2, Properties.Resources.SaleButton, addGap);
             categorySaleText = CreateCategoryText("categorySaleText", 2, 2, "sale", addGap);
 
-            categoryRentButton = CreateCategoryButton("categoryRentButton", 3, 1, Properties.Resources.RentButton, addGap);
+            categoryRentButton = CreateCategoryButton("Rent", 3, 1, Properties.Resources.RentButton, addGap);
             categoryRentText = CreateCategoryText("categoryRentText", 3, 1, "rent", addGap);
 
-            categoryOtherInButton = CreateCategoryButton("categoryOtherInButton", 3, 2, Properties.Resources.OtherIncomeButton, addGap);
+            categoryOtherInButton = CreateCategoryButton("Other", 3, 2, Properties.Resources.OtherIncomeButton, addGap);
             categoryOtherInText = CreateCategoryText("categoryOtherInText", 3, 2, "other", addGap);
 
 

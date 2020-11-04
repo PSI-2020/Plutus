@@ -32,32 +32,31 @@ namespace Plutus
 
             chooseCategoryTextLabel = CreateClassicLabel("chooseCategoryTextLabel", "Choose Category:", firstColor, lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
 
-
-            categoryGroceriesButton = CreateCategoryButton("categoryGroceriesButton", 1, 1, Properties.Resources.GroceriesButton);
+            categoryGroceriesButton = CreateCategoryButton("Groceries", 1, 1, Properties.Resources.GroceriesButton);
             categoryGroceriesText = CreateCategoryText("categoryGroceriesText", 1, 1, "groceries");
 
-            categoryRestaurantButton = CreateCategoryButton("categoryRestaurantButton", 1, 2, Properties.Resources.RestaurantButton);
+            categoryRestaurantButton = CreateCategoryButton("Restaurant", 1, 2, Properties.Resources.RestaurantButton);
             categoryRestaurantText = CreateCategoryText("categoryRestaurantText", 1, 2, "restaurant");
 
-            categoryClothesButton = CreateCategoryButton("categoryClothesButton", 2, 1, Properties.Resources.ClothesButton);
+            categoryClothesButton = CreateCategoryButton("Clothes", 2, 1, Properties.Resources.ClothesButton);
             categoryClothesText = CreateCategoryText("categoryClothesText", 2, 1, "clothes");
 
-            categoryTransportButton = CreateCategoryButton("categoryTransportButton", 2, 2, Properties.Resources.TransportButton);
+            categoryTransportButton = CreateCategoryButton("Transport", 2, 2, Properties.Resources.TransportButton);
             categoryTransportText = CreateCategoryText("categoryTransportText", 2, 2, "transport");
 
-            categoryHealthButton = CreateCategoryButton("categoryHealthButton", 3, 1, Properties.Resources.HealthButton);
+            categoryHealthButton = CreateCategoryButton("Health", 3, 1, Properties.Resources.HealthButton);
             categoryHealthText = CreateCategoryText("categoryHealthText", 3, 1, "health");
 
-            categorySchoolButton = CreateCategoryButton("categorySchoolButton", 3, 2, Properties.Resources.SchoolButton);
+            categorySchoolButton = CreateCategoryButton("School", 3, 2, Properties.Resources.SchoolButton);
             categorySchoolText = CreateCategoryText("categorySchoolText", 3, 2, "school");
 
-            categoryBillsButton = CreateCategoryButton("categoryBillsButton", 4, 1, Properties.Resources.BillsButton);
+            categoryBillsButton = CreateCategoryButton("Bills", 4, 1, Properties.Resources.BillsButton);
             categoryBillsText = CreateCategoryText("categoryBillsText", 4, 1, "bills");
 
-            categoryEntertainmentButton = CreateCategoryButton("categoryEntertainmentButton", 4, 2, Properties.Resources.EntertainmentButton);
+            categoryEntertainmentButton = CreateCategoryButton("Entertainment", 4, 2, Properties.Resources.EntertainmentButton);
             categoryEntertainmentText = CreateCategoryText("categoryEntertainmentText", 4, 2, "entertainment");
 
-            categoryOtherButton = CreateCategoryButton("categoryOtherButton", 5, 1, Properties.Resources.OtherExpenseButton);
+            categoryOtherButton = CreateCategoryButton("Other", 5, 1, Properties.Resources.OtherExpenseButton);
             categoryOtherButton.Left = 125;
 
             categoryOtherText = CreateCategoryText("categoryOtherText", 5, 1, "other");

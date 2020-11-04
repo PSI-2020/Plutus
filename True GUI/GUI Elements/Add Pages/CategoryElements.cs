@@ -16,18 +16,20 @@ namespace Plutus
             var categoryButton = new Button
             {
                 Name = "categoryButton" + '|' + category,
-                Width = 113,
+                Width = 108,
                 Height = 94,
                 FlatStyle = FlatStyle.Flat,
                 Left = left,
                 Top = top,
                 Image = image,
-                TabIndex = tabIndex
+                TabIndex = tabIndex,
+                BackgroundImage = Properties.Resources.ButtonBackground
             };
             categoryButton.FlatAppearance.BorderSize = 0;
             categoryButton.Click += new EventHandler(CategoryButton_Click);
             return categoryButton;
         }
+
         private Label CreateCategoryText(string name, int eil, int stu, string text, int addTop = 0)
         {
             var left = (stu == 1) ? 48 : 193;

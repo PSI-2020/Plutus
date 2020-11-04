@@ -1,24 +1,21 @@
-﻿using System.Drawing;
+﻿using Plutus.Services;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
 {
     public partial class TrueGUI : Form
     {
+        
         Label historyPageName;
         Button historyEditButton;
         Button historyFilterButton;
         ComboBox historyPaymentTypeBox;
-        FlowLayoutPanel historyTableInfoPanel;
-        FlowLayoutPanel historyPanel;
-        Label historyTableInfoDate;
-        Label historyTableInfoName;
-        Label historyTableInfoAmount;
-        Label historyTableInfoCategory;
-        Label split1;
-        Label split2;
-        Label split3;
-
+        DataGridView historyDataGrid;
+        readonly HistoryService historyService = new HistoryService();
 
         private void InitializeHistoryPage()
         {
@@ -28,109 +25,86 @@ namespace Plutus
             {
                 Name = "historyPaymentTypeBox",
                 BackColor = backgroundColor,
-                ForeColor = Color.White,
+                ForeColor = firstColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 120,
                 Height = 20,
                 Top = 160,
                 Left = 132,
                 DropDownStyle = ComboBoxStyle.DropDownList,
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
             };
-            string[] elemRange = { "All", "Expense", "Income" };
-            historyPaymentTypeBox.Items.AddRange(elemRange);
-            historyPaymentTypeBox.SelectedIndex = 0;
-            historyPanel = new FlowLayoutPanel
+
+            historyPaymentTypeBox.Items.AddRange(new string[] { "All", "Expense", "Income" });
+            historyPaymentTypeBox.SelectedIndexChanged += new System.EventHandler(UpdateHistory);
+
+            historyDataGrid = new DataGridView
             {
-                BackColor = secondColor,
-                Width = ClientSize.Width - 4,
-                Left = 2,
-                Top = 260,
-                Height = ClientSize.Height - 324,
-                FlowDirection = FlowDirection.TopDown
-            };
-            historyTableInfoPanel = new FlowLayoutPanel
-            {
-                BackColor = secondColor,
-                Width = ClientSize.Width - 4,
-                Left = 2,
+                BackgroundColor = backgroundColor,
+                ForeColor = firstColor,
+                GridColor = firstColor,
+
+                Width = ClientSize.Width,
                 Top = 220,
-                Height = 40,
-                FlowDirection = FlowDirection.LeftToRight
-            };
-            historyTableInfoDate = CreateClassicLabel("historyTableInfoDate", "DATE", Color.White, lilitaOne, 10F, 60, 40, 0, 0, 6);
-            historyTableInfoName = CreateClassicLabel("historyTableInfoName", "NAME", Color.White, lilitaOne, 10F, 85, 40, 0, 0, 7);
-            historyTableInfoAmount = CreateClassicLabel("historyTableInfoAmount", "AMOUNT", Color.White, lilitaOne, 10F, 85, 40, 0, 0, 8);
-            historyTableInfoCategory = CreateClassicLabel("historyTableInfoCategory", "CATEGORY", Color.White, lilitaOne, 10F, 90, 40, 0, 0, 9);
+                Height = ClientSize.Height - 223,
+                ColumnHeadersHeight = 45,
 
-            split1 = new Label
-            {
-                Name = "split1",
-                Text = "",
-                Height = 40,
-                Width = 2,
-                BackColor = firstColor
+                ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None,
+
+                BorderStyle = BorderStyle.None,
+                ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single,
+
+                EnableHeadersVisualStyles = false,
+                RowHeadersVisible = false,
+                ReadOnly = true,
+                MultiSelect = false,
+                AllowUserToResizeColumns = false,
+                AllowUserToResizeRows = false
             };
-            split2 = new Label
-            {
-                Name = "split2",
-                Text = "",
-                Height = 40,
-                Width = 2,
-                BackColor = firstColor
-            };
-            split3 = new Label
-            {
-                Name = "split3",
-                Text = "",
-                Height = 40,
-                Width = 2,
-                BackColor = firstColor
-            };
+
+            historyDataGrid.DefaultCellStyle.BackColor = backgroundColor;
+            historyDataGrid.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            historyDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point); ;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.BackColor = firstColor;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            historyDataGrid.AdvancedCellBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+            historyDataGrid.AdvancedCellBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+
+            historyDataGrid.RowTemplate.Height = 30;
+
             historyFilterButton = CreateClassicButton("historyFilterButton", Properties.Resources.FilterButton, historyEditButton.Right + 230, 160, 4, false, 30, 30);
-
         }
+
         private void LoadHistoryPage()
         {
-            Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
-            var payments = _paymentService.GivePayments();
-
-
-            historyTableInfoPanel.Controls.Add(historyTableInfoDate);
-            historyTableInfoPanel.Controls.Add(split1);
-            historyTableInfoPanel.Controls.Add(historyTableInfoName);
-            historyTableInfoPanel.Controls.Add(split2);
-            historyTableInfoPanel.Controls.Add(historyTableInfoAmount);
-            historyTableInfoPanel.Controls.Add(split3);
-            historyTableInfoPanel.Controls.Add(historyTableInfoCategory);
-            Controls.Add(historyTableInfoPanel);
             Controls.Add(historyPageName);
             Controls.Add(historyEditButton);
             Controls.Add(historyFilterButton);
             Controls.Add(historyPaymentTypeBox);
-            Controls.Add(historyPanel);
+            Controls.Add(historyDataGrid);
             ResumeLayout(false);
             PerformLayout();
+            historyPaymentTypeBox.SelectedIndex = 0;
         }
 
-        private Label CreatePageNameLabel(string name, string text)
+        private void UpdateHistory(object sender, EventArgs e)
         {
-            var pageNameLabel = new Label
+            var dataSource = historyService.LoadDataGrid(fileManager, historyPaymentTypeBox.SelectedIndex);
+            if (dataSource == null)
             {
-                Name = name,
-                Text = text,
-                Font = new Font(lilitaOne, 34F, FontStyle.Regular, GraphicsUnit.Point),
-                AutoSize = false,
-                Size = new Size(ClientSize.Width, 60),
-                Location = new Point(0, 60),
-                TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = firstColor,
-            };
-            return pageNameLabel;
+                MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            historyDataGrid.DataSource = dataSource;
+            historyDataGrid.AutoResizeColumns();
         }
-
-
     }
 }
