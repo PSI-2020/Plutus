@@ -10,6 +10,7 @@ namespace Plutus
         private Label myGoalsTextLabel;
         private Button newGoalAddButton;
         private FlowLayoutPanel myGoalsPanel;
+        private Goal _currentGoal;
 
         private void LoadGoalsPage()
         {
@@ -18,16 +19,16 @@ namespace Plutus
 
             goalsPageName = CreatePageNameLabel("goalsPageNameLabel", "GOALS");
             myGoalsTextLabel = CreateClassicLabel("myGoalsTextLabel", "My Goals:", Color.White, lilitaOne, 24F, ClientSize.Width, 60, 0, 120, 1);
-            newGoalAddButton = CreateClassicButton("newGoalAddButton", Properties.Resources.PlusButton, 150, ClientSize.Height - 100, 2);
+
+            newGoalAddButton = CreateClassicButton("newGoalAddButton", Properties.Resources.PlusButton, 150, ClientSize.Height - 90, 2);
             newGoalAddButton.Click += new EventHandler(AddNewGoalButton_Click);
 
             myGoalsPanel = new FlowLayoutPanel
             {
-                //BackColor = secondColor,
                 Width = ClientSize.Width - 70,
                 Left = 35,
-                Top = 200,
-                Height = ClientSize.Height - 320,
+                Top = 190,
+                Height = ClientSize.Height - 300,
                 FlowDirection = FlowDirection.LeftToRight
             };
 
@@ -35,7 +36,9 @@ namespace Plutus
             Controls.Add(newGoalAddButton);
             Controls.Add(goalsPageName);
             Controls.Add(myGoalsTextLabel);
+
             LoadMyCurrentGoals();
+
             ResumeLayout(false);
             PerformLayout();
         }
@@ -53,10 +56,6 @@ namespace Plutus
 
             foreach(var goal in list)
             {
-                /* var button = CreateClassicButton("goal", goal.Name, Color.White, lilitaOne, 14F, firstColor, 145, 80, 50, 650, 3);
-                 myGoalsPanel.Controls.Add(button);
-                 button.Click += new EventHandler(CheckMyGoal);*/
-
                 var button = new GoalButton(goal.Name, Color.White, lilitaOne, 14F, firstColor, 145, 80, goal);
                 myGoalsPanel.Controls.Add(button);
                 button.Click += new EventHandler(CheckMyGoal);
@@ -65,9 +64,11 @@ namespace Plutus
 
         private void CheckMyGoal(object sender, EventArgs e)
         {
-            GoalButton button = (sender as GoalButton);
+            var button = (sender as GoalButton);
+            _currentGoal = button.Goal;
+
             Controls.Clear();
-            LoadCheckGoalPage(button.Goal);
+            LoadCheckGoalPage();
 
         }
     }
