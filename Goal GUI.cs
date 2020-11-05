@@ -109,7 +109,7 @@ namespace Plutus
                 MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-         //   goalManager.EditGoal(comboBoxEditGoal.SelectedIndex, textBoxChangeGoalName.Text, textBoxChangeGoalAmount.Text, dateTimePickerChangeGoal.Value);
+            goalManager.EditGoal(comboBoxEditGoal.SelectedIndex, textBoxChangeGoalName.Text, textBoxChangeGoalAmount.Text, dateTimePickerChangeGoal.Value);
             panelChangeGoal.Visible = false;
             panelGoalComment.Visible = true;
 
@@ -117,7 +117,7 @@ namespace Plutus
         private void ButtonDeleteGoal_Click(object sender, EventArgs e)
         {
             var index = comboBoxEditGoal.SelectedIndex;
-           // goalManager.DeleteGoal(index);
+            goalManager.DeleteGoal(index);
             comboBoxEditGoal.Items.RemoveAt(index);
             if (comboBoxInsights.Items.Count > 0)
             {
