@@ -128,7 +128,7 @@ namespace Plutus
                     break;
                 case "Budgets":
                     budgetsFlow.Controls.Clear();
-                    DisplayBudgets();
+                    //DisplayBudgets();
                     break;
                 default:
                     break;

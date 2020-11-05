@@ -2522,7 +2522,6 @@ namespace Plutus
             this.addBudget.TabIndex = 1;
             this.addBudget.Text = "Create New Budget";
             this.addBudget.UseVisualStyleBackColor = true;
-            this.addBudget.Click += new System.EventHandler(this.AddBudget_Click);
             // 
             // budgetControl
             // 
@@ -2586,7 +2585,6 @@ namespace Plutus
             this.budgetAdd.TabIndex = 4;
             this.budgetAdd.Text = "Create Budget";
             this.budgetAdd.UseVisualStyleBackColor = true;
-            this.budgetAdd.Click += new System.EventHandler(this.BudgetAdd_Click);
             // 
             // setPeriodLbl
             // 

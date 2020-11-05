@@ -6,7 +6,7 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        readonly BudgetsManager budManager = new BudgetsManager();
+        readonly BudgetService budgetService = new BudgetService();
 
         Label budgetsPageName;
         FlowLayoutPanel budgetsFlow;
@@ -37,7 +37,7 @@ namespace Plutus
             budgetsFlow.Controls.Clear();
             LoadMenuButton();
             LoadEscapeButtonCat();
-            var list = budManager.LoadBudget();
+            var list = fileManager.LoadBudget();
             if (list == null) return;
 
 
@@ -92,31 +92,25 @@ namespace Plutus
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            label.Text = budManager.GenerateBudget(index);
+            label.Text = budgetService.GenerateBudget(index);
         }
 
         private void OpenStats(object sender, EventArgs e)
         {
             Controls.Clear();
             LoadHistoryPage();
-            var showButton = (Button)sender;
-            //var budgets = budManager.LoadBudget();
 
+            var showButton = (Button)sender;
             var index = int.Parse(showButton.Name.Substring(4));
-            historyDataGrid.DataSource = budManager.ShowStats(index);
-            /*searchCategoryBox.Text = budgets[index].Category;
-            dataTypeBox.SelectedIndex = 1;
-            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(budgets[index].From).ToLocalTime();
-            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(budgets[index].To).ToLocalTime();
-            Search(sender, e);*/
+            historyDataGrid.DataSource = budgetService.ShowStats(index);
         }
 
         private void DeleteClick(object sender, EventArgs e)
         {
             var delButton = (Button)sender;
-
             var index = int.Parse(delButton.Name.Substring(6));
-            budManager.DeleteBudget(index);
+            budgetService.DeleteBudget(index);
+
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();
         }

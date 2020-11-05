@@ -14,7 +14,7 @@ namespace Plutus
         private readonly string monthlyIncome = databaseFolder + "monthlyIncome.xml";
         private readonly string monthlyExpenses = databaseFolder + "monthylExpenses.xml";
         public readonly string goals = databaseFolder + "goals.xml";
-
+        private readonly string _budgets = databaseFolder + "budgets.xml";
 
         public string getFilePath(string type)
         {
@@ -191,6 +191,39 @@ namespace Plutus
             File.WriteAllText(expenses, "");
             using Stream stream = File.OpenWrite(expenses);
             serializer.Serialize(stream, expense);
+        }
+
+        public void AddBudget(Budget budget)
+        {
+            var serializer = new XmlSerializer(typeof(List<Payment>));
+            var list = LoadBudget();
+
+            list.Add(budget);
+            using Stream stream = File.OpenWrite(_budgets);
+            serializer.Serialize(stream, list);
+        }
+
+        public List<Budget> LoadBudget()
+        {
+            var serializer = new XmlSerializer(typeof(List<Budget>));
+
+            try
+            {
+                using var stream = File.OpenRead(_budgets);
+                return serializer.Deserialize(stream) as List<Budget>;
+            }
+            catch
+            {
+                return new List<Budget>();
+            }
+        }
+
+        public void UpdateBudgets(List<Budget> list)
+        {
+            var serializer = new XmlSerializer(typeof(List<Budget>));
+            File.WriteAllText(_budgets, "");
+            using Stream stream = File.OpenWrite(_budgets);
+            serializer.Serialize(stream, list);
         }
     }
 }
