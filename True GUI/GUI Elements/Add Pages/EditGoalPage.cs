@@ -76,9 +76,16 @@ namespace Plutus
                     Controls.Clear();
                     LoadGoalsPage();
                 }
-
-                errorMessage.Text = "Sorry, but name is too long.\n Max 12 characters";
-                Controls.Add(errorMessage);
+                if (newGoalNameBox.Text.Length < 13)
+                {
+                    errorMessage.Text = "Sorry, name must contain only\n letters and numbers";
+                    Controls.Add(errorMessage);
+                }
+                else
+                {
+                    errorMessage.Text = "Sorry, but name is too long.\n Max 12 characters";
+                    Controls.Add(errorMessage);
+                }
             }
             else
             {

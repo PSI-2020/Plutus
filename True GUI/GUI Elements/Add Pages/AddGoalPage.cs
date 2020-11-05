@@ -58,15 +58,22 @@ namespace Plutus
             var error = verify.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);
             if (error == "")
             {
-                if (Regex.IsMatch(goalNameBox.Text,"^[a-zA-Z0-9ą-žĄ-Ž]{1,12}$"))
+                if (Regex.IsMatch(goalNameBox.Text, "^[a-zA-Z0-9ą-žĄ-Ž]{1,12}$"))
                 {
                     fileManager.AddGoal(goalNameBox.Text, goalAmountBox.Text, goalDueDateBox.Value);
                     Controls.Clear();
                     LoadGoalsPage();
                 }
-
-                errorMessage.Text = "Sorry, but name is too long.\n Max 12 characters";
-                Controls.Add(errorMessage);
+                if (newGoalNameBox.Text.Length < 13)
+                {
+                    errorMessage.Text = "Sorry, name must contain only\n letters and numbers";
+                    Controls.Add(errorMessage);
+                }
+                else
+                {
+                    errorMessage.Text = "Sorry, but name is too long.\n Max 12 characters";
+                    Controls.Add(errorMessage);
+                }
             }
             else
             {
