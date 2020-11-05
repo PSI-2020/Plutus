@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Plutus
 {
+
+
     public class FileManager
     {
         private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
@@ -14,27 +17,31 @@ namespace Plutus
 
         public string getFilePath(string type)
         {
-            switch (type)
+            return type switch
             {
-                case "Income":
-                    type = income;
-                    break;
-                case "Expense":
-                    type = expenses;
-                    break;
-                default:
-                    return null;
-            }
-            return type;
+                "Income" => income,
+                "Expense" => expenses,
+                "All" => "All",
+                _ => null,
+            };
         }
 
         public List<Payment> ReadPayments(string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
+            type = getFilePath(type);
+
+            if (type == "All")
+            {
+                var list = ReadPayments("Expense");
+                list.AddRange(ReadPayments("Income"));
+
+                return list;
+            }
 
             try
             {
-                using (var stream = File.OpenRead(getFilePath(type)))
+                using (var stream = File.OpenRead(type))
                 {
                     return serializer.Deserialize(stream) as List<Payment>;
                 }
@@ -44,6 +51,7 @@ namespace Plutus
                 return new List<Payment>();
             }
         }
+
 
         public void AddPayment(Payment payment, string type)
         {
