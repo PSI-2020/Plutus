@@ -68,8 +68,6 @@ namespace Plutus
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 90,
                 Width = ClientSize.Width - 40,
-                //Multiline = true,
-                //ReadOnly = true,
                 Name = "budgetLabel" + index
             };
             var deleteButton = new Button
@@ -89,7 +87,7 @@ namespace Plutus
                 Name = "show" + index
             };
             deleteButton.Click += new EventHandler(DeleteClick);
-            //showBtn.Click += new EventHandler(OpenStats);
+            showBtn.Click += new EventHandler(OpenStats);
             budgetsFlow.Controls.Add(flow);
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
@@ -97,19 +95,21 @@ namespace Plutus
             label.Text = budManager.GenerateBudget(index);
         }
 
-        /*private void OpenStats(object sender, EventArgs e)
+        private void OpenStats(object sender, EventArgs e)
         {
-            tabControl1.SelectTab("dataTab");
+            Controls.Clear();
+            LoadHistoryPage();
             var showButton = (Button)sender;
-            var list = budManager.LoadBudget();
+            //var budgets = budManager.LoadBudget();
 
             var index = int.Parse(showButton.Name.Substring(4));
-            searchCategoryBox.Text = list[index].Category;
+            historyDataGrid.DataSource = budManager.ShowStats(index);
+            /*searchCategoryBox.Text = budgets[index].Category;
             dataTypeBox.SelectedIndex = 1;
-            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(list[index].From).ToLocalTime();
-            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(list[index].To).ToLocalTime();
-            Search(sender, e);
-        }*/
+            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(budgets[index].From).ToLocalTime();
+            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(budgets[index].To).ToLocalTime();
+            Search(sender, e);*/
+        }
 
         private void DeleteClick(object sender, EventArgs e)
         {
