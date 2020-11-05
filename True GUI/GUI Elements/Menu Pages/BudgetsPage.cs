@@ -22,7 +22,9 @@ namespace Plutus
                 Left = 2,
                 Top = 220,
                 Height = 500,
-                FlowDirection = FlowDirection.LeftToRight,
+                FlowDirection = FlowDirection.TopDown,
+                AutoScroll = true,
+                WrapContents = false
             };
             budgetAddButton = CreateClassicButton("budgetAddButton", Properties.Resources.PlusButton, (ClientSize.Width / 2) - 30, 720, 3, true);
             budgetAddButton.Click += new EventHandler(BudgetAddButtonClick);
@@ -55,21 +57,18 @@ namespace Plutus
         {
             var flow = new FlowLayoutPanel
             {
-                Height = 100,
+                Height = 150,
                 Width = ClientSize.Width - 4,
                 Name = "flow" + index,
-                FlowDirection = FlowDirection.TopDown,
-                AutoScroll = true
+                FlowDirection = FlowDirection.LeftToRight
             };
-            var Textbox = new TextBox
+            var label = new Label
             {
                 BackColor = secondColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 90,
-                Width = 180,
-                Multiline = true,
-                ReadOnly = true,
-                Name = "budgetText" + index
+                Width = ClientSize.Width - 40,
+                Name = "budgetLabel" + index
             };
             var deleteButton = new Button
             {
@@ -84,31 +83,33 @@ namespace Plutus
                 Text = "Show Details",
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 30,
-                Width = 80,
+                Width = 140,
                 Name = "show" + index
             };
             deleteButton.Click += new EventHandler(DeleteClick);
-            //showBtn.Click += new EventHandler(OpenStats);
+            showBtn.Click += new EventHandler(OpenStats);
             budgetsFlow.Controls.Add(flow);
-            flow.Controls.Add(Textbox);
+            flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            Textbox.Text = budManager.GenerateBudget(index);
+            label.Text = budManager.GenerateBudget(index);
         }
 
-        /*private void OpenStats(object sender, EventArgs e)
+        private void OpenStats(object sender, EventArgs e)
         {
-            tabControl1.SelectTab("dataTab");
+            Controls.Clear();
+            LoadHistoryPage();
             var showButton = (Button)sender;
-            var list = budManager.LoadBudget();
+            //var budgets = budManager.LoadBudget();
 
             var index = int.Parse(showButton.Name.Substring(4));
-            searchCategoryBox.Text = list[index].Category;
+            historyDataGrid.DataSource = budManager.ShowStats(index);
+            /*searchCategoryBox.Text = budgets[index].Category;
             dataTypeBox.SelectedIndex = 1;
-            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(list[index].From).ToLocalTime();
-            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(list[index].To).ToLocalTime();
-            Search(sender, e);
-        }*/
+            searchDatePickerFrom.Value = new DateTime(1970, 1, 1).AddSeconds(budgets[index].From).ToLocalTime();
+            searchDatePickerTo.Value = new DateTime(1970, 1, 1).AddSeconds(budgets[index].To).ToLocalTime();
+            Search(sender, e);*/
+        }
 
         private void DeleteClick(object sender, EventArgs e)
         {

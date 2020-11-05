@@ -56,14 +56,20 @@ namespace Plutus
             fromPicker = new DateTimePicker
             {
                 Top = 285,
-                Left = 90
+                Left = 90,
+                BackColor = backgroundColor,
+                Font = new Font(lilitaOne, 10F, FontStyle.Regular, GraphicsUnit.Point),
+                CalendarForeColor = firstColor
             };
 
             toLabel = CreateClassicLabel("toLabel", "To:", firstColor, lilitaOne, 11F, 100, 25, 140, 320, 1);
             toPicker = new DateTimePicker
             {
                 Top = 350,
-                Left = 90
+                Left = 90,
+                BackColor = backgroundColor,
+                Font = new Font(lilitaOne, 10F, FontStyle.Regular, GraphicsUnit.Point),
+                CalendarForeColor = firstColor
             };
 
             InsertBudgetButton = new Button
@@ -72,7 +78,8 @@ namespace Plutus
                 Top = 400,
                 Left = 150,
                 Height = 30,
-                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point)
+                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                ForeColor = firstColor
             };
             InsertBudgetButton.Click += new EventHandler(InsertBudgetButtonClick);
 

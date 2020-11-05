@@ -54,7 +54,8 @@ namespace Plutus
     {
         private static readonly string _databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
         private readonly string _file = _databaseFolder + "budgets.xml";
-        private readonly FileManager manager = new FileManager();
+        private readonly FileManager _fileManager = new FileManager();
+        readonly DateTime date = new DateTime(1970, 1, 1);
         public void AddBudget(Budget budget)
         {
             var serializer = new XmlSerializer(typeof(List<Budget>));
@@ -119,11 +120,11 @@ namespace Plutus
             var data = "";
             var list = LoadBudget();
 
-            var from = new DateTime(1970, 1, 1).AddSeconds(list[index].From).ToLocalTime();
-            var to = new DateTime(1970, 1, 1).AddSeconds(list[index].To).ToLocalTime();
+            var from = date.AddSeconds(list[index].From).ToLocalTime();
+            var to = date.AddSeconds(list[index].To).ToLocalTime();
 
 
-            var expenses = manager.ReadExpenses();
+            var expenses = _fileManager.ReadPayments("Expense");
             if (expenses == null) return "";
 
 
@@ -134,13 +135,27 @@ namespace Plutus
                 .Where(x => x.Category == list[index].Category)
                 .Where(x => x.Date >= list[index].From)
                 .Where(x => x.Date <= list[index].To)
-                .Sum(x => x.Price);
+                .Sum(x => x.Amount);
 
             data += "\r\n" + total + "/" + list[index].Sum + " €" + "\r\n" + Math.Round((total * 100 / list[index].Sum), 2) + "%" + "\r\n" +
                 from.ToString("yyyy/MM/dd") + " - " + to.ToString("yyyy/MM/dd");
 
 
             return data;
+        }
+        public object ShowStats(int index)
+        {
+            var budgets = LoadBudget();
+            var expenses = _fileManager.ReadPayments("Expense");
+            var result = expenses
+                .Where(x => x.Category == budgets[index].Category)
+                .Where(x => x.Date >= budgets[index].From)
+                .Where(x => x.Date <= budgets[index].To)
+                .ToList();
+            var list = result
+                .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
+                .OrderByDescending(x => x.DATE).ToList();
+            return !list.Any() ? null : (object)list;
         }
         
     }
