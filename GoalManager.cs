@@ -71,12 +71,23 @@ namespace Plutus
             }
         }
 
-        public void EditGoal(int index, string newName, string newAmount, DateTime newDueDate)
+        public void EditGoal(Goal goal, string newName, string newAmount, DateTime newDueDate)
         {
             var amount = double.Parse(newAmount);
             var list = ReadGoals();
             var array = list.ToArray();
-
+            var index = 0;
+            foreach(var i in list)
+            {
+                if (goal.Name == i.Name && goal.Amount == i.Amount && goal.DueDate == i.DueDate)
+                {
+                    break;
+                }
+                else
+                {
+                    index++;
+                }
+            }
             list.Remove(array[index]);
             array[index] = new Goal(newName, amount, newDueDate);
             list.Insert(index, array[index]);
@@ -84,10 +95,23 @@ namespace Plutus
 
         }
 
-        public void DeleteGoal(int index)
+        public void DeleteGoal(Goal goal)
         {
             var list = ReadGoals();
             var array = list.ToArray();
+            var index = 0;
+            foreach (var i in list)
+            {
+                if (goal.Name == i.Name && goal.Amount == i.Amount && goal.DueDate == i.DueDate)
+                {
+                    break;
+                }
+                else
+                {
+                    index++;
+                }
+            }
+
             list.Remove(array[index]);
             UpdateGoals(list);
         }
@@ -295,7 +319,7 @@ namespace Plutus
 
             else if (!dailyOrMonthly)
             {
-                return ((((income - expenses - goal.Amount + todaySpent) / months) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - todaySpent)).ToString("C2");
+                return ((((income - expenses - goal.Amount + todaySpent) / months / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) - todaySpent)).ToString("C2");
             }
 
             return "";

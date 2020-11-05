@@ -210,4 +210,10 @@
     <Amount>40</Amount>
     <Category>Other</Category>
   </Payment>
+  <Payment>
+    <Date>1604504873</Date>
+    <Name>600</Name>
+    <Amount>600</Amount>
+    <Category>Groceries</Category>
+  </Payment>
 </ArrayOfPayment>

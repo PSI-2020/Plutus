@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ArrayOfExpense xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Expense>
+		<Date>1603713612</Date>
+		<Name>Spotify</Name>
+		<Price>10.49</Price>
+		<Category>Bills</Category>
+	</Expense>
+	<Expense>
+		<Date>1603713667</Date>
+		<Name>Bills</Name>
+		<Price>100</Price>
+		<Category>Food</Category>
+	</Expense>
+	<Expense>
+		<Date>1603713837</Date>
+		<Name>Bills</Name>
+		<Price>1000</Price>
+		<Category>Bills</Category>
+	</Expense>
+</ArrayOfExpense>

@@ -8,11 +8,10 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-       
-        PrivateFontCollection privateFontCollection = new PrivateFontCollection();
+        readonly PrivateFontCollection privateFontCollection = new PrivateFontCollection();
         private static readonly string fontPathMaconodo = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "True GUI/GUI resources/Macondo.ttf"); // move to File manager
         private static readonly string fontPathLilita = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "True GUI/GUI resources/LilitaOne.ttf"); // move to File manager
-        FontFamily[] fontFamilies;
+        readonly FontFamily[] fontFamilies;
         readonly FontFamily maconda;
         readonly FontFamily lilitaOne;
         private readonly Color backgroundColor = Color.FromArgb(220, 213, 201);

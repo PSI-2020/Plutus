@@ -27,7 +27,7 @@ namespace Plutus
             {
                 Name = "budgetCategoryBox",
                 BackColor = backgroundColor,
-                ForeColor = Color.White,
+                ForeColor = firstColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 120,
                 Height = 20,
@@ -45,7 +45,7 @@ namespace Plutus
             {
                 Name = "sumTextBox",
                 BackColor = backgroundColor,
-                ForeColor = Color.White,
+                ForeColor = firstColor,
                 Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 150,
                 Height = 20,
