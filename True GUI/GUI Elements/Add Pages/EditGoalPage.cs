@@ -1,6 +1,7 @@
 ﻿using Plutus.Services;
 using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -24,7 +25,7 @@ namespace Plutus
             newGoalAmountFieldLabel = CreateClassicLabel("newGoalAmountFieldLabel", "Amount you want to save:", Color.White, lilitaOne, 18F, 500, 40, 50, 260, 3, ContentAlignment.BottomLeft);
             newGoalDueDateFieldLabel = CreateClassicLabel("newGoalDueDateFieldLabel", "Set a due date:", Color.White, lilitaOne, 18F, 272, 40, 50, 420, 5, ContentAlignment.BottomLeft);
             errorMessage = CreateClassicLabel("errorLabel", "", Color.Red, lilitaOne, 13F, 272, 40, 50, 530, 1, ContentAlignment.MiddleCenter);
-            
+
             changeGoalButton = CreateClassicButton("changeGoalButton", "change", Color.White, lilitaOne, 14F, firstColor, 272, 80, 50, 600, 7);
             changeGoalButton.Click += new EventHandler(ChangeGoalButton_Click);
 
@@ -69,18 +70,26 @@ namespace Plutus
             var error = verify.VerifyData(name: newGoalNameBox.Text, amount: newGoalAmountBox.Text);
             if (error == "")
             {
-                goalService.EditGoal(_currentGoal, newGoalNameBox.Text, newGoalAmountBox.Text, newGoalDueDateBox.Value);
-                Controls.Clear();
-                LoadGoalsPage();
-            }
+                if (Regex.IsMatch(newGoalNameBox.Text, "^[a-zA-Z0-9ą-žĄ-Ž]{1,12}$"))
+                {
+                    goalService.EditGoal(_currentGoal, newGoalNameBox.Text, newGoalAmountBox.Text, newGoalDueDateBox.Value);
+                    Controls.Clear();
+                    LoadGoalsPage();
+                }
 
-            errorMessage.Text = error;
-            Controls.Add(errorMessage);
+                errorMessage.Text = "Sorry, but name is too long.\n Max 12 characters";
+                Controls.Add(errorMessage);
+            }
+            else
+            {
+                errorMessage.Text = error;
+                Controls.Add(errorMessage);
+            }
 
         }
         private void DeleteGoalButton_Click(object sender, EventArgs e)
         {
-         
+
             goalService.DeleteGoal(_currentGoal);
 
             Controls.Clear();
