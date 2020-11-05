@@ -2,7 +2,7 @@
 <ArrayOfGoal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Goal>
     <DueDate>2023-11-13T13:14:55</DueDate>
-    <Name>Masina</Name>
+    <Name>Mašina</Name>
     <Amount>5000</Amount>
   </Goal>
   <Goal>
