@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        Label balanceTextLabel;
-        Label balanceLabel;
+        Label goalNameLabel;
+        Label goalAmountLabel;
         Label addTextLabel;
         Button expenseAddButton;
         Label expenseTextLabel;
@@ -19,8 +18,30 @@ namespace Plutus
         private void LoadMainPage()
         {
             LoadMenuButton();
-            balanceTextLabel = CreateClassicLabel("balanceTextLabel", "BALANCE:", firstColor, lilitaOne, 24F, ClientSize.Width, 40, 0, 120, 1);
-            balanceLabel = CreateClassicLabel("balanceLabel", "450000", firstColor, lilitaOne, 32F, ClientSize.Width, 55, 0, 160, 2); 
+
+            var goalList = fileManager.ReadGoals();
+            if (goalList.Any())
+            {
+                var mainGoal = goalList.ToArray()[0];
+
+                goalNameLabel = CreateClassicLabel("goalNameLabel", "Goal:" + mainGoal.Name, firstColor, lilitaOne, 30F, ClientSize.Width, 40, 0, 120, 1);
+                goalNameLabel.TextAlign = ContentAlignment.MiddleCenter;
+                goalAmountLabel = CreateClassicLabel("goalLabel", "save " + mainGoal.Amount.ToString("C2") + " until " + mainGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 20, 0, 160, 2);
+
+                todaySpendLabel = CreateClassicLabel("todaySpendLabel", "You can spend today: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, ClientSize.Width, 40, 0, 215, 3);
+                todaySpendLabel.TextAlign = ContentAlignment.MiddleCenter;
+                dailySpendLabel = CreateClassicLabel("dailySpendLabel", goalService.Insights(fileManager, mainGoal, "daily"), Color.White, lilitaOne, 25F, ClientSize.Width - 150, 80, 70, 255, 5);
+                dailySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
+                dailySpendLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+                Controls.Add(goalAmountLabel);
+                Controls.Add(todaySpendLabel);
+                Controls.Add(dailySpendLabel);
+            }
+            else
+            {
+                goalNameLabel = CreateClassicLabel("goalNameLabel", "NO GOAL", firstColor, lilitaOne, 30F, ClientSize.Width, 40, 0, 120, 1);
+            }
             addTextLabel = CreateClassicLabel("addTextLabel", "ADD:", firstColor, lilitaOne, 32F, ClientSize.Width, 55, 0, ClientSize.Height - 300, 3);
 
             expenseAddButton = CreateClassicButton("expenseAddButton", Properties.Resources.AddExpenseButton, 50, ClientSize.Height - 240, 4);
@@ -34,14 +55,7 @@ namespace Plutus
 
             incomeTextLabel = CreateClassicLabel("incomeTextLabel", "income", firstColor, lilitaOne, 12F, 100, 30, incomeAddButton.Left + 16, ClientSize.Height - 120, 7);
 
-            // 
-            // TrueGUI
-            // 
-           // var balance = BalanceService.GiveBalance();
-          //  blaanceLabel.Text = balance;
-
-            Controls.Add(balanceTextLabel);
-            Controls.Add(balanceLabel);
+            Controls.Add(goalNameLabel);
             Controls.Add(addTextLabel);
             Controls.Add(expenseAddButton);
             Controls.Add(expenseTextLabel);

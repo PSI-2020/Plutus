@@ -52,6 +52,15 @@ namespace Plutus.Services
             fileManager.UpdateGoals(list);
         }
 
+        public void SetMainGoal(Goal goal)
+        {
+            DeleteGoal(goal);
+            var list = fileManager.ReadGoals();
+            list.Insert(0, goal);
+            fileManager.UpdateGoals(list);
+
+        }
+
         public string Insights(FileManager manager, Goal goal, string dailyOrMonthly)
         {
             var monthlyIncome = manager.ReadPayments("MonthlyIncome");
@@ -78,9 +87,9 @@ namespace Plutus.Services
             switch (dailyOrMonthly)
             {
                 case "monthly":
-                    return ((income - expenses - goal.Amount + todaySpent) / months).ToString("C2");
+                    return ((income - expenses - goal.Amount + todaySpent) / (months+1)).ToString("C2");
                 case "daily":
-                    return ((((income - expenses - goal.Amount + todaySpent) / months) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - todaySpent)).ToString("C2");
+                    return ((((income - expenses - goal.Amount + todaySpent) / (months+1)) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - todaySpent)).ToString("C2");
                 default:
                     return "";
 
@@ -90,7 +99,10 @@ namespace Plutus.Services
         public string DaysLeft(Goal goal)
         {
             var days = (goal.DueDate - DateTime.Now).TotalDays;
-
+            if (goal.DueDate < DateTime.Now)
+            {
+                days = 0;
+            }
             return days.ToString("F0");
         }
 
