@@ -60,7 +60,7 @@ namespace Plutus
                  where exp.Date <= budgets[index].To
                  select exp).ToList();
             var list = resQuery
-                .Select(x => new { DATE = _date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
+                .Select(x => new { DATE = _date.AddSeconds(x.Date).ToLocalTime(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
                 .OrderByDescending(x => x.DATE).ToList();
             return !list.Any() ? null : (object)list;
         }

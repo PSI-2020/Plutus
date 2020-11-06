@@ -8,8 +8,6 @@ namespace Plutus
         Label insightsPageName;
         TextBox statistics;
 
-
-
         private void LoadInsightsPage()
         {
             LoadMenuButton();

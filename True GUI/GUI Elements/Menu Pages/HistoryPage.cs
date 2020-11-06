@@ -88,7 +88,16 @@ namespace Plutus
             Controls.Add(historyDataGrid);
             ResumeLayout(false);
             PerformLayout();
+
             historyPaymentTypeBox.SelectedIndex = 0;
+            var dataSource = _historyService.LoadDataGrid(_fileManager, historyPaymentTypeBox.SelectedIndex);
+            if (dataSource == null)
+            {
+                MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            historyDataGrid.DataSource = dataSource;
         }
 
         private void UpdateHistory(object sender, EventArgs e)
