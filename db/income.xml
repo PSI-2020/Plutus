@@ -60,4 +60,22 @@
     <Amount>69</Amount>
     <Category>Gift</Category>
   </Payment>
+  <Payment>
+    <Date>1604655122</Date>
+    <Name>234</Name>
+    <Amount>234</Amount>
+    <Category>Gift</Category>
+  </Payment>
+  <Payment>
+    <Date>1604655471</Date>
+    <Name>123</Name>
+    <Amount>23</Amount>
+    <Category>Gift</Category>
+  </Payment>
+  <Payment>
+    <Date>1604656700</Date>
+    <Name>Job well done</Name>
+    <Amount>900</Amount>
+    <Category>Salary</Category>
+  </Payment>
 </ArrayOfPayment>

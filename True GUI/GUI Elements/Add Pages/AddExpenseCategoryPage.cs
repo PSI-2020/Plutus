@@ -26,9 +26,11 @@ namespace Plutus
         Button categoryOtherButton;
         Label categoryOtherText;
 
-        private void LoadExpenseCategoryPage()
+        private void LoadExpenseCategoryPage(string previous)
         {
-            LoadEscapeButtonCat();
+            Controls.Clear();
+            LoadEscapeButton();
+            _previousPage = previous;
 
             chooseCategoryTextLabel = CreateClassicLabel("chooseCategoryTextLabel", "Choose Category:", firstColor, lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
 

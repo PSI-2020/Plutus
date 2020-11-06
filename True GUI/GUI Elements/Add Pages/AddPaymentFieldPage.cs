@@ -23,12 +23,14 @@ namespace Plutus
 
         }
 
-        private void LoadPaymentFieldPage()
+        private void LoadPaymentFieldPage(string previous)
         {
-            LoadEscapeButtonField();
+            Controls.Clear();
+            _previousPage = previous;
+            LoadEscapeButton();
             nameBox.Text = "";
             amountBox.Text = "";
-            
+
 
 
             Controls.Add(nameFieldLabel);
@@ -84,26 +86,23 @@ namespace Plutus
             }
             if ((nameBox.Text == name) && (amountBox.Text == amount))
             {
-                var verify = _inputVerification.VerifyData(name, amount, _currentInfo.CurrentCategory);
-                if (verify != "") return;
-
-                var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-
-                var payment = new Payment
-                {
-                    Date = date,
-                    Name = name,
-                    Amount = double.Parse(amount),
-                    Category = _currentInfo.CurrentCategory
-                };
-                fileManager.AddPayment(payment, _currentInfo.CurrentType);
+                _currentInfo.CurrentName = name;
+                _currentInfo.CurrentAmout = amount;
                 Controls.Clear();
-                LoadMainPage();
+                Loadback();
             }
-
-
-
-
+        }
+        private void Loadback()
+        {
+            switch (_previousPage)
+            {
+                case "newCart":
+                    AddNewCartExpense();
+                    break;
+                default:
+                    AddCurrentPayment();
+                    break;
+            }
         }
 
         private void NameBoxBad_Click(object sender, EventArgs e)

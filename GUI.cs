@@ -242,7 +242,7 @@ namespace Plutus
             SaveCart();
             for (var i = (elemSk - 1); i >= 0; i--)
             {
-                var currExpense = currentCart.GiveElement(i);
+                var currExpense = currentCart.GiveExpense(i);
 
                 var elemPanel = new FlowLayoutPanel();
                 elemPanel = CreateNewElemPanel(elemPanel, i);
@@ -337,8 +337,7 @@ namespace Plutus
             currentElemBut = (Button)sender;
             var index = currentElemBut.Name.IndexOf('|') + 1;
             var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
-            currentCart.ChangeActivity(indexOfExpense);
-            currentElem = currentCart.GiveElement(indexOfExpense);
+            currentElem = currentCart.GiveExpense(indexOfExpense);
             ActivityButColorDecide(currentElem, currentElemBut);
             SaveCart();
             /* OpenElemChange();
@@ -352,7 +351,7 @@ namespace Plutus
             currentElemBut = (Button)sender;
             var index = currentElemBut.Name.IndexOf('|') + 1;
             var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
-            currentElem = currentCart.GiveElement(indexOfExpense);
+            currentElem = currentCart.GiveExpense(indexOfExpense);
             OpenElemChange();
             cartElemChangeName.Text = currentElem.Name;
             cartElemChangePri.Text = currentElem.Price.ToString();
@@ -364,7 +363,7 @@ namespace Plutus
             currentElemBut = (Button)sender;
             var index = currentElemBut.Name.IndexOf('|') + 1;
             var indexOfExpense = int.Parse(currentElemBut.Name.Substring(index));
-            currentElemToDel = currentCart.GiveElement(indexOfExpense);
+            currentElemToDel = currentCart.GiveExpense(indexOfExpense);
             if (currentElemToDel == currentElem) CloseElemChange();
             currentCart.RemoveExpense(indexOfExpense);
 
@@ -441,7 +440,6 @@ namespace Plutus
             var price = Convert.ToDouble(cartElemPriceBox.Text);
             var category = cartElemCategoryBox.Text;
             var newCartExpense = new Expense(date, name, price, category);
-            currentCart.AddExpense(newCartExpense);
             cartAddErrorField.Text = "Added";
             cartElemNameBox.Text = "";
             cartElemPriceBox.Text = "";
@@ -517,7 +515,6 @@ namespace Plutus
             else
             {
                 cartAddErrorField.Text = "Charged!";
-                currentCart.Account(fileManager);
 
             }
         }

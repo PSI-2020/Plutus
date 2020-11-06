@@ -216,4 +216,58 @@
     <Amount>600</Amount>
     <Category>Groceries</Category>
   </Payment>
+  <Payment>
+    <Date>1604655113</Date>
+    <Name>asd</Name>
+    <Amount>123</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604655127</Date>
+    <Name>11</Name>
+    <Amount>11</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604655132</Date>
+    <Name>11</Name>
+    <Amount>11</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
+  <Payment>
+    <Date>1604655174</Date>
+    <Name>asd</Name>
+    <Amount>123</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
+  <Payment>
+    <Date>1604655209</Date>
+    <Name>1</Name>
+    <Amount>1</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604655464</Date>
+    <Name>123</Name>
+    <Amount>123</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604656738</Date>
+    <Name>Banana Man</Name>
+    <Amount>123</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604657391</Date>
+    <Name>Multik</Name>
+    <Amount>11</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604657391</Date>
+    <Name>Coco</Name>
+    <Amount>22</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
 </ArrayOfPayment>
