@@ -1,6 +1,6 @@
 ﻿namespace Plutus
 {
-    class InputVerification
+    class VerificationService
     {
         public string VerifyData(string name = "undefined", string amount = "0", string category = "undefined")
         {

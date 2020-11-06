@@ -66,7 +66,7 @@ namespace Plutus
         private void ChangeGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
-            var verify = new InputVerification();
+            var verify = new VerificationService();
             var error = verify.VerifyData(name: newGoalNameBox.Text, amount: newGoalAmountBox.Text);
             if (error == "")
             {

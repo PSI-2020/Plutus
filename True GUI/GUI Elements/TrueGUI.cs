@@ -18,7 +18,7 @@ namespace Plutus
         private readonly Color firstColor = Color.FromArgb(111, 101, 88);
         private readonly Color secondColor = Color.FromArgb(168, 163, 153);
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
-        private readonly InputVerification _inputVerification = new InputVerification();
+        private readonly VerificationService _inputVerification = new VerificationService();
         private readonly FileManager fileManager = new FileManager();
         private readonly CartService _cartService;
         private string _previousPage;

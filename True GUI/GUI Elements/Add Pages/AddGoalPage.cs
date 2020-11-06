@@ -54,7 +54,7 @@ namespace Plutus
         private void AddGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
-            var verify = new InputVerification();
+            var verify = new VerificationService();
             var error = verify.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);
             if (error == "")
             {
