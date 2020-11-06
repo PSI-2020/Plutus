@@ -56,12 +56,18 @@ namespace Plutus
         {
             var budgets = _fileManager.LoadBudget();
             var expenses = _fileManager.ReadPayments("Expense");
-            var result = expenses
+            /*var result = expenses
                 .Where(x => x.Category == budgets[index].Category)
                 .Where(x => x.Date >= budgets[index].From)
                 .Where(x => x.Date <= budgets[index].To)
-                .ToList();
-            var list = result
+                .ToList();*/
+            var resQuery =
+                (from exp in expenses
+                 where exp.Category == budgets[index].Category
+                 where exp.Date >= budgets[index].From
+                 where exp.Date <= budgets[index].To
+                 select exp).ToList();
+            var list = resQuery
                 .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
                 .OrderByDescending(x => x.DATE).ToList();
             return !list.Any() ? null : (object)list;

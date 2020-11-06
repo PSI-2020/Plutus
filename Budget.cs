@@ -8,7 +8,12 @@ namespace Plutus
     {
         public string Name { get; set; }
         public string Category { get; set; }
-        public double Sum { get; set; }
+        private double _sum;
+        public double Sum
+        {
+            get => _sum;
+            set => _sum = value >= 0 ? value : throw new ArgumentOutOfRangeException("The sum of budget cannot be negative");
+        }
         public int From { get; set; }
         public int To { get; set; }
         public Budget(string name, string category, double sum, DateTime from, DateTime to)
@@ -16,8 +21,8 @@ namespace Plutus
             Name = name;
             Category = category;
             Sum = sum;
-            From = (int)(from.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            To = (int)(to.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            From = (int)from.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            To = (int)to.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
         }
 
         public Budget()
