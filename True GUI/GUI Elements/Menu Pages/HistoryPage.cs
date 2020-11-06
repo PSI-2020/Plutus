@@ -96,7 +96,7 @@ namespace Plutus
 
         private void UpdateHistory(object sender, EventArgs e)
         {
-            var dataSource = historyService.LoadDataGrid(fileManager, historyPaymentTypeBox.SelectedIndex);
+            var dataSource = historyService.LoadDataGrid(_fileManager, historyPaymentTypeBox.SelectedIndex);
             if (dataSource == null)
             {
                 MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);

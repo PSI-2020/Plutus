@@ -118,10 +118,10 @@ namespace Plutus
                 return;
             }
 
-            var list = fileManager.LoadBudget();
+            var list = _fileManager.LoadBudget();
             budgetsFlow.Visible = true;
 
-            fileManager.AddBudget(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
+            _fileManager.AddBudget(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();

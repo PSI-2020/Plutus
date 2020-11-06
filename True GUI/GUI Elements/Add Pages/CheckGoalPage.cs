@@ -42,10 +42,10 @@ namespace Plutus
             myGoalAmountLabel = CreateClassicLabel("myGoalAmountLabel", "Save: " + _currentGoal.Amount + "€", Color.FromArgb(161,156,146), lilitaOne, 13F, ClientSize.Width, 20, 0, 130, 2);
             myGoalDueDateLabel = CreateClassicLabel("myGoalDueDateLabel", "until " + _currentGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 20, 0, 151, 3);
 
-            dailySpendLabel = CreateClassicLabel("dailySpendLabel", goalService.Insights(fileManager, _currentGoal, "daily"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 5);
+            dailySpendLabel = CreateClassicLabel("dailySpendLabel", goalService.Insights(_fileManager, _currentGoal, "daily"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 5);
             dailySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
 
-            monthlySpendLabel = CreateClassicLabel("monthlySpendLabel", goalService.Insights(fileManager, _currentGoal, "monthly"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 7);
+            monthlySpendLabel = CreateClassicLabel("monthlySpendLabel", goalService.Insights(_fileManager, _currentGoal, "monthly"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 7);
             monthlySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
 
             daysLabel = CreateClassicLabel("daysLabel", goalService.DaysLeft(_currentGoal), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 9);

@@ -9,8 +9,6 @@ namespace Plutus
     public partial class TrueGUI : Form
     {
         readonly PrivateFontCollection privateFontCollection = new PrivateFontCollection();
-        private static readonly string fontPathMaconodo = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "True GUI/GUI resources/Macondo.ttf"); // move to File manager
-        private static readonly string fontPathLilita = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "True GUI/GUI resources/LilitaOne.ttf"); // move to File manager
         readonly FontFamily[] fontFamilies;
         readonly FontFamily maconda;
         readonly FontFamily lilitaOne;
@@ -19,17 +17,17 @@ namespace Plutus
         private readonly Color secondColor = Color.FromArgb(168, 163, 153);
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly VerificationService _inputVerification = new VerificationService();
-        private readonly FileManager fileManager = new FileManager();
+        private readonly FileManager _fileManager = new FileManager();
         private readonly CartService _cartService;
         private string _previousPage;
         private readonly PaymentService _paymentService;
 
         public TrueGUI()
         {
-            _cartService = new CartService(fileManager);
-            _paymentService = new PaymentService(fileManager);
-            privateFontCollection.AddFontFile(fontPathMaconodo);
-            privateFontCollection.AddFontFile(fontPathLilita);
+            _cartService = new CartService(_fileManager);
+            _paymentService = new PaymentService(_fileManager);
+            privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
+            privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
             fontFamilies = privateFontCollection.Families;
             maconda = fontFamilies[1];
             lilitaOne = fontFamilies[0];

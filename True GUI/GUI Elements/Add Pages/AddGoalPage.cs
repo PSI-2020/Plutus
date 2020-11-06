@@ -60,7 +60,7 @@ namespace Plutus
             {
                 if (Regex.IsMatch(goalNameBox.Text, "^[a-zA-Z0-9ą-žĄ-Ž]{1,12}$"))
                 {
-                    fileManager.AddGoal(goalNameBox.Text, goalAmountBox.Text, goalDueDateBox.Value);
+                    _fileManager.AddGoal(goalNameBox.Text, goalAmountBox.Text, goalDueDateBox.Value);
                     Controls.Clear();
                     LoadGoalsPage();
                 }

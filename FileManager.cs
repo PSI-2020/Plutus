@@ -11,14 +11,16 @@ namespace Plutus
 
     public class FileManager
     {
-        private static readonly string _databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
-        private readonly string _income = _databaseFolder + "income.xml";
-        private readonly string _expenses = _databaseFolder + "expenses.xml";
-        private readonly string _monthlyIncome = _databaseFolder + "monthlyIncome.xml";
-        private readonly string _monthlyExpenses = _databaseFolder + "monthylExpenses.xml";
-        private readonly string _goals = _databaseFolder + "goals.xml";
-        private readonly string _budgets = _databaseFolder + "budgets.xml";
-        private readonly string _carts = _databaseFolder + "carts.xml";
+        private static readonly string _directoryPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+        private readonly string _income = _directoryPath + "/db/income.xml";
+        private readonly string _expenses = _directoryPath + "/db/expenses.xml";
+        private readonly string _monthlyIncome = _directoryPath + "/db/monthlyIncome.xml";
+        private readonly string _monthlyExpenses = _directoryPath + "/db/monthylExpenses.xml";
+        private readonly string _goals = _directoryPath + "/db/goals.xml";
+        private readonly string _budgets = _directoryPath + "/db/budgets.xml";
+        private readonly string _carts = _directoryPath + "/db/carts.xml";
+        public readonly string fontPathMaconodo = _directoryPath + "/True GUI/GUI resources/Macondo.ttf";
+        public readonly string fontPathLilita = _directoryPath + "/True GUI/GUI resources/LilitaOne.ttf";
 
         public string GetFilePath(string type)
         {

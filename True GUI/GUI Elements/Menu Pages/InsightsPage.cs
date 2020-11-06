@@ -7,7 +7,7 @@ namespace Plutus
     {
         Label insightsPageName;
         TextBox statistics;
-        StatisticsService stats = new StatisticsService();
+        readonly StatisticsService stats = new StatisticsService();
 
 
         private void LoadInsightsPage()
@@ -19,7 +19,7 @@ namespace Plutus
             statistics = new TextBox
             {
                 Name = "Statistics",
-                Text = stats.GenerateExpenseStatistics(fileManager) + System.Environment.NewLine + stats.GenerateIncomeStatistics(fileManager),
+                Text = stats.GenerateExpenseStatistics(_fileManager) + System.Environment.NewLine + stats.GenerateIncomeStatistics(_fileManager),
                 Font = new Font(lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
                 BackColor = backgroundColor,
                 ForeColor = secondColor,
@@ -28,7 +28,7 @@ namespace Plutus
                 Width = ClientSize.Width - 15,
                 Top = 150,
                 Left = 15,
-                Height = ClientSize.Height - 220,
+                Height = ClientSize.Height - 150,
                 TextAlign = HorizontalAlignment.Center,
                 Multiline = true,
                 ReadOnly = true,
