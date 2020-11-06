@@ -67,10 +67,10 @@ namespace Plutus
             historyDataGrid.DefaultCellStyle.BackColor = backgroundColor;
             historyDataGrid.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            historyDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point); ;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font(lilitaOne, 17, FontStyle.Regular, GraphicsUnit.Pixel); ;
             historyDataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             historyDataGrid.ColumnHeadersDefaultCellStyle.BackColor = firstColor;
-            historyDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             historyDataGrid.AdvancedCellBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
             historyDataGrid.AdvancedCellBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
@@ -104,7 +104,7 @@ namespace Plutus
             }
 
             historyDataGrid.DataSource = dataSource;
-            historyDataGrid.AutoResizeColumns();
+            //historyDataGrid.AutoResizeColumns();
         }
     }
 }

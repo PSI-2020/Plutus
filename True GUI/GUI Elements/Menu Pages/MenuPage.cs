@@ -20,7 +20,7 @@ namespace Plutus
 
             menuTextLabel = CreateClassicLabel("menuTextLabel", "Menu:", firstColor, lilitaOne, 24F, ClientSize.Width, 40, 0, 120, 1);
 
-            historyMenuButton = CreateMenuButton("historyMenuButton", "HISTRORY", 1);
+            historyMenuButton = CreateMenuButton("historyMenuButton", "HISTORY", 1);
             historyMenuButton.Click += new EventHandler(HistoryMenuButton_Click);
 
             insightsMenuButton = CreateMenuButton("insightsMenuButton", "INSIGHTS", 2);
