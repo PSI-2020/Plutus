@@ -37,7 +37,7 @@ namespace Plutus
             budgetsFlow.Controls.Clear();
             LoadMenuButton();
             LoadEscapeButtonCat();
-            var list = fileManager.LoadBudget();
+            var list = _fileManager.LoadBudget();
             if (list == null) return;
 
 
