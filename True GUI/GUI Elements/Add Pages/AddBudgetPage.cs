@@ -11,6 +11,7 @@ namespace Plutus
         Label sumLabel;
         Label fromLabel;
         Label toLabel;
+        Label errorLabel;
         Button InsertBudgetButton;
         ComboBox budgetCategoryBox;
         TextBox sumTextBox;
@@ -36,8 +37,7 @@ namespace Plutus
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 FlatStyle = FlatStyle.Flat
             };
-            string[] range = { "", "Groceries", "Restaurant", "Clothes", "Transport", "Health", "School", "Bills", "Other" };
-            budgetCategoryBox.Items.AddRange(range);
+            budgetCategoryBox.Items.AddRange(new string[] { "", "Groceries", "Restaurant", "Clothes", "Transport", "Health", "School", "Bills", "Other" });
             budgetCategoryBox.SelectedIndex = 0;
 
             sumLabel = CreateClassicLabel("sumLabel", "Enter Sum:", firstColor, lilitaOne, 11F, 300, 25, 40, 200, 1);
@@ -99,10 +99,12 @@ namespace Plutus
 
         private void InsertBudgetButtonClick(object sender, EventArgs e)
         {
+            Controls.Remove(errorLabel);
             var error = _inputVerification.VerifyData(amount: sumTextBox.Text, category: budgetCategoryBox.Text);
             if (error != "")
             {
-                MessageBox.Show(error, "Something is missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel = CreateClassicLabel("errorLabel", error, Color.Red, lilitaOne, 18F, 300, 75, 40, 500, 1);
+                Controls.Add(errorLabel);
                 return;
             }
 

@@ -195,7 +195,7 @@ namespace Plutus
 
         public void AddBudget(Budget budget)
         {
-            var serializer = new XmlSerializer(typeof(List<Payment>));
+            var serializer = new XmlSerializer(typeof(List<Budget>));
             var list = LoadBudget();
 
             list.Add(budget);
