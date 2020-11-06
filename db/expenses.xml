@@ -270,4 +270,46 @@
     <Amount>22</Amount>
     <Category>Restaurant</Category>
   </Payment>
+  <Payment>
+    <Date>1604663191</Date>
+    <Name>Magic</Name>
+    <Amount>5</Amount>
+    <Category>Bills</Category>
+  </Payment>
+  <Payment>
+    <Date>1604663191</Date>
+    <Name>Robe</Name>
+    <Amount>12</Amount>
+    <Category>Clothes</Category>
+  </Payment>
+  <Payment>
+    <Date>1604663191</Date>
+    <Name>Fish &amp; Mana</Name>
+    <Amount>41</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
+  <Payment>
+    <Date>1604663648</Date>
+    <Name>Grocery</Name>
+    <Amount>15</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604663674</Date>
+    <Name>Grocery</Name>
+    <Amount>15</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604663689</Date>
+    <Name>Magic</Name>
+    <Amount>5</Amount>
+    <Category>Bills</Category>
+  </Payment>
+  <Payment>
+    <Date>1604663689</Date>
+    <Name>Robe</Name>
+    <Amount>12</Amount>
+    <Category>Clothes</Category>
+  </Payment>
 </ArrayOfPayment>

@@ -20,12 +20,14 @@ namespace Plutus
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly InputVerification _inputVerification = new InputVerification();
         private readonly FileManager fileManager = new FileManager();
-        private readonly CartService _cartService = new CartService();
+        private readonly CartService _cartService;
         private string _previousPage;
-        private readonly PaymentService _paymentService = new PaymentService();
+        private readonly PaymentService _paymentService;
 
         public TrueGUI()
         {
+            _cartService = new CartService(fileManager);
+            _paymentService = new PaymentService(fileManager);
             privateFontCollection.AddFontFile(fontPathMaconodo);
             privateFontCollection.AddFontFile(fontPathLilita);
             fontFamilies = privateFontCollection.Families;

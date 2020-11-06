@@ -1,3 +1,0 @@
-Alchemy supplies|45|Other|0
-Magic|55|Other|1
-Supplements|98|Other|1
