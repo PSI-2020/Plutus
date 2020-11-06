@@ -150,6 +150,18 @@ namespace Plutus
 
         public void SaveCarts(XElement carts) => carts.Save(_carts);
 
-        public XElement LoadCarts() => File.Exists(_carts) ? XElement.Load(_carts) : null;
+        public XElement LoadCarts()
+        {
+            if (!File.Exists(_carts)) return null;
+            try
+            {
+                var carts = XElement.Load(_carts);
+                return carts;
+            }
+            catch
+            {
+                return new XElement("Corrupted", "true");
+            }
+        }
     }
 }

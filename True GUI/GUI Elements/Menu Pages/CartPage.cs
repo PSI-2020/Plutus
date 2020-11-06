@@ -59,7 +59,7 @@ namespace Plutus
             LoadEscapeButton();
             cartsPageWorkPanel.Controls.Clear();
             cartPageInfoLabel.Text = "CARTS:";
-            cartErrorLabel.Text = "";
+            cartErrorLabel.Text = _cartService.GiveLoadMessage();
             cartsPageWorkPanel.Controls.Add(cartErrorLabel);
             Controls.Add(cartsPageName);
             Controls.Add(cartPageInfoLabel);

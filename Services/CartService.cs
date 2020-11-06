@@ -10,12 +10,19 @@ namespace Plutus
         private Cart _currentCart;
         private readonly List<Cart> _carts;
         private readonly FileManager _fm;
+        private string _cartLoadMessage;
 
         public CartService(FileManager fm)
         {
             _carts = new List<Cart>();
             _fm = fm;
-            LoadCarts();
+            _cartLoadMessage = LoadCarts();
+        }
+        public string GiveLoadMessage()
+        {
+            var message = _cartLoadMessage;
+            _cartLoadMessage = "";
+            return message;
         }
 
         public void NewCart() => _currentCart = new Cart();
@@ -95,10 +102,11 @@ namespace Plutus
             _fm.SaveCarts(cartsStored);
         }
 
-        private void LoadCarts()
+        private string LoadCarts()
         {
             var cartsStored = _fm.LoadCarts();
-            if (cartsStored == null) return;
+            if (cartsStored == null) return "";
+            if (cartsStored.Element("Corrupted") != null) return "Carts Could not be Loaded";
             var cartsXml = cartsStored.Elements();
             foreach (var cart in cartsXml)
             {
@@ -114,10 +122,12 @@ namespace Plutus
                         (double)expense.Element("Amount"),
                         (string)expense.Element("Category")
                         );
-                    specificCart.AddExpense(cartExpense);
+                     specificCart.AddExpense(cartExpense);
                 }
                 _carts.Add(specificCart);
             }
+            return "Carts Loaded";
+            
         }
 
     }
