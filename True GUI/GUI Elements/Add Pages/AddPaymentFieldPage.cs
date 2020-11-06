@@ -11,15 +11,17 @@ namespace Plutus
         TextBox nameBox;
         TextBox amountBox;
         Button addPaymentButton;
+        Label addFieldErrorLabel;
         
         private void InitializePaymentFieldPage()
         {
-            nameFieldLabel = CreateClassicLabel("nameFieldLabel", "Name:", Color.White, lilitaOne, 18F, 272, 40, 50, 170, 1, ContentAlignment.BottomLeft);
-            amountFieldLabel = CreateClassicLabel("amountFieldLabel", "Amount:", Color.White, lilitaOne, 18F, 272, 40, 50, 366, 3, ContentAlignment.BottomLeft);
-            addPaymentButton = CreateClassicButton("addPaymentButton", "ADD", Color.White, lilitaOne, 14F, firstColor, 272, 80, 50, 650, 5);
+            nameFieldLabel = CreateClassicLabel("nameFieldLabel", "Name:", Color.White, _lilitaOne, 18F, 272, 40, 50, 170, 1, ContentAlignment.BottomLeft);
+            amountFieldLabel = CreateClassicLabel("amountFieldLabel", "Amount:", Color.White, _lilitaOne, 18F, 272, 40, 50, 366, 3, ContentAlignment.BottomLeft);
+            addPaymentButton = CreateClassicButton("addPaymentButton", "ADD", Color.White, _lilitaOne, 14F, _firstColor, 272, 80, 50, 650, 5);
             addPaymentButton.Click += new EventHandler(AddPaymentButton_Click);
             nameBox = CreateTextField("nameBox", "Enter Name", 230, 2);
             amountBox = CreateTextField("amountBox", "0", 415, 4);
+            addFieldErrorLabel = CreateClassicLabel("addFieldErrorLabel", "", Color.Red, _lilitaOne, 14F, 272, 50, 50, 600, 45);
 
         }
 
@@ -36,6 +38,7 @@ namespace Plutus
             Controls.Add(nameFieldLabel);
             Controls.Add(amountFieldLabel);
             Controls.Add(addPaymentButton);
+            Controls.Add(addFieldErrorLabel);
             Controls.Add(nameBox);
             Controls.Add(amountBox);
         }
@@ -46,11 +49,11 @@ namespace Plutus
             {
                 Name = name,
                 Text = "",
-                ForeColor = firstColor,
+                ForeColor = _firstColor,
                 BackColor = Color.FromArgb(199, 193, 181),
                 Left = 50,
                 Top = top,
-                Font = new Font(lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
                 AutoSize = false,
                 Width = 272,
                 Height = 80,
@@ -64,33 +67,14 @@ namespace Plutus
         {
             var name = nameBox.Text;
             var amount = amountBox.Text;
-            nameBox.Text = _inputVerification.VerifyData(name: name);
-            amountBox.Text = _inputVerification.VerifyData(amount: amount);
-            if(nameBox.Text != "")
-            {
-                nameBox.ForeColor = Color.Red;
-                nameBox.Click += new EventHandler(NameBoxBad_Click);
-            }
-            else
-            {
-                nameBox.Text = name;
-            }
-            if (amountBox.Text != "")
-            {
-                amountBox.ForeColor = Color.Red;
-                amountBox.Click += new EventHandler(AmountBoxBad_Click);
-            }
-            else
-            {
-                amountBox.Text = amount;
-            }
-            if ((nameBox.Text == name) && (amountBox.Text == amount))
-            {
-                _currentInfo.CurrentName = name;
-                _currentInfo.CurrentAmout = amount;
-                Controls.Clear();
-                Loadback();
-            }
+            addFieldErrorLabel.Text = _inputVerification.VerifyData(name: name, amount: amount);
+
+            if (addFieldErrorLabel.Text != "") return;
+            _currentInfo.CurrentName = name;
+            _currentInfo.CurrentAmout = amount;
+            Controls.Clear();
+            Loadback();
+            
         }
         private void Loadback()
         {
@@ -108,13 +92,13 @@ namespace Plutus
         private void NameBoxBad_Click(object sender, EventArgs e)
         {
             nameBox.Text = "";
-            nameBox.ForeColor = firstColor;
+            nameBox.ForeColor = _firstColor;
             nameBox.Click -= new EventHandler(NameBoxBad_Click);
         }
         private void AmountBoxBad_Click(object sender, EventArgs e)
         {
             amountBox.Text = "";
-            amountBox.ForeColor = firstColor;
+            amountBox.ForeColor = _firstColor;
             amountBox.Click -= new EventHandler(AmountBoxBad_Click);
         }
     }

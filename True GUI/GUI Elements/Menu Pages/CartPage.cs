@@ -6,40 +6,40 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        private Label cartsPageName;
-        private Panel cartsPageWorkPanel;
-        private Button addCartButton;
-        private Label cartPageInfoLabel;
-        private Button cartPageBackButton;
-        private TextBox cartNameBox;
-        private Button cartNewExpenseButton;
-        private Button cartCreateButton;
-        private Button cartSaveButton;
-        private Label cartPageLineAboveAddControls;
-        private FlowLayoutPanel newCartExpensesPanel;
-        private FlowLayoutPanel newCartExpensesInfoPanel;
-        private Label cartNewName;
-        private Label cartNewAmount;
-        private Label cartNewCategory;
-        private Label cartNewEditCol;
-        private Label cartNewSplitLine1;
-        private Label cartNewSplitLine2;
-        private Label cartNewSplitLine3;
-        private Panel cartNavigationErorrPanel;
-        private Button cartNavigationUp;
-        private Button cartNavigationDown;
-        private Label cartNavigationLabel;
-        private Label cartErrorLabel;
-        private FlowLayoutPanel oldCartExpensesPanel;
-        private FlowLayoutPanel oldCartExpensesInfoPanel;
-        private Label cartOldName;
-        private Label cartOldAmount;
-        private Label cartOldCategory;
-        private Label cartOldSplitLine1;
-        private Label cartOldSplitLine2;
-        private Button cartEditButton;
-        private Button cartDeleteButton;
-        private Button cartChargeButton;
+        Label cartsPageName;
+        Panel cartsPageWorkPanel;
+        Button addCartButton;
+        Label cartPageInfoLabel;
+        Button cartPageBackButton;
+        TextBox cartNameBox;
+        Button cartNewExpenseButton;
+        Button cartCreateButton;
+        Button cartSaveButton;
+        Label cartPageLineAboveAddControls;
+        FlowLayoutPanel newCartExpensesPanel;
+        FlowLayoutPanel newCartExpensesInfoPanel;
+        Label cartNewName;
+        Label cartNewAmount;
+        Label cartNewCategory;
+        Label cartNewEditCol;
+        Label cartNewSplitLine1;
+        Label cartNewSplitLine2;
+        Label cartNewSplitLine3;
+        Panel cartNavigationErorrPanel;
+        Button cartNavigationUp;
+        Button cartNavigationDown;
+        Label cartNavigationLabel;
+        Label cartErrorLabel;
+        FlowLayoutPanel oldCartExpensesPanel;
+        FlowLayoutPanel oldCartExpensesInfoPanel;
+        Label cartOldName;
+        Label cartOldAmount;
+        Label cartOldCategory;
+        Label cartOldSplitLine1;
+        Label cartOldSplitLine2;
+        Button cartEditButton;
+        Button cartDeleteButton;
+        Button cartChargeButton;
 
         private int _cartNavigationStart;
         private string _previousCartPage;
@@ -80,7 +80,7 @@ namespace Plutus
         private void LoadCart(int index)
         {
             var top = 55 + (index * 50);
-            var newCart = CreateClassicButton(index + "|CartButton", _cartService.GiveCartNameAt(index), Color.White, lilitaOne, 14F, firstColor, 270, 40, 20, top, 9);
+            var newCart = CreateClassicButton(index + "|CartButton", _cartService.GiveCartNameAt(index), Color.White, _lilitaOne, 14F, _firstColor, 270, 40, 20, top, 9);
             newCart.Click += new EventHandler(CartClick);
             cartsPageWorkPanel.Controls.Add(newCart);
         }
@@ -181,7 +181,7 @@ namespace Plutus
             newCartExpensesPanel.Controls.Clear();
             var count = _cartService.GiveCurrentCartElemCount();
             cartNavigationLabel.Text = (count > 11) ? _cartNavigationStart + 1 + "->" + (_cartNavigationStart + 11) + "(" + count + ")" : "";
-            cartNavigationLabel.ForeColor = firstColor;
+            cartNavigationLabel.ForeColor = _firstColor;
             var trueCount = (count > 11) ? _cartNavigationStart + 11 : count;
             for (var i = _cartNavigationStart; i < trueCount; i++)
             {
@@ -193,7 +193,7 @@ namespace Plutus
             oldCartExpensesPanel.Controls.Clear();
             var count = _cartService.GiveCurrentCartElemCount();
             cartNavigationLabel.Text = (count > 11) ? _cartNavigationStart + 1 + "->" + (_cartNavigationStart + 11) + "(" + count + ")" : "";
-            cartNavigationLabel.ForeColor = firstColor;
+            cartNavigationLabel.ForeColor = _firstColor;
             var trueCount = (count > 11) ? _cartNavigationStart + 11 : count;
             for (var i = _cartNavigationStart; i < trueCount; i++)
             {
@@ -203,11 +203,11 @@ namespace Plutus
 
         private void LoadOldCartExpense(int i)
         {
-            var color = ((i % 2) == 0) ? backgroundColor : Color.FromArgb(205, 199, 188);
+            var color = ((i % 2) == 0) ? _backgroundColor : Color.FromArgb(205, 199, 188);
             var expense = _cartService.GiveCurrentElemAt(i);
-            var expenseName = CreateNewCartElement("cartExpenseName" + i, expense.Name, 83, 30, color, firstColor);
-            var expenseAmount = CreateNewCartElement("cartNewAmount" + i, expense.Price.ToString(), 93, 30, color, firstColor);
-            var expenseCategory = CreateNewCartElement("cartNewCategory" + i, expense.Category, 108, 30, color, firstColor);
+            var expenseName = CreateNewCartElement("cartExpenseName" + i, expense.Name, 83, 30, color, _firstColor);
+            var expenseAmount = CreateNewCartElement("cartNewAmount" + i, expense.Price.ToString(), 93, 30, color, _firstColor);
+            var expenseCategory = CreateNewCartElement("cartNewCategory" + i, expense.Category, 108, 30, color, _firstColor);
             var expenseSplitLine1 = CreateClassicLine("cartNewSplitLine1" + i, 2, 40, 0, 0, Color.Black);
             var expenseSplitLine2 = CreateClassicLine("cartNewSplitLine2" + i, 2, 40, 0, 0, Color.Black);
             var expensePanel = new FlowLayoutPanel
@@ -219,7 +219,7 @@ namespace Plutus
                 Left = 10,
                 Height = 30,
                 Top = 10,
-                BackColor = secondColor,
+                BackColor = _secondColor,
                 Margin = new Padding(0)
             };
             expensePanel.Controls.Add(expenseName);
@@ -232,13 +232,13 @@ namespace Plutus
 
         private void LoadNewCartExpense(int i)
         {
-            var color = ((i % 2) == 0) ? backgroundColor : Color.FromArgb(205, 199, 188);
+            var color = ((i % 2) == 0) ? _backgroundColor : Color.FromArgb(205, 199, 188);
             var expense = _cartService.GiveCurrentElemAt(i);
-            var expenseName = CreateNewCartElement("cartExpenseName" + i, expense.Name, 68, 30, color, firstColor);
-            var expenseAmount = CreateNewCartElement("cartNewAmount" + i, expense.Price.ToString(), 78, 30, color, firstColor);
-            var expenseCategory = CreateNewCartElement("cartNewCategory" + i, expense.Category, 108, 30, color, firstColor);
+            var expenseName = CreateNewCartElement("cartExpenseName" + i, expense.Name, 68, 30, color, _firstColor);
+            var expenseAmount = CreateNewCartElement("cartNewAmount" + i, expense.Price.ToString(), 78, 30, color, _firstColor);
+            var expenseCategory = CreateNewCartElement("cartNewCategory" + i, expense.Category, 108, 30, color, _firstColor);
             var deleteButton = CreateClassicButton("deleteButton|" + i, Properties.Resources.EscapeButton, 0, 0, 0, false, 30, 30);
-            deleteButton.BackColor = backgroundColor;
+            deleteButton.BackColor = _backgroundColor;
             deleteButton.Click += new EventHandler(DeleteExpense_Click);
             var expenseSplitLine1 = CreateClassicLine("cartNewSplitLine1" + i, 2, 40, 0, 0, Color.Black);
             var expenseSplitLine2 = CreateClassicLine("cartNewSplitLine2" + i, 2, 40, 0, 0, Color.Black);
@@ -252,7 +252,7 @@ namespace Plutus
                 Left = 10,
                 Height = 30,
                 Top = cartNameBox.Bottom + 10,
-                BackColor = secondColor,
+                BackColor = _secondColor,
                 Margin = new Padding(0)
             };
             expensePanel.Controls.Add(expenseName);
@@ -292,7 +292,7 @@ namespace Plutus
         private void InitializeCartMain()
         {
             cartsPageName = CreatePageNameLabel("cartsPageNameLabel", "CARTS");
-            cartPageInfoLabel = CreateClassicLabel("cartPageInfoLabel", "MY CARTS:", Color.White, lilitaOne, 18F, 310, 50, 32, cartsPageName.Bottom + 10, 0);
+            cartPageInfoLabel = CreateClassicLabel("cartPageInfoLabel", "MY CARTS:", Color.White, _lilitaOne, 18F, 310, 50, 32, cartsPageName.Bottom + 10, 0);
             cartsPageWorkPanel = new Panel
             {
                 Name = "cartPageWorkPanel",
@@ -306,12 +306,12 @@ namespace Plutus
             addCartButton = CreateClassicButton("addCartButton", Properties.Resources.AddCartButton, 162, cartsPageWorkPanel.Bottom + 10, 1, false, 56, 51);
             addCartButton.Click += new EventHandler(AddCartButton_Click);
             cartPageInfoLabel.BackColor = Color.FromArgb(114, 107, 96);
-            cartErrorLabel = CreateClassicLabel("cartErrorLabel", "", Color.Red, lilitaOne, 10F, 310, 50, 0, 500, 0);
+            cartErrorLabel = CreateClassicLabel("cartErrorLabel", "", Color.Red, _lilitaOne, 10F, 310, 50, 0, 500, 0);
         }
 
         private void InitializeCartNew()
         {
-            cartPageLineAboveAddControls = CreateClassicLine("cartPageLineAboveAddControls", 290, 5, 10, 480, secondColor);
+            cartPageLineAboveAddControls = CreateClassicLine("cartPageLineAboveAddControls", 290, 5, 10, 480, _secondColor);
             cartPageBackButton = CreateClassicButton("cartPageBackButton", Properties.Resources.BackArrowButton, 10, cartPageLineAboveAddControls.Bottom + 15, 1, false, 16, 21);
             cartPageBackButton.Click += new EventHandler(GoBackCartButton_Click);
             cartNameBox = new TextBox
@@ -323,24 +323,24 @@ namespace Plutus
                 Height = 40,
                 Top = 10,
                 Left = 20,
-                ForeColor = firstColor,
+                ForeColor = _firstColor,
                 BackColor = Color.FromArgb(199, 193, 181),
-                Font = new Font(lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
                 TextAlign = HorizontalAlignment.Center,
                 AutoSize = false,
             };
-            cartCreateButton = CreateClassicButton("cartCreateButton", "Create cart", Color.White, lilitaOne, 9F, secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartCreateButton = CreateClassicButton("cartCreateButton", "Create cart", Color.White, _lilitaOne, 9F, _secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
             cartCreateButton.Click += new EventHandler(CartCreateButton_Click);
-            cartSaveButton = CreateClassicButton("cartSaveButton", "Save cart", Color.White, lilitaOne, 9F, secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartSaveButton = CreateClassicButton("cartSaveButton", "Save cart", Color.White, _lilitaOne, 9F, _secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
             cartSaveButton.Click += new EventHandler(CartSaveButton_Click);
             cartSaveButton.Visible = false;
-            cartNewExpenseButton = CreateClassicButton("cartNewExpenseButton", "Add new expense", Color.White, lilitaOne, 9F, secondColor, 140, 30, cartCreateButton.Right + 15, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartNewExpenseButton = CreateClassicButton("cartNewExpenseButton", "Add new expense", Color.White, _lilitaOne, 9F, _secondColor, 140, 30, cartCreateButton.Right + 15, cartPageLineAboveAddControls.Bottom + 11, 7);
             cartNewExpenseButton.Click += new EventHandler(CartNewExpenseButton_Click);
 
-            cartNewName = CreateNewCartElement("cartNewName", "NAME", 68, 30, firstColor, Color.White);
-            cartNewAmount = CreateNewCartElement("cartNewAmount", "AMOUNT", 78, 30, firstColor, Color.White);
-            cartNewCategory = CreateNewCartElement("cartNewCategory", "CATEGORY", 108, 30, firstColor, Color.White);
-            cartNewEditCol = CreateNewCartElement("cartNewEditCol", "", 30, 30, firstColor, Color.White);
+            cartNewName = CreateNewCartElement("cartNewName", "NAME", 68, 30, _firstColor, Color.White);
+            cartNewAmount = CreateNewCartElement("cartNewAmount", "AMOUNT", 78, 30, _firstColor, Color.White);
+            cartNewCategory = CreateNewCartElement("cartNewCategory", "CATEGORY", 108, 30, _firstColor, Color.White);
+            cartNewEditCol = CreateNewCartElement("cartNewEditCol", "", 30, 30, _firstColor, Color.White);
             cartNewSplitLine1 = CreateClassicLine("cartNewSplitLine1", 2, 40, 0, 0, Color.Black);
             cartNewSplitLine2 = CreateClassicLine("cartNewSplitLine2", 2, 40, 0, 0, Color.Black);
             cartNewSplitLine3 = CreateClassicLine("cartNewSplitLine3", 2, 40, 0, 0, Color.Black);
@@ -354,7 +354,7 @@ namespace Plutus
                 Left = 10,
                 Height = 30,
                 Top = cartNameBox.Bottom + 10,
-                BackColor = secondColor
+                BackColor = _secondColor
             };
 
             newCartExpensesPanel = new FlowLayoutPanel
@@ -371,7 +371,7 @@ namespace Plutus
 
             cartNavigationUp = CreateClassicButton("cartNavigationUp", Properties.Resources.UpArrowButton, 25, 0, 0, false, 30, 30);
             cartNavigationUp.Click += new EventHandler(CartNavigateUp);
-            cartNavigationLabel = CreateClassicLabel("cartNavigationLabel", "", firstColor, lilitaOne, 10F, 200, 30, 55, 0, 0);
+            cartNavigationLabel = CreateClassicLabel("cartNavigationLabel", "", _firstColor, _lilitaOne, 10F, 200, 30, 55, 0, 0);
             cartNavigationDown = CreateClassicButton("cartNavigationDown", Properties.Resources.DownArrowButton, cartNavigationLabel.Right, 0, 0, false, 30, 30);
             cartNavigationDown.Click += new EventHandler(CartNavigateDown);
             cartNavigationErorrPanel = new Panel
@@ -390,14 +390,14 @@ namespace Plutus
 
         private void InitializeCartSpecific()
         {
-            cartOldName = CreateNewCartElement("cartOldName", "NAME", 83, 30, firstColor, Color.White);
-            cartOldAmount = CreateNewCartElement("cartOldAmount", "AMOUNT", 93, 30, firstColor, Color.White);
-            cartOldCategory = CreateNewCartElement("cartOldCategory", "CATEGORY", 108, 30, firstColor, Color.White);
+            cartOldName = CreateNewCartElement("cartOldName", "NAME", 83, 30, _firstColor, Color.White);
+            cartOldAmount = CreateNewCartElement("cartOldAmount", "AMOUNT", 93, 30, _firstColor, Color.White);
+            cartOldCategory = CreateNewCartElement("cartOldCategory", "CATEGORY", 108, 30, _firstColor, Color.White);
             cartOldSplitLine1 = CreateClassicLine("cartOldSplitLine1", 2, 40, 0, 0, Color.Black);
             cartOldSplitLine2 = CreateClassicLine("cartOldSplitLine2", 2, 40, 0, 0, Color.Black);
-            cartDeleteButton = CreateClassicButton("cartDeleteButton", "Delete Cart", Color.White, lilitaOne, 10F, firstColor, 120, 40, 170, 10, 124);
+            cartDeleteButton = CreateClassicButton("cartDeleteButton", "Delete Cart", Color.White, _lilitaOne, 10F, _firstColor, 120, 40, 170, 10, 124);
             cartDeleteButton.Click += new EventHandler(DeleteCart_Click);
-            cartEditButton = CreateClassicButton("cartEditButton", "Edit Cart", Color.White, lilitaOne, 10F, firstColor, 120, 40, 20, 10, 124);
+            cartEditButton = CreateClassicButton("cartEditButton", "Edit Cart", Color.White, _lilitaOne, 10F, _firstColor, 120, 40, 20, 10, 124);
             cartEditButton.Click += new EventHandler(EditCart_Click);
             oldCartExpensesInfoPanel = new FlowLayoutPanel
             {
@@ -408,9 +408,9 @@ namespace Plutus
                 Left = 10,
                 Height = 30,
                 Top = cartDeleteButton.Bottom + 10,
-                BackColor = secondColor
+                BackColor = _secondColor
             };
-            cartChargeButton = CreateClassicButton("cartChargeButton", "Charge Cart", firstColor, lilitaOne, 9F, secondColor, 250, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartChargeButton = CreateClassicButton("cartChargeButton", "Charge Cart", _firstColor, _lilitaOne, 9F, _secondColor, 250, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
             cartChargeButton.Click += new EventHandler(ChargeCart_Click);
             oldCartExpensesPanel = new FlowLayoutPanel
             {
@@ -508,7 +508,7 @@ namespace Plutus
                 Text = text,
                 Width = width,
                 Height = height,
-                Font = new Font(lilitaOne, 9F, Font.Style, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 9F, Font.Style, GraphicsUnit.Point),
                 ForeColor = fontColor,
                 BackColor = backColor,
                 Margin = new Padding(0),

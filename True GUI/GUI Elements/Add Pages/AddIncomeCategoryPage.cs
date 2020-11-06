@@ -27,7 +27,7 @@ namespace Plutus
             _previousPage = previous;
             LoadEscapeButton();
 
-            chooseCategoryInTextLabel = CreateClassicLabel("chooseCategoryInTextLabel", "Choose Category:", firstColor, lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
+            chooseCategoryInTextLabel = CreateClassicLabel("chooseCategoryInTextLabel", "Choose Category:", _firstColor, _lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
             var addGap = 80;
 
             categorySalaryButton = CreateCategoryButton("Salary", 1, 1, Properties.Resources.SalaryButton, addGap);

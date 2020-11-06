@@ -7,21 +7,21 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        private Label goalNameFieldLabel;
-        private Label goalAmountFieldLabel;
-        private Label goalDueDateFieldLabel;
-        private Button addGoalButton;
-        private TextBox goalNameBox;
-        private TextBox goalAmountBox;
-        private DateTimePicker goalDueDateBox;
+        Label goalNameFieldLabel;
+        Label goalAmountFieldLabel;
+        Label goalDueDateFieldLabel;
+        Button addGoalButton;
+        TextBox goalNameBox;
+        TextBox goalAmountBox;
+        DateTimePicker goalDueDateBox;
 
         private void InitializeAddGoalPage()
         {
-            goalNameFieldLabel = CreateClassicLabel("goalNameFieldLabel", "Name:", Color.White, lilitaOne, 18F, 272, 40, 50, 100, 1, ContentAlignment.BottomLeft);
-            goalAmountFieldLabel = CreateClassicLabel("goalAmountFieldLabel", "Amount you want to save:", Color.White, lilitaOne, 18F, 500, 40, 50, 260, 3, ContentAlignment.BottomLeft);
-            goalDueDateFieldLabel = CreateClassicLabel("goalDueDateFieldLabel", "Set a due date:", Color.White, lilitaOne, 18F, 272, 40, 50, 420, 5, ContentAlignment.BottomLeft);
+            goalNameFieldLabel = CreateClassicLabel("goalNameFieldLabel", "Name:", Color.White, _lilitaOne, 18F, 272, 40, 50, 100, 1, ContentAlignment.BottomLeft);
+            goalAmountFieldLabel = CreateClassicLabel("goalAmountFieldLabel", "Amount you want to save:", Color.White, _lilitaOne, 18F, 500, 40, 50, 260, 3, ContentAlignment.BottomLeft);
+            goalDueDateFieldLabel = CreateClassicLabel("goalDueDateFieldLabel", "Set a due date:", Color.White, _lilitaOne, 18F, 272, 40, 50, 420, 5, ContentAlignment.BottomLeft);
 
-            addGoalButton = CreateClassicButton("addPaymentButton", "ADD", Color.White, lilitaOne, 14F, firstColor, 272, 80, 50, 650, 7);
+            addGoalButton = CreateClassicButton("addPaymentButton", "ADD", Color.White, _lilitaOne, 14F, _firstColor, 272, 80, 50, 650, 7);
             addGoalButton.Click += new EventHandler(AddGoalButton_Click);
 
             goalDueDateBox = new DateTimePicker()
@@ -30,13 +30,13 @@ namespace Plutus
                 Left = 50,
                 Width = 272,
                 Height = 80,
-                Font = new Font(lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point)
+                Font = new Font(_lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point)
             };
 
         }
         private void LoadAddGoalPage()
         {
-            LoadEscapeButtonField();
+            LoadEscapeButton();
 
             goalNameBox = CreateTextField("goalNameBox", "Enter Name", 160, 2);
             goalAmountBox = CreateTextField("goalAmountBox", "0", 320, 4);
@@ -58,7 +58,7 @@ namespace Plutus
             var error = verify.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);
             if (error == "")
             {
-                if (Regex.IsMatch(goalNameBox.Text, "^[a-zA-Z0-9ą-žĄ-Ž]{1,12}$"))
+                if (Regex.IsMatch(goalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
                     _fileManager.AddGoal(goalNameBox.Text, goalAmountBox.Text, goalDueDateBox.Value);
                     Controls.Clear();

@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace Plutus
 { 
-    [Serializable()]
     public class Budget : ISerializable
     {
         public string Name { get; set; }
@@ -38,7 +37,6 @@ namespace Plutus
             info.AddValue("Sum", Sum);
             info.AddValue("Category", Category);
         }
-
 
         public Budget(SerializationInfo info, StreamingContext context)
         {

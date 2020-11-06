@@ -27,14 +27,14 @@ namespace Plutus
         Other
     }
 
-    class StatisticsService
+    public class StatisticsService
     {
         public string GenerateExpenseStatistics(FileManager manager)
         {   
             var list = manager.ReadPayments("Expense");
-            if (list == null) return "No expense data found!";
+            if (!list.Any()) return "No expense data found!";
 
-            var data = "Expense statistics: " + System.Environment.NewLine + System.Environment.NewLine;
+            var data = "Expense statistics:\r\n\r\n";
             var total = list.Sum(x => x.Amount);
             var sums = new Dictionary<string, double>();
 
@@ -46,9 +46,9 @@ namespace Plutus
             foreach (var category in Enum.GetNames(typeof(ExpenseCategories)))
             {
                 var percent = total == 0
-                    ? " (" + String.Format("{0:0.00}", 0) + "%)"
-                    : " (" + String.Format("{0:0.00}", sums[category] / total * 100) + "%)";
-                data += category + " " + String.Format("{0:0.00}", sums[category]) + percent + System.Environment.NewLine;
+                    ? " (" + string.Format("{0:0.00}", 0) + "%)"
+                    : " (" + string.Format("{0:0.00}", sums[category] / total * 100) + "%)";
+                data += category + " " + string.Format("{0:0.00}", sums[category]) + percent + "\r\n";
             }
             return data;
         }
@@ -56,9 +56,9 @@ namespace Plutus
         public string GenerateIncomeStatistics(FileManager manager)
         {
             var list = manager.ReadPayments("Income");
-            if (list == null) return "No income data found!";
+            if (!list.Any()) return "No income data found!";
 
-            var data = "Income statistics: " + System.Environment.NewLine + System.Environment.NewLine;
+            var data = "Income statistics: \r\n\r\n";
             var total = list.Sum(x => x.Amount);
             var sums = new Dictionary<string, double>();
 
@@ -70,9 +70,9 @@ namespace Plutus
             foreach (var category in Enum.GetNames(typeof(IncomeCategories)))
             {
                 var percent = total == 0
-                    ? " (" + String.Format("{0:0.00}", 0) + "%)"
-                    : " (" + String.Format("{0:0.00}", sums[category] / total * 100) + "%)";
-                data += category + " " + String.Format("{0:0.00}", sums[category]) + percent + System.Environment.NewLine;
+                    ? " (" + string.Format("{0:0.00}", 0) + "%)"
+                    : " (" + string.Format("{0:0.00}", sums[category] / total * 100) + "%)";
+                data += category + " " + string.Format("{0:0.00}", sums[category]) + percent + "\r\n";
             }
             return data;
         }

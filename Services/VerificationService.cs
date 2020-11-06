@@ -9,6 +9,7 @@
                 : !double.TryParse(amount, out _)
                 ? "Amount is not a number!"
                 : string.IsNullOrEmpty(category) ? "Please choose a category!" : "";
+
         }
     }
 }

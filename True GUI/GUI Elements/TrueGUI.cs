@@ -1,50 +1,50 @@
 ﻿using Plutus.Services;
 using System.Drawing;
 using System.Drawing.Text;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        readonly PrivateFontCollection privateFontCollection = new PrivateFontCollection();
-        readonly FontFamily[] fontFamilies;
-        readonly FontFamily maconda;
-        readonly FontFamily lilitaOne;
-        private readonly Color backgroundColor = Color.FromArgb(220, 213, 201);
-        private readonly Color firstColor = Color.FromArgb(111, 101, 88);
-        private readonly Color secondColor = Color.FromArgb(168, 163, 153);
+        private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
+        private readonly FontFamily[] _fontFamilies;
+        private readonly FontFamily _maconda;
+        private readonly FontFamily _lilitaOne;
+        private readonly Color _backgroundColor = Color.FromArgb(220, 213, 201);
+        private readonly Color _firstColor = Color.FromArgb(111, 101, 88);
+        private readonly Color _secondColor = Color.FromArgb(168, 163, 153);
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly VerificationService _inputVerification = new VerificationService();
         private readonly FileManager _fileManager = new FileManager();
         private readonly CartService _cartService;
-        private string _previousPage;
         private readonly PaymentService _paymentService;
+        private readonly HistoryService _historyService = new HistoryService();
+        private readonly StatisticsService _stats = new StatisticsService();
+        private readonly GoalService _goalService = new GoalService();
+        private readonly BudgetService _budgetService = new BudgetService();
+
+        private string _previousPage;
+
 
         public TrueGUI()
         {
             _cartService = new CartService(_fileManager);
             _paymentService = new PaymentService(_fileManager);
-            privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
-            privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
-            fontFamilies = privateFontCollection.Families;
-            maconda = fontFamilies[1];
-            lilitaOne = fontFamilies[0];
+            _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
+            _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
+            _fontFamilies = _privateFontCollection.Families;
+            _maconda = _fontFamilies[1];
+            _lilitaOne = _fontFamilies[0];
             InitializeComponent();
             LoadFrontPage();
         }
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // TrueGUI
-            // 
-            ClientSize = new System.Drawing.Size(375, 812);
+            ClientSize = new Size(375, 812);
             Name = "TrueGUI";
-            BackColor = backgroundColor;
-            ResumeLayout(false);
+            BackColor = _backgroundColor;
             InitializeAllGUIComponents();
         }
 
@@ -54,12 +54,12 @@ namespace Plutus
             {
                 Name = name,
                 Text = text,
-                Font = new Font(lilitaOne, 34F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 34F, FontStyle.Regular, GraphicsUnit.Point),
                 AutoSize = false,
                 Size = new Size(ClientSize.Width, 60),
                 Location = new Point(0, 60),
                 TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = firstColor,
+                ForeColor = _firstColor,
             };
             return pageNameLabel;
         }

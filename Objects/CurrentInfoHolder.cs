@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Plutus
 {
     class CurrentInfoHolder
@@ -10,6 +7,5 @@ namespace Plutus
         public string CurrentCategory { get; set; }
         public string CurrentName { get; set; }
         public string CurrentAmout { get; set; }
-
     }
 }

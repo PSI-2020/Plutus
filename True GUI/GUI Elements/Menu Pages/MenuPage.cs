@@ -18,7 +18,7 @@ namespace Plutus
         {
             LoadEscapeButton();
 
-            menuTextLabel = CreateClassicLabel("menuTextLabel", "Menu:", firstColor, lilitaOne, 24F, ClientSize.Width, 40, 0, 120, 1);
+            menuTextLabel = CreateClassicLabel("menuTextLabel", "Menu:", _firstColor, _lilitaOne, 24F, ClientSize.Width, 40, 0, 120, 1);
 
             historyMenuButton = CreateMenuButton("historyMenuButton", "HISTORY", 1);
             historyMenuButton.Click += new EventHandler(HistoryMenuButton_Click);
@@ -56,7 +56,7 @@ namespace Plutus
             var top = 214 + (82 * (eil - 1));
             var menuButton = new Button
             {
-                Font = new Font(lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
                 Text = text,
                 ForeColor = Color.White,
                 TextAlign = ContentAlignment.MiddleCenter,

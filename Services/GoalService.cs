@@ -3,108 +3,58 @@ using System.Linq;
 
 namespace Plutus.Services
 {
-    class GoalService
+    public class GoalService
     {
-        private readonly FileManager fileManager = new FileManager();
+        private readonly FileManager _fileManager = new FileManager();
         public void EditGoal(Goal goal, string newName, string newAmount, DateTime newDueDate)
         {
             var amount = double.Parse(newAmount);
-            var list = fileManager.ReadGoals();
-            var array = list.ToArray();
-            var index = 0;
-
-            foreach (var i in list)
-            {
-                if (goal.Name == i.Name && goal.Amount == i.Amount && goal.DueDate == i.DueDate)
-                {
-                    break;
-                }
-                else
-                {
-                    index++;
-                }
-            }
-
-            list.Remove(array[index]);
-            array[index] = new Goal(newName, amount, newDueDate);
-            list.Insert(index, array[index]);
-            fileManager.UpdateGoals(list);
+            var list = _fileManager.ReadGoals();
+            var index = list.IndexOf(list.First(i => goal.Name == i.Name && goal.Amount == i.Amount && goal.DueDate == i.DueDate));
+            list[index] = new Goal(newName, amount, newDueDate);
+            _fileManager.UpdateGoals(list);
 
         }
 
         public void DeleteGoal(Goal goal)
         {
-            var list = fileManager.ReadGoals();
-            var array = list.ToArray();
-            var index = 0;
-            foreach (var i in list)
-            {
-                if (goal.Name == i.Name && goal.Amount == i.Amount && goal.DueDate == i.DueDate)
-                {
-                    break;
-                }
-                else
-                {
-                    index++;
-                }
-            }
-            list.Remove(array[index]);
-            fileManager.UpdateGoals(list);
+            var list = _fileManager.ReadGoals();
+            list.Remove(list.First(i => goal.Name == i.Name && goal.Amount == i.Amount && goal.DueDate == i.DueDate));
+            _fileManager.UpdateGoals(list);
         }
 
         public void SetMainGoal(Goal goal)
         {
             DeleteGoal(goal);
-            var list = fileManager.ReadGoals();
+            var list = _fileManager.ReadGoals();
             list.Insert(0, goal);
-            fileManager.UpdateGoals(list);
-
+            _fileManager.UpdateGoals(list);
         }
 
-        public string Insights(FileManager manager, Goal goal, string dailyOrMonthly)
+        public string Insights(Goal goal, string dailyOrMonthly)
         {
-            var monthlyIncome = manager.ReadPayments("MonthlyIncome");
-            var monthlyExpenses = manager.ReadPayments("MonthlyExpenses");
-            var allIncome = manager.ReadPayments("Income");
-            var allExpenses = manager.ReadPayments("Expense");
+            var monthlyIncome = _fileManager.ReadPayments("MonthlyIncome");
+            var monthlyExpenses = _fileManager.ReadPayments("MonthlyExpenses");
+            var allIncome = _fileManager.ReadPayments("Income");
+            var allExpenses = _fileManager.ReadPayments("Expense");
 
             var months = goal.DueDate.Month - DateTime.Now.Month + (12 * (goal.DueDate.Year - DateTime.Now.Year));
             var income = monthlyIncome.Sum(x => x.Amount * months) + allIncome.Sum(x => x.Amount);
             var expenses = monthlyExpenses.Sum(x => x.Amount * months) + allExpenses.Sum(x => x.Amount);
 
-            double todaySpent = 0;
+            var date = new DateTime(1970, 1, 1, 0, 0, 0);
+            var todaySpent = allExpenses.Where(x => date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy/MM/dd") == DateTime.Now.ToString("yyyy/MM/dd")).Sum(x => x.Amount);
 
-            foreach (var expense in allExpenses)
+            var monthly = (income - expenses - goal.Amount + todaySpent) / (months + 1);
+
+            return dailyOrMonthly switch
             {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(expense.Date).ToLocalTime();
-                if (date.ToString("yyyy/MM/dd") == DateTime.Now.ToString("yyyy/MM/dd"))
-                {
-                    todaySpent += expense.Amount;
-                }
-
-            }
-
-            switch (dailyOrMonthly)
-            {
-                case "monthly":
-                    return ((income - expenses - goal.Amount + todaySpent) / (months+1)).ToString("C2");
-                case "daily":
-                    return ((((income - expenses - goal.Amount + todaySpent) / (months+1)) / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) - todaySpent)).ToString("C2");
-                default:
-                    return "";
-
-            }
+                "monthly" => monthly.ToString("C2"),
+                "daily" => ((monthly / DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)) - todaySpent).ToString("C2"),
+                _ => "",
+            };
         }
 
-        public string DaysLeft(Goal goal)
-        {
-            var days = (goal.DueDate - DateTime.Now).TotalDays;
-            if (goal.DueDate < DateTime.Now)
-            {
-                days = 0;
-            }
-            return days.ToString("F0");
-        }
-
+        public string DaysLeft(Goal goal) => goal.DueDate < DateTime.Now ? 0.ToString("F0") : (goal.DueDate - DateTime.Now).TotalDays.ToString("F0");
     }
 }

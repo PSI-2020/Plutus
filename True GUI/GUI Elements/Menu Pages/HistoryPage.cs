@@ -1,8 +1,5 @@
-﻿using Plutus.Services;
-using System;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -15,7 +12,7 @@ namespace Plutus
         Button historyFilterButton;
         ComboBox historyPaymentTypeBox;
         DataGridView historyDataGrid;
-        readonly HistoryService historyService = new HistoryService();
+
 
         private void InitializeHistoryPage()
         {
@@ -24,9 +21,9 @@ namespace Plutus
             historyPaymentTypeBox = new ComboBox
             {
                 Name = "historyPaymentTypeBox",
-                BackColor = backgroundColor,
-                ForeColor = firstColor,
-                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                BackColor = _backgroundColor,
+                ForeColor = _firstColor,
+                Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 120,
                 Height = 20,
                 Top = 160,
@@ -36,13 +33,13 @@ namespace Plutus
             };
 
             historyPaymentTypeBox.Items.AddRange(new string[] { "All", "Expense", "Income" });
-            historyPaymentTypeBox.SelectedIndexChanged += new System.EventHandler(UpdateHistory);
+            historyPaymentTypeBox.SelectedIndexChanged += new EventHandler(UpdateHistory);
 
             historyDataGrid = new DataGridView
             {
-                BackgroundColor = backgroundColor,
-                ForeColor = firstColor,
-                GridColor = firstColor,
+                BackgroundColor = _backgroundColor,
+                ForeColor = _firstColor,
+                GridColor = _firstColor,
 
                 Width = ClientSize.Width,
                 Top = 220,
@@ -64,12 +61,12 @@ namespace Plutus
                 AllowUserToResizeRows = false
             };
 
-            historyDataGrid.DefaultCellStyle.BackColor = backgroundColor;
+            historyDataGrid.DefaultCellStyle.BackColor = _backgroundColor;
             historyDataGrid.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            historyDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font(lilitaOne, 17, FontStyle.Regular, GraphicsUnit.Pixel); ;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font(_lilitaOne, 17, FontStyle.Regular, GraphicsUnit.Pixel); ;
             historyDataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            historyDataGrid.ColumnHeadersDefaultCellStyle.BackColor = firstColor;
+            historyDataGrid.ColumnHeadersDefaultCellStyle.BackColor = _firstColor;
             historyDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             historyDataGrid.AdvancedCellBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
@@ -96,7 +93,7 @@ namespace Plutus
 
         private void UpdateHistory(object sender, EventArgs e)
         {
-            var dataSource = historyService.LoadDataGrid(_fileManager, historyPaymentTypeBox.SelectedIndex);
+            var dataSource = _historyService.LoadDataGrid(_fileManager, historyPaymentTypeBox.SelectedIndex);
             if (dataSource == null)
             {
                 MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -104,7 +101,6 @@ namespace Plutus
             }
 
             historyDataGrid.DataSource = dataSource;
-            //historyDataGrid.AutoResizeColumns();
         }
     }
 }

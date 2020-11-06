@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using Plutus.Services;
+﻿using Plutus.Services;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace Plutus
@@ -9,7 +9,7 @@ namespace Plutus
     {
         private Cart _currentCart;
         private readonly List<Cart> _carts;
-        private FileManager _fm;
+        private readonly FileManager _fm;
 
         public CartService(FileManager fm)
         {
@@ -19,7 +19,6 @@ namespace Plutus
         }
 
         public void NewCart() => _currentCart = new Cart();
-
         public void AddExpenseToCart(CurrentInfoHolder cih)
         {
             var expense = new CartExpense(cih.CurrentName, double.Parse(cih.CurrentAmout), cih.CurrentCategory);
@@ -42,18 +41,7 @@ namespace Plutus
         public string GiveCurrentName() => _currentCart.GiveName();
         public int GiveCartCount() => _carts.Count;
 
-        public string VerifyName(string name, string prevname)
-        {
-            var repeatName = false;
-            foreach (var cart in _carts)
-            {
-                if ((cart.GiveName() == name) && (cart.GiveName() != prevname))
-                {
-                    repeatName = true;
-                }
-            }
-            return repeatName ? "Cart name already taken" : "";
-        }
+        public string VerifyName(string name, string prevname) => _carts.Where(x => ((x.GiveName() == name) && (x.GiveName() != prevname))).Any() ? "Cart name already taken" : "";
 
         public string GiveCartNameAt(int i) => _carts[i].GiveName();
 
@@ -67,13 +55,13 @@ namespace Plutus
 
         public void DeleteCurrent()
         {
-            _carts.Remove(_currentCart);
+            _ = _carts.Remove(_currentCart);
             SaveCarts();
         }
 
         public void ChargeCart(PaymentService ps)
         {
-            for(var i = 0; i < _currentCart.GiveElementC(); i++)
+            for (var i = 0; i < _currentCart.GiveElementC(); i++)
             {
                 var expense = _currentCart.GiveExpense(i);
                 ps.AddCartPayment(expense.Name, expense.Price, expense.Category);
@@ -124,7 +112,7 @@ namespace Plutus
                     var cartExpense = new CartExpense(
                         (string)expense.Element("Name"),
                         (double)expense.Element("Amount"),
-                        (string)expense.Element("Category")                        
+                        (string)expense.Element("Category")
                         );
                     specificCart.AddExpense(cartExpense);
                 }

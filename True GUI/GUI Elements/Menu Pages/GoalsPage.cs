@@ -6,19 +6,19 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        private Label goalsPageName;
-        private Label myGoalsTextLabel;
-        private Button newGoalAddButton;
-        private FlowLayoutPanel myGoalsPanel;
-        private Goal _currentGoal;
+        Label goalsPageName;
+        Label myGoalsTextLabel;
+        Button newGoalAddButton;
+        FlowLayoutPanel myGoalsPanel;
+        Goal _currentGoal;
 
         private void LoadGoalsPage()
         {
             LoadMenuButton();
-            LoadEscapeButtonCat();
+            LoadEscapeButton();
 
             goalsPageName = CreatePageNameLabel("goalsPageNameLabel", "GOALS");
-            myGoalsTextLabel = CreateClassicLabel("myGoalsTextLabel", "My Goals:", Color.White, lilitaOne, 24F, ClientSize.Width, 60, 0, 120, 1);
+            myGoalsTextLabel = CreateClassicLabel("myGoalsTextLabel", "My Goals:", Color.White, _lilitaOne, 24F, ClientSize.Width, 60, 0, 120, 1);
 
             newGoalAddButton = CreateClassicButton("newGoalAddButton", Properties.Resources.PlusButton, 150, ClientSize.Height - 90, 2);
             newGoalAddButton.Click += new EventHandler(AddNewGoalButton_Click);
@@ -51,15 +51,14 @@ namespace Plutus
 
         private void LoadMyCurrentGoals()
         {
-            var fileManager = new FileManager();
-            var list = fileManager.ReadGoals();
+            var list = _fileManager.ReadGoals();
             var i = 0;
             foreach(var goal in list)
             {
-                var button = new GoalButton(goal.Name, Color.White, lilitaOne, 14F, firstColor, 145, 80, goal);
+                var button = new GoalButton(goal.Name, Color.White, _lilitaOne, 14F, _firstColor, 145, 80, goal);
                 if(i == 0)
                 {
-                    button.FlatAppearance.BorderColor = secondColor;
+                    button.FlatAppearance.BorderColor = _secondColor;
                     button.FlatAppearance.BorderSize = 5;
                 }
                 i++;

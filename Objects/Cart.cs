@@ -17,6 +17,5 @@ namespace Plutus
         public int GiveElementC() => _cartParts.Count;
         public void AddExpense(CartExpense expense) => _cartParts.Add(expense);
         public void RemoveExpense(int number) => _cartParts.RemoveAt(number);
-
     }
 }

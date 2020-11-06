@@ -2,7 +2,7 @@
 
 namespace Plutus
 {
-    public partial class TrueGUI : Form 
+    public partial class TrueGUI : Form
     {
         private void InitializeAllGUIComponents()
         {

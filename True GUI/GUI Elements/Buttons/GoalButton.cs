@@ -5,7 +5,7 @@ namespace Plutus
 {
     public class GoalButton : Button
     {
-        public Goal Goal;
+        public Goal Goal { get; set; }
 
         public GoalButton(string text, Color fontColor, FontFamily fontFamily, float fontSize, Color backColor, int width, int height, Goal goal)
         {

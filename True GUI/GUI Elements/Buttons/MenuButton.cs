@@ -6,10 +6,10 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        Button menuButton;
+        private Button _menuButton;
         private void LoadMenuButton()
         {
-            menuButton = new Button
+            _menuButton = new Button
             {
                 Name = "menuButton",
                 Image = Properties.Resources.MenuButton,
@@ -17,9 +17,9 @@ namespace Plutus
                 Size = new Size(34, 29),
                 FlatStyle = FlatStyle.Flat
             };
-            menuButton.FlatAppearance.BorderSize = 0;
-            menuButton.Click += new EventHandler(MenuButton_Click);
-            Controls.Add(menuButton);
+            _menuButton.FlatAppearance.BorderSize = 0;
+            _menuButton.Click += new EventHandler(MenuButton_Click);
+            Controls.Add(_menuButton);
             ResumeLayout(false);
             PerformLayout();
         }

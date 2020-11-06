@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Plutus.Services
 {
-    class HistoryService
+    public class HistoryService
     {
         public object LoadDataGrid(FileManager fileManager, int index)
         {

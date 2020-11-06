@@ -6,7 +6,6 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        readonly BudgetService budgetService = new BudgetService();
 
         Label budgetsPageName;
         FlowLayoutPanel budgetsFlow;
@@ -17,7 +16,7 @@ namespace Plutus
             budgetsPageName = CreatePageNameLabel("budgetsPageNameLabel", "BUDGETS");
             budgetsFlow = new FlowLayoutPanel
             {
-                BackColor = secondColor,
+                BackColor = _secondColor,
                 Width = ClientSize.Width - 4,
                 Left = 2,
                 Top = 220,
@@ -36,7 +35,7 @@ namespace Plutus
             Controls.Clear();
             budgetsFlow.Controls.Clear();
             LoadMenuButton();
-            LoadEscapeButtonCat();
+            LoadEscapeButton();
             var list = _fileManager.LoadBudget();
             if (list == null) return;
 
@@ -64,8 +63,8 @@ namespace Plutus
             };
             var label = new Label
             {
-                BackColor = secondColor,
-                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                BackColor = _secondColor,
+                Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 90,
                 Width = ClientSize.Width - 40,
                 Name = "budgetLabel" + index
@@ -73,7 +72,7 @@ namespace Plutus
             var deleteButton = new Button
             {
                 Text = "Delete",
-                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 30,
                 Width = 80,
                 Name = "delBtn" + index
@@ -81,7 +80,7 @@ namespace Plutus
             var showBtn = new Button
             {
                 Text = "Show Details",
-                Font = new Font(lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 30,
                 Width = 140,
                 Name = "show" + index
@@ -92,7 +91,7 @@ namespace Plutus
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            label.Text = budgetService.GenerateBudget(index);
+            label.Text = _budgetService.GenerateBudget(index);
         }
 
         private void OpenStats(object sender, EventArgs e)
@@ -102,14 +101,14 @@ namespace Plutus
 
             var showButton = (Button)sender;
             var index = int.Parse(showButton.Name.Substring(4));
-            historyDataGrid.DataSource = budgetService.ShowStats(index);
+            historyDataGrid.DataSource = _budgetService.ShowStats(index);
         }
 
         private void DeleteClick(object sender, EventArgs e)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            budgetService.DeleteBudget(index);
+            _budgetService.DeleteBudget(index);
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();

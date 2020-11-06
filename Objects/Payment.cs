@@ -1,9 +1,7 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Plutus
 {
-    [Serializable()]
     public class Payment : ISerializable
     {
         public int Date { get; set; }
@@ -11,7 +9,7 @@ namespace Plutus
         public double Amount { get; set; }
         public string Category { get; set; }
 
-        public Payment() {}
+        public Payment() { }
 
         public Payment(int date, string name, double amount, string category)
         {

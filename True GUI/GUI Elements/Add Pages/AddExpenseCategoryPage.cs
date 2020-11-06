@@ -32,7 +32,7 @@ namespace Plutus
             LoadEscapeButton();
             _previousPage = previous;
 
-            chooseCategoryTextLabel = CreateClassicLabel("chooseCategoryTextLabel", "Choose Category:", firstColor, lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
+            chooseCategoryTextLabel = CreateClassicLabel("chooseCategoryTextLabel", "Choose Category:", _firstColor, _lilitaOne, 24F, ClientSize.Width, 45, 0, 75, 1);
 
             categoryGroceriesButton = CreateCategoryButton("Groceries", 1, 1, Properties.Resources.GroceriesButton);
             categoryGroceriesText = CreateCategoryText("categoryGroceriesText", 1, 1, "groceries");

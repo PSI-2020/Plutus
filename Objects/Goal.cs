@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace Plutus
 {
-    [Serializable()]
     public class Goal : ISerializable
     {
         public DateTime DueDate { get; set; }
@@ -17,23 +16,18 @@ namespace Plutus
             Amount = amount;
             DueDate = date;
         }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            
-            info.AddValue("Name", Name);
-            info.AddValue("Amount", Amount);
-            info.AddValue("Due Date", DueDate);
-
-        }
-
         public Goal(SerializationInfo info, StreamingContext context)
         {
-
             Name = (string)info.GetValue("Name", typeof(string));
             Amount = (double)info.GetValue("Amount", typeof(double));
             DueDate = (DateTime)info.GetValue("Due Date", typeof(DateTime));
+        }
 
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Name", Name);
+            info.AddValue("Amount", Amount);
+            info.AddValue("Due Date", DueDate);
         }
 
     }

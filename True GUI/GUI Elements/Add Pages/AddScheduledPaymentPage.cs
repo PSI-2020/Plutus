@@ -14,9 +14,9 @@ namespace Plutus
 
         private void InitializeScheduledPaymentPage()
         {
-            firstPaymentLabel = CreateClassicLabel("firstPaymentLabel", "First payment:", Color.White, lilitaOne, 18F, 272, 40, 50, 170, 1, ContentAlignment.BottomLeft);
-            frequencyLabel = CreateClassicLabel("frequencyLabel", "Frequency:", Color.White, lilitaOne, 18F, 272, 40, 50, 366, 3, ContentAlignment.BottomLeft);
-            addScheduledPaymentButton = CreateClassicButton("addPaymentButton", "NEXT", Color.White, lilitaOne, 14F, firstColor, 272, 80, 50, 650, 5);
+            firstPaymentLabel = CreateClassicLabel("firstPaymentLabel", "First payment:", Color.White, _lilitaOne, 18F, 272, 40, 50, 170, 1, ContentAlignment.BottomLeft);
+            frequencyLabel = CreateClassicLabel("frequencyLabel", "Frequency:", Color.White, _lilitaOne, 18F, 272, 40, 50, 366, 3, ContentAlignment.BottomLeft);
+            addScheduledPaymentButton = CreateClassicButton("addPaymentButton", "NEXT", Color.White, _lilitaOne, 14F, _firstColor, 272, 80, 50, 650, 5);
             addScheduledPaymentButton.Click += new EventHandler(AddScheduledPaymentButton_Click);
 
             firstPaymentBox = new DateTimePicker
@@ -26,17 +26,17 @@ namespace Plutus
                 Top = 230,
                 Height = 80,
                 Width = 272,
-                ForeColor = firstColor,
+                ForeColor = _firstColor,
                 BackColor = Color.FromArgb(199, 193, 181),
-                Font = new Font(lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point)
+                Font = new Font(_lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point)
             };
 
             frequencyBox = new ComboBox
             {
                 Name = "frequencyBox",
-                ForeColor = firstColor,
+                ForeColor = _firstColor,
                 BackColor = Color.FromArgb(199, 193, 181),
-                Font = new Font(lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 18F, FontStyle.Regular, GraphicsUnit.Point),
                 Width = 272,
                 Height = 80,
                 Top = 415,
@@ -52,7 +52,7 @@ namespace Plutus
 
         private void LoadScheduledPaymentPage()
         {
-            LoadEscapeButtonField();
+            LoadEscapeButton();
 
             firstPaymentBox.Value = DateTime.Now;
 

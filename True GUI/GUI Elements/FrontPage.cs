@@ -8,10 +8,10 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        private Label nameLabel;
-        private Label subNameLabel;
-        private PictureBox logoPicture;
-        private Button getStartedButton;
+        Label nameLabel;
+        Label subNameLabel;
+        PictureBox logoPicture;
+        Button getStartedButton;
         private void LoadFrontPage()
         {
             logoPicture = new PictureBox
@@ -23,10 +23,10 @@ namespace Plutus
             };
             SuspendLayout();
 
-            nameLabel = CreateClassicLabel(name: "nameLabel", text:  "PLUTUS", fontColor: firstColor, fontFamily: maconda, fontSize: 32F, width: 222, height: 50, left: 81, top: 328, tabIndex: 1);
-            subNameLabel = CreateClassicLabel(name: "subNameLabel", text: "Virtual Finance Assistant", fontColor: firstColor, fontFamily: maconda, fontSize: 10F, width: 222, height: 40, left: 78, top: 370, tabIndex: 2);
+            nameLabel = CreateClassicLabel(name: "nameLabel", text:  "PLUTUS", fontColor: _firstColor, fontFamily: _maconda, fontSize: 32F, width: 222, height: 50, left: 81, top: 328, tabIndex: 1);
+            subNameLabel = CreateClassicLabel(name: "subNameLabel", text: "Virtual Finance Assistant", fontColor: _firstColor, fontFamily: _maconda, fontSize: 10F, width: 222, height: 40, left: 78, top: 370, tabIndex: 2);
 
-            getStartedButton = CreateClassicButton("getStartedButton", "GET STARTED", Color.White, lilitaOne, 18F, Color.FromArgb(163, 160, 154), 272, 77, 51, 524, 3);
+            getStartedButton = CreateClassicButton("getStartedButton", "GET STARTED", Color.White, _lilitaOne, 18F, Color.FromArgb(163, 160, 154), 272, 77, 51, 524, 3);
             getStartedButton.Click += new EventHandler(GetStartedButton_Click);
 
             Controls.Add(logoPicture);

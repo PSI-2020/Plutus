@@ -7,7 +7,7 @@ namespace Plutus
     public class BudgetService
     {
         private readonly FileManager _fileManager = new FileManager();
-        readonly DateTime date = new DateTime(1970, 1, 1);
+        private readonly DateTime _date = new DateTime(1970, 1, 1);
 
         public void DeleteBudget(int index)
         {
@@ -17,10 +17,7 @@ namespace Plutus
         }
         public List<Budget> RenameBudgets(List<Budget> list)
         {
-            foreach (var item in list)
-            {
-                item.Name = "budget" + list.IndexOf(item);
-            }
+            list.ForEach(x => x.Name = "budget" + list.IndexOf(x));
             return list;
         }
 
@@ -29,12 +26,12 @@ namespace Plutus
             var data = "";
             var list = _fileManager.LoadBudget();
 
-            var from = date.AddSeconds(list[index].From).ToLocalTime();
-            var to = date.AddSeconds(list[index].To).ToLocalTime();
+            var from = _date.AddSeconds(list[index].From).ToLocalTime();
+            var to = _date.AddSeconds(list[index].To).ToLocalTime();
 
 
             var expenses = _fileManager.ReadPayments("Expense");
-            if (expenses == null) return "";
+            if (!expenses.Any()) return "";
 
 
             data = "Budget for " + list[index].Category;
@@ -46,9 +43,8 @@ namespace Plutus
                 .Where(x => x.Date <= list[index].To)
                 .Sum(x => x.Amount);
 
-            data += "\r\n" + total + "/" + list[index].Sum + " €" + "\r\n" + Math.Round((total * 100 / list[index].Sum), 2) + "%" + "\r\n" +
+            data += "\r\n" + total + "/" + list[index].Sum + " €" + "\r\n" + Math.Round(total * 100 / list[index].Sum, 2) + "%" + "\r\n" +
                 from.ToString("yyyy/MM/dd") + " - " + to.ToString("yyyy/MM/dd");
-
 
             return data;
         }
@@ -56,11 +52,7 @@ namespace Plutus
         {
             var budgets = _fileManager.LoadBudget();
             var expenses = _fileManager.ReadPayments("Expense");
-            /*var result = expenses
-                .Where(x => x.Category == budgets[index].Category)
-                .Where(x => x.Date >= budgets[index].From)
-                .Where(x => x.Date <= budgets[index].To)
-                .ToList();*/
+
             var resQuery =
                 (from exp in expenses
                  where exp.Category == budgets[index].Category
@@ -68,7 +60,7 @@ namespace Plutus
                  where exp.Date <= budgets[index].To
                  select exp).ToList();
             var list = resQuery
-                .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
+                .Select(x => new { DATE = _date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
                 .OrderByDescending(x => x.DATE).ToList();
             return !list.Any() ? null : (object)list;
         }

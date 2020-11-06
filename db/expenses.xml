@@ -312,4 +312,28 @@
     <Amount>12</Amount>
     <Category>Clothes</Category>
   </Payment>
+  <Payment>
+    <Date>1604667501</Date>
+    <Name>qwe</Name>
+    <Amount>123</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
+  <Payment>
+    <Date>1604671361</Date>
+    <Name>asd</Name>
+    <Amount>12312</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1604675457</Date>
+    <Name>Name cannot be empty!</Name>
+    <Amount>12</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
+  <Payment>
+    <Date>1604675887</Date>
+    <Name>asd</Name>
+    <Amount>123</Amount>
+    <Category>Groceries</Category>
+  </Payment>
 </ArrayOfPayment>

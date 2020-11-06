@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -28,30 +27,19 @@ namespace Plutus
             {
                 "Income" => _income,
                 "Expense" => _expenses,
-                "All" => "All",
                 "MonthlyIncome" => _monthlyIncome,
                 "MonthlyExpenses" => _monthlyExpenses,
                 _ => null,
             };
-
         }
 
         public List<Payment> ReadPayments(string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
-            type = GetFilePath(type);
-
-            if (type == "All")
-            {
-                var list = ReadPayments("Expense");
-                list.AddRange(ReadPayments("Income"));
-
-                return list;
-            }
 
             try
             {
-                using (var stream = File.OpenRead(type))
+                using (var stream = File.OpenRead(GetFilePath(type)))
                 {
                     return serializer.Deserialize(stream) as List<Payment>;
                 }
@@ -71,8 +59,11 @@ namespace Plutus
             type = GetFilePath(type);
 
             list.Add(payment);
-            using Stream stream = File.OpenWrite(type);
-            serializer.Serialize(stream, list);
+            using (var stream = File.OpenWrite(type))
+            {
+                serializer.Serialize(stream, list);
+            }
+            
         }
         public List<Goal> ReadGoals()
         {
@@ -80,8 +71,10 @@ namespace Plutus
 
             try
             {
-                using var stream = File.OpenRead(_goals);
-                return serializer.Deserialize(stream) as List<Goal>;
+                using (var stream = File.OpenRead(_goals))
+                {
+                    return serializer.Deserialize(stream) as List<Goal>;
+                }
             }
             catch
             {
@@ -99,17 +92,20 @@ namespace Plutus
             var goal = new Goal(name, newAmount, dueDate);
 
             list.Add(goal);
-            using Stream stream = File.OpenWrite(_goals);
-            serializer.Serialize(stream, list);
-
+            using (var stream = File.OpenWrite(_goals))
+            {
+                serializer.Serialize(stream, list);
+            }
         }
 
         public void UpdateGoals(List<Goal> list)
         {
             var serializer = new XmlSerializer(typeof(List<Goal>));
             File.WriteAllText(_goals, "");
-            using Stream stream = File.OpenWrite(_goals);
-            serializer.Serialize(stream, list);
+            using (var stream = File.OpenWrite(_goals))
+            {
+                serializer.Serialize(stream, list);
+            }
         }
 
         public void AddBudget(Budget budget)
@@ -118,8 +114,11 @@ namespace Plutus
             var list = LoadBudget();
 
             list.Add(budget);
-            using Stream stream = File.OpenWrite(_budgets);
-            serializer.Serialize(stream, list);
+            using (var stream = File.OpenWrite(_budgets))
+            {
+                serializer.Serialize(stream, list);
+            }
+
         }
 
         public List<Budget> LoadBudget()
@@ -128,8 +127,10 @@ namespace Plutus
 
             try
             {
-                using var stream = File.OpenRead(_budgets);
-                return serializer.Deserialize(stream) as List<Budget>;
+                using (var stream = File.OpenRead(_budgets))
+                {
+                    return serializer.Deserialize(stream) as List<Budget>;
+                }
             }
             catch
             {
@@ -141,24 +142,14 @@ namespace Plutus
         {
             var serializer = new XmlSerializer(typeof(List<Budget>));
             File.WriteAllText(_budgets, "");
-            using Stream stream = File.OpenWrite(_budgets);
-            serializer.Serialize(stream, list);
-        }
-
-        public void SaveCarts(XElement carts)
-        {
-            carts.Save(_carts);
-        }
-
-        public XElement LoadCarts()
-        {
-            if (File.Exists(_carts))
+            using (var stream = File.OpenWrite(_budgets))
             {
-                var carts = XElement.Load(_carts);
-                return carts;
+                serializer.Serialize(stream, list);
             }
-            else return null;
-
         }
+
+        public void SaveCarts(XElement carts) => carts.Save(_carts);
+
+        public XElement LoadCarts() => File.Exists(_carts) ? XElement.Load(_carts) : null;
     }
 }

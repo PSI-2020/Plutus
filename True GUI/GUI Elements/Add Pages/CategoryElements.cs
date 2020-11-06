@@ -42,8 +42,8 @@ namespace Plutus
                 Size = new Size(123, 30),
                 Text = text,
                 TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = firstColor,
-                Font = new Font(lilitaOne, 12F, FontStyle.Regular, GraphicsUnit.Point),
+                ForeColor = _firstColor,
+                Font = new Font(_lilitaOne, 12F, FontStyle.Regular, GraphicsUnit.Point),
                 Location = new Point(left, top)
             };
             return categoryLabel;
