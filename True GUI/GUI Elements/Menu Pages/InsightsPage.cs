@@ -32,6 +32,7 @@ namespace Plutus
                 TextAlign = HorizontalAlignment.Center,
                 Multiline = true,
                 ReadOnly = true,
+                Enabled = false
             };
 
             Controls.Add(insightsPageName);
