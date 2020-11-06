@@ -85,7 +85,7 @@ namespace Plutus
 
         private void AddCurrentPayment()
         {
-            _paymentService.AddPayment(_currentInfo, fileManager);
+            _paymentService.AddPayment(_currentInfo);
             LoadMainPage();
         }
 

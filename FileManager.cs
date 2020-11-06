@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Plutus
@@ -17,8 +18,9 @@ namespace Plutus
         private readonly string _monthlyExpenses = _databaseFolder + "monthylExpenses.xml";
         private readonly string _goals = _databaseFolder + "goals.xml";
         private readonly string _budgets = _databaseFolder + "budgets.xml";
+        private readonly string _carts = _databaseFolder + "carts.xml";
 
-        public string getFilePath(string type)
+        public string GetFilePath(string type)
         {
             return type switch
             {
@@ -35,7 +37,7 @@ namespace Plutus
         public List<Payment> ReadPayments(string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
-            type = getFilePath(type);
+            type = GetFilePath(type);
 
             if (type == "All")
             {
@@ -64,7 +66,7 @@ namespace Plutus
             var serializer = new XmlSerializer(typeof(List<Payment>));
             var list = ReadPayments(type);
 
-            type = getFilePath(type);
+            type = GetFilePath(type);
 
             list.Add(payment);
             using Stream stream = File.OpenWrite(type);
@@ -139,6 +141,22 @@ namespace Plutus
             File.WriteAllText(_budgets, "");
             using Stream stream = File.OpenWrite(_budgets);
             serializer.Serialize(stream, list);
+        }
+
+        public void SaveCarts(XElement carts)
+        {
+            carts.Save(_carts);
+        }
+
+        public XElement LoadCarts()
+        {
+            if (File.Exists(_carts))
+            {
+                var carts = XElement.Load(_carts);
+                return carts;
+            }
+            else return null;
+
         }
     }
 }

@@ -460,7 +460,7 @@ namespace Plutus
         }
         private void ChargeCart_Click(object sender, EventArgs e)
         {
-            _cartService.ChargeCart(_paymentService, fileManager);
+            _cartService.ChargeCart(_paymentService);
             cartNavigationLabel.Text = "Charged";
         }
 

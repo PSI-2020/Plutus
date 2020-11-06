@@ -6,8 +6,10 @@ namespace Plutus.Services
 {
     class PaymentService
     {
+        private FileManager _fm;
 
-        public void AddPayment(CurrentInfoHolder chi, FileManager fm)
+        public PaymentService(FileManager fm) => _fm = fm;
+        public void AddPayment(CurrentInfoHolder chi)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
@@ -18,10 +20,10 @@ namespace Plutus.Services
                 Amount = double.Parse(chi.CurrentAmout),
                 Category = chi.CurrentCategory
             };
-            fm.AddPayment(payment, chi.CurrentType);
+            _fm.AddPayment(payment, chi.CurrentType);
         }
 
-        public void AddCartPayment(string name, double amount, string category, FileManager fm)
+        public void AddCartPayment(string name, double amount, string category)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var payment = new Payment
@@ -31,7 +33,7 @@ namespace Plutus.Services
                 Amount = amount,
                 Category = category
             };
-            fm.AddPayment(payment, "Expense");
+            _fm.AddPayment(payment, "Expense");
         }
     }
 }
