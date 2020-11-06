@@ -14,10 +14,10 @@ namespace Plutus.Services
                 case 0:
                     {
                         var list = fileManager.ReadPayments("Expense")
-                                                  .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CAT = x.Category , TYPE = "Expense"})
+                                                  .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category , TYPE = "Exp."})
                                                   .ToList();
                         var incomeList = fileManager.ReadPayments("Income")
-                                                  .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CAT = x.Category, TYPE = "Income" })
+                                                  .Select(x => new { DATE = date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy-MM-dd HH:ss"), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category, TYPE = "Inc." })
                                                   .ToList();
 
                         list.AddRange(incomeList);

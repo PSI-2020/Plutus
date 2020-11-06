@@ -24,9 +24,9 @@ namespace Plutus
             {
                 var mainGoal = goalList.ToArray()[0];
 
-                goalNameLabel = CreateClassicLabel("goalNameLabel", "Goal:" + mainGoal.Name, firstColor, lilitaOne, 30F, ClientSize.Width, 40, 0, 120, 1);
+                goalNameLabel = CreateClassicLabel("goalNameLabel", "Goal:" + mainGoal.Name, firstColor, lilitaOne, 30F, ClientSize.Width, 50, 0, 120, 1);
                 goalNameLabel.TextAlign = ContentAlignment.MiddleCenter;
-                goalAmountLabel = CreateClassicLabel("goalLabel", "save " + mainGoal.Amount.ToString("C2") + " until " + mainGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 20, 0, 160, 2);
+                goalAmountLabel = CreateClassicLabel("goalLabel", "save " + mainGoal.Amount.ToString("C2") + " until " + mainGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 20, 0, 175, 2);
 
                 todaySpendLabel = CreateClassicLabel("todaySpendLabel", "You can spend today: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, ClientSize.Width, 40, 0, 215, 3);
                 todaySpendLabel.TextAlign = ContentAlignment.MiddleCenter;

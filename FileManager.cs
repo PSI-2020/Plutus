@@ -2,56 +2,63 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Plutus
 {
+
+
     public class FileManager
     {
-        private static readonly string databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
-        public readonly string income = databaseFolder + "income.xml";
-        public readonly string expenses = databaseFolder + "expenses.xml";
-        private readonly string monthlyIncome = databaseFolder + "monthlyIncome.xml";
-        private readonly string monthlyExpenses = databaseFolder + "monthylExpenses.xml";
-        public readonly string goals = databaseFolder + "goals.xml";
-        private readonly string _budgets = databaseFolder + "budgets.xml";
+        private static readonly string _databaseFolder = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "db/");
+        private readonly string _income = _databaseFolder + "income.xml";
+        private readonly string _expenses = _databaseFolder + "expenses.xml";
+        private readonly string _monthlyIncome = _databaseFolder + "monthlyIncome.xml";
+        private readonly string _monthlyExpenses = _databaseFolder + "monthylExpenses.xml";
+        private readonly string _goals = _databaseFolder + "goals.xml";
+        private readonly string _budgets = _databaseFolder + "budgets.xml";
 
         public string getFilePath(string type)
         {
-            switch (type)
+            return type switch
             {
-                case "Income":
-                    type = income;
-                    break;
-                case "Expense":
-                    type = expenses;
-                    break;
-                case "MonthlyIncome":
-                    type = monthlyIncome;
-                    break;
-                case "MonthlyExpenses":
-                    type = monthlyExpenses;
-                    break;
-                default:
-                    return null;
-            }
-            return type;
+                "Income" => _income,
+                "Expense" => _expenses,
+                "All" => "All",
+                "MonthlyIncome" => _monthlyIncome,
+                "MonthlyExpenses" => _monthlyExpenses,
+                _ => null,
+            };
+
         }
 
         public List<Payment> ReadPayments(string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
+            type = getFilePath(type);
+
+            if (type == "All")
+            {
+                var list = ReadPayments("Expense");
+                list.AddRange(ReadPayments("Income"));
+
+                return list;
+            }
 
             try
             {
-                using var stream = File.OpenRead(getFilePath(type));
-                return serializer.Deserialize(stream) as List<Payment>;
+                using (var stream = File.OpenRead(type))
+                {
+                    return serializer.Deserialize(stream) as List<Payment>;
+                }
             }
             catch
             {
                 return new List<Payment>();
             }
         }
+
 
         public void AddPayment(Payment payment, string type)
         {
@@ -70,14 +77,14 @@ namespace Plutus
 
             try
             {
-                using var stream = File.OpenRead(goals);
+                using var stream = File.OpenRead(_goals);
                 return serializer.Deserialize(stream) as List<Goal>;
             }
             catch
             {
                 return new List<Goal>();
             }
-          
+
         }
 
         public void AddGoal(string name, string amount, DateTime dueDate)
@@ -89,16 +96,16 @@ namespace Plutus
             var goal = new Goal(name, newAmount, dueDate);
 
             list.Add(goal);
-            using Stream stream = File.OpenWrite(goals);
+            using Stream stream = File.OpenWrite(_goals);
             serializer.Serialize(stream, list);
 
         }
-    
+
         public void UpdateGoals(List<Goal> list)
         {
             var serializer = new XmlSerializer(typeof(List<Goal>));
-            File.WriteAllText(goals, "");
-            using Stream stream = File.OpenWrite(goals);
+            File.WriteAllText(_goals, "");
+            using Stream stream = File.OpenWrite(_goals);
             serializer.Serialize(stream, list);
         }
 
@@ -109,8 +116,8 @@ namespace Plutus
 
             try
             {
-                if (!File.Exists(expenses)) return null;
-                using Stream stream = File.OpenRead(expenses);
+                if (!File.Exists(_expenses)) return null;
+                using Stream stream = File.OpenRead(_expenses);
                 list = serializer.Deserialize(stream) as List<Expense>;
             }
             catch
@@ -126,8 +133,8 @@ namespace Plutus
             List<Income> list = null;
             try
             {
-                if (!File.Exists(income)) return null;
-                using Stream stream = File.OpenRead(income);
+                if (!File.Exists(_income)) return null;
+                using Stream stream = File.OpenRead(_income);
                 list = serializer.Deserialize(stream) as List<Income>;
             }
             catch
@@ -143,7 +150,7 @@ namespace Plutus
             List<Expense> list = null;
             try
             {
-                using Stream stream = File.OpenRead(expenses);
+                using Stream stream = File.OpenRead(_expenses);
                 list = serializer.Deserialize(stream) as List<Expense>;
             }
             catch
@@ -151,7 +158,7 @@ namespace Plutus
                 list = new List<Expense>();
             }
             list.Add(expense);
-            using (Stream stream = File.OpenWrite(expenses))
+            using (Stream stream = File.OpenWrite(_expenses))
             {
                 serializer.Serialize(stream, list);
             }
@@ -163,7 +170,7 @@ namespace Plutus
             List<Income> list = null;
             try
             {
-                using Stream stream = File.OpenRead(this.income);
+                using Stream stream = File.OpenRead(this._income);
                 list = serializer.Deserialize(stream) as List<Income>;
             }
             catch
@@ -171,7 +178,7 @@ namespace Plutus
                 list = new List<Income>();
             }
             list.Add(income);
-            using (Stream stream = File.OpenWrite(this.income))
+            using (Stream stream = File.OpenWrite(this._income))
             {
                 serializer.Serialize(stream, list);
             }
@@ -180,22 +187,22 @@ namespace Plutus
         public void UpdateIncome(List<Income> income)
         {
             var serializer = new XmlSerializer(typeof(List<Income>));
-            File.WriteAllText(this.income, "");
-            using Stream stream = File.OpenWrite(this.income);
+            File.WriteAllText(this._income, "");
+            using Stream stream = File.OpenWrite(this._income);
             serializer.Serialize(stream, income);
         }
 
         public void UpdateExpenses(List<Expense> expense)
         {
             var serializer = new XmlSerializer(typeof(List<Expense>));
-            File.WriteAllText(expenses, "");
-            using Stream stream = File.OpenWrite(expenses);
+            File.WriteAllText(_expenses, "");
+            using Stream stream = File.OpenWrite(_expenses);
             serializer.Serialize(stream, expense);
         }
 
         public void AddBudget(Budget budget)
         {
-            var serializer = new XmlSerializer(typeof(List<Payment>));
+            var serializer = new XmlSerializer(typeof(List<Budget>));
             var list = LoadBudget();
 
             list.Add(budget);
