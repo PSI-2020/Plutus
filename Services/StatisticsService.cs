@@ -1,28 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Plutus
 {
-    class Statistics
+    enum ExpenseCategories
+    {
+        Groceries,
+        Restaurant,
+        Clothes,
+        Transport,
+        Health,
+        School,
+        Bills,
+        Entertainment,
+        Other
+    }
+
+    enum IncomeCategories
+    {
+        Salary,
+        Gift,
+        Investment,
+        Sale,
+        Rent,
+        Other
+    }
+
+    class StatisticsService
     {
         public string GenerateExpenseStatistics(FileManager manager)
         {   
-            var list = manager.ReadExpenses();
-            if (list == null) return "No data found!";
+            var list = manager.ReadPayments("Expense");
+            if (list == null) return "No expense data found!";
 
-            var data = "Expense statistics: " + System.Environment.NewLine;
-            var total = 0.0;
+            var data = "Expense statistics: " + System.Environment.NewLine + System.Environment.NewLine;
+            var total = list.Sum(x => x.Amount);
             var sums = new Dictionary<string, double>();
 
             foreach (var category in Enum.GetNames(typeof(ExpenseCategories)))
             {
-                sums.Add(category, 0);
-            }
-
-            foreach (var expense in list)
-            {
-                sums[expense.Category] += expense.Price;
-                total += expense.Price;
+                sums.Add(category, list.Where(x => x.Category == category).Sum(x => x.Amount));
             }
 
             foreach (var category in Enum.GetNames(typeof(ExpenseCategories)))
@@ -34,24 +52,19 @@ namespace Plutus
             }
             return data;
         }
+
         public string GenerateIncomeStatistics(FileManager manager)
         {
-            var list = manager.ReadIncome();
-            if (list == null) return "No data found!";
+            var list = manager.ReadPayments("Income");
+            if (list == null) return "No income data found!";
 
-            var data = System.Environment.NewLine + "Income statistics: " + System.Environment.NewLine;
-            var total = 0.0;
+            var data = "Income statistics: " + System.Environment.NewLine + System.Environment.NewLine;
+            var total = list.Sum(x => x.Amount);
             var sums = new Dictionary<string, double>();
 
             foreach (var category in Enum.GetNames(typeof(IncomeCategories)))
             {
-                sums.Add(category, 0);
-            }
-
-            foreach (var income in list)
-            {
-                sums[income.Category] += income.Sum;
-                total += income.Sum;
+                sums.Add(category, list.Where(x => x.Category == category).Sum(x => x.Amount));
             }
 
             foreach (var category in Enum.GetNames(typeof(IncomeCategories)))
