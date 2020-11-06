@@ -8,7 +8,7 @@ namespace Plutus
     {
         public CartExpense LoadExpense(string data)
         {
-            var exp = new CartExpense();
+            var exp = new CartExpense("", 0, "");
             var dataArray = data.Split('|');
             exp.Name = dataArray[0];
             //exp.Price = Convert.ToDouble(dataArray[1]);

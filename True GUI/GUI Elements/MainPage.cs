@@ -70,14 +70,23 @@ namespace Plutus
         {
             Controls.Clear();
             _currentInfo.CurrentType = "Income";
-            LoadIncomeCategoryPage();
+            LoadIncomeCategoryPage("mainPage");
         }
 
         private void ExpenseAddButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
             _currentInfo.CurrentType = "Expense";
-            LoadExpenseCategoryPage();
+            LoadExpenseCategoryPage("mainPage");
+
+        }
+
+        private void AddFieldsToCurrentPayment() => LoadPaymentFieldPage("mainPage");
+
+        private void AddCurrentPayment()
+        {
+            _paymentService.AddPayment(_currentInfo, fileManager);
+            LoadMainPage();
         }
 
 

@@ -79,7 +79,7 @@ namespace Plutus
             {
                 for(var i = 0; i < count; i++)
                 {
-                    writer.WriteLine(parser.SaveExpense(cart.GiveElement(i)));
+                    writer.WriteLine(parser.SaveExpense(cart.GiveExpense(i)));
                 }
             }
         }

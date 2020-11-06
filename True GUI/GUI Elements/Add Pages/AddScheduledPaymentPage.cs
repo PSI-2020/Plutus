@@ -70,11 +70,11 @@ namespace Plutus
 
             if(_currentInfo.CurrentType == "Income")
             {
-                LoadIncomeCategoryPage();
+                LoadIncomeCategoryPage("Scheduler");
             }
             else if(_currentInfo.CurrentType == "Expense")
             {
-                LoadExpenseCategoryPage();
+                LoadExpenseCategoryPage("Scheduler");
             }
         }
     }

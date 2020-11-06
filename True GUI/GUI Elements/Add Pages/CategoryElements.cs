@@ -49,6 +49,7 @@ namespace Plutus
             return categoryLabel;
         }
 
+
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             var catButton = (Button)sender;
@@ -57,7 +58,20 @@ namespace Plutus
             var category = nameParts[1];
             _currentInfo.CurrentCategory = category;
             Controls.Clear();
-            LoadPaymentFieldPage();
+            LoadCategoryBack();
+        }
+
+        private void LoadCategoryBack()
+        {
+            switch (_previousPage)
+            {
+                case "newCart":
+                    CartNewExpenseFields();
+                    break;
+                default:
+                    AddFieldsToCurrentPayment();
+                    break;
+            }
         }
     }
 }

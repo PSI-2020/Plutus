@@ -19,7 +19,10 @@ namespace Plutus
         private readonly Color secondColor = Color.FromArgb(168, 163, 153);
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly InputVerification _inputVerification = new InputVerification();
-        readonly FileManager fileManager = new FileManager();
+        private readonly FileManager fileManager = new FileManager();
+        private readonly CartService _cartService = new CartService();
+        private string _previousPage;
+        private readonly PaymentService _paymentService = new PaymentService();
 
         public TrueGUI()
         {
