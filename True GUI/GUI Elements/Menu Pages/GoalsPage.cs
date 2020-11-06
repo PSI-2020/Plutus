@@ -53,10 +53,16 @@ namespace Plutus
         {
             var fileManager = new FileManager();
             var list = fileManager.ReadGoals();
-
+            var i = 0;
             foreach(var goal in list)
             {
                 var button = new GoalButton(goal.Name, Color.White, lilitaOne, 14F, firstColor, 145, 80, goal);
+                if(i == 0)
+                {
+                    button.FlatAppearance.BorderColor = secondColor;
+                    button.FlatAppearance.BorderSize = 5;
+                }
+                i++;
                 myGoalsPanel.Controls.Add(button);
                 button.Click += new EventHandler(CheckMyGoal);
             }

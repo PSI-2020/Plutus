@@ -16,6 +16,8 @@ namespace Plutus
             Width = width;
             Height = height;
             Goal = goal;
+            FlatStyle = FlatStyle.Flat;
+            FlatAppearance.BorderSize = 0;
         }
 
 

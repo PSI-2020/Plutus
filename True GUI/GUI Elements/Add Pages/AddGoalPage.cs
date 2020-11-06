@@ -64,7 +64,7 @@ namespace Plutus
                     Controls.Clear();
                     LoadGoalsPage();
                 }
-                if (newGoalNameBox.Text.Length < 13)
+                else if (newGoalNameBox.Text.Length < 13)
                 {
                     errorMessage.Text = "Sorry, name must contain only\n letters and numbers";
                     Controls.Add(errorMessage);

@@ -17,27 +17,30 @@ namespace Plutus
         private Label thisMonthSpendLabel;
         private Label daysLabel;
         private Button editGoalButton;
-        
+        private Button setAsMainGoalButton;
 
         private void InitializeCheckGoalPage()
         {
-            todaySpendLabel = CreateClassicLabel("todaySpendLabel", "\nYou can spend today: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, 300, 80, 0, 190, 4);
-            thisMonthSpendLabel = CreateClassicLabel("thisMonthSpendLabel", "\nYou can spend this month: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, 300, 80, 0, 190, 6);
-            daysLeftLabel = CreateClassicLabel("daysLeftLabel", "\nDays left: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, 300, 80, 0, 190, 8);
-            
-            editGoalButton = CreateClassicButton("editGoalButton", "edit", Color.White, lilitaOne, 14F, Color.FromArgb(141, 139, 134), 100, 60, 135, 700, 10);
+            editGoalButton = CreateClassicButton("editGoalButton", "edit", Color.White, lilitaOne, 14F, Color.FromArgb(141, 139, 134), 100, 60, 50, 700, 10);
             editGoalButton.Click += new EventHandler(EditGoalButton_Click);
+
+            setAsMainGoalButton = CreateClassicButton("setAsMainGoalButton", "set as main goal", Color.White, lilitaOne, 14F, firstColor, 150, 60, 170, 700, 10);
+            setAsMainGoalButton.Click += new EventHandler(SetAsMainGoalButton_Click);
         }
         private void LoadCheckGoalPage()
         {
             LoadEscapeButtonField();
             LoadMenuButton();
 
+            todaySpendLabel = CreateClassicLabel("todaySpendLabel", "\nYou can spend today: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, 300, 80, 0, 190, 4);
+            thisMonthSpendLabel = CreateClassicLabel("thisMonthSpendLabel", "\nYou can spend this month: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, 300, 80, 0, 190, 6);
+            daysLeftLabel = CreateClassicLabel("daysLeftLabel", "\nDays left: ", Color.FromArgb(126, 121, 112), lilitaOne, 18F, 300, 80, 0, 190, 8);
+
             myGoalNameLabel = CreateClassicLabel("myGoalNameLabel", "Goal: " + _currentGoal.Name, Color.White, lilitaOne, 25F, ClientSize.Width, 50, 0, 80, 1);
             myGoalNameLabel.BackColor = firstColor;
 
-            myGoalAmountLabel = CreateClassicLabel("myGoalAmountLabel", "Save: " + _currentGoal.Amount + "€", Color.FromArgb(161,156,146), lilitaOne, 13F, ClientSize.Width, 18, 0, 130, 2);
-            myGoalDueDateLabel = CreateClassicLabel("myGoalDueDateLabel", "until " + _currentGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 18, 0, 148, 3);
+            myGoalAmountLabel = CreateClassicLabel("myGoalAmountLabel", "Save: " + _currentGoal.Amount + "€", Color.FromArgb(161,156,146), lilitaOne, 13F, ClientSize.Width, 20, 0, 130, 2);
+            myGoalDueDateLabel = CreateClassicLabel("myGoalDueDateLabel", "until " + _currentGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), lilitaOne, 13F, ClientSize.Width, 20, 0, 151, 3);
 
             dailySpendLabel = CreateClassicLabel("dailySpendLabel", goalService.Insights(fileManager, _currentGoal, "daily"), Color.White, lilitaOne, 25F, 300, 80, 0, 190, 5);
             dailySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
@@ -69,6 +72,7 @@ namespace Plutus
             Controls.Add(myGoalDueDateLabel);
             Controls.Add(goalInsightsPanel);
             Controls.Add(editGoalButton);
+            Controls.Add(setAsMainGoalButton);
 
         }
         private void EditGoalButton_Click(object sender, EventArgs e)
@@ -76,6 +80,14 @@ namespace Plutus
             Controls.Clear();
             LoadEditGoalPage();
         }
+
+        private void SetAsMainGoalButton_Click(object sender, EventArgs e)
+        {
+            goalService.SetMainGoal(_currentGoal);
+            Controls.Clear();
+            LoadMainPage();
+        }
+
 
 
     }
