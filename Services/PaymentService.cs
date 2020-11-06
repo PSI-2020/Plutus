@@ -6,7 +6,7 @@ namespace Plutus.Services
 {
     class PaymentService
     {
-        private FileManager _fm;
+        private readonly FileManager _fm;
 
         public PaymentService(FileManager fm) => _fm = fm;
         public void AddPayment(CurrentInfoHolder chi)
