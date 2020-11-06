@@ -21,11 +21,4 @@
     <From>1598996313</From>
     <To>1604353113</To>
   </Budget>
-  <Budget>
-    <Name>budget3</Name>
-    <Category>Bills</Category>
-    <Sum>2000</Sum>
-    <From>1604490067</From>
-    <To>1604662867</To>
-  </Budget>
 </ArrayOfBudget>
