@@ -13,6 +13,7 @@ namespace Plutus
         Label toLabel;
         Label errorLabel;
         Button InsertBudgetButton;
+        Button backButton;
         ComboBox budgetCategoryBox;
         TextBox sumTextBox;
         DateTimePicker fromPicker;
@@ -82,6 +83,9 @@ namespace Plutus
                 ForeColor = _firstColor
             };
             InsertBudgetButton.Click += new EventHandler(InsertBudgetButtonClick);
+            backButton = CreateClassicButton("backButton", Properties.Resources.BackArrowButton, 20, 30, 1, true);
+            backButton.Click += new EventHandler(BackButtonClick);
+
 
             Controls.Add(addBudgetPageName);
             Controls.Add(categoryLabel);
@@ -93,8 +97,14 @@ namespace Plutus
             Controls.Add(toLabel);
             Controls.Add(toPicker);
             Controls.Add(InsertBudgetButton);
+            Controls.Add(backButton);
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void BackButtonClick(object sender, EventArgs e)
+        {
+            LoadBudgetsPage();
         }
 
         private void InsertBudgetButtonClick(object sender, EventArgs e)
