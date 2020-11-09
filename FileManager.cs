@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -50,12 +52,11 @@ namespace Plutus
             }
         }
 
-
         public void AddPayment(Payment payment, string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
             var list = ReadPayments(type);
-
+            CheckDuplicates(list, payment);
             type = GetFilePath(type);
 
             list.Add(payment);
@@ -63,8 +64,14 @@ namespace Plutus
             {
                 serializer.Serialize(stream, list);
             }
-            
         }
+
+        public void CheckDuplicates(List<Payment> list, Payment payment)
+        {
+            var duplicates = list.Where(x => payment.Equals(x));
+            if(duplicates.Any()) Debug.Print("Found " + duplicates.Count() + " duplicate payments.");
+        }
+
         public List<Goal> ReadGoals()
         {
             var serializer = new XmlSerializer(typeof(List<Goal>));

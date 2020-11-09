@@ -1,8 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace Plutus
 {
-    public class Payment : ISerializable
+    public class Payment : ISerializable, IEquatable<Payment>
     {
         public int Date { get; set; }
         public string Name { get; set; }
@@ -26,6 +28,8 @@ namespace Plutus
             info.AddValue("Amount", Amount);
             info.AddValue("Category", Category);
         }
+
+        public bool Equals(Payment other) => (Name, Amount, Category) == (other.Name, other.Amount, other.Category);
 
         public Payment(SerializationInfo info, StreamingContext context)
         {

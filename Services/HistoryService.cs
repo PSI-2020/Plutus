@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Plutus.Services
 {
@@ -10,7 +9,7 @@ namespace Plutus.Services
             switch (index)
             {
                 case 0:
-                    {
+                    {  
                         var list = fileManager.ReadPayments("Expense")
                                                   .Select(x => new { DATE = x.Date.ConvertToDate(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category , TYPE = "Exp."})
                                                   .ToList();
