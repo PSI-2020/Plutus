@@ -7,7 +7,6 @@ namespace Plutus
     public class BudgetService
     {
         private readonly FileManager _fileManager = new FileManager();
-        private readonly DateTime _date = new DateTime(1970, 1, 1);
 
         public void DeleteBudget(int index)
         {
@@ -26,8 +25,8 @@ namespace Plutus
             var data = "";
             var list = _fileManager.LoadBudget();
 
-            var from = _date.AddSeconds(list[index].From).ToLocalTime();
-            var to = _date.AddSeconds(list[index].To).ToLocalTime();
+            var from = list[index].From.ConvertToDate();
+            var to = list[index].To.ConvertToDate();
 
 
             var expenses = _fileManager.ReadPayments("Expense");
@@ -60,7 +59,7 @@ namespace Plutus
                  where exp.Date <= budgets[index].To
                  select exp).ToList();
             var list = resQuery
-                .Select(x => new { DATE = _date.AddSeconds(x.Date).ToLocalTime(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
+                .Select(x => new { DATE = x.Date.ConvertToDate(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
                 .OrderByDescending(x => x.DATE).ToList();
             return !list.Any() ? null : (object)list;
         }

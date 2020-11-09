@@ -42,8 +42,7 @@ namespace Plutus.Services
             var income = monthlyIncome.Sum(x => x.Amount * months) + allIncome.Sum(x => x.Amount);
             var expenses = monthlyExpenses.Sum(x => x.Amount * months) + allExpenses.Sum(x => x.Amount);
 
-            var date = new DateTime(1970, 1, 1, 0, 0, 0);
-            var todaySpent = allExpenses.Where(x => date.AddSeconds(x.Date).ToLocalTime().ToString("yyyy/MM/dd") == DateTime.Now.ToString("yyyy/MM/dd")).Sum(x => x.Amount);
+            var todaySpent = allExpenses.Where(x => x.Date.ConvertToDate().ToString("yyyy/MM/dd") == DateTime.Now.ToString("yyyy/MM/dd")).Sum(x => x.Amount);
 
             var monthly = (income - expenses - goal.Amount + todaySpent) / (months + 1);
 

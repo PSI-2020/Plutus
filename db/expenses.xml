@@ -342,4 +342,10 @@
     <Amount>231</Amount>
     <Category>Groceries</Category>
   </Payment>
+  <Payment>
+    <Date>1604948672</Date>
+    <Name>sss</Name>
+    <Amount>100</Amount>
+    <Category>Restaurant</Category>
+  </Payment>
 </ArrayOfPayment>
