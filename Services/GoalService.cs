@@ -54,7 +54,5 @@ namespace Plutus.Services
                 _ => "",
             };
         }
-
-        public string DaysLeft(Goal goal) => goal.DueDate < DateTime.Now ? 0.ToString("F0") : (goal.DueDate - DateTime.Now).TotalDays.ToString("F0");
     }
 }

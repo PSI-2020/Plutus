@@ -48,7 +48,7 @@ namespace Plutus
             monthlySpendLabel = CreateClassicLabel("monthlySpendLabel", _goalService.Insights( _currentGoal, "monthly"), Color.White, _lilitaOne, 25F, 300, 80, 0, 190, 7);
             monthlySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
 
-            daysLabel = CreateClassicLabel("daysLabel", _goalService.DaysLeft(_currentGoal), Color.White, _lilitaOne, 25F, 300, 80, 0, 190, 9);
+            daysLabel = CreateClassicLabel("daysLabel", _currentGoal.CalculateDaysLeft(), Color.White, _lilitaOne, 25F, 300, 80, 0, 190, 9); ;
             daysLabel.BackColor = Color.FromArgb(126, 121, 112);
 
             goalInsightsPanel = new FlowLayoutPanel

@@ -1,6 +1,6 @@
 ﻿namespace Plutus
 {
-   public static class StringExtension
+   public static class CapitalizationExtension
     {
         public static string UppercaseFirstLetter(this string input)
         {
