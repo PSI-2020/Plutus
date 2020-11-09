@@ -72,19 +72,10 @@ namespace Plutus
             if (addFieldErrorLabel.Text != "") return;
             _currentInfo.CurrentName = name;
             _currentInfo.CurrentAmout = amount;
-            var payment = new Payment
-            {
-                Date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds,
-                Name = name,
-                Amount = double.Parse(amount),
-                Category = _currentInfo.CurrentCategory
-            };
-
-            _fileManager.AddPayment(payment, _currentInfo.CurrentType);
 
             Controls.Clear();
             LoadMainPage();
-            //Loadback();
+            Loadback();
 
         }
         private void Loadback()

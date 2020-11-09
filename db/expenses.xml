@@ -336,4 +336,10 @@
     <Amount>123</Amount>
     <Category>Groceries</Category>
   </Payment>
+  <Payment>
+    <Date>1604947404</Date>
+    <Name>asda</Name>
+    <Amount>231</Amount>
+    <Category>Groceries</Category>
+  </Payment>
 </ArrayOfPayment>
