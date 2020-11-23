@@ -11,11 +11,11 @@ namespace Plutus
         public string Category { get; set; }
         public string Id { get; set; }
         public string Frequency { get; set; }
-        public string Status { get; set; }
+        public bool Active { get; set; }
 
         public ScheduledPayment() { }
 
-        public ScheduledPayment(DateTime date, string name, double amount, string category, string id, string frequency, string status)
+        public ScheduledPayment(DateTime date, string name, double amount, string category, string id, string frequency, bool status)
         {
             Date = (int)date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             Name = name;
@@ -23,7 +23,7 @@ namespace Plutus
             Category = category;
             Id = id;
             Frequency = frequency;
-            Status = status;
+            Active = status;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -34,7 +34,7 @@ namespace Plutus
             info.AddValue("Category", Category);
             info.AddValue("Id", Id);
             info.AddValue("Frequency", Frequency);
-            info.AddValue("Status", Status);
+            info.AddValue("Status", Active);
         }
 
         public ScheduledPayment(SerializationInfo info, StreamingContext context)
@@ -45,7 +45,7 @@ namespace Plutus
             Category = (string)info.GetValue("Category", typeof(string));
             Id = (string)info.GetValue("Id", typeof(string));
             Frequency = (string)info.GetValue("Frequency", typeof(string));
-            Status = (string)info.GetValue("Status", typeof(string));
+            Active = (bool)info.GetValue("Status", typeof(bool));
         }
     }
 }

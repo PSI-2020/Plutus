@@ -16,7 +16,7 @@ namespace Plutus
             for(var x = 0; x < incomesList.Count; x++)
             {
                 var date = incomesList[x].Date.ConvertToDate();
-                if (DateTime.Now >= date && incomesList[x].Status == "Active")
+                if (DateTime.Now >= date && incomesList[x].Active == true)
                 {
                     _fileManager.AddPayment(new Payment(incomesList[x].Date, incomesList[x].Name, incomesList[x].Amount, incomesList[x].Category), "Income");
                     if(incomesList[x].Frequency == "Monthly")
@@ -31,12 +31,11 @@ namespace Plutus
                     }
                 }
             }
-            _fileManager.UpdateScheduledPayments(incomesList, "MonthlyIncome");
 
             for (var x = 0; x < expensesList.Count; x++)
             {
                 var date = expensesList[x].Date.ConvertToDate();
-                if (DateTime.Now >= date && expensesList[x].Status == "Active")
+                if (DateTime.Now >= date && expensesList[x].Active == true)
                 {
                     _fileManager.AddPayment(new Payment(expensesList[x].Date, expensesList[x].Name, expensesList[x].Amount, expensesList[x].Category), "Expense");
                     if (expensesList[x].Frequency == "Monthly")
@@ -59,14 +58,14 @@ namespace Plutus
             if (!list.Any()) return "";
 
             var date = list[index].Date.ConvertToDate();
-            return list[index].Status == "Inactive"
+            return list[index].Active == false
                 ? list[index].Name + " in " + list[index].Category + "\r\n" + "Inactive"
                 : list[index].Name + " in " + list[index].Category + "\r\n" + "Next payment: " + date.ToString("yyyy/MM/dd");
         }
-        public void ChangeStatus(int index, string type, string status)
+        public void ChangeStatus(int index, string type, bool status)
         {
             var list = _fileManager.LoadScheduledPayments(type);
-            list[index].Status = status;
+            list[index].Active = status;
             _fileManager.UpdateScheduledPayments(list, type);
         }
         public void DeletePayment(int index, string type)

@@ -7,6 +7,6 @@
     <Category>Groceries</Category>
     <Id>MonthlyExpenses0</Id>
     <Frequency>Monthly</Frequency>
-    <Status>Active</Status>
+    <Active>true</Active>
   </ScheduledPayment>
 </ArrayOfScheduledPayment>
