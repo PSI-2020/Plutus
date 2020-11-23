@@ -36,6 +36,7 @@ namespace Plutus
         private void GetStartedButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
+            _schedulerService.CheckPayments();
             LoadMainPage();
         }
 

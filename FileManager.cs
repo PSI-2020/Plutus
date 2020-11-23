@@ -155,6 +155,46 @@ namespace Plutus
             }
         }
 
+        public void AddScheduledPayment(ScheduledPayment payment, string type)
+        {
+            var serializer = new XmlSerializer(typeof(List<ScheduledPayment>));
+            var list = LoadScheduledPayments(type);
+
+            list.Add(payment);
+            using (var stream = File.OpenWrite(GetFilePath(type)))
+            {
+                serializer.Serialize(stream, list);
+            }
+
+        }
+
+        public List<ScheduledPayment> LoadScheduledPayments(string type)
+        {
+            var serializer = new XmlSerializer(typeof(List<ScheduledPayment>));
+
+            try
+            {
+                using (var stream = File.OpenRead(GetFilePath(type)))
+                {
+                    return serializer.Deserialize(stream) as List<ScheduledPayment>;
+                }
+            }
+            catch
+            {
+                return new List<ScheduledPayment>();
+            }
+        }
+
+        public void UpdateScheduledPayments(List<ScheduledPayment> list, string type)
+        {
+            var serializer = new XmlSerializer(typeof(List<ScheduledPayment>));
+            File.WriteAllText(GetFilePath(type), "");
+            using (var stream = File.OpenWrite(GetFilePath(type)))
+            {
+                serializer.Serialize(stream, list);
+            }
+        }
+
         public void SaveCarts(XElement carts) => carts.Save(_carts);
 
         public XElement LoadCarts()

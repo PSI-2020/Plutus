@@ -84,4 +84,10 @@
     <Amount>500000</Amount>
     <Category>Salary</Category>
   </Payment>
+  <Payment>
+    <Date>1606062402</Date>
+    <Name>hugkjeg</Name>
+    <Amount>200</Amount>
+    <Category>Salary</Category>
+  </Payment>
 </ArrayOfPayment>

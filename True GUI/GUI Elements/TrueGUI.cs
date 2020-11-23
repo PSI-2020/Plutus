@@ -23,6 +23,7 @@ namespace Plutus
         private readonly StatisticsService _stats = new StatisticsService();
         private readonly GoalService _goalService = new GoalService();
         private readonly BudgetService _budgetService = new BudgetService();
+        private readonly SchedulerService _schedulerService = new SchedulerService();
 
         private string _previousPage;
 

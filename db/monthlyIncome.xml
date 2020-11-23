@@ -1,9 +1,30 @@
 <?xml version="1.0"?>
-<ArrayOfPayment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Payment>
-		<Date>1601059572</Date>
-		<Name>Salary</Name>
-		<Amount>1000</Amount>
-		<Category>Salary</Category>
-	</Payment>
-</ArrayOfPayment>
+<ArrayOfScheduledPayment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScheduledPayment>
+    <Date>1606490145</Date>
+    <Name>Akcijos</Name>
+    <Amount>200</Amount>
+    <Category>Investment</Category>
+    <Id>MonthlyIncome0</Id>
+    <Frequency>Weekly</Frequency>
+    <Status>Active</Status>
+  </ScheduledPayment>
+  <ScheduledPayment>
+    <Date>1606231169</Date>
+    <Name>Valandinis</Name>
+    <Amount>500</Amount>
+    <Category>Salary</Category>
+    <Id>MonthlyIncome1</Id>
+    <Frequency>Monthly</Frequency>
+    <Status>Active</Status>
+  </ScheduledPayment>
+  <ScheduledPayment>
+    <Date>1606069602</Date>
+    <Name>hugkjeg</Name>
+    <Amount>200</Amount>
+    <Category>Salary</Category>
+    <Id>MonthlyIncome2</Id>
+    <Frequency>Monthly</Frequency>
+    <Status>Active</Status>
+  </ScheduledPayment>
+</ArrayOfScheduledPayment>
