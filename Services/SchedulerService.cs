@@ -11,7 +11,7 @@ namespace Plutus
         public void CheckPayments()
         {
             var incomesList = _fileManager.LoadScheduledPayments("MonthlyIncome");
-            var expensesList = _fileManager.LoadScheduledPayments("MonthlyExpense");
+            var expensesList = _fileManager.LoadScheduledPayments("MonthlyExpenses");
 
             for(var x = 0; x < incomesList.Count; x++)
             {
@@ -21,13 +21,13 @@ namespace Plutus
                     _fileManager.AddPayment(new Payment(incomesList[x].Date, incomesList[x].Name, incomesList[x].Amount, incomesList[x].Category), "Income");
                     if(incomesList[x].Frequency == "Monthly")
                     {
-                        date.AddMonths(1);
-                        incomesList[x].Date = (int)date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                        var newDate = date.AddMonths(1);
+                        incomesList[x].Date = (int)newDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                     }
                     else if(incomesList[x].Frequency == "Weekly")
                     {
-                        date.AddDays(7);
-                        incomesList[x].Date = (int)date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                        var newDate = date.AddDays(7);
+                        incomesList[x].Date = (int)newDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                     }
                 }
             }
@@ -35,19 +35,19 @@ namespace Plutus
 
             for (var x = 0; x < expensesList.Count; x++)
             {
-                var date = incomesList[x].Date.ConvertToDate();
-                if (DateTime.Now >= date && incomesList[x].Status == "Active")
+                var date = expensesList[x].Date.ConvertToDate();
+                if (DateTime.Now >= date && expensesList[x].Status == "Active")
                 {
-                    _fileManager.AddPayment(new Payment(incomesList[x].Date, incomesList[x].Name, incomesList[x].Amount, incomesList[x].Category), "Expense");
-                    if (incomesList[x].Frequency == "Monthly")
+                    _fileManager.AddPayment(new Payment(expensesList[x].Date, expensesList[x].Name, expensesList[x].Amount, expensesList[x].Category), "Expense");
+                    if (expensesList[x].Frequency == "Monthly")
                     {
-                        date.AddMonths(1);
-                        incomesList[x].Date = (int)date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                        var newDate = date.AddMonths(1);
+                        expensesList[x].Date = (int)newDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                     }
-                    else if (incomesList[x].Frequency == "Weekly")
+                    else if (expensesList[x].Frequency == "Weekly")
                     {
-                        date.AddDays(7);
-                        incomesList[x].Date = (int)date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                        var newDate = date.AddDays(7);
+                        expensesList[x].Date = (int)newDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                     }
                 }
             }

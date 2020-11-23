@@ -63,7 +63,7 @@ namespace Plutus
             incomeTextLabel = CreateClassicLabel("incomeTextLabel", "income", _firstColor, _lilitaOne, 12F, 100, 30, incomeAddButton.Left + 16, ClientSize.Height - 50, 7);
 
             var incomesList = _fileManager.LoadScheduledPayments("MonthlyIncome");
-            var expensesList = _fileManager.LoadScheduledPayments("MonthlyExpense");
+            var expensesList = _fileManager.LoadScheduledPayments("MonthlyExpenses");
 
             for(var x = 0; x < incomesList.Count; x++)
             {
@@ -71,7 +71,7 @@ namespace Plutus
             }
             for(var x = 0; x < expensesList.Count; x++)
             {
-                expensesFlow.Controls.Add(InitializePayments(x, "MonthlyExpense"));
+                expensesFlow.Controls.Add(InitializePayments(x, "MonthlyExpenses"));
             }
 
             Controls.Add(scheduledExpenseLabel);
@@ -170,7 +170,7 @@ namespace Plutus
         private void ScheduledExpenseAddButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            LoadScheduledPaymentPage("MonthlyExpense");
+            LoadScheduledPaymentPage("MonthlyExpenses");
         }
     }
 }

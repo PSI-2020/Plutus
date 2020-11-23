@@ -107,7 +107,7 @@ namespace Plutus
         {
             LoadEscapeButton();
             categoryBox.Items.Clear();
-            if (type == "MonthlyExpense")
+            if (type == "MonthlyExpenses")
             {
                 categoryBox.Items.AddRange(Enum.GetNames(typeof(ExpenseCategories)));
             }
