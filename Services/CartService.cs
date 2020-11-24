@@ -130,5 +130,7 @@ namespace Plutus
             
         }
 
+        public Cart StartShopping() => _currentCart;
+
     }
 }

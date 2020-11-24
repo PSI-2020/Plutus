@@ -40,6 +40,7 @@ namespace Plutus
         Button cartEditButton;
         Button cartDeleteButton;
         Button cartChargeButton;
+        Button cartShoppingButton;
 
         private int _cartNavigationStart;
         private string _previousCartPage;
@@ -94,10 +95,10 @@ namespace Plutus
             var nameSplit = name.Split('|');
             var index = int.Parse(nameSplit[0]);
             _cartService.CurrentCartSet(index);
-            LoadSpecificCart(index);
+            LoadSpecificCart(index, "");
         }
 
-        private void LoadSpecificCart(int index)
+        private void LoadSpecificCart(int index, string info)
         {
             _cartNavigationPage = "OldCart";
             _previousCartPage = "MainPage";
@@ -117,9 +118,11 @@ namespace Plutus
             oldCartExpensesInfoPanel.Controls.Add(cartOldCategory);
             cartsPageWorkPanel.Controls.Add(oldCartExpensesInfoPanel);
             cartsPageWorkPanel.Controls.Add(oldCartExpensesPanel);
+            cartNavigationLabel.Text = info;
             cartsPageWorkPanel.Controls.Add(cartNavigationErorrPanel);
             cartsPageWorkPanel.Controls.Add(cartPageLineAboveAddControls);
             cartsPageWorkPanel.Controls.Add(cartChargeButton);
+            cartsPageWorkPanel.Controls.Add(cartShoppingButton);         
             cartsPageWorkPanel.Controls.Add(cartPageBackButton);
             Controls.Add(cartsPageName);
             Controls.Add(cartPageInfoLabel);
@@ -276,17 +279,21 @@ namespace Plutus
 
         private void GoBackCartButton_Click(object sender, EventArgs e)
         {
+            GoBackCartMethod("");
+        }
+
+        private void GoBackCartMethod(string info)
+        {
             switch (_previousCartPage)
             {
                 case "OldCart":
                     cartPageInfoLabel.Text = "CART: " + _cartService.GiveCurrentName();
-                    LoadSpecificCart(_previousCartIndex);
+                    LoadSpecificCart(_previousCartIndex, info);
                     break;
                 default:
                     LoadCartsPage();
                     break;
             }
-
         }
 
         private void InitializeCartMain()
@@ -311,8 +318,8 @@ namespace Plutus
 
         private void InitializeCartNew()
         {
-            cartPageLineAboveAddControls = CreateClassicLine("cartPageLineAboveAddControls", 290, 5, 10, 480, _secondColor);
-            cartPageBackButton = CreateClassicButton("cartPageBackButton", Properties.Resources.BackArrowButton, 10, cartPageLineAboveAddControls.Bottom + 15, 1, false, 16, 21);
+            cartPageLineAboveAddControls = CreateClassicLine("cartPageLineAboveAddControls", 290, 5, 10, 500, _secondColor);
+            cartPageBackButton = CreateClassicButton("cartPageBackButton", Properties.Resources.BackArrowButton, 10, cartPageLineAboveAddControls.Bottom + 9, 1, false, 16, 21);
             cartPageBackButton.Click += new EventHandler(GoBackCartButton_Click);
             cartNameBox = new TextBox
             {
@@ -329,12 +336,12 @@ namespace Plutus
                 TextAlign = HorizontalAlignment.Center,
                 AutoSize = false,
             };
-            cartCreateButton = CreateClassicButton("cartCreateButton", "Create cart", Color.White, _lilitaOne, 9F, _secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartCreateButton = CreateClassicButton("cartCreateButton", "Create cart", Color.White, _lilitaOne, 9F, _secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 5, 7);
             cartCreateButton.Click += new EventHandler(CartCreateButton_Click);
-            cartSaveButton = CreateClassicButton("cartSaveButton", "Save cart", Color.White, _lilitaOne, 9F, _secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartSaveButton = CreateClassicButton("cartSaveButton", "Save cart", Color.White, _lilitaOne, 9F, _secondColor, 100, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 5, 7);
             cartSaveButton.Click += new EventHandler(CartSaveButton_Click);
             cartSaveButton.Visible = false;
-            cartNewExpenseButton = CreateClassicButton("cartNewExpenseButton", "Add new expense", Color.White, _lilitaOne, 9F, _secondColor, 140, 30, cartCreateButton.Right + 15, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartNewExpenseButton = CreateClassicButton("cartNewExpenseButton", "Add new expense", Color.White, _lilitaOne, 9F, _secondColor, 140, 30, cartCreateButton.Right + 15, cartPageLineAboveAddControls.Bottom + 5, 7);
             cartNewExpenseButton.Click += new EventHandler(CartNewExpenseButton_Click);
 
             cartNewName = CreateNewCartElement("cartNewName", "NAME", 68, 30, _firstColor, Color.White);
@@ -410,8 +417,10 @@ namespace Plutus
                 Top = cartDeleteButton.Bottom + 10,
                 BackColor = _secondColor
             };
-            cartChargeButton = CreateClassicButton("cartChargeButton", "Charge Cart", _firstColor, _lilitaOne, 9F, _secondColor, 250, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 11, 7);
+            cartChargeButton = CreateClassicButton("cartChargeButton", "Charge Cart", _firstColor, _lilitaOne, 9F, _secondColor, 125, 30, cartPageBackButton.Right + 10, cartPageLineAboveAddControls.Bottom + 5, 7);
             cartChargeButton.Click += new EventHandler(ChargeCart_Click);
+            cartShoppingButton = CreateClassicButton("cartShoppingButton", "Go Shopping", _firstColor, _lilitaOne, 9F, _secondColor, 125, 30, cartChargeButton.Right + 10, cartPageLineAboveAddControls.Bottom + 5, 7);
+            cartShoppingButton.Click += new EventHandler(ShopCart_Click);
             oldCartExpensesPanel = new FlowLayoutPanel
             {
                 Name = "oldCartExpensesPanel",
@@ -423,6 +432,11 @@ namespace Plutus
                 Top = oldCartExpensesInfoPanel.Bottom,
                 BackColor = Color.FromArgb(199, 193, 181)
             };
+        }
+        private void ShopCart_Click(object sender, EventArgs e)
+        {
+            _previousCartPage = "OldCart";
+            LoadShoppingPage("Shop With: " + _cartService.GiveCurrentName());
         }
 
         private void EditCart_Click(object sender, EventArgs e)
@@ -456,7 +470,7 @@ namespace Plutus
             _cartService.SaveCartChanges(_previousCartIndex);
             cartPageInfoLabel.Text = "CART: " + _cartService.GiveCurrentName();
             cartCreateButton.Click -= new EventHandler(CartSaveButton_Click);
-            LoadSpecificCart(_previousCartIndex);
+            LoadSpecificCart(_previousCartIndex, "");
         }
         private void ChargeCart_Click(object sender, EventArgs e)
         {
