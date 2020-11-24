@@ -15,6 +15,7 @@ namespace Plutus
             InitializeAddGoalPage();
             InitializeCheckGoalPage();
             InitializeScheduledPaymentPage();
+            InitializeShoppingPage();
         }
     }
 }
