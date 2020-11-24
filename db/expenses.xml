@@ -349,75 +349,39 @@
     <Category>Restaurant</Category>
   </Payment>
   <Payment>
-    <Date>1605773806</Date>
-    <Name>1</Name>
-    <Amount>1</Amount>
+    <Date>1605026239</Date>
+    <Name>banana</Name>
+    <Amount>20</Amount>
     <Category>Groceries</Category>
   </Payment>
   <Payment>
-    <Date>1605773806</Date>
-    <Name>2</Name>
-    <Amount>2</Amount>
-    <Category>Restaurant</Category>
-  </Payment>
-  <Payment>
-    <Date>1605777181</Date>
-    <Name>Magic</Name>
-    <Amount>5</Amount>
-    <Category>Bills</Category>
-  </Payment>
-  <Payment>
-    <Date>1605777181</Date>
-    <Name>Robe</Name>
-    <Amount>12</Amount>
-    <Category>Clothes</Category>
-  </Payment>
-  <Payment>
-    <Date>1605777233</Date>
-    <Name>Magic</Name>
-    <Amount>5</Amount>
-    <Category>Bills</Category>
-  </Payment>
-  <Payment>
-    <Date>1605777233</Date>
-    <Name>Robe</Name>
-    <Amount>12</Amount>
-    <Category>Clothes</Category>
-  </Payment>
-  <Payment>
-    <Date>1605780548</Date>
-    <Name>Magic</Name>
-    <Amount>5</Amount>
-    <Category>Bills</Category>
-  </Payment>
-  <Payment>
-    <Date>1605780548</Date>
-    <Name>Robe</Name>
-    <Amount>12</Amount>
-    <Category>Clothes</Category>
-  </Payment>
-  <Payment>
-    <Date>1605780623</Date>
-    <Name>1</Name>
-    <Amount>1</Amount>
+    <Date>1605033439</Date>
+    <Name>banana</Name>
+    <Amount>20</Amount>
     <Category>Groceries</Category>
   </Payment>
   <Payment>
-    <Date>1605780623</Date>
-    <Name>2</Name>
-    <Amount>2</Amount>
-    <Category>Restaurant</Category>
-  </Payment>
-  <Payment>
-    <Date>1605780627</Date>
-    <Name>1</Name>
-    <Amount>1</Amount>
+    <Date>1605040639</Date>
+    <Name>banana</Name>
+    <Amount>20</Amount>
     <Category>Groceries</Category>
   </Payment>
   <Payment>
-    <Date>1605780627</Date>
-    <Name>2</Name>
-    <Amount>2</Amount>
+    <Date>1605047839</Date>
+    <Name>banana</Name>
+    <Amount>20</Amount>
+    <Category>Groceries</Category>
+  </Payment>
+  <Payment>
+    <Date>1606063913</Date>
+    <Name>eafaf</Name>
+    <Amount>50</Amount>
     <Category>Restaurant</Category>
+  </Payment>
+  <Payment>
+    <Date>1605055039</Date>
+    <Name>banana</Name>
+    <Amount>20</Amount>
+    <Category>Groceries</Category>
   </Payment>
 </ArrayOfPayment>
