@@ -6,8 +6,43 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Folder Include="Carts\" />
+    <None Remove="True GUI\GUI resources\LilitaOne.ttf" />
+    <None Remove="True GUI\GUI resources\Macondo.ttf" />
+    <None Remove="True GUI\GUI resources\PlutusLogoTrue.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="True GUI\GUI resources\LilitaOne.ttf" />
+    <EmbeddedResource Include="True GUI\GUI resources\Macondo.ttf" />
+    <EmbeddedResource Include="True GUI\GUI resources\PlutusLogoTrue.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts.NetCore" Version="0.9.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
