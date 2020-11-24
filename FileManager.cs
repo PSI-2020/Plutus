@@ -51,6 +51,19 @@ namespace Plutus
                 return new List<Payment>();
             }
         }
+        public void EditPayment(Payment payment, Payment newPayment, string type)
+        {
+            var serializer = new XmlSerializer(typeof(List<Payment>));
+            var list = ReadPayments(type);
+            list[list.IndexOf(payment)] = newPayment;
+            type = GetFilePath(type);
+
+            File.WriteAllText(type, "");
+            using (var stream = File.OpenWrite(type))
+            {
+                serializer.Serialize(stream, list);
+            }
+        }
 
         public void AddPayment(Payment payment, string type)
         {
