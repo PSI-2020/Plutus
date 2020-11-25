@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plutus", "Plutus.csproj", "{13C5DD9E-C729-49D0-88BE-46ABB1DC584B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BDE0BB14-0357-4FB7-971C-781EF4240207} = {BDE0BB14-0357-4FB7-971C-781EF4240207}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9E47594-DD34-4A2C-B943-1C206EA7F416}"
 	ProjectSection(SolutionItems) = preProject
