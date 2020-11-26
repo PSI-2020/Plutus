@@ -5,7 +5,7 @@
     <Name>banana</Name>
     <Amount>20</Amount>
     <Category>Groceries</Category>
-    <Id>MonthlyExpenses0</Id>
+    <Id>monthlyexpenses0</Id>
     <Frequency>Monthly</Frequency>
     <Active>true</Active>
   </ScheduledPayment>
