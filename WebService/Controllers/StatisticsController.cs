@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Microsoft.AspNetCore.Mvc;
-using Plutus.Services;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Plutus.Controllers
 {

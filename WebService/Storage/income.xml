@@ -85,7 +85,7 @@
     <Category>Salary</Category>
   </Payment>
   <Payment>
-    <Date>1606351491</Date>
+    <Date>1606405848</Date>
     <Name>hugkjeg</Name>
     <Amount>200</Amount>
     <Category>Salary</Category>
@@ -161,5 +161,11 @@
     <Name>Nuoma</Name>
     <Amount>200</Amount>
     <Category>Rent</Category>
+  </Payment>
+  <Payment>
+    <Date>1606405872</Date>
+    <Name>rhgsr</Name>
+    <Amount>525</Amount>
+    <Category>Salary</Category>
   </Payment>
 </ArrayOfPayment>
