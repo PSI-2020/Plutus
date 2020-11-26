@@ -13,24 +13,24 @@ namespace Plutus
     public class FileManager
     {
         private static readonly string _directoryPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-        private readonly string _income = _directoryPath + "/db/income.xml";
-        private readonly string _expenses = _directoryPath + "/db/expenses.xml";
-        private readonly string _monthlyIncome = _directoryPath + "/db/monthlyIncome.xml";
-        private readonly string _monthlyExpenses = _directoryPath + "/db/monthylExpenses.xml";
-        private readonly string _goals = _directoryPath + "/db/goals.xml";
-        private readonly string _budgets = _directoryPath + "/db/budgets.xml";
-        private readonly string _carts = _directoryPath + "/db/carts.xml";
+        private readonly string _income = _directoryPath + "/WebService/Storage/income.xml";
+        private readonly string _expenses = _directoryPath + "/WebService/Storage/expenses.xml";
+        private readonly string _monthlyIncome = _directoryPath + "/WebService/Storage/monthlyIncome.xml";
+        private readonly string _monthlyExpenses = _directoryPath + "/WebService/Storage/monthylExpenses.xml";
+        private readonly string _goals = _directoryPath + "/WebService/Storage/goals.xml";
+        private readonly string _budgets = _directoryPath + "/WebService/Storage/budgets.xml";
+        private readonly string _carts = _directoryPath + "/WebService/Storage/carts.xml";
         public readonly string fontPathMaconodo = _directoryPath + "/True GUI/GUI resources/Macondo.ttf";
         public readonly string fontPathLilita = _directoryPath + "/True GUI/GUI resources/LilitaOne.ttf";
 
         public string GetFilePath(string type)
         {
-            return type switch
+            return type.ToLower() switch
             {
-                "Income" => _income,
-                "Expense" => _expenses,
-                "MonthlyIncome" => _monthlyIncome,
-                "MonthlyExpenses" => _monthlyExpenses,
+                "income" => _income,
+                "expense" => _expenses,
+                "monthlyincome" => _monthlyIncome,
+                "monthlyexpenses" => _monthlyExpenses,
                 _ => null,
             };
         }
@@ -38,6 +38,12 @@ namespace Plutus
         public List<Payment> ReadPayments(string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
+            if (type.ToLower() == "all")
+            {
+                var list = ReadPayments("Expense");
+                list.AddRange(ReadPayments("Income"));
+                return list;
+            }
 
             try
             {

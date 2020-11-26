@@ -1,4 +1,5 @@
-﻿using Plutus.Services;
+﻿using Plutus.Controllers;
+using Plutus.Services;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
@@ -9,7 +10,6 @@ namespace Plutus
     {
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
         private readonly FontFamily[] _fontFamilies;
-        private readonly FontFamily _maconda;
         private readonly FontFamily _lilitaOne;
         private readonly Color _backgroundColor = Color.FromArgb(220, 213, 201);
         private readonly Color _firstColor = Color.FromArgb(111, 101, 88);
@@ -19,11 +19,11 @@ namespace Plutus
         private readonly FileManager _fileManager = new FileManager();
         private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
-        private readonly HistoryService _historyService = new HistoryService();
-        private readonly StatisticsService _stats = new StatisticsService();
         private readonly GoalService _goalService = new GoalService();
         private readonly BudgetService _budgetService = new BudgetService();
         private readonly SchedulerService _schedulerService = new SchedulerService();
+        private readonly HistoryController _historyController = new HistoryController();
+        private readonly StatisticsController _statisticsController = new StatisticsController();
 
         private string _previousPage;
 
@@ -35,7 +35,6 @@ namespace Plutus
             _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
             _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
             _fontFamilies = _privateFontCollection.Families;
-            _maconda = _fontFamilies[1];
             _lilitaOne = _fontFamilies[0];
             InitializeComponent();
             LoadFrontPage();

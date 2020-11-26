@@ -50,5 +50,16 @@ namespace Plutus.Services
             };
         }
 
+        //public DataTable LoadDataGrid(FileManager fileManager, int index)
+        //{
+        //    return index switch
+        //    {
+        //        0 => ListToDataTable(fileManager.ReadPayments("Expense"), fileManager.ReadPayments("Income")),
+        //        1 => ListToDataTable(fileManager.ReadPayments("Expense")),
+        //        2 => ListToDataTable(fileManager.ReadPayments("Income")),
+        //        _ => null,
+        //    };
+        //}
+
     }
 }

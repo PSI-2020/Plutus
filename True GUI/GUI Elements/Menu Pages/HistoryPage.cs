@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Data;
-using System.Linq;
-using System.Collections.Generic;
-using System.Diagnostics;
+using Plutus.Controllers;
 
 namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        
         Label historyPageName;
         Button historyEditButton;
         Button historyFilterButton;
@@ -99,19 +95,11 @@ namespace Plutus
             PerformLayout();
 
             historyPaymentTypeBox.SelectedIndex = 0;
-            var dataSource = _historyService.LoadDataGrid(_fileManager, historyPaymentTypeBox.SelectedIndex);
-            if (dataSource == null)
-            {
-                MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            historyDataGrid.DataSource = dataSource;
+            UpdateHistory(null, null);
         }
-
-        private void UpdateHistory(object sender, EventArgs e)
+        private void UpdateHistory(object _, EventArgs __)
         {
-            var dataSource = _historyService.LoadDataGrid(_fileManager, historyPaymentTypeBox.SelectedIndex);
+            var dataSource = _historyController.Get(historyPaymentTypeBox.SelectedIndex).Value;
             if (dataSource == null)
             {
                 MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -151,16 +139,18 @@ namespace Plutus
             {
                 case 0:
                     _fileManager.EditPayment(payment, newPayment, historyDataGrid.Rows[rowIndex].Cells[4].Value.ToString());
-                    return;
+                    break;
                 case 1:
                     _fileManager.EditPayment(payment, newPayment, "Expense");
-                    return;
+                    break;
                 case 2:
                     _fileManager.EditPayment(payment, newPayment, "Income");
-                    return;
+                    break;
                 default:
-                    return;
+                    break;
             }
+
+            UpdateHistory(null, null);
         }
     }
 }

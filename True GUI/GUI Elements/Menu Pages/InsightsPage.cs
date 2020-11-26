@@ -17,7 +17,7 @@ namespace Plutus
             statistics = new TextBox
             {
                 Name = "Statistics",
-                Text = _stats.GenerateExpenseStatistics(_fileManager) + "\r\n" + _stats.GenerateIncomeStatistics(_fileManager),
+                Text = _statisticsController.Get().Value,
                 Font = new Font(_lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
                 BackColor = _backgroundColor,
                 ForeColor = _secondColor,

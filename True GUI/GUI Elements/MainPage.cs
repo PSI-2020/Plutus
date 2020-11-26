@@ -11,7 +11,7 @@ namespace Plutus
         Label goalAmountLabel;
         Label addTextLabel;
         Button expenseAddButton;
-        Label expenseTextLabel;
+        public Label expenseTextLabel;
         Button incomeAddButton;
         Label incomeTextLabel;
 
