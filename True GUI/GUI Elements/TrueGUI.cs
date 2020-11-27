@@ -24,6 +24,8 @@ namespace Plutus
         private readonly SchedulerService _schedulerService = new SchedulerService();
         private readonly HistoryController _historyController = new HistoryController();
         private readonly StatisticsController _statisticsController = new StatisticsController();
+        private readonly BudgetsController _budgetsController = new BudgetsController();
+        private readonly SchedulerController _schedulerController = new SchedulerController();
 
         private string _previousPage;
 
