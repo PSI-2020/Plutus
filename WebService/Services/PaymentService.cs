@@ -7,7 +7,7 @@ namespace Plutus.Services
         private readonly FileManager _fm;
 
         public PaymentService(FileManager fm) => _fm = fm;
-        public void AddPayment(CurrentInfoHolder chi)
+        public async System.Threading.Tasks.Task AddPaymentAsync(CurrentInfoHolder chi)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
@@ -18,7 +18,8 @@ namespace Plutus.Services
                 Amount = double.Parse(chi.CurrentAmout),
                 Category = chi.CurrentCategory
             };
-            _fm.AddPayment(payment, chi.CurrentType);
+
+            await HttpService.PostPaymentAsync(payment, chi.CurrentType);
         }
 
         public void AddCartPayment(string name, double amount, string category)

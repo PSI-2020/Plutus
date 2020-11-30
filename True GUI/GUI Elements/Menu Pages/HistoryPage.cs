@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Plutus.Controllers;
 
 namespace Plutus
 {
@@ -34,7 +33,7 @@ namespace Plutus
             };
 
             historyPaymentTypeBox.Items.AddRange(new string[] { "All", "Expense", "Income" });
-            historyPaymentTypeBox.SelectedIndexChanged += new EventHandler(UpdateHistory);
+            historyPaymentTypeBox.SelectedIndexChanged += new EventHandler(UpdateHistoryAsync);
 
             historyDataGrid = new DataGridView
             {
@@ -95,11 +94,15 @@ namespace Plutus
             PerformLayout();
 
             historyPaymentTypeBox.SelectedIndex = 0;
-            UpdateHistory(null, null);
+            UpdateHistoryAsync(0);
         }
-        private void UpdateHistory(object _, EventArgs __)
+
+        private void UpdateHistoryAsync(object _, EventArgs __) => UpdateHistoryAsync(historyPaymentTypeBox.SelectedIndex);
+
+        private async void UpdateHistoryAsync(int index)
         {
-            var dataSource = _historyController.Get(historyPaymentTypeBox.SelectedIndex).Value;
+            var dataSource = (await HttpService.GetHistoryAsync(index));
+
             if (dataSource == null)
             {
                 MessageBox.Show("Unable to load new data!", "Error loading history data", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -111,13 +114,6 @@ namespace Plutus
 
         private void EditButtonClick(object sender, EventArgs e)
         {
-            //Controls.Clear();
-            //LoadMenuButton();
-            //LoadEscapeButton();
-            //Controls.Add(CreatePageNameLabel("historyEditPageName", "Edit"));
-            //ResumeLayout(false);
-            //PerformLayout();
-
             var rowIndex = historyDataGrid.CurrentCell.RowIndex;
             var payment = new Payment
             {
@@ -150,7 +146,7 @@ namespace Plutus
                     break;
             }
 
-            UpdateHistory(null, null);
+            UpdateHistoryAsync(historyPaymentTypeBox.SelectedIndex);
         }
     }
 }
