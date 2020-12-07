@@ -1,7 +1,7 @@
-﻿using Plutus.Controllers;
-using Plutus.Services;
+﻿using Plutus.Services;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Net.Http;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -22,13 +22,9 @@ namespace Plutus
         private readonly GoalService _goalService = new GoalService();
         private readonly BudgetService _budgetService = new BudgetService();
         private readonly SchedulerService _schedulerService = new SchedulerService();
-        private readonly HistoryController _historyController = new HistoryController();
-        private readonly StatisticsController _statisticsController = new StatisticsController();
-        private readonly BudgetsController _budgetsController = new BudgetsController();
-        private readonly SchedulerController _schedulerController = new SchedulerController();
+        private readonly HttpService httpService = new HttpService();
 
         private string _previousPage;
-
 
         public TrueGUI()
         {

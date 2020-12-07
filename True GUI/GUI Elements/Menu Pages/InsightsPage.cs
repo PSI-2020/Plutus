@@ -8,7 +8,7 @@ namespace Plutus
         Label insightsPageName;
         TextBox statistics;
 
-        private void LoadInsightsPage()
+        private async void LoadInsightsPage()
         {
             LoadMenuButton();
             LoadEscapeButton();
@@ -17,7 +17,7 @@ namespace Plutus
             statistics = new TextBox
             {
                 Name = "Statistics",
-                Text = _statisticsController.Get().Value,
+                Text = await HttpService.GetStatisticsAsync(),
                 Font = new Font(_lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
                 BackColor = _backgroundColor,
                 ForeColor = _secondColor,
@@ -30,6 +30,7 @@ namespace Plutus
                 TextAlign = HorizontalAlignment.Center,
                 Multiline = true,
                 ReadOnly = true,
+                Enabled = false,
             };
 
             Controls.Add(insightsPageName);
