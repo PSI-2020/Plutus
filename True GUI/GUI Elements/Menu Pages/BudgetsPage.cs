@@ -91,7 +91,7 @@ namespace Plutus
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            label.Text = _budgetService.GenerateBudget(index);
+            label.Text = _budgetsController.Get(index);
         }
 
         private void OpenStats(object sender, EventArgs e)
@@ -101,14 +101,14 @@ namespace Plutus
 
             var showButton = (Button)sender;
             var index = int.Parse(showButton.Name.Substring(4));
-            historyDataGrid.DataSource = _budgetService.ShowStats(index);
+            historyDataGrid.DataSource = _budgetsController.GetStats(index);
         }
 
         private void DeleteClick(object sender, EventArgs e)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            _budgetService.DeleteBudget(index);
+            _budgetsController.Delete(index);
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();

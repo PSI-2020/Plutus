@@ -134,7 +134,7 @@ namespace Plutus
             deleteButton.Click += (sender, e) => DelButtonClick(sender, e, type);
             activateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(activateButton.Name.Substring(6)), true);
             deactivateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(deactivateButton.Name.Substring(8)), false);
-            label.Text = _schedulerService.ShowPayment(index, type);
+            label.Text = _schedulerController.Get(index, type);
             flow.Controls.Add(label);
             flow.Controls.Add(activateButton);
             flow.Controls.Add(deactivateButton);
@@ -154,7 +154,7 @@ namespace Plutus
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            _schedulerService.DeletePayment(index, type);
+            _schedulerController.Delete(index, type);
 
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();

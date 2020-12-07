@@ -118,7 +118,7 @@ namespace Plutus
             var list = _fileManager.LoadBudget();
             budgetsFlow.Visible = true;
 
-            _fileManager.AddBudget(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
+            _budgetsController.Post(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();
