@@ -94,11 +94,18 @@ namespace Plutus
             }
 
         }
-        private void DeleteGoalButton_Click(object sender, EventArgs e)
+        private async void DeleteGoalButton_Click(object sender, EventArgs e)
         {
-
-            _goalService.DeleteGoal(_currentGoal);
-
+            var list = await HttpService.GetGoalsAsync();
+            int id = 0;
+            foreach(var i in list)
+            {
+                if (_currentGoal.Name == i.Name && _currentGoal.Amount == i.Amount && _currentGoal.DueDate == i.DueDate)
+                    break;
+                id++;
+            }
+            
+            await HttpService.DeleteGoalAsync(id);
             Controls.Clear();
             LoadGoalsPage();
         }

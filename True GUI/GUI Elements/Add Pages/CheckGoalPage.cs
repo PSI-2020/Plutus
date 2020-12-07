@@ -41,7 +41,7 @@ namespace Plutus
 
             myGoalAmountLabel = CreateClassicLabel("myGoalAmountLabel", "Save: " + _currentGoal.Amount + "€", Color.FromArgb(161,156,146), _lilitaOne, 13F, ClientSize.Width, 20, 0, 130, 2);
             myGoalDueDateLabel = CreateClassicLabel("myGoalDueDateLabel", "until " + _currentGoal.DueDate.ToString("yyyy/MM/dd"), Color.FromArgb(161, 156, 146), _lilitaOne, 13F, ClientSize.Width, 20, 0, 151, 3);
-
+            
             dailySpendLabel = CreateClassicLabel("dailySpendLabel", _goalService.Insights( _currentGoal, "daily"), Color.White, _lilitaOne, 25F, 300, 80, 0, 190, 5);
             dailySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
 
@@ -81,9 +81,9 @@ namespace Plutus
             LoadEditGoalPage();
         }
 
-        private void SetAsMainGoalButton_Click(object sender, EventArgs e)
-        {
-            _goalService.SetMainGoal(_currentGoal);
+        private async void SetAsMainGoalButton_Click(object sender, EventArgs e)
+        { 
+            await HttpService.SetAsMainGoalAsync(_currentGoal);
             Controls.Clear();
             LoadMainPage();
         }

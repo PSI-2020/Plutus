@@ -1,4 +1,5 @@
 ﻿using Plutus.WebService;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http;
@@ -42,5 +43,27 @@ namespace Plutus
         }
 
         public static async Task PostPaymentAsync(Payment payment, string type) => await _httpClient.PostAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Payment/" + type, payment);
+
+        public static async Task<List<Goal>> GetGoalsAsync()
+        {
+            var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/");
+            return response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<List<Goal>>() : null;
+        }
+
+        public static async Task PostGoalAsync(Goal goal)
+        {
+            await _httpClient.PostAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
+        }
+
+        public static async Task DeleteGoalAsync(int id)
+        {
+            await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/" + id);
+        }
+        public static async Task SetAsMainGoalAsync(Goal goal)
+        {
+            await _httpClient.PutAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
+        }
+
+       
     }
 }
