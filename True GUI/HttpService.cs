@@ -50,20 +50,25 @@ namespace Plutus
             return response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<List<Goal>>() : null;
         }
 
-        public static async Task PostGoalAsync(Goal goal)
-        {
-            await _httpClient.PostAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
-        }
+        public static async Task PostGoalAsync(Goal goal) => await _httpClient.PostAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
 
-        public static async Task DeleteGoalAsync(int id)
+        public static async Task DeleteGoalAsync(int id) => await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/" + id);
+        public static async Task SetAsMainGoalAsync(Goal goal) => await _httpClient.PutAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
+        public static async Task<string> GetBudgetAsync(int index)
         {
-            await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/" + id);
+            var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Budgets/" + index);
+            return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
         }
-        public static async Task SetAsMainGoalAsync(Goal goal)
+        public static async Task PostBudgetAsync(Budget budget) => await _httpClient.PostAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Budgets/", budget);
+        public static async Task DeleteBudgetAsync(int index) => await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Budgets/" + index);
+        public static async Task<string> GetScheduledPaymentAsync(int index, string type)
         {
-            await _httpClient.PutAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
+            var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Scheduler/" + index + "/" + type);
+            return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
         }
+        public static async Task PostScheduledPaymentAsync(ScheduledPayment payment, string type) => await _httpClient.PostAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Scheduler/" + type, payment);
+        public static async Task DeleteScheduledPaymentAsync(int index, string type) => await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Scheduler/" + index + "/" + type);
 
-       
+
     }
 }

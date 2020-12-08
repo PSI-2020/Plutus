@@ -52,7 +52,7 @@ namespace Plutus
             PerformLayout();
         }
 
-        private void InitializeBudgets(int index)
+        private async void InitializeBudgets(int index)
         {
             var flow = new FlowLayoutPanel
             {
@@ -91,7 +91,7 @@ namespace Plutus
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            label.Text = _budgetsController.Get(index);
+            label.Text = await HttpService.GetBudgetAsync(index);
         }
 
         private void OpenStats(object sender, EventArgs e)
@@ -101,14 +101,14 @@ namespace Plutus
 
             var showButton = (Button)sender;
             var index = int.Parse(showButton.Name.Substring(4));
-            historyDataGrid.DataSource = _budgetsController.GetStats(index);
+            //historyDataGrid.DataSource = _budgetsController.GetStats(index);
         }
 
-        private void DeleteClick(object sender, EventArgs e)
+        private async void DeleteClick(object sender, EventArgs e)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            _budgetsController.Delete(index);
+            await HttpService.DeleteBudgetAsync(index);
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();
