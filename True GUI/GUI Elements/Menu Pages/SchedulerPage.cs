@@ -17,7 +17,7 @@ namespace Plutus
             
         }
 
-        private void LoadSchedulerPage()
+        private async void LoadSchedulerPage()
         {
             Controls.Clear();
             LoadMenuButton();
@@ -62,16 +62,16 @@ namespace Plutus
 
             incomeTextLabel = CreateClassicLabel("incomeTextLabel", "income", _firstColor, _lilitaOne, 12F, 100, 30, incomeAddButton.Left + 16, ClientSize.Height - 50, 7);
 
-            var incomesList = _fileManager.LoadScheduledPayments("MonthlyIncome");
-            var expensesList = _fileManager.LoadScheduledPayments("MonthlyExpenses");
+            var incomesList = await HttpService.GetAllScheduledPaymentsAsync("MonthlyIncome");
+            var expensesList = await HttpService.GetAllScheduledPaymentsAsync("MonthlyExpenses");
 
             for(var x = 0; x < incomesList.Count; x++)
             {
-                incomesFlow.Controls.Add(InitializePayments(x, "MonthlyIncome"));
+                InitializePayments(x, "MonthlyIncome");
             }
             for(var x = 0; x < expensesList.Count; x++)
             {
-                expensesFlow.Controls.Add(InitializePayments(x, "MonthlyExpenses"));
+                InitializePayments(x, "MonthlyExpenses");
             }
 
             Controls.Add(scheduledExpenseLabel);
@@ -88,7 +88,7 @@ namespace Plutus
             PerformLayout();
         }
 
-        private FlowLayoutPanel InitializePayments(int index, string type)
+        private async void InitializePayments(int index, string type)
         {
             var flow = new FlowLayoutPanel
             {
@@ -100,7 +100,7 @@ namespace Plutus
             var label = new Label
             {
                 BackColor = _secondColor,
-                Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 10F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 48,
                 Width = ClientSize.Width - 140,
                 Name = "paymentLabel" + index
@@ -134,27 +134,35 @@ namespace Plutus
             deleteButton.Click += (sender, e) => DelButtonClick(sender, e, type);
             activateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(activateButton.Name.Substring(6)), true);
             deactivateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(deactivateButton.Name.Substring(8)), false);
-            label.Text = _schedulerController.Get(index, type);
+            label.Text = await HttpService.GetScheduledPaymentAsync(index, type);
             flow.Controls.Add(label);
             flow.Controls.Add(activateButton);
             flow.Controls.Add(deactivateButton);
             flow.Controls.Add(deleteButton);
-            return flow;
+            if (type.ToLower() == "monthlyincome")
+            {
+                incomesFlow.Controls.Add(flow);
+            }
+            else if(type.ToLower() == "monthlyexpenses")
+            {
+                expensesFlow.Controls.Add(flow);
+            }
+
         }
 
-        private void StatusChangeClick(object sender, EventArgs e, string type, int index, bool status)
+        private async void StatusChangeClick(object sender, EventArgs e, string type, int index, bool status)
         {
-            _schedulerService.ChangeStatus(index, type, status);
+            await HttpService.ChangeScheduledPaymentStatusAsync(index, type, status);
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();
             LoadSchedulerPage();
         }
 
-        private void DelButtonClick(object sender, EventArgs e, string type)
+        private async void DelButtonClick(object sender, EventArgs e, string type)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            _schedulerController.Delete(index, type);
+            await HttpService.DeleteScheduledPaymentAsync(index, type);
 
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();
