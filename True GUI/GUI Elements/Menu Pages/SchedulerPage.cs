@@ -17,7 +17,7 @@ namespace Plutus
             
         }
 
-        private void LoadSchedulerPage()
+        private async void LoadSchedulerPage()
         {
             Controls.Clear();
             LoadMenuButton();
@@ -62,8 +62,8 @@ namespace Plutus
 
             incomeTextLabel = CreateClassicLabel("incomeTextLabel", "income", _firstColor, _lilitaOne, 12F, 100, 30, incomeAddButton.Left + 16, ClientSize.Height - 50, 7);
 
-            var incomesList = _fileManager.LoadScheduledPayments("MonthlyIncome");
-            var expensesList = _fileManager.LoadScheduledPayments("MonthlyExpenses");
+            var incomesList = await HttpService.GetAllScheduledPaymentsAsync("MonthlyIncome");
+            var expensesList = await HttpService.GetAllScheduledPaymentsAsync("MonthlyExpenses");
 
             for(var x = 0; x < incomesList.Count; x++)
             {
@@ -100,7 +100,7 @@ namespace Plutus
             var label = new Label
             {
                 BackColor = _secondColor,
-                Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font(_lilitaOne, 10F, FontStyle.Regular, GraphicsUnit.Point),
                 Height = 48,
                 Width = ClientSize.Width - 140,
                 Name = "paymentLabel" + index
@@ -150,9 +150,9 @@ namespace Plutus
 
         }
 
-        private void StatusChangeClick(object sender, EventArgs e, string type, int index, bool status)
+        private async void StatusChangeClick(object sender, EventArgs e, string type, int index, bool status)
         {
-            _schedulerService.ChangeStatus(index, type, status);
+            await HttpService.ChangeScheduledPaymentStatusAsync(index, type, status);
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();
             LoadSchedulerPage();
