@@ -28,6 +28,8 @@ namespace Plutus
         Rent,
         Other
     }
+
+
     public partial class TrueGUI : Form
     {
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
