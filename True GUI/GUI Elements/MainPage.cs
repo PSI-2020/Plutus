@@ -83,9 +83,9 @@ namespace Plutus
 
         private void AddFieldsToCurrentPayment() => LoadPaymentFieldPage("mainPage");
 
-        private void AddCurrentPayment()
+        private async void AddCurrentPayment()
         {
-            _paymentService.AddPaymentAsync(_currentInfo);
+            await _paymentService.AddPaymentAsync(_currentInfo);
             LoadMainPage();
         }
 

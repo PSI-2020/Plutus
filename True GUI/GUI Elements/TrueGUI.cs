@@ -6,6 +6,29 @@ using System.Windows.Forms;
 
 namespace Plutus
 {
+    enum ExpenseCategories
+    {
+        Groceries,
+        Restaurant,
+        Clothes,
+        Transport,
+        Health,
+        School,
+        Bills,
+        Entertainment,
+        Other
+    }
+
+    enum IncomeCategories
+    {
+        Salary,
+        Gift,
+        Investment,
+        Sale,
+        Rent,
+        Other
+    }
+
     public partial class TrueGUI : Form
     {
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
