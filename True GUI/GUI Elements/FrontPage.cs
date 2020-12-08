@@ -36,7 +36,7 @@ namespace Plutus
         private async void GetStartedButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            await HttpService.CheckPaymentsAsync();
+            await PlutusApiClient.CheckPaymentsAsync();
             LoadMainPage();
         }
 

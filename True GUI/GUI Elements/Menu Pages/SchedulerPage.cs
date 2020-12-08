@@ -62,8 +62,8 @@ namespace Plutus
 
             incomeTextLabel = CreateClassicLabel("incomeTextLabel", "income", _firstColor, _lilitaOne, 12F, 100, 30, incomeAddButton.Left + 16, ClientSize.Height - 50, 7);
 
-            var incomesList = await HttpService.GetAllScheduledPaymentsAsync("MonthlyIncome");
-            var expensesList = await HttpService.GetAllScheduledPaymentsAsync("MonthlyExpenses");
+            var incomesList = await PlutusApiClient.GetAllScheduledPaymentsAsync("MonthlyIncome");
+            var expensesList = await PlutusApiClient.GetAllScheduledPaymentsAsync("MonthlyExpenses");
 
             for(var x = 0; x < incomesList.Count; x++)
             {
@@ -134,7 +134,7 @@ namespace Plutus
             deleteButton.Click += (sender, e) => DelButtonClick(sender, e, type);
             activateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(activateButton.Name.Substring(6)), true);
             deactivateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(deactivateButton.Name.Substring(8)), false);
-            label.Text = await HttpService.GetScheduledPaymentAsync(index, type);
+            label.Text = await PlutusApiClient.GetScheduledPaymentAsync(index, type);
             flow.Controls.Add(label);
             flow.Controls.Add(activateButton);
             flow.Controls.Add(deactivateButton);
@@ -152,7 +152,7 @@ namespace Plutus
 
         private async void StatusChangeClick(object sender, EventArgs e, string type, int index, bool status)
         {
-            await HttpService.ChangeScheduledPaymentStatusAsync(index, type, status);
+            await PlutusApiClient.ChangeScheduledPaymentStatusAsync(index, type, status);
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();
             LoadSchedulerPage();
@@ -162,7 +162,7 @@ namespace Plutus
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            await HttpService.DeleteScheduledPaymentAsync(index, type);
+            await PlutusApiClient.DeleteScheduledPaymentAsync(index, type);
 
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();

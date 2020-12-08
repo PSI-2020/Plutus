@@ -37,7 +37,7 @@ namespace Plutus
             budgetsFlow.Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
-            var list = await HttpService.GetBudgetsListAsync();
+            var list = await PlutusApiClient.GetBudgetsListAsync();
             if (list == null) return;
 
 
@@ -92,7 +92,7 @@ namespace Plutus
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
-            label.Text = await HttpService.GetBudgetAsync(index);
+            label.Text = await PlutusApiClient.GetBudgetAsync(index);
         }
 
         private async void OpenStats(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace Plutus
 
             var showButton = (Button)sender;
             var index = int.Parse(showButton.Name.Substring(4));
-            var list = (await HttpService.GetBudgetStatsAsync(index)).Select(x => new { DATE = x.Date.ConvertToDate(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
+            var list = (await PlutusApiClient.GetBudgetStatsAsync(index)).Select(x => new { DATE = x.Date.ConvertToDate(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
                 .OrderByDescending(x => x.DATE).ToList();
             historyDataGrid.DataSource = !list.Any() ? null : list;
         }
@@ -111,7 +111,7 @@ namespace Plutus
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
-            await HttpService.DeleteBudgetAsync(index);
+            await PlutusApiClient.DeleteBudgetAsync(index);
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();

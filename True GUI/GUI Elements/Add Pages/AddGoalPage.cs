@@ -61,7 +61,7 @@ namespace Plutus
                 if (Regex.IsMatch(goalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
                     var goal = new Goal(goalNameBox.Text.UppercaseFirstLetter(), double.Parse(goalAmountBox.Text), goalDueDateBox.Value);
-                    await HttpService.PostGoalAsync(goal);
+                    await PlutusApiClient.PostGoalAsync(goal);
                     Controls.Clear();
                     LoadGoalsPage();
                 }
