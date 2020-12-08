@@ -54,6 +54,11 @@ namespace Plutus
 
         public static async Task DeleteGoalAsync(int id) => await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/" + id);
         public static async Task SetAsMainGoalAsync(Goal goal) => await _httpClient.PutAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/", goal);
+        public static async Task<string> GetGoalInsightsAsync(int index, string dailyOrMonthly)
+        {
+            var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/" + index + "/" + dailyOrMonthly);
+            return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
+        }
         public static async Task<string> GetBudgetAsync(int index)
         {
             var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Budgets/" + index);
