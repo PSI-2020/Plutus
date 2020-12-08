@@ -6,6 +6,28 @@ using System.Windows.Forms;
 
 namespace Plutus
 {
+    enum ExpenseCategories
+    {
+        Groceries,
+        Restaurant,
+        Clothes,
+        Transport,
+        Health,
+        School,
+        Bills,
+        Entertainment,
+        Other
+    }
+
+    enum IncomeCategories
+    {
+        Salary,
+        Gift,
+        Investment,
+        Sale,
+        Rent,
+        Other
+    }
     public partial class TrueGUI : Form
     {
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
@@ -20,8 +42,6 @@ namespace Plutus
         private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
         private readonly GoalService _goalService = new GoalService();
-        private readonly BudgetService _budgetService = new BudgetService();
-        private readonly SchedulerService _schedulerService = new SchedulerService();
         private readonly HttpService httpService = new HttpService();
 
         private string _previousPage;
