@@ -19,7 +19,7 @@ namespace Plutus.Services
                 Category = chi.CurrentCategory
             };
 
-            await HttpService.PostPaymentAsync(payment, chi.CurrentType);
+            await PlutusApiClient.PostPaymentAsync(payment, chi.CurrentType);
         }
 
         public void AddCartPayment(string name, double amount, string category)

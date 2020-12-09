@@ -25,7 +25,7 @@ namespace Plutus
         Carts
     }
 
-    public class HttpService
+    public class PlutusApiClient
     {
         private static readonly HttpClient _httpClient = new HttpClient();
 

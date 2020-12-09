@@ -22,7 +22,7 @@ namespace Plutus
         private readonly GoalService _goalService = new GoalService();
         private readonly BudgetService _budgetService = new BudgetService();
         private readonly SchedulerService _schedulerService = new SchedulerService();
-        private readonly HttpService httpService = new HttpService();
+        private readonly PlutusApiClient httpService = new PlutusApiClient();
 
         private string _previousPage;
 
