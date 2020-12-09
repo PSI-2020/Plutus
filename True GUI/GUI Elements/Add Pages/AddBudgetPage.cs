@@ -104,7 +104,7 @@ namespace Plutus
 
         private void BackButtonClick(object sender, EventArgs e) => LoadBudgetsPage();
 
-        private void InsertBudgetButtonClick(object sender, EventArgs e)
+        private async void InsertBudgetButtonClick(object sender, EventArgs e)
         {
             Controls.Remove(errorLabel);
             var error = _inputVerification.VerifyData(amount: sumTextBox.Text, category: budgetCategoryBox.Text);
@@ -115,10 +115,10 @@ namespace Plutus
                 return;
             }
 
-            var list = _fileManager.LoadBudget();
+            var list = await HttpService.GetBudgetsListAsync();
             budgetsFlow.Visible = true;
 
-            _budgetsController.Post(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
+            await HttpService.PostBudgetAsync(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();
