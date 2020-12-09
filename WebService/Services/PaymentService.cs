@@ -22,7 +22,7 @@ namespace Plutus.Services
             await PlutusApiClient.PostPaymentAsync(payment, chi.CurrentType);
         }
 
-        public void AddCartPayment(string name, double amount, string category)
+        public async void AddCartPayment(string name, double amount, string category)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var payment = new Payment
@@ -32,7 +32,7 @@ namespace Plutus.Services
                 Amount = amount,
                 Category = category
             };
-            _fm.AddPayment(payment, "Expense");
+            await HttpService.PostPaymentAsync(payment, "Expense"); ;
         }
     }
 }
