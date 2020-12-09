@@ -44,8 +44,6 @@ namespace Plutus
         private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
         private readonly GoalService _goalService = new GoalService();
-        private readonly BudgetService _budgetService = new BudgetService();
-        private readonly SchedulerService _schedulerService = new SchedulerService();
         private readonly PlutusApiClient httpService = new PlutusApiClient();
 
         private string _previousPage;

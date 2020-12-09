@@ -96,7 +96,7 @@ namespace Plutus
         }
         private async void DeleteGoalButton_Click(object sender, EventArgs e)
         {
-            var list = await HttpService.GetGoalsAsync();
+            var list = await PlutusApiClient.GetGoalsAsync();
             int id = 0;
             foreach(var i in list)
             {
@@ -105,7 +105,7 @@ namespace Plutus
                 id++;
             }
             
-            await HttpService.DeleteGoalAsync(id);
+            await PlutusApiClient.DeleteGoalAsync(id);
             Controls.Clear();
             LoadGoalsPage();
         }
