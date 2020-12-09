@@ -6,7 +6,7 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        private ShoppingService _shoppingService = new ShoppingService();
+        private ShoppingFrontEndService _shoppingService = new ShoppingFrontEndService();
         Button endShoppingButton;
         Label toPickShoppingLabel;
         Label shoppingLineAfter1;
@@ -107,8 +107,8 @@ namespace Plutus
 
         private void EndShopping_Click(object sender, EventArgs e)
         {
-            _shoppingService.ChargeShopping(_paymentService);
-            GoBackCartMethod("Shopping Done.");
+            _shoppingService.ChargeShopping();
+            GoBackCartMethod(_shoppingService.RetMess);
         }
 
         private int LoadToPickShopping(int top)

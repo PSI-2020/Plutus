@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plutus.WebService;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -118,7 +119,6 @@ namespace Plutus
             var list = _fileManager.LoadBudget();
             budgetsFlow.Visible = true;
 
-            _budgetsController.Post(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();

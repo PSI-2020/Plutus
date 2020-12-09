@@ -148,9 +148,7 @@ namespace Plutus
                 return;
             }
 
-            var list = _fileManager.LoadScheduledPayments(type);
-            _schedulerController.Post(new ScheduledPayment(firstPaymentBox.Value, nameTextBox.Text, double.Parse(amountTextBox.Text), 
-                categoryBox.SelectedItem.ToString(), type + list.Count, frequencyBox.SelectedItem.ToString(), true), type);
+            var list = _fileManager.LoadScheduledPayments(type); 
             LoadSchedulerPage();
             categoryBox.Text = null;
             nameTextBox.Clear();

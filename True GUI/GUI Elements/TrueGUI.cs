@@ -40,7 +40,7 @@ namespace Plutus
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly VerificationService _inputVerification = new VerificationService();
         private readonly FileManager _fileManager = new FileManager();
-        private readonly CartService _cartService;
+        private readonly CartFrontendService _cartService;
         private readonly PaymentService _paymentService;
         private readonly GoalService _goalService = new GoalService();
         private readonly BudgetService _budgetService = new BudgetService();
@@ -51,7 +51,7 @@ namespace Plutus
 
         public TrueGUI()
         {
-            _cartService = new CartService(_fileManager);
+            _cartService = new CartFrontendService();
             _paymentService = new PaymentService(_fileManager);
             _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
             _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
