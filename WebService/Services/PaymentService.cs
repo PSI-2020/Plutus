@@ -32,7 +32,7 @@ namespace Plutus.Services
                 Amount = amount,
                 Category = category
             };
-            await HttpService.PostPaymentAsync(payment, "Expense"); ;
+            await PlutusApiClient.PostPaymentAsync(payment, "Expense"); ;
         }
     }
 }

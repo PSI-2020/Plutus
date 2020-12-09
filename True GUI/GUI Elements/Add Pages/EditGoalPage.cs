@@ -97,7 +97,7 @@ namespace Plutus
         private async void DeleteGoalButton_Click(object sender, EventArgs e)
         {
             var list = await PlutusApiClient.GetGoalsAsync();
-            int id = 0;
+            var id = 0;
             foreach(var i in list)
             {
                 if (_currentGoal.Name == i.Name && _currentGoal.Amount == i.Amount && _currentGoal.DueDate == i.DueDate)

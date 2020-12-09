@@ -38,7 +38,7 @@ namespace Plutus
         public async void EditPayment(Payment payment, Payment newPayment, string type)
         {
             var serializer = new XmlSerializer(typeof(List<Payment>));
-            var list = await HttpService.GetPaymentsAsync(type);
+            var list = await PlutusApiClient.GetPaymentsAsync(type);
             list[list.IndexOf(payment)] = newPayment;
             type = GetFilePath(type);
 

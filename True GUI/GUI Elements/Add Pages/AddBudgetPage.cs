@@ -115,7 +115,7 @@ namespace Plutus
                 return;
             }
 
-            var list = await HttpService.GetBudgetsListAsync();
+            var list = await PlutusApiClient.GetBudgetsListAsync();
             budgetsFlow.Visible = true;
 
             await PlutusApiClient.PostBudgetAsync(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
