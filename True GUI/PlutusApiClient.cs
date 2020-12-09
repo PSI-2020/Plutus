@@ -1,4 +1,5 @@
 ﻿using Plutus.WebService;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http;
@@ -39,6 +40,8 @@ namespace Plutus
         public static async Task DeleteScheduledPaymentAsync(int index, string type) => await _httpClient.DeleteAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Scheduler/" + index + "/" + type);
         public static async Task ChangeScheduledPaymentStatusAsync(int index, string type, bool status) => await _httpClient.PutAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Scheduler/" + index + "/" + type + "/" + status, index);
         public static async Task CheckPaymentsAsync() => await _httpClient.PatchAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Scheduler/", null);
+        public static async Task EditGoalAsync(int id, Goal newGoal) => await _httpClient.PutAsJsonAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/edit/" + id, newGoal);
+        
 
         public static async Task<List<History>> GetHistoryAsync(int index)
         {
@@ -67,6 +70,7 @@ namespace Plutus
             var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Goals/" + index + "/" + dailyOrMonthly);
             return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
         }
+
         public static async Task<string> GetBudgetAsync(int index)
         {
             var response = await _httpClient.GetAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Budgets/" + index);

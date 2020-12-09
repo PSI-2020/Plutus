@@ -43,7 +43,6 @@ namespace Plutus
         private readonly FileManager _fileManager = new FileManager();
         private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
-        private readonly GoalService _goalService = new GoalService();
         private readonly PlutusApiClient httpService = new PlutusApiClient();
 
         private string _previousPage;

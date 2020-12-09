@@ -62,7 +62,7 @@ namespace Plutus
             Controls.Add(deleteGoalButton);
         }
 
-        private void ChangeGoalButton_Click(object sender, EventArgs e)
+        private async void ChangeGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
             var verify = new VerificationService();
@@ -71,7 +71,16 @@ namespace Plutus
             {
                 if (Regex.IsMatch(newGoalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
-                    _goalService.EditGoal(_currentGoal, newGoalNameBox.Text, newGoalAmountBox.Text, newGoalDueDateBox.Value);
+                    var list = await PlutusApiClient.GetGoalsAsync();
+                    var id = 0;
+                    foreach (var i in list)
+                    {
+                        if (_currentGoal.Name == i.Name && _currentGoal.Amount == i.Amount && _currentGoal.DueDate == i.DueDate)
+                            break;
+                        id++;
+                    }
+                    var newGoal = new Goal(newGoalNameBox.Text, double.Parse(newGoalAmountBox.Text), newGoalDueDateBox.Value);
+                    await PlutusApiClient.EditGoalAsync(id, newGoal);
                     Controls.Clear();
                     LoadGoalsPage();
                 }

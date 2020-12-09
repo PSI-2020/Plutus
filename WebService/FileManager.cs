@@ -49,15 +49,6 @@ namespace Plutus
             }
         }
 
-        public void UpdateGoals(List<Goal> list)
-        {
-            var serializer = new XmlSerializer(typeof(List<Goal>));
-            File.WriteAllText(_goals, "");
-            using (var stream = File.OpenWrite(_goals))
-            {
-                serializer.Serialize(stream, list);
-            }
-        }
 
         public void SaveCarts(XElement carts) => carts.Save(_carts);
 
