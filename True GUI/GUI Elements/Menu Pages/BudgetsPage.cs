@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -30,13 +31,13 @@ namespace Plutus
         }
         private void BudgetAddButtonClick(object sender, EventArgs e) => LoadAddBudgetPage();
 
-        private void LoadBudgetsPage()
+        private async void LoadBudgetsPage()
         {
             Controls.Clear();
             budgetsFlow.Controls.Clear();
             LoadMenuButton();
             LoadEscapeButton();
-            var list = _fileManager.LoadBudget();
+            var list = await PlutusApiClient.GetBudgetsListAsync();
             if (list == null) return;
 
 
@@ -52,7 +53,7 @@ namespace Plutus
             PerformLayout();
         }
 
-        private void InitializeBudgets(int index)
+        private async void InitializeBudgets(int index)
         {
             var flow = new FlowLayoutPanel
             {
@@ -91,21 +92,26 @@ namespace Plutus
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
             flow.Controls.Add(showBtn);
+            label.Text = await PlutusApiClient.GetBudgetAsync(index);
         }
 
-        private void OpenStats(object sender, EventArgs e)
+        private async void OpenStats(object sender, EventArgs e)
         {
             Controls.Clear();
-            LoadHistoryPage();
+            LoadBudgetHistoryPage();
 
             var showButton = (Button)sender;
             var index = int.Parse(showButton.Name.Substring(4));
+            var list = (await PlutusApiClient.GetBudgetStatsAsync(index)).Select(x => new { DATE = x.Date.ConvertToDate(), NAME = x.Name, AMOUNT = x.Amount, CATEGORY = x.Category })
+                .OrderByDescending(x => x.DATE).ToList();
+            historyDataGrid.DataSource = !list.Any() ? null : list;
         }
 
-        private void DeleteClick(object sender, EventArgs e)
+        private async void DeleteClick(object sender, EventArgs e)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name.Substring(6));
+            await PlutusApiClient.DeleteBudgetAsync(index);
 
             budgetsFlow.Controls.Clear();
             LoadBudgetsPage();
