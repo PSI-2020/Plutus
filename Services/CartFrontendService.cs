@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Plutus.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Plutus
 {
-    class CartFrontendService
+    class CartFrontendService : ICartFrontEndService
     {
         private Cart _currentCart;
         private List<Cart> _carts;

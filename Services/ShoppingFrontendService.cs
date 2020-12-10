@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Plutus.Interfaces;
+using System.Collections.Generic;
 
 namespace Plutus
 {
-    class ShoppingFrontEndService
+    class ShoppingFrontEndService : IShoppingFrontEndService
     {
         private List<ShoppingExpense> _shoppingBag;
         public string RetMess { get; set; }
@@ -17,16 +18,9 @@ namespace Plutus
             }
         }
 
-        public void ElementClicked(int index)
-        {
-            _shoppingBag[index].State = _shoppingBag[index].State == 0 ? 1 : 0;
-        }
+        public void ElementClicked(int index) => _shoppingBag[index].State = _shoppingBag[index].State == 0 ? 1 : 0;
 
-        public async void ChargeShopping()
-        {
-            await HttpService.PostChargeShopping(_shoppingBag);
-            //var retMessage = await HttpService.GetShoppingResult();
-        }
+        public async void ChargeShopping() => await HttpService.PostChargeShopping(_shoppingBag);
 
 
         public List<string> GiveExpenses(int state)

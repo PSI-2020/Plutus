@@ -6,7 +6,6 @@ namespace Plutus
 {
     public partial class TrueGUI : Form
     {
-        private ShoppingFrontEndService _shoppingService = new ShoppingFrontEndService();
         Button endShoppingButton;
         Label toPickShoppingLabel;
         Label shoppingLineAfter1;
