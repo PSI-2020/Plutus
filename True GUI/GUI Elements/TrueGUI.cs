@@ -52,6 +52,7 @@ namespace Plutus
         {
             _cartService = cartService;
             _shoppingService = shoppingService;
+            _paymentService = paymentService;
             _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
             _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
             _fontFamilies = _privateFontCollection.Families;
