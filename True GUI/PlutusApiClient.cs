@@ -42,7 +42,9 @@ namespace Plutus
         public static async Task ChangeScheduledPaymentStatusAsync(int index, string type, bool status) => await _httpClient.PutAsJsonAsync(_path + "/api/Scheduler/" + index + "/" + type + "/" + status, index);
         public static async Task CheckPaymentsAsync() => await _httpClient.PatchAsync(_path + "/api/Scheduler/", null);
         public static async Task EditGoalAsync(int id, Goal newGoal) => await _httpClient.PutAsJsonAsync(_path + "/api/Goals/edit/" + id, newGoal);
-        
+        public static async Task EditPayment(Payment payment, int index, DataType type) => await _httpClient.PutAsJsonAsync(_path + "/api/Payment/" + type + "/" + index, payment);
+        public static async Task DeletePayment(Payment payment, DataType type) => await _httpClient.PutAsJsonAsync(_path + "/api/Payment/" + type, payment);
+
 
         public static async Task<List<History>> GetHistoryAsync(int index)
         {
