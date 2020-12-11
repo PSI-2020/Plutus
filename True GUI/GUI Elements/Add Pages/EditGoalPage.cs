@@ -62,7 +62,7 @@ namespace Plutus
             Controls.Add(deleteGoalButton);
         }
 
-        private async void ChangeGoalButton_Click(object sender, EventArgs e)
+        private void ChangeGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
             var verify = new VerificationService();
@@ -71,16 +71,7 @@ namespace Plutus
             {
                 if (Regex.IsMatch(newGoalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
-                    var list = await PlutusApiClient.GetGoalsAsync();
-                    var id = 0;
-                    foreach (var i in list)
-                    {
-                        if (_currentGoal.Name == i.Name && _currentGoal.Amount == i.Amount && _currentGoal.DueDate == i.DueDate)
-                            break;
-                        id++;
-                    }
-                    var newGoal = new Goal(newGoalNameBox.Text, double.Parse(newGoalAmountBox.Text), newGoalDueDateBox.Value);
-                    await PlutusApiClient.EditGoalAsync(id, newGoal);
+                    _goalService.EditGoal(_currentGoal, newGoalNameBox.Text, newGoalAmountBox.Text, newGoalDueDateBox.Value);
                     Controls.Clear();
                     LoadGoalsPage();
                 }
@@ -103,18 +94,11 @@ namespace Plutus
             }
 
         }
-        private async void DeleteGoalButton_Click(object sender, EventArgs e)
+        private void DeleteGoalButton_Click(object sender, EventArgs e)
         {
-            var list = await PlutusApiClient.GetGoalsAsync();
-            var id = 0;
-            foreach(var i in list)
-            {
-                if (_currentGoal.Name == i.Name && _currentGoal.Amount == i.Amount && _currentGoal.DueDate == i.DueDate)
-                    break;
-                id++;
-            }
-            
-            await PlutusApiClient.DeleteGoalAsync(id);
+
+            _goalService.DeleteGoal(_currentGoal);
+
             Controls.Clear();
             LoadGoalsPage();
         }

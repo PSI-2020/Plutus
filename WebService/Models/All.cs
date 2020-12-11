@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Plutus.WebService
 {
-    public class History : ISerializable
+    public class All : ISerializable
     {
         public DateTime Date { get; set; }
         public string Name { get; set; }
@@ -11,9 +11,9 @@ namespace Plutus.WebService
         public string Category { get; set; }
         public string Type { get; set; }
 
-        public History() { }
+        public All() { }
 
-        public History(DateTime date, string name, double amount, string category, string type)
+        public All(DateTime date, string name, double amount, string category, string type)
         {
             Date = date;
             Name = name;
@@ -31,7 +31,7 @@ namespace Plutus.WebService
             info.AddValue("Type", Type);
         }
 
-        public History(SerializationInfo info, StreamingContext context)
+        public All(SerializationInfo info, StreamingContext context)
         {
             Date = (DateTime)info.GetValue("Date", typeof(int));
             Name = (string)info.GetValue("Name", typeof(string));

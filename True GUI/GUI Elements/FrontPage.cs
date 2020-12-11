@@ -33,10 +33,10 @@ namespace Plutus
             ResumeLayout(false);
             PerformLayout();
         }
-        private async void GetStartedButton_Click(object sender, EventArgs e)
+        private void GetStartedButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            await PlutusApiClient.CheckPaymentsAsync();
+            _schedulerService.CheckPayments();
             LoadMainPage();
         }
 
