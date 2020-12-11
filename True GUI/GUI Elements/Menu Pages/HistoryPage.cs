@@ -134,30 +134,7 @@ namespace Plutus
                 Category = historyDataGrid.Rows[rowIndex].Cells[3].Value.ToString()
             };
 
-            var newPayment = new Payment
-            {
-                Date = DateTime.UtcNow.ConvertToInt(),
-                Name = historyDataGrid.Rows[rowIndex].Cells[1].Value.ToString(),
-                Amount = double.Parse(historyDataGrid.Rows[rowIndex].Cells[2].Value.ToString()),
-                Category = historyDataGrid.Rows[rowIndex].Cells[3].Value.ToString()
-            };
-
-            switch (historyPaymentTypeBox.SelectedIndex)
-            {
-                case 0:
-                    _fileManager.EditPayment(payment, newPayment, historyDataGrid.Rows[rowIndex].Cells[4].Value.ToString());
-                    break;
-                case 1:
-                    _fileManager.EditPayment(payment, newPayment, "Expense");
-                    break;
-                case 2:
-                    _fileManager.EditPayment(payment, newPayment, "Income");
-                    break;
-                default:
-                    break;
-            }
-
-            UpdateHistoryAsync(historyPaymentTypeBox.SelectedIndex);
+            LoadEditPage(payment, historyDataGrid.Rows[rowIndex].Cells[4].Value.ToString());
         }
     }
 }
