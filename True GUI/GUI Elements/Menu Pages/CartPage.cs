@@ -60,7 +60,6 @@ namespace Plutus
             LoadEscapeButton();
             cartsPageWorkPanel.Controls.Clear();
             cartPageInfoLabel.Text = "CARTS:";
-            cartErrorLabel.Text = _cartService.GiveLoadMessage();
             cartsPageWorkPanel.Controls.Add(cartErrorLabel);
             Controls.Add(cartsPageName);
             Controls.Add(cartPageInfoLabel);
@@ -474,7 +473,7 @@ namespace Plutus
         }
         private void ChargeCart_Click(object sender, EventArgs e)
         {
-            _cartService.ChargeCart(_paymentService);
+            _cartService.ChargeCart();
             cartNavigationLabel.Text = "Charged";
         }
 

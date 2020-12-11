@@ -14,7 +14,7 @@ namespace Plutus
 
         private void InitializeSchedulerPage()
         {
-            
+
         }
 
         private async void LoadSchedulerPage()
@@ -65,11 +65,11 @@ namespace Plutus
             var incomesList = await PlutusApiClient.GetAllScheduledPaymentsAsync("MonthlyIncome");
             var expensesList = await PlutusApiClient.GetAllScheduledPaymentsAsync("MonthlyExpenses");
 
-            for(var x = 0; x < incomesList.Count; x++)
+            for (var x = 0; x < incomesList.Count; x++)
             {
                 InitializePayments(x, "MonthlyIncome");
             }
-            for(var x = 0; x < expensesList.Count; x++)
+            for (var x = 0; x < expensesList.Count; x++)
             {
                 InitializePayments(x, "MonthlyExpenses");
             }
@@ -182,4 +182,3 @@ namespace Plutus
         }
     }
 }
-

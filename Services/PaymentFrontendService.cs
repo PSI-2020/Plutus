@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Plutus.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace Plutus.Services
 {
-    class PaymentService
+    public class PaymentFrontendService : IPaymentFrontEndService
     {
-        private readonly FileManager _fm;
-
-        public PaymentService(FileManager fm) => _fm = fm;
-        public async System.Threading.Tasks.Task AddPaymentAsync(CurrentInfoHolder chi)
+        public async Task AddPaymentAsync(CurrentInfoHolder chi)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 

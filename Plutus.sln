@@ -10,6 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plutus.Xamarin", "..\Plutus.Xamarin\Plutus.Xamarin.csproj", "{D17F4D9E-0600-4620-8EB5-61D2ABF16EE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plutus.BackEnd", "..\Plutus.BackEnd\Plutus.BackEnd.csproj", "{CBD89744-0E5C-448A-B1E2-0B891E31ADA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plutus.Xamarin.Android", "..\..\..\Desktop\Plutus All\Plutus.Xamarin\Plutus.Xamarin.Android\Plutus.Xamarin.Android.csproj", "{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plutus.WebService", "..\Plutus.WebService\Plutus.WebService.csproj", "{A5D21F1D-F7DC-47FE-9630-7AA5D813C678}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +28,24 @@ Global
 		{13C5DD9E-C729-49D0-88BE-46ABB1DC584B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C5DD9E-C729-49D0-88BE-46ABB1DC584B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C5DD9E-C729-49D0-88BE-46ABB1DC584B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17F4D9E-0600-4620-8EB5-61D2ABF16EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17F4D9E-0600-4620-8EB5-61D2ABF16EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17F4D9E-0600-4620-8EB5-61D2ABF16EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17F4D9E-0600-4620-8EB5-61D2ABF16EE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD89744-0E5C-448A-B1E2-0B891E31ADA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD89744-0E5C-448A-B1E2-0B891E31ADA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD89744-0E5C-448A-B1E2-0B891E31ADA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD89744-0E5C-448A-B1E2-0B891E31ADA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD19D0F8-0760-45BF-88A3-59A8C4DAB7F7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A5D21F1D-F7DC-47FE-9630-7AA5D813C678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D21F1D-F7DC-47FE-9630-7AA5D813C678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D21F1D-F7DC-47FE-9630-7AA5D813C678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D21F1D-F7DC-47FE-9630-7AA5D813C678}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
