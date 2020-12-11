@@ -4,7 +4,7 @@ using System.Linq;
 namespace Plutus
 
 {
-    public class Cart
+    class Cart
     {
         private readonly List<CartExpense> _cartParts;
         private string _cartName;
