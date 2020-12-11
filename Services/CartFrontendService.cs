@@ -1,6 +1,7 @@
 ﻿using Plutus.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Plutus
 {
@@ -13,7 +14,7 @@ namespace Plutus
         public CartFrontendService(PlutusApiClient plutusApi)
         {
             _plutusApiClient = plutusApi;
-            LoadCartsAsync();
+            _carts = LoadCartsAsync().Result;
         }
 
         public void NewCart() => _currentCart = new Cart();
@@ -75,7 +76,7 @@ namespace Plutus
             await _plutusApiClient.PostCartAsync(index, name, cartexpenses);
         }
 
-        private async void LoadCartsAsync()
+        private async Task<List<Cart>> LoadCartsAsync()
         {
             var carts = new List<Cart>();
             var names = (await _plutusApiClient.GetCartNamesAsync());
@@ -89,7 +90,7 @@ namespace Plutus
                 }
                 carts.Add(cart);
             }
-            _carts = carts;
+            return carts;
         }
 
         public Cart StartShopping() => _currentCart;
