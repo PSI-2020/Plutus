@@ -2,6 +2,7 @@
 using Plutus.Services;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Net.Http;
 using System.Windows.Forms;
 
@@ -34,6 +35,7 @@ namespace Plutus
     public partial class TrueGUI : Form
     {
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
+        private readonly string _directoryPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         private readonly FontFamily[] _fontFamilies;
         private readonly FontFamily _lilitaOne;
         private readonly Color _backgroundColor = Color.FromArgb(220, 213, 201);
@@ -53,8 +55,8 @@ namespace Plutus
             _cartService = cartService;
             _shoppingService = shoppingService;
             _paymentService = paymentService;
-            _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
-            _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
+            _privateFontCollection.AddFontFile(_directoryPath + Properties.Settings.Default.MacondoPath);
+            _privateFontCollection.AddFontFile(_directoryPath + Properties.Settings.Default.LilitiaPath);
             _fontFamilies = _privateFontCollection.Families;
             _lilitaOne = _fontFamilies[0];
             InitializeComponent();

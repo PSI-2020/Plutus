@@ -31,5 +31,23 @@ namespace Plutus.Properties {
                 return ((string)(this["WebServicePath"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/True GUI/GUI resources/LilitaOne.ttf")]
+        public string LilitiaPath {
+            get {
+                return ((string)(this["LilitiaPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/True GUI/GUI resources/Macondo.ttf")]
+        public string MacondoPath {
+            get {
+                return ((string)(this["MacondoPath"]));
+            }
+        }
     }
 }
