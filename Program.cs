@@ -1,3 +1,4 @@
+using Plutus.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Plutus
 {
@@ -42,7 +44,6 @@ namespace Plutus
 
         static async Task RunAsync()
         {
-            // Update port # in the following line.
             client.BaseAddress = new Uri("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -59,11 +60,13 @@ namespace Plutus
         }
 
         [STAThread]
-        public static void Main()
+        public static void Main(IServiceCollection services)
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            services.AddScoped<ICartFrontEndService, CartFrontendService>();
+            services.AddScoped<IShoppingFrontEndService, ShoppingFrontEndService>();
             trueGUI = new TrueGUI();
             Application.Run(trueGUI);
             /*var list = await GetProductAsync("https://aspnet-ybkkj2yjkwqhk.azurewebsites.net/api/Payment");
