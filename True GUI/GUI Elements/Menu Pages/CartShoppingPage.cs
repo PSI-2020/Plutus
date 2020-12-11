@@ -106,7 +106,7 @@ namespace Plutus
 
         private void EndShopping_Click(object sender, EventArgs e)
         {
-            _shoppingService.ChargeShopping();
+            _shoppingService.ChargeShoppingAsync();
             GoBackCartMethod("Done Shopping");
         }
 

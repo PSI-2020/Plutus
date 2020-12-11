@@ -82,7 +82,7 @@ namespace Plutus
                 Font = new Font(_lilitaOne, 11F, FontStyle.Regular, GraphicsUnit.Point),
                 ForeColor = _firstColor
             };
-            insertBudgetButton.Click += new EventHandler(InsertBudgetButtonClick);
+            insertBudgetButton.Click += new EventHandler(InsertBudgetButtonClickAsync);
             backButton = CreateClassicButton("backButton", Properties.Resources.BackArrowButton, 20, 30, 1, true);
             backButton.Click += new EventHandler(BackButtonClick);
 
@@ -102,9 +102,9 @@ namespace Plutus
             PerformLayout();
         }
 
-        private void BackButtonClick(object sender, EventArgs e) => LoadBudgetsPage();
+        private void BackButtonClick(object sender, EventArgs e) => LoadBudgetsPageAsync();
 
-        private async void InsertBudgetButtonClick(object sender, EventArgs e)
+        private async void InsertBudgetButtonClickAsync(object sender, EventArgs e)
         {
             Controls.Remove(errorLabel);
             var error = VerificationService.VerifyData(amount: sumTextBox.Text, category: budgetCategoryBox.Text);
@@ -121,7 +121,7 @@ namespace Plutus
             await _plutusApiClient.PostBudgetAsync(new Budget("budget" + list.Count, budgetCategoryBox.SelectedItem.ToString(), double.Parse(sumTextBox.Text), fromPicker.Value, toPicker.Value));
 
             budgetsFlow.Controls.Clear();
-            LoadBudgetsPage();
+            LoadBudgetsPageAsync();
             budgetCategoryBox.Text = null;
             fromPicker.ResetText();
             toPicker.ResetText();

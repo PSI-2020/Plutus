@@ -101,7 +101,7 @@ namespace Plutus
 
         }
 
-        private void backPageButtonClick(object sender, EventArgs e) => LoadSchedulerPage();
+        private void backPageButtonClick(object sender, EventArgs e) => LoadSchedulerPageAsync();
 
         private void LoadScheduledPaymentPage(string type)
         {
@@ -153,7 +153,7 @@ namespace Plutus
 
             await _plutusApiClient.PostScheduledPaymentAsync(new ScheduledPayment(firstPaymentBox.Value, nameTextBox.Text, double.Parse(amountTextBox.Text),
                 categoryBox.SelectedItem.ToString(), type + list.Count, frequencyBox.SelectedItem.ToString(), true), type);
-            LoadSchedulerPage();
+            LoadSchedulerPageAsync();
             categoryBox.Text = null;
             nameTextBox.Clear();
             amountTextBox.Clear();

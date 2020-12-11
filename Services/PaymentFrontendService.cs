@@ -26,7 +26,7 @@ namespace Plutus.Services
             await _plutusApiClient.PostPaymentAsync(payment, chi.CurrentType);
         }
 
-        public async void AddCartPayment(string name, double amount, string category)
+        public async void AddCartPaymentAsync(string name, double amount, string category)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var payment = new Payment

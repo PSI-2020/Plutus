@@ -22,7 +22,7 @@ namespace Plutus
             goalDueDateFieldLabel = CreateClassicLabel("goalDueDateFieldLabel", "Set a due date:", Color.White, _lilitaOne, 18F, 272, 40, 50, 420, 5, ContentAlignment.BottomLeft);
 
             addGoalButton = CreateClassicButton("addPaymentButton", "ADD", Color.White, _lilitaOne, 14F, _firstColor, 272, 80, 50, 650, 7);
-            addGoalButton.Click += new EventHandler(AddGoalButton_Click);
+            addGoalButton.Click += new EventHandler(AddGoalButton_ClickAsync);
 
             goalDueDateBox = new DateTimePicker()
             {
@@ -51,7 +51,7 @@ namespace Plutus
             Controls.Add(goalDueDateBox);
         }
 
-        private async void AddGoalButton_Click(object sender, EventArgs e)
+        private async void AddGoalButton_ClickAsync(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
             var error = VerificationService.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);

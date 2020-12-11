@@ -17,7 +17,7 @@ namespace Plutus
 
         }
 
-        private async void LoadSchedulerPage()
+        private async void LoadSchedulerPageAsync()
         {
             Controls.Clear();
             LoadMenuButton();
@@ -67,11 +67,11 @@ namespace Plutus
 
             for (var x = 0; x < incomesList.Count; x++)
             {
-                InitializePayments(x, "MonthlyIncome");
+                InitializePaymentsAsync(x, "MonthlyIncome");
             }
             for (var x = 0; x < expensesList.Count; x++)
             {
-                InitializePayments(x, "MonthlyExpenses");
+                InitializePaymentsAsync(x, "MonthlyExpenses");
             }
 
             Controls.Add(scheduledExpenseLabel);
@@ -88,7 +88,7 @@ namespace Plutus
             PerformLayout();
         }
 
-        private async void InitializePayments(int index, string type)
+        private async void InitializePaymentsAsync(int index, string type)
         {
             var flow = new FlowLayoutPanel
             {
@@ -131,9 +131,9 @@ namespace Plutus
                 Width = 35,
                 Name = "deactBtn" + index
             };
-            deleteButton.Click += (sender, e) => DelButtonClick(sender, e, type);
-            activateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(activateButton.Name[6..]), true);
-            deactivateButton.Click += (sender, e) => StatusChangeClick(sender, e, type, int.Parse(deactivateButton.Name[8..]), false);
+            deleteButton.Click += (sender, e) => DelButtonClickAsync(sender, e, type);
+            activateButton.Click += (sender, e) => StatusChangeClickAsync(sender, e, type, int.Parse(activateButton.Name[6..]), true);
+            deactivateButton.Click += (sender, e) => StatusChangeClickAsync(sender, e, type, int.Parse(deactivateButton.Name[8..]), false);
             label.Text = await _plutusApiClient.GetScheduledPaymentAsync(index, type);
             flow.Controls.Add(label);
             flow.Controls.Add(activateButton);
@@ -150,15 +150,15 @@ namespace Plutus
 
         }
 
-        private async void StatusChangeClick(object sender, EventArgs e, string type, int index, bool status)
+        private async void StatusChangeClickAsync(object sender, EventArgs e, string type, int index, bool status)
         {
             await _plutusApiClient.ChangeScheduledPaymentStatusAsync(index, type, status);
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();
-            LoadSchedulerPage();
+            LoadSchedulerPageAsync();
         }
 
-        private async void DelButtonClick(object sender, EventArgs e, string type)
+        private async void DelButtonClickAsync(object sender, EventArgs e, string type)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name[6..]);
@@ -166,7 +166,7 @@ namespace Plutus
 
             incomesFlow.Controls.Clear();
             expensesFlow.Controls.Clear();
-            LoadSchedulerPage();
+            LoadSchedulerPageAsync();
         }
 
         private void ScheduledIncomeAddButton_Click(object sender, EventArgs e)

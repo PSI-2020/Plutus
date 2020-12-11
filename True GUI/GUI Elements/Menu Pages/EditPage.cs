@@ -116,7 +116,7 @@ namespace Plutus
 
         private async void DeletePaymentButton_Click(object sender, EventArgs e)
         {
-            await _plutusApiClient.DeletePayment(currentPayment, currentType);
+            await _plutusApiClient.DeletePaymentAsync(currentPayment, currentType);
             Controls.Clear();
             LoadHistoryPage();
         }
@@ -139,7 +139,7 @@ namespace Plutus
             };
 
             var list = await _plutusApiClient.GetPaymentsAsync(currentType.ToString());
-            await _plutusApiClient.EditPayment(newPayment, list.IndexOf(currentPayment), currentType);
+            await _plutusApiClient.EditPaymentAsync(newPayment, list.IndexOf(currentPayment), currentType);
             Controls.Clear();
             LoadHistoryPage();
         }

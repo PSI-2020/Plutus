@@ -13,7 +13,7 @@ namespace Plutus
         public CartFrontendService(PlutusApiClient plutusApi)
         {
             _plutusApiClient = plutusApi;
-            LoadCarts();
+            LoadCartsAsync();
         }
 
         public void NewCart() => _currentCart = new Cart();
@@ -33,7 +33,7 @@ namespace Plutus
         public void AddCurrentCart()
         {
             _carts.Add(_currentCart);
-            SaveCarts();
+            SaveCartsAsync();
         }
 
         public string GiveCurrentName() => _currentCart.GiveName();
@@ -48,22 +48,22 @@ namespace Plutus
         public void SaveCartChanges(int i)
         {
             _carts[i] = _currentCart;
-            SaveCarts();
+            SaveCartsAsync();
         }
 
-        public async void DeleteCurrent()
+        public async void DeleteCurrentAsync()
         {
             var index = _carts.IndexOf(_currentCart);
             _carts.Remove(_currentCart);
-            await _plutusApiClient.DeleteCart(index);
+            await _plutusApiClient.DeleteCartAsync(index);
         }
 
-        public async void ChargeCart()
+        public async void ChargeCartAsync()
         {
             var index = _carts.IndexOf(_currentCart);
-            await _plutusApiClient.PostCartCharge(index);
+            await _plutusApiClient.PostCartChargeAsync(index);
         }
-        private async void SaveCarts()
+        private async void SaveCartsAsync()
         {
             var index = _carts.IndexOf(_currentCart);
             var name = _currentCart.GiveName();
@@ -72,10 +72,10 @@ namespace Plutus
             {
                 cartexpenses.Add(_currentCart.GiveExpense(i));
             }
-            await _plutusApiClient.PostCart(index, name, cartexpenses);
+            await _plutusApiClient.PostCartAsync(index, name, cartexpenses);
         }
 
-        private async void LoadCarts()
+        private async void LoadCartsAsync()
         {
             var carts = new List<Cart>();
             var names = (await _plutusApiClient.GetCartNamesAsync());

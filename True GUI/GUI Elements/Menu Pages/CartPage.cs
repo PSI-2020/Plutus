@@ -470,13 +470,13 @@ namespace Plutus
         }
         private void ChargeCart_Click(object sender, EventArgs e)
         {
-            _cartService.ChargeCart();
+            _cartService.ChargeCartAsync();
             cartNavigationLabel.Text = "Charged";
         }
 
         private void DeleteCart_Click(object sender, EventArgs e)
         {
-            _cartService.DeleteCurrent();
+            _cartService.DeleteCurrentAsync();
             LoadCartsPage();
         }
         private void CartNavigateUp(object sender, EventArgs e)

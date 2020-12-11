@@ -26,10 +26,10 @@ namespace Plutus
             errorMessage = CreateClassicLabel("errorLabel", "", Color.Red, _lilitaOne, 13F, 272, 40, 50, 530, 1, ContentAlignment.MiddleCenter);
 
             changeGoalButton = CreateClassicButton("changeGoalButton", "change", Color.White, _lilitaOne, 14F, _firstColor, 272, 80, 50, 600, 7);
-            changeGoalButton.Click += new EventHandler(ChangeGoalButton_Click);
+            changeGoalButton.Click += new EventHandler(ChangeGoalButton_ClickAsync);
 
             deleteGoalButton = CreateClassicButton("deleteGoalButton", "delete", Color.White, _lilitaOne, 14F, Color.FromArgb(189, 183, 171), 272, 80, 50, 690, 7);
-            deleteGoalButton.Click += new EventHandler(DeleteGoalButton_Click);
+            deleteGoalButton.Click += new EventHandler(DeleteGoalButton_ClickAsync);
 
         }
         private void LoadEditGoalPage()
@@ -62,7 +62,7 @@ namespace Plutus
             Controls.Add(deleteGoalButton);
         }
 
-        private async void ChangeGoalButton_Click(object sender, EventArgs e)
+        private async void ChangeGoalButton_ClickAsync(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
             var error = VerificationService.VerifyData(name: newGoalNameBox.Text, amount: newGoalAmountBox.Text);
@@ -102,7 +102,7 @@ namespace Plutus
             }
 
         }
-        private async void DeleteGoalButton_Click(object sender, EventArgs e)
+        private async void DeleteGoalButton_ClickAsync(object sender, EventArgs e)
         {
             var list = await _plutusApiClient.GetGoalsAsync();
             var id = 0;

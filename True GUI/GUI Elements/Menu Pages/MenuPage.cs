@@ -87,7 +87,7 @@ namespace Plutus
         private void SchedulerMenuButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            LoadSchedulerPage();
+            LoadSchedulerPageAsync();
         }
 
         private void GoalsMenuButton_Click(object sender, EventArgs e)
@@ -99,7 +99,7 @@ namespace Plutus
         private void BudgetsMenuButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            LoadBudgetsPage();
+            LoadBudgetsPageAsync();
         }
 
         private void CartsMenuButton_Click(object sender, EventArgs e)

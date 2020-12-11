@@ -22,9 +22,9 @@
 
         public void SaveCartChanges(int i);
 
-        public void DeleteCurrent();
+        public void DeleteCurrentAsync();
 
-        public void ChargeCart();
+        public void ChargeCartAsync();
 
         public Cart StartShopping();
 

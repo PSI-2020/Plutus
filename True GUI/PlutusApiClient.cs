@@ -41,12 +41,12 @@ namespace Plutus
         public async Task ChangeScheduledPaymentStatusAsync(int index, string type, bool status) => await _httpClient.PutAsJsonAsync(_path + "/api/Scheduler/" + index + "/" + type + "/" + status, index);
         public async Task CheckPaymentsAsync() => await _httpClient.PatchAsync(_path + "/api/Scheduler/", null);
         public async Task EditGoalAsync(int id, Goal newGoal) => await _httpClient.PutAsJsonAsync(_path + "/api/Goals/edit/" + id, newGoal);
-        public async Task EditPayment(Payment payment, int index, DataType type) => await _httpClient.PutAsJsonAsync(_path + "/api/Payment/" + type + "/" + index, payment);
-        public async Task DeletePayment(Payment payment, DataType type) => await _httpClient.PutAsJsonAsync(_path + "/api/Payment/" + type, payment);
-        public async Task PostCart(int index, string name, List<CartExpense> cart) => await _httpClient.PostAsJsonAsync(_path + "/api/Carts/" + index + "/" + name, cart);
-        public async Task DeleteCart(int index) => await _httpClient.DeleteAsync(_path + "/api/Carts/" + index);
-        public async Task PostCartCharge(int index) => await _httpClient.PostAsync(_path + "/api/Carts/Charge/" + index, null);
-        public async Task PostChargeShopping(List<ShoppingExpense> bag) => await _httpClient.PostAsJsonAsync(_path + "/api/Shopping", bag);
+        public async Task EditPaymentAsync(Payment payment, int index, DataType type) => await _httpClient.PutAsJsonAsync(_path + "/api/Payment/" + type + "/" + index, payment);
+        public async Task DeletePaymentAsync(Payment payment, DataType type) => await _httpClient.PutAsJsonAsync(_path + "/api/Payment/" + type, payment);
+        public async Task PostCartAsync(int index, string name, List<CartExpense> cart) => await _httpClient.PostAsJsonAsync(_path + "/api/Carts/" + index + "/" + name, cart);
+        public async Task DeleteCartAsync(int index) => await _httpClient.DeleteAsync(_path + "/api/Carts/" + index);
+        public async Task PostCartChargeAsync(int index) => await _httpClient.PostAsync(_path + "/api/Carts/Charge/" + index, null);
+        public async Task PostChargeShoppingAsync(List<ShoppingExpense> bag) => await _httpClient.PostAsJsonAsync(_path + "/api/Shopping", bag);
 
 
         public async Task<List<History>> GetHistoryAsync(int index)

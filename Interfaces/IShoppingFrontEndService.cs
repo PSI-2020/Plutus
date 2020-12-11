@@ -6,7 +6,7 @@ namespace Plutus.Interfaces
     {
         public void InitializeShoppingService(Cart cart);
         public void ElementClicked(int index);
-        public void ChargeShopping();
+        public void ChargeShoppingAsync();
         public List<string> GiveExpenses(int state);
     }
 }

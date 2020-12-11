@@ -31,7 +31,7 @@ namespace Plutus
         }
         private void BudgetAddButtonClick(object sender, EventArgs e) => LoadAddBudgetPage();
 
-        private async void LoadBudgetsPage()
+        private async void LoadBudgetsPageAsync()
         {
             Controls.Clear();
             budgetsFlow.Controls.Clear();
@@ -43,7 +43,7 @@ namespace Plutus
 
             for (var x = 0; x < list.Count; x++)
             {
-                InitializeBudgets(x);
+                InitializeBudgetsAsync(x);
             }
 
             Controls.Add(budgetsPageName);
@@ -53,7 +53,7 @@ namespace Plutus
             PerformLayout();
         }
 
-        private async void InitializeBudgets(int index)
+        private async void InitializeBudgetsAsync(int index)
         {
             var flow = new FlowLayoutPanel
             {
@@ -86,8 +86,8 @@ namespace Plutus
                 Width = 140,
                 Name = "show" + index
             };
-            deleteButton.Click += new EventHandler(DeleteClick);
-            showBtn.Click += new EventHandler(OpenStats);
+            deleteButton.Click += new EventHandler(DeleteClickAsync);
+            showBtn.Click += new EventHandler(OpenStatsAsync);
             budgetsFlow.Controls.Add(flow);
             flow.Controls.Add(label);
             flow.Controls.Add(deleteButton);
@@ -95,7 +95,7 @@ namespace Plutus
             label.Text = await _plutusApiClient.GetBudgetAsync(index);
         }
 
-        private async void OpenStats(object sender, EventArgs e)
+        private async void OpenStatsAsync(object sender, EventArgs e)
         {
             Controls.Clear();
             LoadBudgetHistoryPage();
@@ -107,14 +107,14 @@ namespace Plutus
             historyDataGrid.DataSource = !list.Any() ? null : list;
         }
 
-        private async void DeleteClick(object sender, EventArgs e)
+        private async void DeleteClickAsync(object sender, EventArgs e)
         {
             var delButton = (Button)sender;
             var index = int.Parse(delButton.Name[6..]);
             await _plutusApiClient.DeleteBudgetAsync(index);
 
             budgetsFlow.Controls.Clear();
-            LoadBudgetsPage();
+            LoadBudgetsPageAsync();
         }
     }
 }
