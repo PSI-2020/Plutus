@@ -50,13 +50,13 @@ namespace Plutus
         {
             var index = _carts.IndexOf(_currentCart);
             _carts.Remove(_currentCart);
-            await HttpService.DeleteCart(index);
+            await PlutusApiClient.DeleteCart(index);
         }
 
         public async void ChargeCart()
         {
             var index = _carts.IndexOf(_currentCart);
-            await HttpService.PostCartCharge(index);
+            await PlutusApiClient.PostCartCharge(index);
         }
         private async void SaveCarts()
         {
@@ -67,16 +67,16 @@ namespace Plutus
             {
                 cartexpenses.Add(_currentCart.GiveExpense(i));
             }
-            await HttpService.PostCart(index, name, cartexpenses);
+            await PlutusApiClient.PostCart(index, name, cartexpenses);
         }
 
         private async void LoadCarts()
         {
             var carts = new List<Cart>();
-            var names = (await HttpService.GetCartNamesAsync());
+            var names = (await PlutusApiClient.GetCartNamesAsync());
             for(var i = 0; i < names.Count; i++)
             {
-                var expenses = (await HttpService.GetCartExpensesAsync(i));
+                var expenses = (await PlutusApiClient.GetCartExpensesAsync(i));
                 var cart = new Cart(names[i]);
                 for (var y = 0; y < expenses.Count; y++)
                 {

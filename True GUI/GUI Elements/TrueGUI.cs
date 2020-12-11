@@ -1,4 +1,5 @@
-﻿using Plutus.Services;
+﻿using Plutus.Interfaces;
+using Plutus.Services;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Net.Http;
@@ -41,16 +42,16 @@ namespace Plutus
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly VerificationService _inputVerification = new VerificationService();
         private readonly FileManager _fileManager = new FileManager();
-        private readonly CartService _cartService;
-        private readonly PaymentService _paymentService;
-        private readonly PlutusApiClient httpService = new PlutusApiClient();
+        private readonly ICartFrontEndService _cartService;
+        private readonly IShoppingFrontEndService _shoppingService;
+        private readonly IPaymentFrontEndService _paymentService;
 
         private string _previousPage;
 
-        public TrueGUI()
+        public TrueGUI(IShoppingFrontEndService shoppingService, ICartFrontEndService cartService, IPaymentFrontEndService paymentService)
         {
-            _cartService = new CartService(_fileManager);
-            _paymentService = new PaymentService(_fileManager);
+            _cartService = cartService;
+            _shoppingService = shoppingService;
             _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
             _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
             _fontFamilies = _privateFontCollection.Families;

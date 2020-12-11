@@ -1,7 +1,7 @@
 ﻿
 namespace Plutus
 {
-    class CurrentInfoHolder
+    public class CurrentInfoHolder
     {
         public string CurrentType { get; set; }
         public string CurrentCategory { get; set; }

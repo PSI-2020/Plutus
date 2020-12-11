@@ -20,7 +20,7 @@ namespace Plutus
 
         public void ElementClicked(int index) => _shoppingBag[index].State = _shoppingBag[index].State == 0 ? 1 : 0;
 
-        public async void ChargeShopping() => await HttpService.PostChargeShopping(_shoppingBag);
+        public async void ChargeShopping() => await PlutusApiClient.PostChargeShopping(_shoppingBag);
 
 
         public List<string> GiveExpenses(int state)

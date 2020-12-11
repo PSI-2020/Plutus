@@ -15,12 +15,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\Settings.settings" />
     <None Remove="True GUI\GUI resources\LilitaOne.ttf" />
     <None Remove="True GUI\GUI resources\Macondo.ttf" />
     <None Remove="True GUI\GUI resources\PlutusLogoTrue.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="True GUI\GUI resources\LilitaOne.ttf" />
     <EmbeddedResource Include="True GUI\GUI resources\Macondo.ttf" />
     <EmbeddedResource Include="True GUI\GUI resources\PlutusLogoTrue.png" />
@@ -53,13 +58,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
 </Project>
