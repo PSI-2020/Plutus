@@ -137,7 +137,7 @@ namespace Plutus
         }
 
 
-        private void AddScheduledPaymentButton_Click(object sender, EventArgs e, string type)
+        private async void AddScheduledPaymentButton_Click(object sender, EventArgs e, string type)
         {
             Controls.Remove(errorLabel);
             var error = _inputVerification.VerifyData(nameTextBox.Text, amountTextBox.Text, categoryBox.Text);
@@ -148,8 +148,10 @@ namespace Plutus
                 return;
             }
 
-            var list = _fileManager.LoadScheduledPayments(type);
-            _fileManager.AddScheduledPayment(new ScheduledPayment(firstPaymentBox.Value, nameTextBox.Text, double.Parse(amountTextBox.Text),
+
+            var list = await PlutusApiClient.GetAllScheduledPaymentsAsync(type);
+            await PlutusApiClient.PostScheduledPaymentAsync(new ScheduledPayment(firstPaymentBox.Value, nameTextBox.Text, double.Parse(amountTextBox.Text),
+
                 categoryBox.SelectedItem.ToString(), type + list.Count, frequencyBox.SelectedItem.ToString(), true), type);
             LoadSchedulerPage();
             categoryBox.Text = null;

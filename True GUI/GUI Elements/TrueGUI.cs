@@ -1,7 +1,7 @@
-﻿using Plutus.Interfaces;
-using Plutus.Services;
+﻿using Plutus.Services;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Net.Http;
 using System.Windows.Forms;
 
 namespace Plutus
@@ -29,6 +29,7 @@ namespace Plutus
         Other
     }
 
+
     public partial class TrueGUI : Form
     {
         private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
@@ -40,20 +41,16 @@ namespace Plutus
         private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
         private readonly VerificationService _inputVerification = new VerificationService();
         private readonly FileManager _fileManager = new FileManager();
+        private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
-        private readonly GoalService _goalService = new GoalService();
-        private readonly BudgetService _budgetService = new BudgetService();
-        private readonly SchedulerService _schedulerService = new SchedulerService();
-        private readonly HttpService httpService = new HttpService();
-        private readonly ICartFrontEndService _cartService;
-        private readonly IShoppingFrontEndService _shoppingService;
+        private readonly PlutusApiClient httpService = new PlutusApiClient();
 
         private string _previousPage;
 
-        public TrueGUI(IShoppingFrontEndService shoppingService, ICartFrontEndService cartService)
+        public TrueGUI()
         {
-            _cartService = cartService;
-            _shoppingService = shoppingService;
+            _cartService = new CartService(_fileManager);
+            _paymentService = new PaymentService(_fileManager);
             _privateFontCollection.AddFontFile(_fileManager.fontPathMaconodo);
             _privateFontCollection.AddFontFile(_fileManager.fontPathLilita);
             _fontFamilies = _privateFontCollection.Families;
