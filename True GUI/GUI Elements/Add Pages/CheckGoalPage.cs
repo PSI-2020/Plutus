@@ -25,9 +25,9 @@ namespace Plutus
             editGoalButton.Click += new EventHandler(EditGoalButton_Click);
 
             setAsMainGoalButton = CreateClassicButton("setAsMainGoalButton", "set as main goal", Color.White, _lilitaOne, 14F, _firstColor, 150, 60, 170, 700, 10);
-            setAsMainGoalButton.Click += new EventHandler(SetAsMainGoalButton_Click);
+            setAsMainGoalButton.Click += new EventHandler(SetAsMainGoalButton_ClickAsync);
         }
-        private async void LoadCheckGoalPage()
+        private async void LoadCheckGoalPageAsync()
         {
             LoadEscapeButton();
             LoadMenuButton();
@@ -89,11 +89,11 @@ namespace Plutus
             LoadEditGoalPage();
         }
 
-        private async void SetAsMainGoalButton_Click(object sender, EventArgs e)
+        private async void SetAsMainGoalButton_ClickAsync(object sender, EventArgs e)
         { 
             await _plutusApiClient.SetAsMainGoalAsync(_currentGoal);
             Controls.Clear();
-            LoadMainPage();
+            LoadMainPageAsync();
         }
 
 

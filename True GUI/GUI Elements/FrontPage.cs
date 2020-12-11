@@ -26,18 +26,18 @@ namespace Plutus
             SuspendLayout();
 
             getStartedButton = CreateClassicButton("getStartedButton", "GET STARTED", Color.White, _lilitaOne, 18F, Color.FromArgb(163, 160, 154), 272, 77, 51, 524, 3);
-            getStartedButton.Click += new EventHandler(GetStartedButton_Click);
+            getStartedButton.Click += new EventHandler(GetStartedButton_ClickAsync);
 
             Controls.Add(logoPicture);
             Controls.Add(getStartedButton);
             ResumeLayout(false);
             PerformLayout();
         }
-        private async void GetStartedButton_Click(object sender, EventArgs e)
+        private async void GetStartedButton_ClickAsync(object sender, EventArgs e)
         {
             Controls.Clear();
             await _plutusApiClient.CheckPaymentsAsync();
-            LoadMainPage();
+            LoadMainPageAsync();
         }
 
 
