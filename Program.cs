@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Plutus.Services;
+using System.Drawing.Text;
 
 namespace Plutus
 {
@@ -40,6 +41,7 @@ namespace Plutus
             services.AddScoped<IInfoHolder, CurrentInfoHolder>();
             services.AddScoped<TrueGUI>();
             services.AddSingleton<PlutusApiClient>();
+            services.AddSingleton<PrivateFontCollection>();
         }
     }
 }

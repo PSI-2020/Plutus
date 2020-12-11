@@ -34,7 +34,7 @@ namespace Plutus
 
     public partial class TrueGUI : Form
     {
-        private readonly PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
+        private readonly PrivateFontCollection _privateFontCollection;
         private readonly string _directoryPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         private readonly FontFamily[] _fontFamilies;
         private readonly FontFamily _lilitaOne;
@@ -49,13 +49,14 @@ namespace Plutus
 
         private string _previousPage;
 
-        public TrueGUI(IShoppingFrontEndService shoppingService, ICartFrontEndService cartService, IPaymentFrontEndService paymentService, IInfoHolder currentInfo, PlutusApiClient plutusApi)
+        public TrueGUI(IShoppingFrontEndService shoppingService, ICartFrontEndService cartService, IPaymentFrontEndService paymentService, IInfoHolder currentInfo, PlutusApiClient plutusApi, PrivateFontCollection privateFontCollection)
         {
             _plutusApiClient = plutusApi;
             _cartService = cartService;
             _shoppingService = shoppingService;
             _paymentService = paymentService;
             _currentInfo = currentInfo;
+            _privateFontCollection = privateFontCollection;
             _privateFontCollection.AddFontFile(_directoryPath + Properties.Settings.Default.MacondoPath);
             _privateFontCollection.AddFontFile(_directoryPath + Properties.Settings.Default.LilitiaPath);
             _fontFamilies = _privateFontCollection.Families;
