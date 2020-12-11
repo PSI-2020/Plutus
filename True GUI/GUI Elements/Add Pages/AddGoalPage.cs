@@ -54,14 +54,13 @@ namespace Plutus
         private async void AddGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
-            var verify = new VerificationService();
-            var error = verify.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);
+            var error = VerificationService.VerifyData(name: goalNameBox.Text, amount: goalAmountBox.Text);
             if (error == "")
             {
                 if (Regex.IsMatch(goalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
                     var goal = new Goal(goalNameBox.Text.UppercaseFirstLetter(), double.Parse(goalAmountBox.Text), goalDueDateBox.Value);
-                    await PlutusApiClient.PostGoalAsync(goal);
+                    await _plutusApiClient.PostGoalAsync(goal);
                     Controls.Clear();
                     LoadGoalsPage();
                 }

@@ -116,7 +116,7 @@ namespace Plutus
 
         private async void DeletePaymentButton_Click(object sender, EventArgs e)
         {
-            await PlutusApiClient.DeletePayment(currentPayment, currentType);
+            await _plutusApiClient.DeletePayment(currentPayment, currentType);
             Controls.Clear();
             LoadHistoryPage();
         }
@@ -126,7 +126,7 @@ namespace Plutus
             var name = editNameBox.Text;
             var amount = editAmountBox.Text;
             var category = editCategoryBox.SelectedItem.ToString();
-            editFieldErrorLabel.Text = _inputVerification.VerifyData(name: name, amount: amount, category: category);
+            editFieldErrorLabel.Text = VerificationService.VerifyData(name: name, amount: amount, category: category);
 
             if (editFieldErrorLabel.Text != "") return;
 
@@ -138,8 +138,8 @@ namespace Plutus
                 Category = category
             };
 
-            var list = await PlutusApiClient.GetPaymentsAsync(currentType.ToString());
-            await PlutusApiClient.EditPayment(newPayment, list.IndexOf(currentPayment), currentType);
+            var list = await _plutusApiClient.GetPaymentsAsync(currentType.ToString());
+            await _plutusApiClient.EditPayment(newPayment, list.IndexOf(currentPayment), currentType);
             Controls.Clear();
             LoadHistoryPage();
         }

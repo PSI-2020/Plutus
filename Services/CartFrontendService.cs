@@ -8,11 +8,16 @@ namespace Plutus
     {
         private Cart _currentCart;
         private List<Cart> _carts;
+        private readonly PlutusApiClient _plutusApiClient;
 
-        public CartFrontendService() => LoadCarts();
+        public CartFrontendService(PlutusApiClient plutusApi)
+        {
+            _plutusApiClient = plutusApi;
+            LoadCarts();
+        }
 
         public void NewCart() => _currentCart = new Cart();
-        public void AddExpenseToCart(CurrentInfoHolder cih)
+        public void AddExpenseToCart(IInfoHolder cih)
         {
             var expense = new CartExpense(cih.CurrentName, double.Parse(cih.CurrentAmout), cih.CurrentCategory);
             _currentCart.AddExpense(expense);
@@ -50,13 +55,13 @@ namespace Plutus
         {
             var index = _carts.IndexOf(_currentCart);
             _carts.Remove(_currentCart);
-            await PlutusApiClient.DeleteCart(index);
+            await _plutusApiClient.DeleteCart(index);
         }
 
         public async void ChargeCart()
         {
             var index = _carts.IndexOf(_currentCart);
-            await PlutusApiClient.PostCartCharge(index);
+            await _plutusApiClient.PostCartCharge(index);
         }
         private async void SaveCarts()
         {
@@ -67,16 +72,16 @@ namespace Plutus
             {
                 cartexpenses.Add(_currentCart.GiveExpense(i));
             }
-            await PlutusApiClient.PostCart(index, name, cartexpenses);
+            await _plutusApiClient.PostCart(index, name, cartexpenses);
         }
 
         private async void LoadCarts()
         {
             var carts = new List<Cart>();
-            var names = (await PlutusApiClient.GetCartNamesAsync());
+            var names = (await _plutusApiClient.GetCartNamesAsync());
             for(var i = 0; i < names.Count; i++)
             {
-                var expenses = (await PlutusApiClient.GetCartExpensesAsync(i));
+                var expenses = (await _plutusApiClient.GetCartExpensesAsync(i));
                 var cart = new Cart(names[i]);
                 for (var y = 0; y < expenses.Count; y++)
                 {

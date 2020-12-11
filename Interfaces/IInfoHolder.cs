@@ -1,7 +1,6 @@
-﻿
-namespace Plutus
+﻿namespace Plutus.Interfaces
 {
-    public class CurrentInfoHolder
+    public interface IInfoHolder
     {
         public string CurrentType { get; set; }
         public string CurrentCategory { get; set; }

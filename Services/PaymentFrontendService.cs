@@ -6,7 +6,12 @@ namespace Plutus.Services
 {
     public class PaymentFrontendService : IPaymentFrontEndService
     {
-        public async Task AddPaymentAsync(CurrentInfoHolder chi)
+        private readonly PlutusApiClient _plutusApiClient;
+
+        public PaymentFrontendService(PlutusApiClient plutusApi) => _plutusApiClient = plutusApi;
+
+
+        public async Task AddPaymentAsync(IInfoHolder chi)
         {
             var date = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
@@ -18,7 +23,7 @@ namespace Plutus.Services
                 Category = chi.CurrentCategory
             };
 
-            await PlutusApiClient.PostPaymentAsync(payment, chi.CurrentType);
+            await _plutusApiClient.PostPaymentAsync(payment, chi.CurrentType);
         }
 
         public async void AddCartPayment(string name, double amount, string category)
@@ -31,7 +36,7 @@ namespace Plutus.Services
                 Amount = amount,
                 Category = category
             };
-            await PlutusApiClient.PostPaymentAsync(payment, "Expense"); ;
+            await _plutusApiClient.PostPaymentAsync(payment, "Expense"); ;
         }
     }
 }

@@ -41,20 +41,21 @@ namespace Plutus
         private readonly Color _backgroundColor = Color.FromArgb(220, 213, 201);
         private readonly Color _firstColor = Color.FromArgb(111, 101, 88);
         private readonly Color _secondColor = Color.FromArgb(168, 163, 153);
-        private readonly CurrentInfoHolder _currentInfo = new CurrentInfoHolder();
-        private readonly VerificationService _inputVerification = new VerificationService();
-        private readonly FileManager _fileManager = new FileManager();
+        private readonly IInfoHolder _currentInfo;
         private readonly ICartFrontEndService _cartService;
         private readonly IShoppingFrontEndService _shoppingService;
         private readonly IPaymentFrontEndService _paymentService;
+        private readonly PlutusApiClient _plutusApiClient;
 
         private string _previousPage;
 
-        public TrueGUI(IShoppingFrontEndService shoppingService, ICartFrontEndService cartService, IPaymentFrontEndService paymentService)
+        public TrueGUI(IShoppingFrontEndService shoppingService, ICartFrontEndService cartService, IPaymentFrontEndService paymentService, IInfoHolder currentInfo, PlutusApiClient plutusApi)
         {
+            _plutusApiClient = plutusApi;
             _cartService = cartService;
             _shoppingService = shoppingService;
             _paymentService = paymentService;
+            _currentInfo = currentInfo;
             _privateFontCollection.AddFontFile(_directoryPath + Properties.Settings.Default.MacondoPath);
             _privateFontCollection.AddFontFile(_directoryPath + Properties.Settings.Default.LilitiaPath);
             _fontFamilies = _privateFontCollection.Families;

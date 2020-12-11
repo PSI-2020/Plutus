@@ -19,7 +19,7 @@ namespace Plutus
         {
             LoadMenuButton();
 
-            var goalList = await PlutusApiClient.GetGoalsAsync();
+            var goalList = await _plutusApiClient.GetGoalsAsync();
             if (goalList.Any())
             {
                 var mainGoal = goalList[0];
@@ -30,7 +30,7 @@ namespace Plutus
 
                 todaySpendLabel = CreateClassicLabel("todaySpendLabel", "You can spend today: ", Color.FromArgb(126, 121, 112), _lilitaOne, 18F, ClientSize.Width, 40, 0, 215, 3);
                 todaySpendLabel.TextAlign = ContentAlignment.MiddleCenter;
-                dailySpendLabel = CreateClassicLabel("dailySpendLabel", await PlutusApiClient.GetGoalInsightsAsync( 0, "daily"), Color.White, _lilitaOne, 25F, ClientSize.Width - 150, 80, 70, 255, 5);
+                dailySpendLabel = CreateClassicLabel("dailySpendLabel", await _plutusApiClient.GetGoalInsightsAsync( 0, "daily"), Color.White, _lilitaOne, 25F, ClientSize.Width - 150, 80, 70, 255, 5);
                 dailySpendLabel.BackColor = Color.FromArgb(126, 121, 112);
                 dailySpendLabel.TextAlign = ContentAlignment.MiddleCenter;
 

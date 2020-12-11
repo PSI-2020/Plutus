@@ -51,7 +51,7 @@ namespace Plutus
 
         private async void LoadMyCurrentGoalsAsync()
         {
-            var list = await PlutusApiClient.GetGoalsAsync();
+            var list = await _plutusApiClient.GetGoalsAsync();
 
             var i = 0;
             foreach(var goal in list)

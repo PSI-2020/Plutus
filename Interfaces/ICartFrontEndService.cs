@@ -3,7 +3,7 @@
     public interface ICartFrontEndService
     {
         public void NewCart();
-        public void AddExpenseToCart(CurrentInfoHolder cih);
+        public void AddExpenseToCart(IInfoHolder cih);
         public int GiveCurrentCartElemCount();
         public CartExpense GiveCurrentElemAt(int i);
         public void RemoveExpenseCurrentAt(int i);

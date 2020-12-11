@@ -276,10 +276,7 @@ namespace Plutus
             LoadCartExpensePanel();
         }
 
-        private void GoBackCartButton_Click(object sender, EventArgs e)
-        {
-            GoBackCartMethod("");
-        }
+        private void GoBackCartButton_Click(object sender, EventArgs e) => GoBackCartMethod("");
 
         private void GoBackCartMethod(string info)
         {
@@ -450,7 +447,7 @@ namespace Plutus
         {
             var ver1 = cartNameBox.Text;
             var ver2 = cartNameBox.Text;
-            ver1 = _inputVerification.VerifyData(name: ver1);
+            ver1 = VerificationService.VerifyData(name: ver1);
             if (ver1 != "")
             {
                 cartNavigationLabel.Text = ver1;
@@ -534,7 +531,7 @@ namespace Plutus
         {
             var ver1 = cartNameBox.Text;
             var ver2 = cartNameBox.Text;
-            ver1 = _inputVerification.VerifyData(name: ver1);
+            ver1 = VerificationService.VerifyData(name: ver1);
             if (ver1 != "")
             {
                 cartNavigationLabel.Text = ver1;

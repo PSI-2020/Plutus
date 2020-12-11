@@ -67,7 +67,7 @@ namespace Plutus
         {
             var name = nameBox.Text;
             var amount = amountBox.Text;
-            addFieldErrorLabel.Text = _inputVerification.VerifyData(name: name, amount: amount);
+            addFieldErrorLabel.Text = VerificationService.VerifyData(name: name, amount: amount);
 
             if (addFieldErrorLabel.Text != "") return;
             _currentInfo.CurrentName = name;

@@ -2,7 +2,7 @@
 {
     class VerificationService
     {
-        public string VerifyData(string name = "undefined", string amount = "0", string category = "undefined")
+        public static string VerifyData(string name = "undefined", string amount = "0", string category = "undefined")
         {
             return string.IsNullOrEmpty(name)
                 ? "Name cannot be empty!"

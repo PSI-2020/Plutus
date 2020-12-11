@@ -6,11 +6,12 @@ namespace Plutus
     class ShoppingFrontEndService : IShoppingFrontEndService
     {
         private List<ShoppingExpense> _shoppingBag;
-        public string RetMess { get; set; }
-        
+        private readonly PlutusApiClient _plutusApiClient;
+
+        public ShoppingFrontEndService(PlutusApiClient plutusApi) => _plutusApiClient = plutusApi;
+
         public void InitializeShoppingService(Cart cart)
         {
-            RetMess = "Shopping Done";
             _shoppingBag = new List<ShoppingExpense>();
             for (var i = 0; i < cart.GiveElementC(); i++){
                 var expense = new ShoppingExpense(cart.GiveExpense(i), 0);
@@ -20,7 +21,7 @@ namespace Plutus
 
         public void ElementClicked(int index) => _shoppingBag[index].State = _shoppingBag[index].State == 0 ? 1 : 0;
 
-        public async void ChargeShopping() => await PlutusApiClient.PostChargeShopping(_shoppingBag);
+        public async void ChargeShopping() => await _plutusApiClient.PostChargeShopping(_shoppingBag);
 
 
         public List<string> GiveExpenses(int state)

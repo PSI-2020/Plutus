@@ -65,13 +65,12 @@ namespace Plutus
         private async void ChangeGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
-            var verify = new VerificationService();
-            var error = verify.VerifyData(name: newGoalNameBox.Text, amount: newGoalAmountBox.Text);
+            var error = VerificationService.VerifyData(name: newGoalNameBox.Text, amount: newGoalAmountBox.Text);
             if (error == "")
             {
                 if (Regex.IsMatch(newGoalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
-                    var list = await PlutusApiClient.GetGoalsAsync();
+                    var list = await _plutusApiClient.GetGoalsAsync();
                     var id = 0;
                     foreach (var i in list)
                     {
@@ -80,7 +79,7 @@ namespace Plutus
                         id++;
                     }
                     var newGoal = new Goal(newGoalNameBox.Text, double.Parse(newGoalAmountBox.Text), newGoalDueDateBox.Value);
-                    await PlutusApiClient.EditGoalAsync(id, newGoal);
+                    await _plutusApiClient.EditGoalAsync(id, newGoal);
                     Controls.Clear();
                     LoadGoalsPage();
                 }
@@ -105,7 +104,7 @@ namespace Plutus
         }
         private async void DeleteGoalButton_Click(object sender, EventArgs e)
         {
-            var list = await PlutusApiClient.GetGoalsAsync();
+            var list = await _plutusApiClient.GetGoalsAsync();
             var id = 0;
             foreach(var i in list)
             {
@@ -114,7 +113,7 @@ namespace Plutus
                 id++;
             }
             
-            await PlutusApiClient.DeleteGoalAsync(id);
+            await _plutusApiClient.DeleteGoalAsync(id);
             Controls.Clear();
             LoadGoalsPage();
         }

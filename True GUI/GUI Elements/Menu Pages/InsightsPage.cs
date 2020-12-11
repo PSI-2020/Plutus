@@ -17,7 +17,7 @@ namespace Plutus
             statistics = new TextBox
             {
                 Name = "Statistics",
-                Text = await PlutusApiClient.GetStatisticsAsync(),
+                Text = await _plutusApiClient.GetStatisticsAsync(),
                 Font = new Font(_lilitaOne, 16F, FontStyle.Regular, GraphicsUnit.Point),
                 BackColor = _backgroundColor,
                 ForeColor = _secondColor,

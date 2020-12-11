@@ -112,7 +112,7 @@ namespace Plutus
 
         private async void UpdateHistoryAsync(int index)
         {
-            var dataSource = (await PlutusApiClient.GetHistoryAsync(index));
+            var dataSource = (await _plutusApiClient.GetHistoryAsync(index));
 
             if (dataSource == null)
             {
