@@ -74,7 +74,7 @@ namespace Plutus
             _currentInfo.CurrentAmout = amount;
 
             Controls.Clear();
-            LoadMainPage();
+            LoadMainPageAsync();
             Loadback();
 
         }
@@ -86,7 +86,7 @@ namespace Plutus
                     AddNewCartExpense();
                     break;
                 default:
-                    AddCurrentPayment();
+                    AddCurrentPaymentAsync();
                     break;
             }
         }

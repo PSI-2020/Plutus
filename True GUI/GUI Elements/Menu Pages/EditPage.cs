@@ -108,20 +108,20 @@ namespace Plutus
             };
 
             editPaymentButton = CreateClassicButton("", "Confirm", Color.White, _lilitaOne, 14F, _firstColor, 150, 80, ClientSize.Width - 175, 650, 5);
-            editPaymentButton.Click += new EventHandler(EditPaymentButton_Click);
+            editPaymentButton.Click += new EventHandler(EditPaymentButton_ClickAsync);
             deletePaymentButton = CreateClassicButton("", "Delete", Color.White, _lilitaOne, 14F, _firstColor, 150, 80, 25, 650, 5);
-            deletePaymentButton.Click += new EventHandler(DeletePaymentButton_Click);
+            deletePaymentButton.Click += new EventHandler(DeletePaymentButton_ClickAsync);
             editFieldErrorLabel = CreateClassicLabel("", "", Color.Red, _lilitaOne, 14F, 272, 50, 50, 550, 45);
         }
 
-        private async void DeletePaymentButton_Click(object sender, EventArgs e)
+        private async void DeletePaymentButton_ClickAsync(object sender, EventArgs e)
         {
             await _plutusApiClient.DeletePaymentAsync(currentPayment, currentType);
             Controls.Clear();
             LoadHistoryPage();
         }
 
-        private async void EditPaymentButton_Click(object sender, EventArgs e)
+        private async void EditPaymentButton_ClickAsync(object sender, EventArgs e)
         {
             var name = editNameBox.Text;
             var amount = editAmountBox.Text;

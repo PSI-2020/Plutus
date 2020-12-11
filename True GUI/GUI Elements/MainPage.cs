@@ -15,7 +15,7 @@ namespace Plutus
         Button incomeAddButton;
         Label incomeTextLabel;
 
-        private async void LoadMainPage()
+        private async void LoadMainPageAsync()
         {
             LoadMenuButton();
 
@@ -83,10 +83,10 @@ namespace Plutus
 
         private void AddFieldsToCurrentPayment() => LoadPaymentFieldPage("mainPage");
 
-        private async void AddCurrentPayment()
+        private async void AddCurrentPaymentAsync()
         {
             await _paymentService.AddPaymentAsync(_currentInfo);
-            LoadMainPage();
+            LoadMainPageAsync();
         }
 
 

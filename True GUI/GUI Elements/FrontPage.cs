@@ -58,7 +58,7 @@ namespace Plutus
             end = true;
 
             Controls.Clear();
-            LoadMainPage();
+            LoadMainPageAsync();
         }
 
 

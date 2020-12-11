@@ -33,7 +33,7 @@ namespace Plutus
         private void EscapeButton_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            LoadMainPage();
+            LoadMainPageAsync();
         }
     }
 }

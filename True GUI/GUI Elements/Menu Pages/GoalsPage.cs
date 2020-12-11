@@ -74,7 +74,7 @@ namespace Plutus
             _currentGoal = button.Goal;
 
             Controls.Clear();
-            LoadCheckGoalPage();
+            LoadCheckGoalPageAsync();
 
         }
     }
