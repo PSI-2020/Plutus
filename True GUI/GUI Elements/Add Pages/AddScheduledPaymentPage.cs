@@ -150,8 +150,8 @@ namespace Plutus
 
 
             var list = await PlutusApiClient.GetAllScheduledPaymentsAsync(type);
-            await PlutusApiClient.PostScheduledPaymentAsync(new ScheduledPayment(firstPaymentBox.Value, nameTextBox.Text, double.Parse(amountTextBox.Text),
 
+            await PlutusApiClient.PostScheduledPaymentAsync(new ScheduledPayment(firstPaymentBox.Value, nameTextBox.Text, double.Parse(amountTextBox.Text),
                 categoryBox.SelectedItem.ToString(), type + list.Count, frequencyBox.SelectedItem.ToString(), true), type);
             LoadSchedulerPage();
             categoryBox.Text = null;

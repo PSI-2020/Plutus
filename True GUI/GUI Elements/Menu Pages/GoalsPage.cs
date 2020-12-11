@@ -37,7 +37,7 @@ namespace Plutus
             Controls.Add(goalsPageName);
             Controls.Add(myGoalsTextLabel);
 
-            LoadMyCurrentGoals();
+            LoadMyCurrentGoalsAsync();
 
             ResumeLayout(false);
             PerformLayout();
@@ -49,9 +49,10 @@ namespace Plutus
             LoadAddGoalPage();
         }
 
-        private void LoadMyCurrentGoals()
+        private async void LoadMyCurrentGoalsAsync()
         {
-            var list = _fileManager.ReadGoals();
+            var list = await PlutusApiClient.GetGoalsAsync();
+
             var i = 0;
             foreach(var goal in list)
             {

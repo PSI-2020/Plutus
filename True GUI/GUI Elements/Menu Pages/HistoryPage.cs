@@ -96,12 +96,23 @@ namespace Plutus
             historyPaymentTypeBox.SelectedIndex = 0;
             UpdateHistoryAsync(0);
         }
+        private void LoadBudgetHistoryPage()
+        {
+            LoadMenuButton();
+            LoadEscapeButton();
+            Controls.Add(historyPageName);
+            Controls.Add(historyEditButton);
+            Controls.Add(historyFilterButton);
+            Controls.Add(historyDataGrid);
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
         private void UpdateHistoryAsync(object _, EventArgs __) => UpdateHistoryAsync(historyPaymentTypeBox.SelectedIndex);
 
         private async void UpdateHistoryAsync(int index)
         {
-            var dataSource = (await HttpService.GetHistoryAsync(index));
+            var dataSource = (await PlutusApiClient.GetHistoryAsync(index));
 
             if (dataSource == null)
             {

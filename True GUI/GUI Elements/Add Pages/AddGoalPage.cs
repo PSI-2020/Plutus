@@ -51,7 +51,7 @@ namespace Plutus
             Controls.Add(goalDueDateBox);
         }
 
-        private void AddGoalButton_Click(object sender, EventArgs e)
+        private async void AddGoalButton_Click(object sender, EventArgs e)
         {
             Controls.Remove(errorMessage);
             var verify = new VerificationService();
@@ -60,7 +60,8 @@ namespace Plutus
             {
                 if (Regex.IsMatch(goalNameBox.Text, "^[A-z0-9Ą-ž]{1,12}$"))
                 {
-                    _fileManager.AddGoal(goalNameBox.Text.UppercaseFirstLetter(), goalAmountBox.Text, goalDueDateBox.Value);
+                    var goal = new Goal(goalNameBox.Text.UppercaseFirstLetter(), double.Parse(goalAmountBox.Text), goalDueDateBox.Value);
+                    await PlutusApiClient.PostGoalAsync(goal);
                     Controls.Clear();
                     LoadGoalsPage();
                 }

@@ -143,7 +143,7 @@ namespace Plutus
             {
                 incomesFlow.Controls.Add(flow);
             }
-            else if (type.ToLower() == "monthlyexpenses")
+            else if(type.ToLower() == "monthlyexpenses")
             {
                 expensesFlow.Controls.Add(flow);
             }
